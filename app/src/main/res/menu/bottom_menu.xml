@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/estimate"
+    android:title="@string/estimates"
+    android:icon="@drawable/estimates"/>
+    <item android:id="@+id/users"
+    android:title="@string/clients"
+    android:icon="@drawable/users"/>
+    <item android:id="@+id/profile"
+    android:title="@string/profile"
+    android:icon="@drawable/settings"/>
+</menu>

@@ -12,5 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "DS Box+"
+
+rootProject.name = "DSBoxPlusUI"
 include ':app'

@@ -1,3 +1,68 @@
 <resources>
-    <string name="app_name">DS Box+</string>
+    <string name="app_name">DSBoxPlusUI</string>
+    <string name="name">DS BOX +</string>
+    <string name="splash_slogan">Box costing \n at your fingertips!</string>
+    <string name="device_name">Device Name</string>
+    <string name="verify_phone_number">Verify Your Phone Number</string>
+    <string name="sms_text">DS Box+ will send an SMS message to verify your phone
+    number,Please enter your Country Code and Phone number.</string>
+    <string name="country_code">Country Code</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="next_button">Next</string>
+    <string name="t_and_c">Terms and Privacy Policy</string>
+    <string name="estimates">Estimates</string>
+    <string name="clients">Clients</string>
+    <string name="profile">Profile</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enable_multi_users">Enable Multiple Users</string>
+    <string name="enable_multi_users_text">Allow you to create multiple users foe the same business
+        \n where estimates and clients are shared across users.</string>
+    <string name="enable_multi_users_text_2">You can create maximum 5 users.</string>
+    <string name="switch_button_on">On</string>
+    <string name="switch_button_off">Off</string>
+    <string name="super_user">Super User Settings</string>
+    <string name="settings">Settings</string>
+    <string name="business_settings">Business Settings</string>
+    <string name="business_settings_name_contact_address">Business Name,Contact No,Address</string>
+    <string name="default_paper_settings">Default Paper Settings</string>
+    <string name="default_paper_settings_margins_ff_etc">Margins,FF,etc.</string>
+    <string name="default_rate_settings">Default Rate Settings</string>
+    <string name="default_rate_settings_waste">Waste,Conversion Rate,Overhead Charges \n Profit,Tax,etc.</string>
+    <string name="quotation_terms_settings">Quotation Terms</string>
+    <string name="quotation_terms_settings_terms">Terms and conditions for estimate.</string>
+    <string name="subscription_settings">Subscription</string>
+    <string name="help">Help</string>
+    <string name="log_out">LogOut</string>
+    <string name="business_details">Business Details</string>
+    <string name="business_name">Business Name</string>
+    <string name="business_contact">Business Contact</string>
+    <string name="business_address">Business Address</string>
+    <string name="business_pinCode">Business PinCode</string>
+    <string name="business_email">Business Email</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="cutting_margin">Cutting Margin (mm)</string>
+    <string name="decal_margin">Decal Margin (mm)</string>
+    <string name="flute_factor">Flute Factor (FF)</string>
+    <string name="waste">Waste %</string>
+    <string name="conversion_cost">Conversion Cost/KG</string>
+    <string name="profit">Profit %</string>
+    <string name="tax">Tax %</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="quotation_new_line_text">For New line use | Vertical slash character also called as pipe,
+         piping symbol to view New Line in Quotation PDF</string>
+    <string name="new_client">New Clients Details</string>
+    <string name="new_clients_this_info">This information will show on your \n
+    estimates,quotations</string>
+    <string name="client_name">Client Name</string>
+    <string name="contact_no">Contact No</string>
+    <string name="address">Address</string>
+    <string name="submit">Submit</string>
+    <string name="user_details">User Details</string>
+    <string name="user_name">User Name</string>
+    <string name="device_info">Device Info</string>
+    <string name="update">Update</string>
+    <string name="for_help_contact">For Help Contact Support</string>
+    <string name="help_contact_no">9421013332</string>
 </resources>

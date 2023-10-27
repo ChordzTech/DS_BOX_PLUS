@@ -10,8 +10,35 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DSBox"
+        android:theme="@style/Theme.DSBoxPlusUI"
         tools:targetApi="31">
+        <activity
+            android:name=".settings.Help"
+            android:exported="false" />
+        <activity
+            android:name=".settings.UserDetailsInProfile"
+            android:exported="false" />
+        <activity
+            android:name=".clients.AddNewClients"
+            android:exported="false" />
+        <activity
+            android:name=".settings.QuotationTerms"
+            android:exported="false" />
+        <activity
+            android:name=".settings.DefaultRateSettings"
+            android:exported="false" />
+        <activity
+            android:name=".settings.DefaultPaperSettings"
+            android:exported="false" />
+        <activity
+            android:name=".settings.BusinessDetails"
+            android:exported="false" />
+        <activity
+            android:name=".HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
