@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.dsboxplusui.databinding.ActivityLoginScreenBinding;
+import com.dss.dsboxplus.databinding.ActivityLoginScreenBinding;
 
-public class LoginScreen extends AppCompatActivity {
+
+public class LoginActivity extends AppCompatActivity {
     ActivityLoginScreenBinding loginScreenBinding;
 
     @Override
@@ -23,7 +24,7 @@ public class LoginScreen extends AppCompatActivity {
         loginScreenBinding.btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

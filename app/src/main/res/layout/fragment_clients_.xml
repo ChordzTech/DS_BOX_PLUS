@@ -7,7 +7,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.Client_Fragment">
+        android:background="@drawable/background_gradient"
+        tools:context=".fragments.ClientFragment">
 
         <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"

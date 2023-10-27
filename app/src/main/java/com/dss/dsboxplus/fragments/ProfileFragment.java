@@ -10,7 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dsboxplusui.R;
+
+import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.settings.BusinessDetails;
 import com.dss.dsboxplus.settings.DefaultPaperSettings;
 import com.dss.dsboxplus.settings.DefaultRateSettings;
@@ -19,7 +20,7 @@ import com.dss.dsboxplus.settings.QuotationTerms;
 import com.dss.dsboxplus.settings.UserDetailsInProfile;
 
 
-public class Profile_Fragment extends Fragment {
+public class ProfileFragment extends Fragment {
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -31,7 +32,7 @@ public class Profile_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Profile_Fragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -42,8 +43,8 @@ public class Profile_Fragment extends Fragment {
      * @return A new instance of fragment Profile_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Profile_Fragment newInstance() {
-        Profile_Fragment fragment = new Profile_Fragment();
+    public static ProfileFragment newInstance() {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
