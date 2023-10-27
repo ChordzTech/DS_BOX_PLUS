@@ -7,8 +7,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lavender"
-        tools:context=".HomeScreen">
+        android:background="@drawable/background_gradient"
+        tools:context=".HomeActivity">
 
         <FrameLayout
             android:id="@+id/frameLayout"
@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:background="@color/transparent"
             app:itemIconSize="35dp"
-            app:itemIconTint="@color/lavender"
             app:itemTextColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

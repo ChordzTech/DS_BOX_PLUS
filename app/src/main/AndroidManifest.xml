@@ -34,10 +34,10 @@
             android:name=".settings.BusinessDetails"
             android:exported="false" />
         <activity
-            android:name=".HomeScreen"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginScreen"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

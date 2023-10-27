@@ -2,8 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="lavender">#8692f7</color>
+    <color name="cyan">#2EBFD5</color>
     <color name="gery">#d2d2d2</color>
+    <color name="green">#37B33D</color>
     <color name="transparent">#ffffff</color>
-    <color name="green">#2C9C31</color>
+    <color name="dark_blue">#554DD5</color>
+    <color name="lavender">#ffffff</color>
 </resources>

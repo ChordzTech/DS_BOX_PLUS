@@ -7,7 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.dsboxplusui.databinding.ActivityMainBinding;
+import com.dss.dsboxplus.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mainBinding;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.ivCompanyLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, LoginScreen.class);
+                Intent intent=new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

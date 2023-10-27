@@ -1,6 +1,5 @@
 package com.dss.dsboxplus.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,17 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dsboxplusui.R;
-import com.dss.dsboxplus.clients.AddNewClients;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.dss.dsboxplus.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Client_Fragment#newInstance} factory method to
+ * Use the {@link EstimatesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Client_Fragment extends Fragment {
-    FloatingActionButton add;
+public class EstimatesFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,18 +27,18 @@ public class Client_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Client_Fragment() {
+    public EstimatesFragment() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     * @return A new instance of fragment Users_Fragment.
+     * @return A new instance of fragment Estimates_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Client_Fragment newInstance() {
-        Client_Fragment fragment = new Client_Fragment();
+    public static EstimatesFragment newInstance() {
+        EstimatesFragment fragment = new EstimatesFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -61,16 +58,6 @@ public class Client_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View v=inflater.inflate(R.layout.fragment_clients_,container,false);
-        add=v.findViewById(R.id.fabAdd);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), AddNewClients.class);
-                startActivity(intent);
-            }
-        });
-        return v;
+        return inflater.inflate(R.layout.fragment_estimates_, container, false);
     }
 }
