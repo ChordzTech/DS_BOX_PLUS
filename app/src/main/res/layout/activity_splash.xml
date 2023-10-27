@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_gradient"
-        tools:context=".MainActivity">
+        tools:context=".SplashActivity">
 
         <TextView
             android:id="@+id/tvSplashText"
@@ -23,15 +23,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSplashText" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/worker_packing_the_goods" />
 
         <TextView
             android:id="@+id/tvDeviceName"
@@ -45,10 +47,22 @@
             app:layout_constraintEnd_toEndOf="@id/tvSplashText"
             app:layout_constraintStart_toStartOf="@id/tvSplashText" />
 
-        <ImageView
-            android:id="@+id/ivCompanyLogo"
+        <TextView
+            android:id="@+id/tvAppVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:text="V 2.0"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/tvSplashText"
+            app:layout_constraintStart_toStartOf="@id/tvSplashText"
+            app:layout_constraintTop_toBottomOf="@id/tvDeviceName" />
+
+        <ImageView
+            android:id="@+id/ivCompanyLogo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="18dp"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
