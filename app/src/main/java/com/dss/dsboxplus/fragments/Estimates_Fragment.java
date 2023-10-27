@@ -1,4 +1,4 @@
-package com.example.dsboxplusui.fragments;
+package com.dss.dsboxplus.fragments;
 
 import android.os.Bundle;
 

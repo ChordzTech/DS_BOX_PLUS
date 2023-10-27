@@ -1,4 +1,4 @@
-package com.example.dsboxplusui.clients;
+package com.dss.dsboxplus.clients;
 
 import androidx.appcompat.app.AppCompatActivity;
 

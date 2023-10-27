@@ -1,4 +1,4 @@
-package com.example.dsboxplusui;
+package com.dss.dsboxplus;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -9,9 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.dsboxplusui.databinding.ActivityHomeScreenBinding;
-import com.example.dsboxplusui.fragments.Estimates_Fragment;
-import com.example.dsboxplusui.fragments.Profile_Fragment;
-import com.example.dsboxplusui.fragments.Client_Fragment;
+import com.dss.dsboxplus.fragments.Estimates_Fragment;
+import com.dss.dsboxplus.fragments.Profile_Fragment;
+import com.dss.dsboxplus.fragments.Client_Fragment;
 
 public class HomeScreen extends AppCompatActivity {
     ActivityHomeScreenBinding homeScreenBinding;

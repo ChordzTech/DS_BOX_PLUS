@@ -1,4 +1,4 @@
-package com.example.dsboxplusui.fragments;
+package com.dss.dsboxplus.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dsboxplusui.R;
-import com.example.dsboxplusui.settings.BusinessDetails;
-import com.example.dsboxplusui.settings.DefaultPaperSettings;
-import com.example.dsboxplusui.settings.DefaultRateSettings;
-import com.example.dsboxplusui.settings.Help;
-import com.example.dsboxplusui.settings.QuotationTerms;
-import com.example.dsboxplusui.settings.UserDetailsInProfile;
+import com.dss.dsboxplus.settings.BusinessDetails;
+import com.dss.dsboxplus.settings.DefaultPaperSettings;
+import com.dss.dsboxplus.settings.DefaultRateSettings;
+import com.dss.dsboxplus.settings.Help;
+import com.dss.dsboxplus.settings.QuotationTerms;
+import com.dss.dsboxplus.settings.UserDetailsInProfile;
 
 
 public class Profile_Fragment extends Fragment {

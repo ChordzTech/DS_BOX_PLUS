@@ -1,4 +1,4 @@
-package com.example.dsboxplusui.fragments;
+package com.dss.dsboxplus.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dsboxplusui.R;
-import com.example.dsboxplusui.clients.AddNewClients;
+import com.dss.dsboxplus.clients.AddNewClients;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**

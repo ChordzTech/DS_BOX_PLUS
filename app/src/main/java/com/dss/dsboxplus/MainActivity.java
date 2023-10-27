@@ -1,4 +1,4 @@
-package com.example.dsboxplusui;
+package com.dss.dsboxplus;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -6,8 +6,6 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.dsboxplusui.databinding.ActivityMainBinding;
 
