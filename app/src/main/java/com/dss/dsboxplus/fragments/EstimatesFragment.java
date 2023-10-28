@@ -2,13 +2,20 @@ package com.dss.dsboxplus.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.model.EstimatesViewModel;
+import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,6 +24,8 @@ import com.dss.dsboxplus.R;
  * create an instance of this fragment.
  */
 public class EstimatesFragment extends Fragment {
+    private RecyclerView rvEstimatesRecyclerView;
+    private EstimatesViewAdapter estimatesViewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,5 +68,36 @@ public class EstimatesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_estimates_, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+        prepareData();
+        loadData();
+    }
+
+
+
+
+    private void initView(View view) {
+        rvEstimatesRecyclerView=view.findViewById(R.id.rvEstimateRecyclerView);
+        estimatesViewAdapter=new EstimatesViewAdapter();
+        rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
+    }
+    private void loadData() {
+        estimatesViewAdapter.setEstimatesList(prepareData());
+        estimatesViewAdapter.notifyDataSetChanged();
+    }
+    private ArrayList<EstimatesViewModel> prepareData() {
+        ArrayList<EstimatesViewModel> estimatesList=new ArrayList<>();
+        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+                "Box","Pankaj","300*60*300","4"));
+        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+                "Box","Pankaj","300*60*300","4"));
+        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+                "Box","Pankaj","300*60*300","4"));
+        return estimatesList;
     }
 }

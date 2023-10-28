@@ -12,6 +12,7 @@
 
 
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/svSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -23,6 +24,21 @@
 
         </androidx.appcompat.widget.SearchView>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEstimateRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svSearch"
+            tools:listitem="@layout/list_of_estimates_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

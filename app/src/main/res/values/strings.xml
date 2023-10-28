@@ -65,4 +65,7 @@
     <string name="update">Update</string>
     <string name="for_help_contact">For Help Contact Support</string>
     <string name="help_contact_no">9421013332</string>
+    <string name="box_name">Box Name</string>
+    <string name="box_dimensions">Box Dimensions</string>
+    <string name="price">Price</string>
 </resources>
