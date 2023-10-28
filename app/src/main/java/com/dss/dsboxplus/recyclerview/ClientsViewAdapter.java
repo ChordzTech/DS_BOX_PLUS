@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.model.ClientsViewModel;
+import com.dss.dsboxplus.model.ClientsDataModel;
 
 import java.util.ArrayList;
 
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
-    private ArrayList<ClientsViewModel> clientsList;
+    private ArrayList<ClientsDataModel> clientsList;
 
     @NonNull
     @Override
@@ -27,7 +27,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ClientsViewHolder holder, int position) {
-        ClientsViewModel clientsViewModel = clientsList.get(position);
+        ClientsDataModel clientsViewModel = clientsList.get(position);
         holder.tvClientsName.setText(clientsViewModel.getNameOfClient());
         holder.tvPhoneNumber.setText(clientsViewModel.getPhoneNumberOfClient());
         holder.tvEstimates.setText(clientsViewModel.getNumberOfEstimatesOfClients());
@@ -43,11 +43,11 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         return clientsList.size();
     }
 
-    public ArrayList<ClientsViewModel> getClientsList() {
+    public ArrayList<ClientsDataModel> getClientsList() {
         return clientsList;
     }
 
-    public void setClientsList(ArrayList<ClientsViewModel> clientsList) {
+    public void setClientsList(ArrayList<ClientsDataModel> clientsList) {
         this.clientsList = clientsList;
     }
 

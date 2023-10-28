@@ -1,9 +1,13 @@
 package com.dss.dsboxplus.model;
 
-public class EstimatesViewModel {
+public class EstimatesDataModel {
     String imageURL;
+    String nameOfBox;
+    String nameofClients;
+    String dimensionOfBox;
+    String costOfBox;
 
-    public EstimatesViewModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox) {
+    public EstimatesDataModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox) {
         this.imageURL = imageURL;
         this.nameOfBox = nameOfBox;
         this.nameofClients = nameofClients;
@@ -50,9 +54,4 @@ public class EstimatesViewModel {
     public void setCostOfBox(String costOfBox) {
         this.costOfBox = costOfBox;
     }
-
-    String nameOfBox;
-    String nameofClients;
-    String dimensionOfBox;
-    String costOfBox;
 }

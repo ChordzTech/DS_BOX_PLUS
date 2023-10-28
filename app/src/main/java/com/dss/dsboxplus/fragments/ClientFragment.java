@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.AddNewClients;
-import com.dss.dsboxplus.model.ClientsViewModel;
+import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -102,13 +102,13 @@ public class ClientFragment extends Fragment {
         clientsViewAdapter.notifyDataSetChanged();
     }
 
-    private ArrayList<ClientsViewModel> prepareData() {
-        ArrayList<ClientsViewModel> clientsList = new ArrayList<>();
-        clientsList.add(new ClientsViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Pankaj", "7972546880", "1"));
-        clientsList.add(new ClientsViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Anurag", "7972546880", "5"));
-        clientsList.add(new ClientsViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Vishal", "7972546880", "2"));
-        clientsList.add(new ClientsViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "AJ", "7972546880", "7"));
-        clientsList.add(new ClientsViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "JJ", "7972546880", "10"));
+    private ArrayList<ClientsDataModel> prepareData() {
+        ArrayList<ClientsDataModel> clientsList = new ArrayList<>();
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Pankaj", "7972546880", "1"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Anurag", "7972546880", "5"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Vishal", "7972546880", "2"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "AJ", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "JJ", "7972546880", "10"));
         return clientsList;
     }
 
