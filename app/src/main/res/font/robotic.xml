@@ -12,7 +12,7 @@
         android:fontWeight="400" />
     <!-- light -->
     <font
-        android:font="@font/roboto_light"
+        android:font="@font/roboto_iight"
         android:fontStyle="normal"
         android:fontWeight="400" />
     <!-- thin -->
