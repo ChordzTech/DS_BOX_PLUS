@@ -9,7 +9,6 @@
         android:background="@color/gery"
         android:scrollbars="none">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -118,10 +117,10 @@
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/swMultiUser"
                         android:layout_width="50dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="end"
                         android:gravity="center"
-                        android:minHeight="0dp"
+                        android:minHeight="20dp"
                         android:textOff="@string/switch_button_off"
                         android:textOn="@string/switch_button_on"
                         android:thumb="@drawable/switch_button_thumb"
@@ -256,13 +255,12 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:gravity="start"
-                            android:text="@string/default_paper_settings"
-                            style="@style/DSTextMedium"
-                            />
+                            android:text="@string/default_paper_settings" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -311,23 +309,21 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:gravity="start"
-                            android:text="@string/default_rate_settings"
-                            style="@style/DSTextMedium"
-                            />
+                            android:text="@string/default_rate_settings" />
 
                         <TextView
+                            style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="@string/default_rate_settings_waste"
-                            style="@style/DSTextRegular"
-                            />
+                            android:text="@string/default_rate_settings_waste" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -369,22 +365,20 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:gravity="start"
-                            android:text="@string/quotation_terms_settings"
-                            style="@style/DSTextMedium"
-                            />
+                            android:text="@string/quotation_terms_settings" />
 
                         <TextView
+                            style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="start"
-                            android:text="@string/quotation_terms_settings_terms"
-                            style="@style/DSTextRegular"
-                            />
+                            android:text="@string/quotation_terms_settings_terms" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -415,12 +409,12 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        style="@style/DSTextMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/subscription_settings"
-                        style="@style/DSTextMedium"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -442,8 +436,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                   >
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -455,30 +448,30 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        style="@style/DSTextMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/help"
-                        style="@style/DSTextMedium"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvDummyView"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:visibility="invisible"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
+                android:visibility="invisible"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cvHelp">
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@id/cvHelp"></androidx.cardview.widget.CardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

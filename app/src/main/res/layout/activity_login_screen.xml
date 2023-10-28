@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gery"
+        android:padding="@dimen/margin_medium"
         tools:context=".LoginActivity">
 
 
@@ -15,12 +16,11 @@
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="18dp"
+            android:layout_margin="@dimen/margin_large"
             android:gravity="center"
             android:text="@string/name"
-            android:textColor="@color/black"
-            android:textSize="36sp"
-            android:textStyle="bold"
+            android:textColor="@color/blue"
+            style="@style/DSTextXLargeBold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,11 +29,10 @@
             android:id="@+id/tvVerifyPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:gravity="center"
             android:text="@string/verify_phone_number"
-            android:textColor="@color/black"
-            android:textSize="28sp"
+            style="@style/DSTextLarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvName"
             app:layout_constraintTop_toBottomOf="@id/tvName" />
@@ -42,7 +41,7 @@
             android:id="@+id/tvSmsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:gravity="center"
             android:text="@string/sms_text"
             android:textColor="@color/black"
@@ -55,7 +54,7 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="@dimen/margin_large"
             android:background="@drawable/edit_text_background"
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp"
@@ -73,11 +72,11 @@
 
                 <EditText
                     android:id="@+id/etCountryCode"
-                    android:layout_width="75dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:hint="@string/country_code"
+                    android:hint="+91"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
@@ -100,20 +99,21 @@
             android:id="@+id/btNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:text="@string/next_button"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardView" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:gravity="center"
             android:text="@string/t_and_c"
-            android:textColor="@color/black"
+            style="@style/DSTextMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btNext" />

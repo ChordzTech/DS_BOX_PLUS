@@ -24,9 +24,22 @@
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="DSTextLarge" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">32sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextXLarge" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">36sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextXLargeBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">48sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
 </resources>
