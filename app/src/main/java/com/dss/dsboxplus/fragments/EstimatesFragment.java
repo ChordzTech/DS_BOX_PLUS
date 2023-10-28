@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.model.EstimatesViewModel;
+import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 
 import java.util.ArrayList;
@@ -88,17 +88,17 @@ public class EstimatesFragment extends Fragment {
         estimatesViewAdapter.notifyDataSetChanged();
     }
 
-    private ArrayList<EstimatesViewModel> prepareData() {
-        ArrayList<EstimatesViewModel> estimatesList = new ArrayList<>();
-        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+    private ArrayList<EstimatesDataModel> prepareData() {
+        ArrayList<EstimatesDataModel> estimatesList = new ArrayList<>();
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
                 "Box", "ABC", "300*60*300", "4"));
-        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
                 "Box", "Pankaj", "300*60*300", "4"));
-        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
                 "Box", "Pankaj", "300*60*300", "4"));
-        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
                 "Box", "Pankaj", "300*60*300", "4"));
-        estimatesList.add(new EstimatesViewModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
                 "Box", "Pankaj", "300*60*300", "4"));
         return estimatesList;
     }

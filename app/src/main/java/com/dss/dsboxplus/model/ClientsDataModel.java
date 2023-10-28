@@ -1,12 +1,12 @@
 package com.dss.dsboxplus.model;
 
-public class ClientsViewModel {
+public class ClientsDataModel {
     String imageURL;
     String nameOfClient;
     String phoneNumberOfClient;
     String numberOfEstimatesOfClients;
 
-    public ClientsViewModel(String imageURL, String nameOfClient, String phoneNumberOfClient, String numberOfEstimatesOfClients) {
+    public ClientsDataModel(String imageURL, String nameOfClient, String phoneNumberOfClient, String numberOfEstimatesOfClients) {
         this.imageURL = imageURL;
         this.nameOfClient = nameOfClient;
         this.phoneNumberOfClient = phoneNumberOfClient;
