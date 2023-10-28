@@ -2,6 +2,10 @@ package com.dss.dsboxplus.model;
 
 public class EstimatesViewModel {
     String imageURL;
+    String nameOfBox;
+    String nameofClients;
+    String dimensionOfBox;
+    String costOfBox;
 
     public EstimatesViewModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox) {
         this.imageURL = imageURL;
@@ -50,9 +54,4 @@ public class EstimatesViewModel {
     public void setCostOfBox(String costOfBox) {
         this.costOfBox = costOfBox;
     }
-
-    String nameOfBox;
-    String nameofClients;
-    String dimensionOfBox;
-    String costOfBox;
 }
