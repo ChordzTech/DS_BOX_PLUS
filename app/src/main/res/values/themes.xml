@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.DSBoxPlusUI" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary" type="color">@color/blue</item>
-        <item name="colorSecondary" type="color">@color/dark_blue</item>
+        <item name="colorSecondary" type="color">@color/cyan_dark</item>
         <item name="colorAccent" type="color">@color/cyan</item>
     </style>
 
