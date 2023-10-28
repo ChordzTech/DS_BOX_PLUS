@@ -16,8 +16,7 @@
     <string name="profile_name">Profile Name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enable_multi_users">Enable Multiple Users</string>
-    <string name="enable_multi_users_text">Allow you to create multiple users foe the same business
-        \n where estimates and clients are shared across users.</string>
+    <string name="enable_multi_users_text">Allow you to create multiple users for the same business, where estimates and clients are shared across users.</string>
     <string name="enable_multi_users_text_2">You can create maximum 5 users.</string>
     <string name="switch_button_on">On</string>
     <string name="switch_button_off">Off</string>
