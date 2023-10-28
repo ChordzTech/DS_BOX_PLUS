@@ -86,9 +86,10 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/etCountryCode"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:hint="@string/phone_number"
                     android:inputType="number"
+                    android:maxLength="10"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
             </LinearLayout>

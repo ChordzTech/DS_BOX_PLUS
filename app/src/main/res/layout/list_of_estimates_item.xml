@@ -8,11 +8,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <ImageView
+        <TextView
             android:id="@+id/ivClientPhoto"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_background"
+            style="@style/DSTextMediumBold"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/cyan_dark"
+            android:gravity="center"
+            android:text="18 \nOct 23"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,44 +24,57 @@
             android:id="@+id/llEstimates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@id/ivClientPhoto"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tvBoxName"
+                style="@style/DSTextLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:gravity="start"
-                android:text="@string/box_name"
-                android:textSize="28sp" />
+                android:text="@string/box_name" />
 
             <TextView
                 android:id="@+id/tvClientName"
+                style="@style/DSTextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:gravity="start"
-                android:text="@string/client_name"
-                android:textSize="18sp" />
+                android:text="@string/client_name" />
 
             <TextView
                 android:id="@+id/tvBoxDimension"
+                style="@style/DSTextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/box_dimensions"
-                android:textSize="18sp" />
+                android:text="@string/box_dimensions" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvCost"
+            style="@style/DSTextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/price"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:text="Rs. 100.00"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/llEstimates"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivPDF"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingStart="@dimen/padding_small"
+            android:paddingEnd="@dimen/padding_small"
+            android:src="@drawable/pdf_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvCost"
+            app:layout_constraintStart_toStartOf="@+id/tvCost"
+            app:layout_constraintTop_toBottomOf="@+id/tvCost" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
