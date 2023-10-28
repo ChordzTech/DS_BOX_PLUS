@@ -11,9 +11,10 @@
         tools:context=".fragments.ClientFragment">
 
         <androidx.appcompat.widget.SearchView
+            android:layout_margin="10dp"
+            android:id="@+id/svSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:background="@drawable/search_bar_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +22,22 @@
             app:queryHint="Search Here">
 
         </androidx.appcompat.widget.SearchView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvClientRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svSearch"
+            tools:listitem="@layout/list_of_clients_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
@@ -33,6 +50,5 @@
             app:layout_constraintEnd_toEndOf="parent">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
