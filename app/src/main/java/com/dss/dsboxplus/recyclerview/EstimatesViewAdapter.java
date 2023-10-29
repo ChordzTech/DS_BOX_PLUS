@@ -3,7 +3,6 @@ package com.dss.dsboxplus.recyclerview;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,11 +31,6 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         holder.tvClientName.setText(estimatesViewModel.getNameofClients());
         holder.tvBoxDimension.setText(estimatesViewModel.getDimensionOfBox());
         holder.tvCost.setText(estimatesViewModel.getCostOfBox());
-        Glide.with(holder.itemView.getContext())
-                .load(estimatesViewModel.getImageURL())
-                .placeholder(R.drawable.ic_launcher_background)
-                .centerCrop()
-                .into(holder.ivClientPhoto);
     }
 
     @Override
@@ -53,12 +47,11 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
     }
 
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivClientPhoto;
-        private TextView tvBoxName, tvClientName, tvBoxDimension, tvCost;
+        private TextView tvClientPhoto,tvBoxName, tvClientName, tvBoxDimension, tvCost;
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivClientPhoto = itemView.findViewById(R.id.ivClientPhoto);
+            tvClientPhoto = itemView.findViewById(R.id.ivClientPhoto);
             tvBoxName = itemView.findViewById(R.id.tvBoxName);
             tvClientName = itemView.findViewById(R.id.tvClientName);
             tvBoxDimension = itemView.findViewById(R.id.tvBoxDimension);

@@ -1,6 +1,5 @@
 package com.dss.dsboxplus.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,16 +23,8 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class EstimatesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private RecyclerView rvEstimatesRecyclerView;
     private EstimatesViewAdapter estimatesViewAdapter;
-    private FloatingActionButton fabEstimates;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public EstimatesFragment() {
         // Required empty public constructor
@@ -51,7 +40,6 @@ public class EstimatesFragment extends Fragment {
     public static EstimatesFragment newInstance() {
         EstimatesFragment fragment = new EstimatesFragment();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,8 +48,6 @@ public class EstimatesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -75,14 +61,6 @@ public class EstimatesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fabEstimates=view.findViewById(R.id.fabEstimates);
-        fabEstimates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), NewEstimateActivity.class);
-                startActivity(intent);
-            }
-        });
         initView(view);
         prepareData();
         loadData();
