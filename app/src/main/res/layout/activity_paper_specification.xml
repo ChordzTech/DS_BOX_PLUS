@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_medium"
-            tools:context=".estimates.NewEstimateActivity">
+            tools:context=".estimates.PaperSpecificationActivity">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvProfileName"
@@ -31,7 +31,7 @@
                     android:padding="@dimen/padding_medium">
 
                     <ImageView
-                        android:id="@+id/ivProfile"
+                        android:id="@+id/ivProfileInPaperSpecification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -46,29 +46,42 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_small"
                         android:text="@string/client_name"
-                        app:layout_constraintStart_toEndOf="@id/ivProfile"
+                        app:layout_constraintStart_toEndOf="@id/ivProfileInPaperSpecification"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/DSTextRegular"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/ivDummyBox"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/enter_box_name"
-                        app:layout_constraintStart_toStartOf="@id/ivProfile"
-                        app:layout_constraintTop_toBottomOf="@id/ivProfile">
+                        android:layout_gravity="start"
+                        android:src="@drawable/dummy_box"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivProfileInPaperSpecification" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            style="@style/DSTextRegular"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/tvBoxNameInPaperSpecification"
+                        style="@style/DSTextMediumBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:text="@string/box_name"
+                        app:layout_constraintStart_toEndOf="@id/ivDummyBox"
+                        app:layout_constraintTop_toBottomOf="@id/tvClientNameInEstimate" />
 
+                    <TextView
+                        android:id="@+id/tvBoxDimensionInPaperSpecification"
+                        style="@style/DSTextMediumBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:text="@string/box_dimensions"
+                        app:layout_constraintStart_toEndOf="@id/tvBoxNameInPaperSpecification"
+                        app:layout_constraintTop_toBottomOf="@id/tvClientNameInEstimate" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvEnterBoxDimensions"
+                android:id="@+id/cvTopPaper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
@@ -84,32 +97,24 @@
                     android:padding="@dimen/padding_medium">
 
                     <TextView
-                        android:id="@+id/tvEnterBoxOuterDimension"
+                        android:id="@+id/tvTopPapaer"
                         style="@style/DSTextMediumBold"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/enter_box_outer_dimensions"
+                        android:text="@string/top_paper"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvEnterBoxOuterDimension"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <LinearLayout
-                        android:id="@+id/llLength"
+                        android:id="@+id/llBf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_medium"
                         android:orientation="horizontal"
                         android:weightSum="1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvEnterBoxOuterDimension">
+                        app:layout_constraintTop_toBottomOf="@id/tvTopPapaer">
 
                         <TextView
                             android:id="@+id/tvLength"
@@ -117,14 +122,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:text="@string/length" />
+                            android:text="@string/bf" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:hint="@string/mm">
+                            android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextRegular"
@@ -132,31 +136,31 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llWidth"
+                        android:id="@+id/llGsm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/llLength">
+                        app:layout_constraintTop_toBottomOf="@id/llBf">
 
                         <TextView
-                            android:id="@+id/tvWidth"
+                            android:id="@+id/tvGsm"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:text="@string/width" />
+                            android:text="@string/gsm" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:hint="@string/mm">
+                            android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextRegular"
@@ -167,27 +171,26 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llHeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:weightSum="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/llWidth">
+                        app:layout_constraintTop_toBottomOf="@id/llGsm">
 
                         <TextView
-                            android:id="@+id/tvHeight"
+                            android:id="@+id/tvRateKg"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:text="@string/height" />
+                            android:text="@string/rate_kg" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:hint="@string/mm">
+                            android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextRegular"
@@ -201,7 +204,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvuNmberOfPly"
+                android:id="@+id/cvFlutePaper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
@@ -209,7 +212,8 @@
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cvEnterBoxDimensions">
+                app:layout_constraintTop_toBottomOf="@id/cvTopPaper">
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -217,37 +221,32 @@
                     android:padding="@dimen/padding_medium">
 
                     <TextView
-                        android:id="@+id/tvNumberOfPly"
+                        android:id="@+id/tvFlutePaper"
                         style="@style/DSTextMediumBold"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/number_of_ply"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/spinnerNoOfPly"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:text="@string/flute_paper"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:id="@+id/llEnterNumberOfBox"
+                        android:id="@+id/llBfInFlutePaper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/spinnerNoOfPly">
+                        app:layout_constraintTop_toBottomOf="@id/tvFlutePaper">
 
                         <TextView
-                            android:id="@+id/tvBoxNumber"
+                            android:id="@+id/tvBfInFlutePaper"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:text="@string/box_number" />
+                            android:text="@string/bf" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextRegular"
@@ -261,24 +260,112 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
-
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/llGsmInFlutePaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llBfInFlutePaper">
 
+                        <TextView
+                            android:id="@+id/tvGsmInFlutePaper"
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:text="@string/gsm" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/DSTextRegular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llRateKgInFlutePaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llGsmInFlutePaper">
+
+                        <TextView
+                            android:id="@+id/tvRateKgInFlutePaper"
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:text="@string/rate_kg" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/DSTextRegular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llFfinFlutePaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llRateKgInFlutePaper">
+
+                        <TextView
+                            android:id="@+id/tvFFinFlutePaper"
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:text="@string/ff" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/DSTextRegular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvSheetDetails"
+                android:id="@+id/cvBottomPaper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cvuNmberOfPly">
+                app:layout_constraintTop_toBottomOf="@id/cvFlutePaper">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -286,32 +373,31 @@
                     android:padding="@dimen/padding_medium">
 
                     <TextView
-                        android:id="@+id/tvSheetDetails"
+                        android:id="@+id/tvBottomPaper"
                         style="@style/DSTextMediumBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sheet_details"
+                        android:text="@string/bottom_paper"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:id="@+id/llCuttingLength"
+                        android:id="@+id/llBfInBottomPaper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_medium"
                         android:orientation="horizontal"
                         android:weightSum="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvSheetDetails">
+                        app:layout_constraintTop_toBottomOf="@id/tvBottomPaper">
 
                         <TextView
-                            android:id="@+id/tvCuttingLength"
+                            android:id="@+id/tvBfInBottomPaper"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:text="@string/cutting_length" />
+                            android:text="@string/bf" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextRegular"
@@ -325,28 +411,27 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llDecalSize"
+                        android:id="@+id/llGsmInBottomPaper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_medium"
                         android:orientation="horizontal"
                         android:weightSum="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/llCuttingLength">
+                        app:layout_constraintTop_toBottomOf="@id/llBfInBottomPaper">
 
                         <TextView
-                            android:id="@+id/tvDecalSize"
+                            android:id="@+id/tvGsmInBottomPaper"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:text="@string/decal_Size" />
+                            android:text="@string/gsm" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tilDecalSize"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -358,148 +443,69 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_marginTop="@dimen/margin_small"
+                    <LinearLayout
+                        android:id="@+id/llRateKgInBottomPaper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/llDecalSize">
+                        app:layout_constraintTop_toBottomOf="@id/llGsmInBottomPaper">
 
-                        <LinearLayout
-                            android:layout_margin="@dimen/margin_medium"
-                            android:id="@+id/llCuttingMargin"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/tvRateKgInBottomPaper"
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_weight="0.4"
+                            android:text="@string/rate_kg" />
 
-                            <TextView
-                                android:id="@+id/tvCuttingMargin"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/cutting_margin" />
-
-                            <TextView
-                                android:id="@+id/tvMargin"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llDecalMarginmm"
-                            android:layout_width="wrap_content"
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/DSTextRegular"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_medium"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/llCuttingMargin"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_weight="0.6">
 
-                            <TextView
-                                android:id="@+id/tvDecalMargin"
+                            <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/decal_margin" />
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                            <TextView
-                                android:id="@+id/tvDecalMarginSize"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_margin="@dimen/margin_medium"
-                            android:id="@+id/llCuttingLengthmm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/llCuttingMargin">
-
-                            <TextView
-                                android:id="@+id/tvCuttingLengthmm"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/cutting_length_mm" />
-
-                            <TextView
-                                android:id="@+id/tvCuttingLengthSize"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llDecalSizemm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_medium"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/llCuttingLengthmm"
-                            app:layout_constraintTop_toBottomOf="@id/llDecalMarginmm">
-
-                            <TextView
-                                android:id="@+id/tvDecalSizemm"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/decal_Size_mm" />
-
-                            <TextView
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-                        </LinearLayout>
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btNextInNewFragment"
-                style="@style/DSTextRegular"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llButtons"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:text="@string/next_button"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cvSheetDetails" />
+                app:layout_constraintTop_toBottomOf="@id/cvBottomPaper">
 
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/back" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/next" />
+            </LinearLayout>
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvDummyViewInNewFragment"
+                android:id="@+id/cvDummyViewInPaperSpecification"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
@@ -508,7 +514,7 @@
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btNextInNewFragment">
+                app:layout_constraintTop_toBottomOf="@id/llButtons">
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

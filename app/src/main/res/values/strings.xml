@@ -82,5 +82,13 @@
     <string name="cutting_length_mm">Cutting Length(mm)</string>
     <string name="decal_Size">Decal Size</string>
     <string name="decal_Size_mm">Decal Size(mm)</string>
-
+    <string name="top_paper">Top Paper</string>
+    <string name="bottom_paper">Bottom Paper</string>
+    <string name="flute_paper">Flute Paper</string>
+    <string name="bf">BF</string>
+    <string name="ff">FF</string>
+    <string name="gsm">GSM</string>
+    <string name="rate_kg">Rate/Kg</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 </resources>
