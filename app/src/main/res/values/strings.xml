@@ -75,4 +75,12 @@
     <string name="mm">mm</string>
     <string name="cm">cm</string>
     <string name="inch">inch</string>
+    <string name="number_of_ply">Number Of Ply</string>
+    <string name="box_number">Enter Box Number</string>
+    <string name="sheet_details">Sheet Details</string>
+    <string name="cutting_length">Cutting Length</string>
+    <string name="cutting_length_mm">Cutting Length(mm)</string>
+    <string name="decal_Size">Decal Size</string>
+    <string name="decal_Size_mm">Decal Size(mm)</string>
+
 </resources>

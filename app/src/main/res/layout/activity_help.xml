@@ -40,5 +40,6 @@
                 android:text="@string/help_contact_no"
                 android:textSize="28sp" />
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
