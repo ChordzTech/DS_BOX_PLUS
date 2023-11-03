@@ -53,7 +53,7 @@
          piping symbol to view New Line in Quotation PDF</string>
     <string name="new_client">New Clients Details</string>
     <string name="new_clients_this_info">This information will show on your \n
-    estimates,quotations</string>
+    estimates, quotations</string>
     <string name="client_name">Client Name</string>
     <string name="contact_no">Contact No</string>
     <string name="address">Address</string>
@@ -91,4 +91,49 @@
     <string name="rate_kg">Rate/Kg</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="total_gsm">Total GSM</string>
+    <string name="total_bs">Total BS</string>
+    <string name="total_weight">Total Weight</string>
+    <string name="net_paper_cost">Net Paper Cost</string>
+    <string name="waste_cost">Waste Cost</string>
+    <string name="gross_paper_cost_formula">Gross Paper Cost = Net Paper Cost + \n Waste Cost</string>
+    <string name="gross_paper_cost">Gross Paper Cost</string>
+    <string name="conv_cost_kg">Conv.Cost/Kg</string>
+    <string name="over_head_charges">OverHead Charges</string>
+    <string name="over_head_charges_formula">Overhead Charges =Printing+Lamination+Transport+Others(all per box)</string>
+    <string name="box_mfg_cost_formula">Box Mfg Cost=Gross Paper Cost+Conversion Cost+Overhead Charges</string>
+    <string name="box_mgf_cost">Box MFG Cost</string>
+    <string name="box_price">Box Price</string>
+    <string name="box_price_with_tax">Box Price with Tax</string>
+    <string name="no_of_boxes_ups">No of Box (ups)</string>
+    <string name="conv_kg">Conv/Kg</string>
+    <string name="conv_cost">Conv.Cost</string>
+    <string name="paper_cost">Paper Cost</string>
+    <string name="overhead">Overhead</string>
+    <string name="box_mfg_cost">Box Mfg.Cost</string>
+    <string name="price_Incl">Price Incl.Tax</string>
+    <string name="quotation">Quotation </string>
+    <string name="production">Production </string>
+    <string name="edit">Edit </string>
+    <string name="delete">Delete </string>
+    <string name="ply">Ply</string>
+    <string name="rate">Rate</string>
+    <string name="top">Top</string>
+    <string name="flute_one">Flute 1</string>
+    <string name="middle_one">Middle 1</string>
+    <string name="flute_two">Flute 2</string>
+    <string name="middle_two">Middle 2</string>
+    <string name="flute_three">Flute 3</string>
+    <string name="bottom">Bottom</string>
+    <string name="zero">0</string>
+    <string name="dash">-</string>
+    <string name="box_quantity">Box Quantity</string>
+    <string name="create_pdf">Create PDF</string>
+    <string name="enable_paper_specification">Enable Paper Specification</string>
+    <string name="enable_paper_specification_text">Display Paper specification of each ply with BF and GSM in Quotation.</string>
+    <string name="enable_tax_and_price">Enable Tax with Price</string>
+    <string name="enable_tax_and_price_text">Display Tax percentage and Tax with Price in Quotation.</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="verify_sms_text">We have sent you an OTP \n foe phone number verification.</string>
+    <string name="verifyotp">Verify OTP</string>
 </resources>

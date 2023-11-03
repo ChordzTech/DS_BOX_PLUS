@@ -8,70 +8,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".settings.DefaultPaperSettings"
-        android:background="@drawable/background_gradient">
+        android:layout_margin="@dimen/margin_medium">
+
         <TextView
             android:id="@+id/tvDefaultPaperSettings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/default_paper_settings"
-            android:textSize="28sp"
+            style="@style/DSTextLargeBold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilCuttingMargin"
+            style="@style/DSTextRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:hint="@string/cutting_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDefaultPaperSettings">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/cutting_margin"
-                android:textSize="18sp" />
+                style="@style/DSTextRegular" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_small"
             android:id="@+id/tilDecalMargin"
+            style="@style/DSTextRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/decal_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilCuttingMargin">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/decal_margin"
-                android:textSize="18sp" />
+                style="@style/DSTextRegular" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_small"
             android:id="@+id/tilFluteFactor"
+            style="@style/DSTextRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/flute_factor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilDecalMargin">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/flute_factor"
-                android:textSize="18sp" />
+                style="@style/DSTextRegular" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/margin_medium"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +88,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:text="@string/save" />
 
             <com.google.android.material.button.MaterialButton

@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/tvBoxName"
-                style="@style/DSTextLarge"
+                style="@style/DSTextLargeBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"

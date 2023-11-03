@@ -7,8 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:background="@color/gery"
+     android:layout_margin="@dimen/margin_medium"
         tools:context=".settings.QuotationTerms">
 
         <TextView
@@ -17,32 +16,34 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/quotation_terms_settings"
-            android:textSize="28sp"
+            style="@style/DSTextLargeBold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_medium"
             android:id="@+id/tilTermsAndConditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/terms_and_conditions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvQuotation">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:hint="@string/terms_and_conditions"
                 android:inputType="text"
-                android:textSize="18sp" />
+                style="@style/DSTextMediumBold"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            style="@style/DSTextRegular"
             android:id="@+id/tvNewLineText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/quotation_new_line_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/margin_medium"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +63,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:text="@string/save" />
 
             <com.google.android.material.button.MaterialButton

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".settings.DefaultRateSettings"
-        android:background="@drawable/background_gradient">
+        android:layout_margin="@dimen/margin_medium">
 
         <TextView
             android:id="@+id/tvDefaultRateSetting"
@@ -16,61 +16,69 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/default_rate_settings"
-            android:textSize="28sp"
+            style="@style/DSTextLargeBold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/DSTextRegular"
             android:id="@+id/tilWaste"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:hint="@string/waste"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDefaultRateSetting">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/waste"
-            android:textSize="18sp" />
+            style="@style/DSTextRegular"
+             />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_small"
             android:id="@+id/tilConversionCost"
             android:layout_width="match_parent"
+            android:hint="@string/conversion_cost"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilWaste">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/conversion_cost"
-                android:textSize="18sp" />
+
+                style="@style/DSTextRegular" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_small"
             android:id="@+id/tilProfit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/profit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilConversionCost">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/profit"
-                android:textSize="18sp" />
+
+                style="@style/DSTextRegular" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_small"
             android:id="@+id/tilTax"
             android:layout_width="match_parent"
+            android:hint="@string/tax"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilProfit">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/tax"
-                android:textSize="18sp" />
+
+                style="@style/DSTextRegular" />
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/margin_medium"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +88,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"/>

@@ -15,6 +15,21 @@
         android:theme="@style/Theme.DSBoxPlusUI"
         tools:targetApi="31">
         <activity
+            android:name=".VerifyOtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".estimates.ProductionInBoxEstimatesDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".estimates.QuotationInBoxEstimateDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".estimates.BoxEstimatesDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".estimates.BoxSpecificationAndCostActivity"
+            android:exported="false" />
+        <activity
             android:name=".estimates.PaperSpecificationActivity"
             android:exported="false" />
         <activity

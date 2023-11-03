@@ -263,12 +263,12 @@
                             android:text="@string/default_paper_settings" />
 
                         <TextView
+                            style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="start"
-                            android:text="@string/default_paper_settings_margins_ff_etc"
-                            android:textSize="12sp" />
+                            android:text="@string/default_paper_settings_margins_ff_etc" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

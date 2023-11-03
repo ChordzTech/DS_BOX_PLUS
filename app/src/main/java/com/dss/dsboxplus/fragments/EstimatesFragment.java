@@ -2,6 +2,7 @@ package com.dss.dsboxplus.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
  * Use the {@link EstimatesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EstimatesFragment extends Fragment {
+public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.OnEstimatesSelectedI {
     private RecyclerView rvEstimatesRecyclerView;
     private EstimatesViewAdapter estimatesViewAdapter;
     private FloatingActionButton fabEstimates;
@@ -65,7 +67,7 @@ public class EstimatesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fabEstimates=view.findViewById(R.id.fabEstimates);
+        fabEstimates = view.findViewById(R.id.fabEstimates);
         fabEstimates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +84,7 @@ public class EstimatesFragment extends Fragment {
     private void initView(View view) {
         rvEstimatesRecyclerView = view.findViewById(R.id.rvEstimateRecyclerView);
         estimatesViewAdapter = new EstimatesViewAdapter();
+        estimatesViewAdapter.setOnEstimatesSelectedListner(this);
         rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
     }
 
@@ -104,4 +107,14 @@ public class EstimatesFragment extends Fragment {
                 "Box", "Pankaj", "300*60*300", "4"));
         return estimatesList;
     }
+
+    @Override
+    public void onEstimatesSelectedI(EstimatesDataModel estimatesDataModel) {
+        Intent intent = new Intent(getActivity(), BoxEstimatesDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("ESTIMATES", estimatesDataModel);
+        intent.putExtra("ESTIMATES_BUNDLE",bundle);
+        startActivity(intent);
+    }
+
 }

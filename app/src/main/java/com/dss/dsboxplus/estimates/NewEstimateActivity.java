@@ -11,9 +11,15 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class NewEstimateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    ActivityNewEstimateBinding newEstimateBinding;
     Spinner spinner, plySpinner;
+    TextInputEditText tietnumberOfBox;
+    TextInputLayout tilHeight,tilWidth,tilLength;
     Button btNext;
     String[] dimensions = {"mm", "cm", "inch"};
     String[] noOfPly = {"1Ply", "2Ply", "3Ply", "5Ply", "7Ply"};
@@ -22,6 +28,10 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_estimate);
+        tietnumberOfBox=findViewById(R.id.tietnumberOfBox);
+        tilHeight=findViewById(R.id.tilHeight);
+        tilWidth=findViewById(R.id.tilWidth);
+        tilLength=findViewById(R.id.tilLength);
         btNext=findViewById(R.id.btNextInNewFragment);
         spinner = findViewById(R.id.spinner);
         plySpinner = findViewById(R.id.spinnerNoOfPly);
@@ -39,6 +49,8 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
                 .simple_spinner_dropdown_item);
         plySpinner.setAdapter(adapter1);
 
+        // Number of box
+        tietnumberOfBox.setText("1");
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +62,10 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+        String  size=spinner.getItemAtPosition(i).toString();
+        tilHeight.setHint(size);
+        tilLength.setHint(size);
+        tilWidth.setHint(size);
 
     }
 

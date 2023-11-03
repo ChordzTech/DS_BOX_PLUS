@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gery"
+        android:layout_margin="@dimen/margin_medium"
         tools:context=".settings.Help">
 
         <ImageView
@@ -20,26 +20,34 @@
 
         <TextView
             android:id="@+id/tvForHelp"
+            style="@style/DSTextRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/for_help_contact"
             app:layout_constraintStart_toEndOf="@id/ivHelpLogo"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/tvPhoneNumberInHelp"
+            style="@style/DSTextLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvForHelp">
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/help_contact_no"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvForHelp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/help_contact_no"
-                android:textSize="28sp" />
-        </LinearLayout>
+        <WebView
+            android:layout_marginTop="@dimen/margin_medium"
+            android:id="@+id/wvYT"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoneNumberInHelp" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

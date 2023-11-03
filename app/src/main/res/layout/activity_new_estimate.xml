@@ -60,7 +60,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -120,6 +121,7 @@
                             android:text="@string/length" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilLength"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -130,7 +132,7 @@
                                 style="@style/DSTextRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -152,6 +154,7 @@
                             android:text="@string/width" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilWidth"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -162,7 +165,7 @@
                                 style="@style/DSTextRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -183,6 +186,7 @@
                             android:text="@string/height" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilHeight"
                             style="@style/DSTextRegular"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -193,7 +197,7 @@
                                 style="@style/DSTextRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -256,6 +260,7 @@
                             android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietnumberOfBox"
                                 style="@style/DSTextRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -323,7 +328,7 @@
                                 style="@style/DSTextRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -356,133 +361,160 @@
                                 style="@style/DSTextRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_marginTop="@dimen/margin_small"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvCuttingAndDecalMarginCardView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llDecalSize">
 
-                        <LinearLayout
-                            android:layout_margin="@dimen/margin_medium"
-                            android:id="@+id/llCuttingMargin"
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:padding="@dimen/padding_medium">
 
-                            <TextView
-                                android:id="@+id/tvCuttingMargin"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/cutting_margin" />
+                            <LinearLayout
+                                android:id="@+id/llCuttingAndDecal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
-                                android:id="@+id/tvMargin"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-                        </LinearLayout>
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:weightSum="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:id="@+id/tvCuttingMargin"
+                                        style="@style/DSTextRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="0.5"
+                                        android:text="@string/cutting_margin" />
+                                    <TextView
+                                        android:id="@+id/tvMargin"
+                                        style="@style/DSTextRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="0.5"
+                                        android:text="50" />
 
-                        <LinearLayout
-                            android:id="@+id/llDecalMarginmm"
-                            android:layout_width="wrap_content"
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:weightSum="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:id="@+id/tvDecalMargin"
+                                        style="@style/DSTextRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="0.5"
+                                        android:text="@string/decal_margin" />
+
+                                    <TextView
+                                        android:id="@+id/tvDecalMarginSize"
+                                        style="@style/DSTextRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="0.5"
+                                        android:text="50" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cvCuttingAndDecalMarginCardView">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_medium"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/llCuttingMargin"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/tvDecalMargin"
-                                style="@style/DSTextRegular"
+                            android:padding="@dimen/padding_medium">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:weightSum="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:id="@+id/tvCuttingLengthmm"
+                                        style="@style/DSTextRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="0.5"
+                                        android:text="@string/cutting_length_mm" />
+                                    <TextView
+                                        android:id="@+id/tvCuttingLengthSize"
+                                        style="@style/DSTextRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="0.5"
+                                        android:text="50" />
+                                </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/decal_margin" />
+                                android:layout_height="wrap_content"
+                                android:weightSum="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:id="@+id/tvDecalSizemm"
+                                    style="@style/DSTextRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5"
+                                    android:text="@string/decal_Size_mm" />
 
-                            <TextView
-                                android:id="@+id/tvDecalMarginSize"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
+                                <TextView
+                                    style="@style/DSTextRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="0.5"
+                                    android:text="50" />
+                            </LinearLayout>
 
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_margin="@dimen/margin_medium"
-                            android:id="@+id/llCuttingLengthmm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/llCuttingMargin">
+                            </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/tvCuttingLengthmm"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/cutting_length_mm" />
-
-                            <TextView
-                                android:id="@+id/tvCuttingLengthSize"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llDecalSizemm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_medium"
-                            android:orientation="vertical"
-                            android:weightSum="1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/llCuttingLengthmm"
-                            app:layout_constraintTop_toBottomOf="@id/llDecalMarginmm">
-
-                            <TextView
-                                android:id="@+id/tvDecalSizemm"
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="0.5"
-                                android:text="@string/decal_Size_mm" />
-
-                            <TextView
-                                style="@style/DSTextRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="50" />
-                        </LinearLayout>
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

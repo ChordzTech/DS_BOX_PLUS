@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 
@@ -16,6 +15,11 @@ import java.util.ArrayList;
 
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     private ArrayList<EstimatesDataModel> estimatesList;
+    private OnEstimatesSelectedI onEstimatesSelectedListner;
+
+    public void setOnEstimatesSelectedListner(OnEstimatesSelectedI onEstimatesSelectedListner) {
+        this.onEstimatesSelectedListner = onEstimatesSelectedListner;
+    }
 
     @NonNull
     @Override
@@ -26,7 +30,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull EstimatesViewHolder holder, int position) {
-        EstimatesDataModel estimatesViewModel=estimatesList.get(position);
+        EstimatesDataModel estimatesViewModel = estimatesList.get(position);
         holder.tvBoxName.setText(estimatesViewModel.getNameOfBox());
         holder.tvClientName.setText(estimatesViewModel.getNameofClients());
         holder.tvBoxDimension.setText(estimatesViewModel.getDimensionOfBox());
@@ -46,8 +50,12 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         this.estimatesList = estimatesList;
     }
 
+    public interface OnEstimatesSelectedI {
+        public void onEstimatesSelectedI(EstimatesDataModel estimatesDataModel);
+    }
+
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvClientPhoto,tvBoxName, tvClientName, tvBoxDimension, tvCost;
+        private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost;
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,7 +67,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAbsoluteAdapterPosition()));
                 }
             });
         }
