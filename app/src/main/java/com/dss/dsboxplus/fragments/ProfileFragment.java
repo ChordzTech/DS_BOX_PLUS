@@ -17,11 +17,12 @@ import com.dss.dsboxplus.settings.DefaultPaperSettings;
 import com.dss.dsboxplus.settings.DefaultRateSettings;
 import com.dss.dsboxplus.settings.Help;
 import com.dss.dsboxplus.settings.QuotationTerms;
+import com.dss.dsboxplus.settings.SubscriptionActivity;
 import com.dss.dsboxplus.settings.UserDetailsInProfile;
 
 
 public class ProfileFragment extends Fragment {
-    CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName;
+    CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName,cvSubscription;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,6 +70,7 @@ public class ProfileFragment extends Fragment {
         cvDefaultRate = v.findViewById(R.id.cvDefaultRateSettings);
         cvQuotationTerms = v.findViewById(R.id.cvQuotationTerms);
         cvProfileName = v.findViewById(R.id.cvProfileName);
+        cvSubscription=v.findViewById(R.id.cvSubscription);
         cvHelp=v.findViewById(R.id.cvHelp);
         cvBusiness.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +111,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), Help.class);
+                startActivity(intent);
+            }
+        });
+        cvSubscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), SubscriptionActivity.class);
                 startActivity(intent);
             }
         });

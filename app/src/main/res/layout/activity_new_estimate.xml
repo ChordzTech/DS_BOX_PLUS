@@ -97,6 +97,7 @@
                         android:id="@+id/spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
+                        android:tag="dimensionsp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvEnterBoxOuterDimension"
                         app:layout_constraintTop_toTopOf="parent" />

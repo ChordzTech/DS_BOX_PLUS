@@ -62,10 +62,17 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String  size=spinner.getItemAtPosition(i).toString();
-        tilHeight.setHint(size);
-        tilLength.setHint(size);
-        tilWidth.setHint(size);
+
+        if(adapterView.getId()==R.id.spinner){
+            String  size=spinner.getItemAtPosition(i).toString();
+            tilHeight.setHint(size);
+            tilLength.setHint(size);
+            tilWidth.setHint(size);
+
+        } else if (adapterView.getId()==R.id.spinnerNoOfPly) {
+
+        }
+
 
     }
 

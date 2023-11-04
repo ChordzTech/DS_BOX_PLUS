@@ -140,4 +140,7 @@
     <string name="enter_business_details_text">This information will show on your \n estimates, quotations</string>
     <string name="client_details">Client Details</string>
     <string name="customer_name">Customer Name</string>
+    <string name="contact_support">Contact Support: 9421013332</string>
+    <string name="package_details">Package Details</string>
+    <string name="copyright">Copyright© 2020 Disha Swaraj Soft.All rights reserved.</string>
 </resources>
