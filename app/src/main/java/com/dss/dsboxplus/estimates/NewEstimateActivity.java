@@ -22,7 +22,7 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
     TextInputLayout tilHeight,tilWidth,tilLength;
     Button btNext;
     String[] dimensions = {"mm", "cm", "inch"};
-    String[] noOfPly = {"1Ply", "2Ply", "3Ply", "5Ply", "7Ply"};
+    String[] noOfPly = {"1Ply", "2Ply", "3Ply", "5Ply", "7Ply","2Ply(KG)"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

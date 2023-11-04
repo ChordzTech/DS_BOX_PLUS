@@ -41,7 +41,8 @@
                         android:src="@drawable/baseline_help_center_24" />
 
                     <TextView
-                        style="@style/DSTextMedium"
+                        android:layout_marginStart="@dimen/margin_small"
+                        style="@style/DSTextMediumBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/contact_support" />
@@ -81,14 +82,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Monthly" />
+                            android:text="@string/monthly" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="₹149 INR" />
+                            android:text="@string/_149_inr" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -101,14 +102,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Yearly Single User" />
+                            android:text="@string/yearly_single_user" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="₹999 INR" />
+                            android:text="@string/_999_inr" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -121,14 +122,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Yearly Multiuser" />
+                            android:text="@string/yearly_multiuser" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="₹1799 INR" />
+                            android:text="@string/_1799_inr" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -154,7 +155,7 @@
                         style="@style/DSTextMediumBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="PaymentDetails" />
+                        android:text="@string/payment_details" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -187,7 +188,7 @@
                         style="@style/DSTextMediumBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Account Details" />
+                        android:text="@string/account_details" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -199,14 +200,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="A/C Name" />
+                            android:text="@string/a_c_name" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="Disha SwarajSoft" />
+                            android:text="@string/disha_swarajsoft" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -219,14 +220,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="A/C NO" />
+                            android:text="@string/a_c_no" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="xxxxxxxxxx" />
+                            android:text="@string/xxxxxxxxxx" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -239,14 +240,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bank Name" />
+                            android:text="@string/bank_name" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="HDFC Bank" />
+                            android:text="@string/hdfc_bank" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -259,14 +260,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="IFSC" />
+                            android:text="@string/ifsc" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="HDFC0002988" />
+                            android:text="@string/hdfc0002988" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -279,14 +280,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Branch" />
+                            android:text="@string/branch" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="Uruli-Kanchan,Pune" />
+                            android:text="@string/uruli_kanchan_pune" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -299,14 +300,14 @@
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="A/C Type" />
+                            android:text="@string/a_c_type" />
 
                         <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="Current Account" />
+                            android:text="@string/current_account" />
                     </LinearLayout>
                 </LinearLayout>
 

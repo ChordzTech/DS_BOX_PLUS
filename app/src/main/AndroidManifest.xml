@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DSBoxPlusUI"
         tools:targetApi="31">
         <activity
+            android:name=".settings.SuperUserSetting"
+            android:exported="false" />
+        <activity
             android:name=".settings.SubscriptionActivity"
             android:exported="false" />
         <activity

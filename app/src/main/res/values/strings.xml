@@ -143,4 +143,27 @@
     <string name="contact_support">Contact Support: 9421013332</string>
     <string name="package_details">Package Details</string>
     <string name="copyright">Copyright© 2020 Disha Swaraj Soft.All rights reserved.</string>
+    <string name="monthly">Monthly</string>
+    <string name="_149_inr">₹149 INR</string>
+    <string name="yearly_single_user">Yearly Single User</string>
+    <string name="_999_inr">₹999 INR</string>
+    <string name="yearly_multiuser">Yearly Multiuser</string>
+    <string name="_1799_inr">₹1799 INR</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="account_details">Account Details</string>
+    <string name="a_c_name">A/C Name</string>
+    <string name="disha_swarajsoft">Disha SwarajSoft</string>
+    <string name="a_c_no">A/C NO</string>
+    <string name="xxxxxxxxxx">xxxxxxxxxx</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="hdfc_bank">HDFC Bank</string>
+    <string name="ifsc">IFSC</string>
+    <string name="hdfc0002988">HDFC0002988</string>
+    <string name="branch">Branch</string>
+    <string name="uruli_kanchan_pune">Uruli-Kanchan,Pune</string>
+    <string name="a_c_type">A/C Type</string>
+    <string name="current_account">Current Account</string>
+    <string name="_18_noct_23">18 \nOct 23</string>
+    <string name="rs_100_00">Rs. 100.00</string>
+    <string name="user_access">User Access</string>
 </resources>

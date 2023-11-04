@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".settings.UserDetailsInProfile">
+        tools:context=".settings.SuperUserSetting">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,7 +16,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
             <ImageView
                 android:id="@+id/ivNewClients"
@@ -41,6 +39,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilUserName"
+                style="@style/DSTextRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -58,6 +57,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilContact"
+                style="@style/DSTextRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -73,15 +73,56 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvUserAccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:elevation="20dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilContact">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:padding="@dimen/padding_medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilContact">
+
+                    <TextView
+                        android:id="@+id/tvUserAccess"
+                        style="@style/DSTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_access"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Spinner
+                        android:id="@+id/UserAccessSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDeviceInfo"
+                style="@style/DSTextRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:hint="@string/device_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilContact">
+                app:layout_constraintTop_toBottomOf="@id/cvUserAccess">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextRegular"
@@ -93,25 +134,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilDeviceInfo">
 
-
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_small"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btClose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />
+
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
