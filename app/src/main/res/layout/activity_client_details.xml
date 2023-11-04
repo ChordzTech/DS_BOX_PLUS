@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".settings.UserDetailsInProfile">
+        tools:context=".clients.ClientDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,9 +18,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <ImageView
-                android:id="@+id/ivNewClients"
+                android:id="@+id/ivClientDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/user_details"
@@ -29,89 +28,107 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvUserDetails"
+                android:id="@+id/tvClientDetails"
                 style="@style/DSTextLargeBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/user_details"
+                android:text="@string/client_details"
                 android:textColor="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivNewClients" />
+                app:layout_constraintTop_toBottomOf="@id/ivClientDetails" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilUserName"
+                android:id="@+id/tilCustomerName"
+                style="@style/DSTextRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
+                android:hint="@string/customer_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUserDetails">
+                app:layout_constraintTop_toBottomOf="@id/tvClientDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/user_details"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilContact"
+                android:id="@+id/tilContactNumberInClientDetails"
+                style="@style/DSTextRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:hint="@string/contact_no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilUserName">
+                app:layout_constraintTop_toBottomOf="@id/tilCustomerName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilDeviceInfo"
+                android:id="@+id/tilAddressInClientDetails"
+                style="@style/DSTextRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:hint="@string/device_info"
+                android:hint="@string/address"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilContact">
+                app:layout_constraintTop_toBottomOf="@id/tilContactNumberInClientDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilDeviceInfo">
-
+                app:layout_constraintTop_toBottomOf="@id/tilAddressInClientDetails">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btUpdateInClientDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btDeleteInClientDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/close" />
+                    android:text="@string/delete" />
             </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btCloseInClientDetails"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

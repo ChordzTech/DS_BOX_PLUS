@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".clients.AddNewClients">
+        tools:context=".EnterBusinessDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,99 +18,123 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <ImageView
-                android:id="@+id/ivNewClients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_person_outline_24"
+                android:id="@+id/ivBusinessDetails"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:src="@drawable/business_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvNewClientDetails"
+                android:id="@+id/tvEnterBusinessDetails"
                 style="@style/DSTextLargeBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
                 android:gravity="center"
-                android:text="@string/new_client"
+                android:text="@string/enter_business_details"
                 android:textColor="@color/blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivNewClients" />
+                app:layout_constraintTop_toBottomOf="@+id/ivBusinessDetails" />
 
             <TextView
-                android:id="@+id/tvThisInfoText"
+                android:id="@+id/tvBusinessDetailsText"
                 style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
                 android:gravity="center"
-                android:text="@string/new_clients_this_info"
+                android:text="@string/enter_business_details_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvNewClientDetails" />
+                app:layout_constraintTop_toBottomOf="@+id/tvEnterBusinessDetails" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilClientName"
+                android:id="@+id/tilBusinessNameInEnterBusinessDetails"
+                android:layout_marginTop="@dimen/margin_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvThisInfoText">
+                android:hint="@string/business_name"
+                style="@style/DSTextRegular"
+                app:layout_constraintTop_toBottomOf="@+id/tvBusinessDetailsText">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/client_name"
-                    android:inputType="text" />
+                    style="@style/DSTextMedium"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilContactName"
+                android:id="@+id/tilBusinessContactInEnterBusinessDetails"
+                android:layout_marginTop="@dimen/margin_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilClientName">
-
-                <EditText
-                    style="@style/DSTextRegular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/contact_no"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilContactName">
+                android:hint="@string/business_contact"
+                style="@style/DSTextRegular"
+                app:layout_constraintTop_toBottomOf="@+id/tilBusinessNameInEnterBusinessDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/address"
-                    android:inputType="text" />
+                    android:inputType="number"
+                    style="@style/DSTextMedium"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilBusinessAddressInEnterBusinessDetails"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/business_address"
+                style="@style/DSTextRegular"
+                app:layout_constraintTop_toBottomOf="@+id/tilBusinessContactInEnterBusinessDetails">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/DSTextMedium"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilBusinessPinCodeInEnterBusinessDetails"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/business_pinCode"
+                style="@style/DSTextRegular"
+                app:layout_constraintTop_toBottomOf="@+id/tilBusinessAddressInEnterBusinessDetails">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/DSTextMedium"
+                    android:inputType="number"/>
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/DSTextRegular"
+                android:id="@+id/btSubmitInEnterBusinessDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:text="@string/submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilAddress" />
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/submit"
+                app:layout_constraintTop_toBottomOf="@+id/tilBusinessPinCodeInEnterBusinessDetails" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

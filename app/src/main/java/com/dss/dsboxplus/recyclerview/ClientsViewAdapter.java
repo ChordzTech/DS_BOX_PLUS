@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
     private ArrayList<ClientsDataModel> clientsList;
+    private OnClientSelectedI onClientSelectedListner;
 
     @NonNull
     @Override
@@ -51,6 +52,19 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         this.clientsList = clientsList;
     }
 
+    public OnClientSelectedI getOnClientSelectedListner() {
+        return onClientSelectedListner;
+    }
+
+    public void setOnClientSelectedListner(OnClientSelectedI onClientSelectedListner) {
+        this.onClientSelectedListner = onClientSelectedListner;
+    }
+
+
+    public interface OnClientSelectedI {
+        public void onClientSelectedI(ClientsDataModel clientsDataModel);
+    }
+
     class ClientsViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivClientPhoto;
         private TextView tvClientsName, tvPhoneNumber, tvEstimates;
@@ -64,11 +78,10 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    onClientSelectedListner.onClientSelectedI(clientsList.get(getAbsoluteAdapterPosition()));
                 }
             });
         }
     }
-
 
 }

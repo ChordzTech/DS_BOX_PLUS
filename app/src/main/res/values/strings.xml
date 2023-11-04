@@ -136,4 +136,8 @@
     <string name="otp_verification">OTP Verification</string>
     <string name="verify_sms_text">We have sent you an OTP \n foe phone number verification.</string>
     <string name="verifyotp">Verify OTP</string>
+    <string name="enter_business_details">Enter Business Details</string>
+    <string name="enter_business_details_text">This information will show on your \n estimates, quotations</string>
+    <string name="client_details">Client Details</string>
+    <string name="customer_name">Customer Name</string>
 </resources>

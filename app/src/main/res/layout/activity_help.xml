@@ -7,47 +7,74 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_medium"
         tools:context=".settings.Help">
 
-        <ImageView
-            android:id="@+id/ivHelpLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_help_center_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvForHelp"
-            style="@style/DSTextRegular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/for_help_contact"
-            app:layout_constraintStart_toEndOf="@id/ivHelpLogo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/tvPhoneNumberInHelp"
-            style="@style/DSTextLarge"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:text="@string/help_contact_no"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvForHelp" />
-
-        <WebView
-            android:layout_marginTop="@dimen/margin_medium"
-            android:id="@+id/wvYT"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPhoneNumberInHelp" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textColor="@color/blue"
+                android:gravity="center"
+                style="@style/DSTextLargeBold"
+                android:id="@+id/tvHelp"
+                android:text="@string/help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/llHelp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHelp">
 
 
+                <ImageView
+                    android:id="@+id/ivHelpLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_help_center_24" />
 
+                <TextView
+                    android:id="@+id/tvForHelp"
+                    style="@style/DSTextRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/for_help_contact" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvPhoneNumberInHelp"
+                style="@style/DSTextLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/help_contact_no"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llHelp" />
+
+            <WebView
+                android:id="@+id/wvYT"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPhoneNumberInHelp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

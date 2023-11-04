@@ -15,6 +15,12 @@
         android:theme="@style/Theme.DSBoxPlusUI"
         tools:targetApi="31">
         <activity
+            android:name=".clients.ClientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EnterBusinessDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".VerifyOtpActivity"
             android:exported="false" />
         <activity

@@ -7,69 +7,80 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-     android:layout_margin="@dimen/margin_medium"
         tools:context=".settings.QuotationTerms">
 
-        <TextView
-            android:id="@+id/tvQuotation"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/quotation_terms_settings"
-            style="@style/DSTextLargeBold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="@dimen/margin_medium"
-            android:id="@+id/tilTermsAndConditions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/terms_and_conditions"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvQuotation">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:inputType="text"
-                style="@style/DSTextMediumBold"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            style="@style/DSTextRegular"
-            android:id="@+id/tvNewLineText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="@string/quotation_new_line_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilTermsAndConditions" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_medium"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNewLineText">
+            app:layout_constraintTop_toTopOf="parent">
 
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvQuotation"
+                style="@style/DSTextLargeBold"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_medium"
-                android:text="@string/save" />
+                android:gravity="center"
+                android:text="@string/quotation_terms_settings"
+                android:textColor="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTermsAndConditions"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/close" />
-        </LinearLayout>
+                android:layout_marginTop="@dimen/margin_medium"
+                android:hint="@string/terms_and_conditions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvQuotation">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/DSTextMediumBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvNewLineText"
+                style="@style/DSTextRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/quotation_new_line_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilTermsAndConditions" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNewLineText">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:text="@string/save" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/close" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

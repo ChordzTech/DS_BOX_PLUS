@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.AddNewClients;
+import com.dss.dsboxplus.clients.ClientDetailsActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  * Use the {@link ClientFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ClientFragment extends Fragment {
+public class ClientFragment extends Fragment implements ClientsViewAdapter.OnClientSelectedI {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -93,7 +94,7 @@ public class ClientFragment extends Fragment {
     private void initView(View view) {
         rvClientRecyclerView = view.findViewById(R.id.rvClientRecyclerView);
         clientsViewAdapter = new ClientsViewAdapter();
-//        clientsViewAdapter.setClientsList(this);
+        clientsViewAdapter.setOnClientSelectedListner(this);
         rvClientRecyclerView.setAdapter(clientsViewAdapter);
     }
 
@@ -112,4 +113,12 @@ public class ClientFragment extends Fragment {
         return clientsList;
     }
 
+    @Override
+    public void onClientSelectedI(ClientsDataModel clientsDataModel) {
+        Intent intent = new Intent(getActivity(), ClientDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("CLIENTS", clientsDataModel);
+        intent.putExtra("CLIENTS_BUNDLE", bundle);
+        startActivity(intent);
+    }
 }

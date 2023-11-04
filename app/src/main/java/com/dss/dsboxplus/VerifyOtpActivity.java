@@ -71,7 +71,7 @@ public class VerifyOtpActivity extends AppCompatActivity {
                                         btVerify.setVisibility(View.VISIBLE);
 
                                         if (task.isSuccessful()){
-                                            Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                                            Intent intent=new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
 
@@ -83,7 +83,7 @@ public class VerifyOtpActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(VerifyOtpActivity.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(VerifyOtpActivity.this, "OTP Verify", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(VerifyOtpActivity.this, "OTP Verify", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(VerifyOtpActivity.this, "Please Enter All Numbers", Toast.LENGTH_SHORT).show();
                 }

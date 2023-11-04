@@ -1,6 +1,11 @@
 package com.dss.dsboxplus.model;
 
-public class ClientsDataModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class ClientsDataModel implements Parcelable {
     String imageURL;
     String nameOfClient;
     String phoneNumberOfClient;
@@ -12,6 +17,25 @@ public class ClientsDataModel {
         this.phoneNumberOfClient = phoneNumberOfClient;
         this.numberOfEstimatesOfClients = numberOfEstimatesOfClients;
     }
+
+    protected ClientsDataModel(Parcel in) {
+        imageURL = in.readString();
+        nameOfClient = in.readString();
+        phoneNumberOfClient = in.readString();
+        numberOfEstimatesOfClients = in.readString();
+    }
+
+    public static final Creator<ClientsDataModel> CREATOR = new Creator<ClientsDataModel>() {
+        @Override
+        public ClientsDataModel createFromParcel(Parcel in) {
+            return new ClientsDataModel(in);
+        }
+
+        @Override
+        public ClientsDataModel[] newArray(int size) {
+            return new ClientsDataModel[size];
+        }
+    };
 
     public String getImageURL() {
         return imageURL;
@@ -43,5 +67,18 @@ public class ClientsDataModel {
 
     public void setNumberOfEstimatesOfClients(String numberOfEstimatesOfClients) {
         this.numberOfEstimatesOfClients = numberOfEstimatesOfClients;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(imageURL);
+        parcel.writeString(nameOfClient);
+        parcel.writeString(phoneNumberOfClient);
+        parcel.writeString(numberOfEstimatesOfClients);
     }
 }
