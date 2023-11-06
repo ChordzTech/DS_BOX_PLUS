@@ -12,17 +12,20 @@
 
 
         <androidx.appcompat.widget.SearchView
+            style="@style/DSTextRegular"
             android:id="@+id/svSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/search_bar_background"
+            app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Search Here....">
+            app:queryHint="Search Here">
 
         </androidx.appcompat.widget.SearchView>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvEstimateRecyclerView"
@@ -39,6 +42,7 @@
             tools:listitem="@layout/list_of_estimates_item">
 
         </androidx.recyclerview.widget.RecyclerView>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabEstimates"

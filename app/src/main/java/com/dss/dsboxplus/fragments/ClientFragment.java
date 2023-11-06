@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,9 @@ import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +36,9 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     FloatingActionButton add;
+    private ArrayList<ClientsDataModel> clientsList;
     private RecyclerView rvClientRecyclerView;
+
     private ClientsViewAdapter clientsViewAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -76,6 +83,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         add = view.findViewById(R.id.fabAdd);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,8 +96,8 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         initView(view);
         prepareData();
         loadData();
-    }
 
+    }
 
     private void initView(View view) {
         rvClientRecyclerView = view.findViewById(R.id.rvClientRecyclerView);
@@ -99,19 +107,35 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     }
 
     private void loadData() {
+
         clientsViewAdapter.setClientsList(prepareData());
         clientsViewAdapter.notifyDataSetChanged();
     }
 
     private ArrayList<ClientsDataModel> prepareData() {
         ArrayList<ClientsDataModel> clientsList = new ArrayList<>();
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Pankaj", "7972546880", "1"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Bunty", "7972546880", "1"));
         clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Anurag", "7972546880", "5"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Vishal", "7972546880", "2"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "AJ", "7972546880", "7"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "JJ", "7972546880", "10"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Cat", "7972546880", "2"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "XYZ", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Aa", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Estimate", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Kallu", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Shubham", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "7"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "5"));
+        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "MNO", "7972546880", "10"));
+        Collections.sort(clientsList, new Comparator<ClientsDataModel>() {
+            @Override
+            public int compare(ClientsDataModel clientsDataModel, ClientsDataModel t1) {
+                return clientsDataModel.getNameOfClient().compareTo(t1.getNameOfClient());
+            }
+        });
+
         return clientsList;
+
     }
+
 
     @Override
     public void onClientSelectedI(ClientsDataModel clientsDataModel) {

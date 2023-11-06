@@ -35,6 +35,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         holder.tvClientName.setText(estimatesViewModel.getNameofClients());
         holder.tvBoxDimension.setText(estimatesViewModel.getDimensionOfBox());
         holder.tvCost.setText(estimatesViewModel.getCostOfBox());
+        holder.tvEstimateDate.setText(estimatesViewModel.getDateOfEstimate());
     }
 
     @Override
@@ -55,7 +56,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
     }
 
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost;
+        private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost,tvEstimateDate;
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +65,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             tvClientName = itemView.findViewById(R.id.tvClientName);
             tvBoxDimension = itemView.findViewById(R.id.tvBoxDimension);
             tvCost = itemView.findViewById(R.id.tvCost);
+            tvEstimateDate=itemView.findViewById(R.id.tvEstimateDate);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

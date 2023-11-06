@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.Comparator;
+
 public class ClientsDataModel implements Parcelable {
     String imageURL;
     String nameOfClient;
@@ -81,4 +83,5 @@ public class ClientsDataModel implements Parcelable {
         parcel.writeString(phoneNumberOfClient);
         parcel.writeString(numberOfEstimatesOfClients);
     }
-}
+
+  }

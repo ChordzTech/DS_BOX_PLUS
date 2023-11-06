@@ -1,8 +1,8 @@
 package com.dss.dsboxplus.fragments;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,11 @@ import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 
 /**
@@ -96,15 +100,35 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private ArrayList<EstimatesDataModel> prepareData() {
         ArrayList<EstimatesDataModel> estimatesList = new ArrayList<>();
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "ABC", "300*60*300", "4"));
+                "Box", "ABC", "300*60*300", "4", "06/10/2020"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "Pankaj", "300*60*300", "4"));
+                "Pk", "Pankaj", "300*60*300", "4", "08/10/2021"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "Pankaj", "300*60*300", "4"));
+                "Pankaj", "Pankaj", "300*60*300", "4", "10/10/2023"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "Pankaj", "300*60*300", "4"));
+                "Shubham", "Pankaj", "300*60*300", "4", "01/05/2023"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "Pankaj", "300*60*300", "4"));
+                "Abhishek", "Pankaj", "300*60*300", "4", "01/04/2023"));
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+                "Kalyan", "Pankaj", "300*60*300", "4", "01/04/2023"));
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+                "Shubham", "Pankaj", "300*60*300", "4", "03/05/2019"));
+        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+                "Rushi", "Pankaj", "300*60*300", "4", "05/04/2023"));
+        Collections.sort(estimatesList, new Comparator<EstimatesDataModel>() {
+            @Override
+            public int compare(EstimatesDataModel estimatesDataModel, EstimatesDataModel t1) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                Date d1 = null, d2 = null;
+                try {
+                    d1 = sdf.parse(estimatesDataModel.getDateOfEstimate());
+                    d2 = sdf.parse(t1.getDateOfEstimate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return d1.compareTo(d2);
+            }
+        });
         return estimatesList;
     }
 
@@ -113,7 +137,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         Intent intent = new Intent(getActivity(), BoxEstimatesDetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("ESTIMATES", estimatesDataModel);
-        intent.putExtra("ESTIMATES_BUNDLE",bundle);
+        intent.putExtra("ESTIMATES_BUNDLE", bundle);
         startActivity(intent);
     }
 

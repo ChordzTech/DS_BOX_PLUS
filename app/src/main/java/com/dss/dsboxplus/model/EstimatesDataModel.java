@@ -6,28 +6,6 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class EstimatesDataModel implements Parcelable {
-    String imageURL;
-    String nameOfBox;
-    String nameofClients;
-    String dimensionOfBox;
-    String costOfBox;
-
-    public EstimatesDataModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox) {
-        this.imageURL = imageURL;
-        this.nameOfBox = nameOfBox;
-        this.nameofClients = nameofClients;
-        this.dimensionOfBox = dimensionOfBox;
-        this.costOfBox = costOfBox;
-    }
-
-    protected EstimatesDataModel(Parcel in) {
-        imageURL = in.readString();
-        nameOfBox = in.readString();
-        nameofClients = in.readString();
-        dimensionOfBox = in.readString();
-        costOfBox = in.readString();
-    }
-
     public static final Creator<EstimatesDataModel> CREATOR = new Creator<EstimatesDataModel>() {
         @Override
         public EstimatesDataModel createFromParcel(Parcel in) {
@@ -39,6 +17,39 @@ public class EstimatesDataModel implements Parcelable {
             return new EstimatesDataModel[size];
         }
     };
+    String imageURL;
+    String nameOfBox;
+    String nameofClients;
+    String dimensionOfBox;
+    String costOfBox;
+    String dateOfEstimate;
+
+    public EstimatesDataModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox, String dateOfEstimate) {
+        this.imageURL = imageURL;
+        this.nameOfBox = nameOfBox;
+        this.nameofClients = nameofClients;
+        this.dimensionOfBox = dimensionOfBox;
+        this.costOfBox = costOfBox;
+        this.dateOfEstimate = dateOfEstimate;
+
+    }
+
+    protected EstimatesDataModel(Parcel in) {
+        imageURL = in.readString();
+        nameOfBox = in.readString();
+        nameofClients = in.readString();
+        dimensionOfBox = in.readString();
+        costOfBox = in.readString();
+        dateOfEstimate = in.readString();
+    }
+
+    public String getDateOfEstimate() {
+        return dateOfEstimate;
+    }
+
+    public void setDateOfEstimate(String dateOfEstimate) {
+        this.dateOfEstimate = dateOfEstimate;
+    }
 
     public String getImageURL() {
         return imageURL;
@@ -80,6 +91,7 @@ public class EstimatesDataModel implements Parcelable {
         this.costOfBox = costOfBox;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -92,5 +104,6 @@ public class EstimatesDataModel implements Parcelable {
         parcel.writeString(nameofClients);
         parcel.writeString(dimensionOfBox);
         parcel.writeString(costOfBox);
+        parcel.writeString(dateOfEstimate);
     }
 }

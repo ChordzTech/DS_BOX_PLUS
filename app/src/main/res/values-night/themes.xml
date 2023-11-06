@@ -5,4 +5,5 @@
         <item name="colorSecondary" type="color">@color/dark_blue</item>
         <item name="colorAccent" type="color">@color/cyan</item>
     </style>
+    <style name="Theme.DSBoxPlusUI" parent="Base.Theme.DSBoxPlusUI" />
 </resources>

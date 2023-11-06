@@ -9,7 +9,7 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/ivClientPhoto"
+            android:id="@+id/tvEstimateDate"
             style="@style/DSTextMediumBold"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
             android:orientation="vertical"
-            app:layout_constraintStart_toEndOf="@id/ivClientPhoto"
+            app:layout_constraintStart_toEndOf="@id/tvEstimateDate"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView

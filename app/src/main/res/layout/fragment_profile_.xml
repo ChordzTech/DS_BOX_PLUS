@@ -135,7 +135,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvSuperUserSettings"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 android:padding="@dimen/padding_medium"
@@ -168,7 +168,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/businessSettings"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 android:padding="@dimen/padding_medium"
@@ -179,7 +179,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -223,7 +223,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvDefaultPaperSettings"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -233,7 +233,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -277,7 +277,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvDefaultRateSettings"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -287,7 +287,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -332,7 +332,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvQuotationTerms"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -342,7 +342,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <ImageView
 
@@ -386,7 +386,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvSubscription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -395,8 +395,9 @@
                 app:layout_constraintTop_toBottomOf="@id/cvQuotationTerms">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:padding="@dimen/padding_medium"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <ImageView
 
@@ -426,7 +427,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvHelp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -436,7 +437,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <ImageView
                         android:layout_width="20dp"

@@ -30,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
+                    android:padding="@dimen/padding_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -41,10 +42,10 @@
                         android:src="@drawable/baseline_help_center_24" />
 
                     <TextView
-                        android:layout_marginStart="@dimen/margin_small"
                         style="@style/DSTextMediumBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:text="@string/contact_support" />
                 </LinearLayout>
 
@@ -314,8 +315,11 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:layout_marginBottom="@dimen/margin_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="20dp"
+                app:cardCornerRadius="20dp"
                 android:layout_marginTop="@dimen/margin_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -326,6 +330,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:elevation="20dp"
                     android:gravity="center"
                     android:padding="@dimen/padding_medium"
                     android:text="@string/copyright"

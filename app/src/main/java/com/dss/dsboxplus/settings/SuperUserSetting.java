@@ -14,7 +14,7 @@ import com.dss.dsboxplus.databinding.ActivitySuperUserSettingBinding;
 
 public class SuperUserSetting extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Spinner spinner;
-    String[] access = {"Full Access", "No Access"};
+    String[] access = {"Full Access","No Access"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
