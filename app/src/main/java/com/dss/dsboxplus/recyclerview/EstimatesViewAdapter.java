@@ -73,10 +73,5 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
                 }
             });
         }
-
-
-
-
-
     }
 }

@@ -14,17 +14,17 @@ import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
     ActivityHomeScreenBinding homeScreenBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeScreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen);
-        replaceFragment(new EstimatesFragment());
+        replaceFragment(new EstimatesFragment(this));
         homeScreenBinding.bottomNavigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.estimate) {
-                replaceFragment(new EstimatesFragment());
+                replaceFragment(new EstimatesFragment(this));
             } else if (item.getItemId() == R.id.users) {
                 replaceFragment(new ClientFragment());
             } else {
@@ -41,4 +41,8 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void loadClientFragmentOnEmptyEstimates() {
+        replaceFragment(new ClientFragment());
+    }
 }

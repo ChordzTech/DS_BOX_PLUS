@@ -1,18 +1,12 @@
-package com.dss.dsboxplus.settings;
+package com.dss.dsboxplus.profile;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.MediaController;
-import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dss.dsboxplus.R;
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.ui.StyledPlayerView;
 
 
 public class Help extends AppCompatActivity {

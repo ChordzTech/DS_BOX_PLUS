@@ -1,4 +1,4 @@
-package com.dss.dsboxplus.settings;
+package com.dss.dsboxplus.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 

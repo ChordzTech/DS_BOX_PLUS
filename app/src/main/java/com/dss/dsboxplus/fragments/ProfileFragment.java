@@ -12,14 +12,14 @@ import android.view.ViewGroup;
 
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.settings.BusinessDetails;
-import com.dss.dsboxplus.settings.DefaultPaperSettings;
-import com.dss.dsboxplus.settings.DefaultRateSettings;
-import com.dss.dsboxplus.settings.Help;
-import com.dss.dsboxplus.settings.QuotationTerms;
-import com.dss.dsboxplus.settings.SubscriptionActivity;
-import com.dss.dsboxplus.settings.SuperUserSetting;
-import com.dss.dsboxplus.settings.UserDetailsInProfile;
+import com.dss.dsboxplus.profile.BusinessDetails;
+import com.dss.dsboxplus.profile.DefaultPaperSettings;
+import com.dss.dsboxplus.profile.DefaultRateSettings;
+import com.dss.dsboxplus.profile.Help;
+import com.dss.dsboxplus.profile.QuotationTerms;
+import com.dss.dsboxplus.profile.SubscriptionActivity;
+import com.dss.dsboxplus.profile.SuperUserSetting;
+import com.dss.dsboxplus.profile.UserDetailsInProfile;
 
 
 public class ProfileFragment extends Fragment {

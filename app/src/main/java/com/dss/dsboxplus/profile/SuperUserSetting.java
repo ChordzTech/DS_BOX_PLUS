@@ -1,4 +1,4 @@
-package com.dss.dsboxplus.settings;
+package com.dss.dsboxplus.profile;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.databinding.ActivitySuperUserSettingBinding;
 
 public class SuperUserSetting extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Spinner spinner;

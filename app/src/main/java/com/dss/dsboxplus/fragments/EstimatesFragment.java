@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dss.dsboxplus.IHomeActivityCallBack;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.estimates.NewEstimateActivity;
+import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -35,23 +39,13 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private RecyclerView rvEstimatesRecyclerView;
     private EstimatesViewAdapter estimatesViewAdapter;
     private FloatingActionButton fabEstimates;
+    private SearchView searchView;
+    List<ClientsDataModel> dataModelList;
+    private IHomeActivityCallBack iHomeActivityCallBack;
 
-    public EstimatesFragment() {
+    public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment Estimates_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EstimatesFragment newInstance() {
-        EstimatesFragment fragment = new EstimatesFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        this.iHomeActivityCallBack = iHomeActivityCallBack;
     }
 
     @Override
@@ -72,11 +66,16 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fabEstimates = view.findViewById(R.id.fabEstimates);
+        searchView=view.findViewById(R.id.svSearch);
         fabEstimates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
-                startActivity(intent);
+//                if list is empty then load client fragment
+//                if(){
+                    iHomeActivityCallBack.loadClientFragmentOnEmptyEstimates();
+//                }
+              /*  Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
+                startActivity(intent);*/
             }
         });
         initView(view);
@@ -118,7 +117,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         Collections.sort(estimatesList, new Comparator<EstimatesDataModel>() {
             @Override
             public int compare(EstimatesDataModel estimatesDataModel, EstimatesDataModel t1) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date d1 = null, d2 = null;
                 try {
                     d1 = sdf.parse(estimatesDataModel.getDateOfEstimate());
@@ -129,8 +128,11 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
                 return d1.compareTo(d2);
             }
         });
+
         return estimatesList;
     }
+
+
 
     @Override
     public void onEstimatesSelectedI(EstimatesDataModel estimatesDataModel) {

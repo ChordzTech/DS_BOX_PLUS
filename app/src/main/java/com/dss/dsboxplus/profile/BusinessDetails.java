@@ -1,4 +1,4 @@
-package com.dss.dsboxplus.settings;
+package com.dss.dsboxplus.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,11 @@ import android.os.Bundle;
 import com.dss.dsboxplus.R;
 
 
-public class QuotationTerms extends AppCompatActivity {
+public class BusinessDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quotation_terms);
+        setContentView(R.layout.activity_business_details);
     }
 }

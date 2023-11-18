@@ -393,9 +393,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvQuotationTerms">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:padding="@dimen/padding_medium"
+
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
 

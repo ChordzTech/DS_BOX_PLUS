@@ -166,4 +166,8 @@
     <string name="_18_noct_23">18/10/23</string>
     <string name="rs_100_00">Rs. 100.00</string>
     <string name="user_access">User Access</string>
+    <string name="middle_one_paper">Middle One Paper</string>
+    <string name="flute_two_paper">Flute Two Paper</string>
+    <string name="middle_two_paper">Middle Two Paper</string>
+    <string name="flute_three_paper">Flute Three Paper</string>
 </resources>

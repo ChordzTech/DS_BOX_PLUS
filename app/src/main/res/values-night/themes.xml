@@ -1,9 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.DSBoxPlusUI" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.DSBoxPlusUI" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary" type="color">@color/blue</item>
         <item name="colorSecondary" type="color">@color/dark_blue</item>
         <item name="colorAccent" type="color">@color/cyan</item>
     </style>
+
     <style name="Theme.DSBoxPlusUI" parent="Base.Theme.DSBoxPlusUI" />
 </resources>

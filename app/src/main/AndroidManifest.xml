@@ -15,10 +15,10 @@
         android:theme="@style/Theme.DSBoxPlusUI"
         tools:targetApi="31">
         <activity
-            android:name=".settings.SuperUserSetting"
+            android:name=".profile.SuperUserSetting"
             android:exported="false" />
         <activity
-            android:name=".settings.SubscriptionActivity"
+            android:name=".profile.SubscriptionActivity"
             android:exported="false" />
         <activity
             android:name=".clients.ClientDetailsActivity"
@@ -48,25 +48,25 @@
             android:name=".estimates.NewEstimateActivity"
             android:exported="false" />
         <activity
-            android:name=".settings.Help"
+            android:name=".profile.Help"
             android:exported="false" />
         <activity
-            android:name=".settings.UserDetailsInProfile"
+            android:name=".profile.UserDetailsInProfile"
             android:exported="false" />
         <activity
             android:name=".clients.AddNewClients"
             android:exported="false" />
         <activity
-            android:name=".settings.QuotationTerms"
+            android:name=".profile.QuotationTerms"
             android:exported="false" />
         <activity
-            android:name=".settings.DefaultRateSettings"
+            android:name=".profile.DefaultRateSettings"
             android:exported="false" />
         <activity
-            android:name=".settings.DefaultPaperSettings"
+            android:name=".profile.DefaultPaperSettings"
             android:exported="false" />
         <activity
-            android:name=".settings.BusinessDetails"
+            android:name=".profile.BusinessDetails"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
