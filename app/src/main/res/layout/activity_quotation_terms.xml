@@ -45,19 +45,8 @@
                     style="@style/DSTextMediumBold"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:inputType="text" />
+                    android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tvNewLineText"
-                style="@style/DSTextRegular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:text="@string/quotation_new_line_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilTermsAndConditions" />
 
             <LinearLayout
                 android:id="@+id/llButtonsInQuotationTerms"
@@ -68,16 +57,20 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvNewLineText">
+                app:layout_constraintTop_toBottomOf="@id/tilTermsAndConditions">
 
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
+                    style="@style/DSTextMedium"
+                    android:id="@+id/btSaveInQuotationTerms"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/save" />
 
                 <com.google.android.material.button.MaterialButton
+                    style="@style/DSTextMedium"
+                    android:id="@+id/btCloseInQuotationTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

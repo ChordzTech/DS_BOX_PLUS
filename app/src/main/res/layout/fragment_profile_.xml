@@ -30,28 +30,43 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_medium">
 
-                    <ImageView
-                        android:id="@+id/ivProfile"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivProfileInProfileFragment"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:layout_gravity="start"
                         android:src="@drawable/profile_picture"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circular"
+                        app:strokeColor="@color/black" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabAddImage"
+                        android:backgroundTint="@color/transparent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:clickable="true"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivProfileInProfileFragment"
+                        app:layout_constraintEnd_toEndOf="@+id/ivProfileInProfileFragment"
+                        app:srcCompat="@drawable/baseline_linked_camera_24" />
 
                     <LinearLayout
                         android:id="@+id/llProfile"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ivProfile">
+                        app:layout_constraintStart_toEndOf="@id/ivProfileInProfileFragment"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             style="@style/DSTextMedium"
-                            android:layout_width="match_parent"
+                            android:layout_width="127dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
@@ -59,7 +74,7 @@
 
                         <TextView
                             style="@style/DSTextMedium"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center_horizontal"
@@ -393,6 +408,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvQuotationTerms">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
 
                     android:layout_width="match_parent"

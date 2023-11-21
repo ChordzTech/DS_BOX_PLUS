@@ -39,7 +39,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilUserName"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvUserDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -57,7 +57,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilContact"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilUserName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -115,7 +115,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDeviceInfo"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cvUserAccess">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -142,13 +142,16 @@
                 app:layout_constraintTop_toBottomOf="@id/tilDeviceInfo">
 
                 <com.google.android.material.button.MaterialButton
+                    style="@style/DSTextMedium"
+                    android:id="@+id/btUpdateInUserDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btClose"
+                    android:id="@+id/btCloseInUserDetails"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

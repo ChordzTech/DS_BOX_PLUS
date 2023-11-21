@@ -81,7 +81,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onClientSelectedListner.onClientSelectedI(clientsList.get(getAbsoluteAdapterPosition()));
+                    onClientSelectedListner.onClientSelectedI(clientsList.get(getAdapterPosition()));
                 }
             });
         }

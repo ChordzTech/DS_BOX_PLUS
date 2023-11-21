@@ -50,7 +50,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        style="@style/DSTextRegular"
+                        style="@style/DSTextMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/enter_box_name"
@@ -58,7 +58,7 @@
                         app:layout_constraintTop_toBottomOf="@id/ivProfile">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text" />
@@ -115,7 +115,7 @@
 
                         <TextView
                             android:id="@+id/tvLength"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
@@ -123,14 +123,14 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilLength"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
                             android:hint="@string/mm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal" />
@@ -148,7 +148,7 @@
 
                         <TextView
                             android:id="@+id/tvWidth"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
@@ -156,14 +156,14 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilWidth"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
                             android:hint="@string/mm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal" />
@@ -180,7 +180,7 @@
 
                         <TextView
                             android:id="@+id/tvHeight"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
@@ -188,14 +188,14 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilHeight"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
                             android:hint="@string/mm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal" />
@@ -248,7 +248,7 @@
 
                         <TextView
                             android:id="@+id/tvBoxNumber"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
@@ -262,7 +262,7 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/tietnumberOfBox"
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -313,20 +313,20 @@
 
                         <TextView
                             android:id="@+id/tvCuttingLength"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
                             android:text="@string/cutting_length" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal" />
@@ -345,7 +345,7 @@
 
                         <TextView
                             android:id="@+id/tvDecalSize"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
@@ -353,13 +353,13 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilDecalSize"
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal" />
@@ -399,14 +399,14 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:id="@+id/tvCuttingMargin"
-                                        style="@style/DSTextRegular"
+                                        style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
                                         android:layout_weight="0.5"
                                         android:text="@string/cutting_margin" />
                                     <TextView
                                         android:id="@+id/tvMargin"
-                                        style="@style/DSTextRegular"
+                                        style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
                                         android:layout_gravity="center"
@@ -424,7 +424,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:id="@+id/tvDecalMargin"
-                                        style="@style/DSTextRegular"
+                                        style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
                                         android:layout_weight="0.5"
@@ -432,7 +432,7 @@
 
                                     <TextView
                                         android:id="@+id/tvDecalMarginSize"
-                                        style="@style/DSTextRegular"
+                                        style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
                                         android:layout_gravity="center"
@@ -473,14 +473,14 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:id="@+id/tvCuttingLengthmm"
-                                        style="@style/DSTextRegular"
+                                        style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
                                         android:layout_weight="0.5"
                                         android:text="@string/cutting_length_mm" />
                                     <TextView
                                         android:id="@+id/tvCuttingLengthSize"
-                                        style="@style/DSTextRegular"
+                                        style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
                                         android:layout_gravity="center"
@@ -497,14 +497,14 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:id="@+id/tvDecalSizemm"
-                                    style="@style/DSTextRegular"
+                                    style="@style/DSTextMedium"
                                     android:layout_width="wrap_content"
                                     android:layout_height="0dp"
                                     android:layout_weight="0.5"
                                     android:text="@string/decal_Size_mm" />
 
                                 <TextView
-                                    style="@style/DSTextRegular"
+                                    style="@style/DSTextMedium"
                                     android:layout_width="wrap_content"
                                     android:layout_height="0dp"
                                     android:layout_gravity="center"
@@ -522,7 +522,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btNextInNewFragment"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"

@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvThisInfoText">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/client_name"
@@ -78,7 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilClientName">
 
                 <EditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/contact_no"
@@ -95,7 +95,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilContactName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
@@ -104,7 +104,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btSubmitInNewClientsDetails"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"

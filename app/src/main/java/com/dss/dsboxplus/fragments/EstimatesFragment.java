@@ -36,11 +36,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.OnEstimatesSelectedI {
+    List<ClientsDataModel> dataModelList;
     private RecyclerView rvEstimatesRecyclerView;
     private EstimatesViewAdapter estimatesViewAdapter;
     private FloatingActionButton fabEstimates;
     private SearchView searchView;
-    List<ClientsDataModel> dataModelList;
     private IHomeActivityCallBack iHomeActivityCallBack;
 
     public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
@@ -66,16 +66,16 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fabEstimates = view.findViewById(R.id.fabEstimates);
-        searchView=view.findViewById(R.id.svSearch);
+        searchView = view.findViewById(R.id.svSearch);
         fabEstimates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                if list is empty then load client fragment
 //                if(){
-                    iHomeActivityCallBack.loadClientFragmentOnEmptyEstimates();
+//                    iHomeActivityCallBack.loadClientFragmentOnEmptyEstimates();
 //                }
-              /*  Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
+                startActivity(intent);
             }
         });
         initView(view);
@@ -131,7 +131,6 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
         return estimatesList;
     }
-
 
 
     @Override

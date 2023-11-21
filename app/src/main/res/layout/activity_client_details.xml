@@ -41,7 +41,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCustomerName"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -59,7 +59,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilContactNumberInClientDetails"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -78,7 +78,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilAddressInClientDetails"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -107,12 +107,14 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btUpdateInClientDetails"
                     android:layout_width="wrap_content"
+                    style="@style/DSTextMedium"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDeleteInClientDetails"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/delete" />
@@ -120,6 +122,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btCloseInClientDetails"
+                style="@style/DSTextMedium"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:text="@string/close"
                 android:layout_width="wrap_content"

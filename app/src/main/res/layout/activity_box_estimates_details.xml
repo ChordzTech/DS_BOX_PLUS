@@ -99,7 +99,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -108,7 +108,7 @@
                             android:text="Ply" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -117,7 +117,7 @@
                             android:text="@string/bf" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -126,7 +126,7 @@
                             android:text="@string/gsm" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -135,7 +135,7 @@
                             android:text="@string/rate" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -154,7 +154,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llTitle">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -163,7 +163,7 @@
                             android:text="@string/top" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -172,7 +172,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -181,7 +181,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -190,7 +190,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -210,7 +210,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llTop">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -219,7 +219,7 @@
                             android:text="@string/flute_one" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -228,7 +228,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -237,7 +237,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -246,7 +246,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -266,7 +266,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llFluteOne">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -275,7 +275,7 @@
                             android:text="@string/middle_one" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -284,7 +284,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -293,7 +293,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -302,7 +302,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -324,7 +324,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llMiddleOne">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -333,7 +333,7 @@
                             android:text="@string/flute_two" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -342,7 +342,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -351,7 +351,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -360,7 +360,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -382,7 +382,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llFluteTwo">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -391,7 +391,7 @@
                             android:text="@string/middle_two" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -400,7 +400,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -409,7 +409,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -418,7 +418,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -439,7 +439,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llMiddleTwo">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -448,7 +448,7 @@
                             android:text="@string/flute_three" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -457,7 +457,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -466,7 +466,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -475,7 +475,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -496,7 +496,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/llFluteThree">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -505,7 +505,7 @@
                             android:text="@string/bottom" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -514,7 +514,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -523,7 +523,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -532,7 +532,7 @@
                             android:text="@string/zero" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -572,7 +572,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -597,7 +597,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -622,7 +622,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -669,7 +669,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -693,7 +693,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -717,7 +717,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -762,7 +762,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -786,7 +786,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -810,7 +810,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -856,7 +856,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -880,7 +880,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -904,7 +904,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -937,6 +937,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btQuotation"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
@@ -944,6 +945,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btProduction"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/production" />
@@ -963,6 +965,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btEdit"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
@@ -970,6 +973,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDelete"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/delete" />
@@ -986,6 +990,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btClose"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

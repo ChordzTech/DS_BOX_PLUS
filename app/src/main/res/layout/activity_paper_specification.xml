@@ -119,7 +119,7 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -128,14 +128,14 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -144,14 +144,14 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -159,7 +159,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -210,7 +210,7 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -218,14 +218,14 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -233,14 +233,14 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -248,14 +248,14 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -263,7 +263,7 @@
                             android:hint="@string/ff">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -312,7 +312,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvMiddleOnePaper">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -320,14 +320,14 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -335,14 +335,14 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -350,7 +350,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -399,7 +399,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvFluteTwoPaper">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -407,14 +407,14 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -422,14 +422,14 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -437,14 +437,14 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -452,7 +452,7 @@
                             android:hint="@string/ff">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -496,7 +496,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvMiddleTwoPaper">
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -504,13 +504,13 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -518,13 +518,13 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -532,7 +532,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -576,7 +576,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -584,13 +584,13 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -598,13 +598,13 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -612,13 +612,13 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -626,7 +626,7 @@
                             android:hint="@string/ff">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -668,7 +668,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -676,13 +676,13 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -690,13 +690,13 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
@@ -704,7 +704,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
@@ -726,7 +726,8 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btBackInPaperSpecfication"
+                    android:id="@+id/btBackInPaperSpecification"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -734,6 +735,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btNextInPaperSpecfication"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/next" />

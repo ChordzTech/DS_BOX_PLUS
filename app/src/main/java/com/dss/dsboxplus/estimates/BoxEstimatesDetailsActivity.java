@@ -49,6 +49,12 @@ public class BoxEstimatesDetailsActivity extends AppCompatActivity {
                 dialog(view);
             }
         });
+        boxEstimatesDetailsBinding.btClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void dialog(View view) {

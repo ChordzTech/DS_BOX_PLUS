@@ -10,13 +10,14 @@ import android.widget.Button;
 import com.dss.dsboxplus.R;
 
 public class PaperSpecificationActivity extends AppCompatActivity {
-    private Button btNextInPaperSpecification;
+    private Button btNextInPaperSpecification,btBackInPaperSpecification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper_specification);
         btNextInPaperSpecification=findViewById(R.id.btNextInPaperSpecfication);
+        btBackInPaperSpecification=findViewById(R.id.btBackInPaperSpecification);
         btNextInPaperSpecification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,6 +25,11 @@ public class PaperSpecificationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        btBackInPaperSpecification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

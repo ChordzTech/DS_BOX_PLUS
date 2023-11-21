@@ -69,7 +69,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAbsoluteAdapterPosition()));
+                    onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
                 }
             });
         }

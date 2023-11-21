@@ -80,13 +80,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/monthly" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -100,13 +100,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yearly_single_user" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -120,13 +120,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yearly_multiuser" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -198,13 +198,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/a_c_name" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -218,13 +218,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/a_c_no" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -238,13 +238,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/bank_name" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -258,13 +258,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ifsc" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -278,13 +278,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/branch" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -298,13 +298,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/a_c_type" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
@@ -326,7 +326,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -50,7 +50,7 @@
 
                 <TextView
                     android:id="@+id/tvForHelp"
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/for_help_contact" />

@@ -33,7 +33,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilBusinessName"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvBusinessDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -52,7 +52,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilBusinessContact"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilBusinessName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_contact"
@@ -71,7 +71,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilBusinessAddress"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -80,7 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilBusinessContact">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_address"
@@ -90,7 +90,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilBusinessPinCode"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -99,7 +99,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilBusinessAddress">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_pinCode"
@@ -109,7 +109,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilBusinessEmail"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -118,7 +118,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilBusinessPinCode">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_email"
@@ -139,14 +139,16 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/DSTextRegular"
+                    android:id="@+id/btSaveinBusinessDetails"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/save" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/DSTextRegular"
+                    android:id="@+id/btCloseInBusinessDetails"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

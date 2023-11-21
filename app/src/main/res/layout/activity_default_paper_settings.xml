@@ -32,7 +32,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCuttingMargin"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvDefaultPaperSettings">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -50,7 +50,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDecalMargin"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -60,7 +60,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilCuttingMargin">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -68,7 +68,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilFluteFactor"
-                style="@style/DSTextRegular"
+                style="@style/DSTextMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -78,7 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilDecalMargin">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -97,6 +97,8 @@
 
 
                 <com.google.android.material.button.MaterialButton
+                    style="@style/DSTextMedium"
+                    android:id="@+id/btSaveInDefaultPaperSettings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -104,6 +106,8 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
+                    android:id="@+id/btCloseInDefaultPaperSettings"
+                    style="@style/DSTextMedium"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />
             </LinearLayout>

@@ -109,7 +109,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -118,7 +118,7 @@
                             android:text="@string/total_gsm" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center_horizontal"
@@ -134,7 +134,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -143,7 +143,7 @@
                             android:text="@string/total_bs" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -179,7 +179,7 @@
                         android:weightSum="1">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -188,7 +188,7 @@
                             android:text="@string/total_weight" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center_horizontal"
@@ -204,7 +204,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -213,7 +213,7 @@
                             android:text="@string/net_paper_cost" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -248,7 +248,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -272,7 +272,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -281,7 +281,7 @@
                             android:text="@string/waste_cost" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -313,7 +313,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -328,7 +328,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -337,7 +337,7 @@
                             android:text="@string/gross_paper_cost" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -373,7 +373,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -397,7 +397,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -406,7 +406,7 @@
                             android:text="@string/conversion_cost" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -439,7 +439,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -457,7 +457,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -496,7 +496,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -514,7 +514,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -523,7 +523,7 @@
                             android:text="@string/total_bs" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -559,7 +559,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -583,7 +583,7 @@
                         android:padding="@dimen/padding_medium">
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -592,7 +592,7 @@
                             android:text="@string/box_price" />
 
                         <TextView
-                            style="@style/DSTextRegular"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -627,7 +627,7 @@
                             android:padding="@dimen/padding_medium">
 
                             <com.google.android.material.textfield.TextInputLayout
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -651,7 +651,7 @@
                             android:padding="@dimen/padding_medium">
 
                             <TextView
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
@@ -660,7 +660,7 @@
                                 android:text="@string/box_price_with_tax" />
 
                             <TextView
-                                style="@style/DSTextRegular"
+                                style="@style/DSTextMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
@@ -681,7 +681,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cvBoxPriceWithTax">
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btBackInBoxSpecification"
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -689,7 +689,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btNextInBoxSpecification"
-                    style="@style/DSTextRegular"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/save" />
