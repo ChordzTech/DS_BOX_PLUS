@@ -99,21 +99,21 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private ArrayList<EstimatesDataModel> prepareData() {
         ArrayList<EstimatesDataModel> estimatesList = new ArrayList<>();
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "ABC", "300*60*300", "4", "06/10/2020"));
+                "Box", "ABC", "300*60*300", "Rs.40.00", "06/10/2020"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Pk", "Pankaj", "300*60*300", "4", "08/10/2021"));
+                "Pk", "Pankaj", "300*60*300", "Rs.700.00", "08/10/2021"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Pankaj", "Pankaj", "300*60*300", "4", "10/10/2023"));
+                "Pankaj", "Pankaj", "300*60*300", "Rs.60.00", "10/10/2023"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Shubham", "Pankaj", "300*60*300", "4", "01/05/2023"));
+                "Shubham", "Pankaj", "300*60*300", "RS.500.00", "01/05/2023"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Abhishek", "Pankaj", "300*60*300", "4", "01/04/2023"));
+                "Abhishek", "Pankaj", "300*60*300", "Rs.50.00", "01/04/2023"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Kalyan", "Pankaj", "300*60*300", "4", "01/04/2023"));
+                "Kalyan", "Pankaj", "300*60*300", "Rs.80.00", "01/04/2023"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Shubham", "Pankaj", "300*60*300", "4", "03/05/2019"));
+                "Shubham", "Pankaj", "300*60*300", "Rs.65.00", "03/05/2019"));
         estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Rushi", "Pankaj", "300*60*300", "4", "05/04/2023"));
+                "Rushi", "Pankaj", "300*60*300", "Rs.89.00", "05/04/2023"));
         Collections.sort(estimatesList, new Comparator<EstimatesDataModel>() {
             @Override
             public int compare(EstimatesDataModel estimatesDataModel, EstimatesDataModel t1) {

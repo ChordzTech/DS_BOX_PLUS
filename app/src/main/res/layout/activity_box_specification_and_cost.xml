@@ -520,7 +520,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="0.5"
                             android:gravity="center"
-                            android:text="@string/total_bs" />
+                            android:text="@string/box_mfg_cost" />
 
                         <TextView
                             style="@style/DSTextMedium"

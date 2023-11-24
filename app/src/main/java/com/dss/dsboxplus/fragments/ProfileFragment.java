@@ -119,13 +119,13 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        cvProfileName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
-                startActivity(intent);
-            }
-        });
+//        cvProfileName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
+//                startActivity(intent);
+//            }
+//        });
         cvHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

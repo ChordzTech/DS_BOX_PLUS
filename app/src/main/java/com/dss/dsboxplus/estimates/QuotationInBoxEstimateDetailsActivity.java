@@ -39,7 +39,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotation_in_box_estimate_details);
-        btCreatePDF=findViewById(R.id.btCreateQuotationPDF);
+        btCreatePDF = findViewById(R.id.btCreateQuotationPDF);
         btCreatePDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,8 +152,11 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         Image image3 = new Image(imageData3);
         image3.setHeight(80);
         image3.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-
         document.add(table);
+//        document.add(new Paragraph("Pankaj Kashid").setTextAlignment(TextAlignment.CENTER).setFontSize(20f).setBold());
+//        document.add(new Paragraph("Uruli Kanchan,Pune Pincode-412202").setTextAlignment(TextAlignment.CENTER).setBold());
+//        document.add(new Paragraph("Contact-7972546880").setTextAlignment(TextAlignment.CENTER).setBold());
+//        document.add(new Paragraph("Quotation").setTextAlignment(TextAlignment.CENTER).setBold());
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n For Pankaj Kashid").setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
@@ -167,6 +170,5 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         document.add(image3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
-
     }
 }

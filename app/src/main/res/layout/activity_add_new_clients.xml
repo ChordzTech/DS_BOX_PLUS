@@ -62,6 +62,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietClientName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/client_name"
@@ -69,7 +70,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilContactName"
+                android:id="@+id/tilContactNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -77,7 +78,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilClientName">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietContactNumber"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,10 +94,11 @@
                 android:layout_marginTop="@dimen/margin_small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilContactName">
+                app:layout_constraintTop_toBottomOf="@id/tilContactNumber">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"

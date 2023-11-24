@@ -56,7 +56,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
     }
 
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost,tvEstimateDate;
+        private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost,tvEstimateDate,ivPDF;
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
