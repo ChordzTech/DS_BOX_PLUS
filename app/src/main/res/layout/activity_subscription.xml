@@ -315,6 +315,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -326,6 +327,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
+                    android:id="@+id/tvCopyright"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

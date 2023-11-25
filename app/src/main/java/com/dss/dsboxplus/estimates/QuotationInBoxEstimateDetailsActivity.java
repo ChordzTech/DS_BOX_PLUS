@@ -108,21 +108,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph("Date-18/11/2023")).setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
-        //table 1-07
-        table.addCell(new Cell().add(new Paragraph("To,")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Manasi Snacks")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        //table 1-08
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Pune Maharashtra-412202")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        //table 1-09
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Ref.Contact-7972546880")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+
 
         float columnWidth1[] = {62, 324, 174};
         Table table1 = new Table(columnWidth1);
@@ -157,6 +143,11 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
 //        document.add(new Paragraph("Uruli Kanchan,Pune Pincode-412202").setTextAlignment(TextAlignment.CENTER).setBold());
 //        document.add(new Paragraph("Contact-7972546880").setTextAlignment(TextAlignment.CENTER).setBold());
 //        document.add(new Paragraph("Quotation").setTextAlignment(TextAlignment.CENTER).setBold());
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("To,\n" +
+                "Manasi Snacks\n" +
+                "Pune Maharashtra-412202\n" +
+                "Ref.Contact-7972546880"));
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n For Pankaj Kashid").setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
