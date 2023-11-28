@@ -17,6 +17,9 @@
         android:theme="@style/Theme.DSBoxPlusUI"
         tools:targetApi="31">
         <activity
+            android:name=".loginandverification.TermsAndPrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile.WebViewActivity"
             android:exported="false" />
         <activity
@@ -29,10 +32,10 @@
             android:name=".clients.ClientDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".EnterBusinessDetailsActivity"
+            android:name=".loginandverification.EnterBusinessDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyOtpActivity"
+            android:name=".loginandverification.VerifyOtpActivity"
             android:exported="false" />
         <activity
             android:name=".estimates.ProductionInBoxEstimatesDetailsActivity"
@@ -74,13 +77,13 @@
             android:name=".profile.BusinessDetails"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".loginandverification.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".loginandverification.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".loginandverification.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

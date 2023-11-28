@@ -1,4 +1,4 @@
-package com.dss.dsboxplus;
+package com.dss.dsboxplus.loginandverification;
 
 public interface IHomeActivityCallBack {
     public void loadClientFragmentOnEmptyEstimates();

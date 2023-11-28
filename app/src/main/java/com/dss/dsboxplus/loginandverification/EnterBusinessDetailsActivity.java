@@ -1,4 +1,4 @@
-package com.dss.dsboxplus;
+package com.dss.dsboxplus.loginandverification;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dss.dsboxplus.R;
 import com.google.android.material.button.MaterialButton;
 
 public class EnterBusinessDetailsActivity extends AppCompatActivity {

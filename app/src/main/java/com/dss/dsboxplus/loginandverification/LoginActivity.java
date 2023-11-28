@@ -1,4 +1,4 @@
-package com.dss.dsboxplus;
+package com.dss.dsboxplus.loginandverification;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.databinding.ActivityLoginScreenBinding;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etPhoneNumber;
     Button btNext;
     ProgressBar pbSendingOtp;
+    String url = "https://dsbox.dishaswaraj.in/Terms.aspx";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +36,24 @@ public class LoginActivity extends AppCompatActivity {
         loginScreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_login_screen);
         etPhoneNumber = findViewById(R.id.etPhoneNumber);
         btNext = findViewById(R.id.btNext);
-        dsBox=findViewById(R.id.tvName);
-        pbSendingOtp=findViewById(R.id.pbSendingOtp);
+        dsBox = findViewById(R.id.tvName);
+        pbSendingOtp = findViewById(R.id.pbSendingOtp);
         initView();
     }
 
     private void initView() {
+        loginScreenBinding.tvTermsAndPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, TermsAndPrivacyPolicyActivity.class);
+                intent.putExtra("termsandprivacylink",url);
+                startActivity(intent);
+            }
+        });
         dsBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,17 +87,17 @@ public class LoginActivity extends AppCompatActivity {
                                         btNext.setVisibility(View.VISIBLE);
                                         Intent intent = new Intent(getApplicationContext(), VerifyOtpActivity.class);
                                         intent.putExtra("mobile", etPhoneNumber.getText().toString());
-                                        intent.putExtra("backendotp",s);
+                                        intent.putExtra("backendotp", s);
                                         startActivity(intent);
 
                                     }
                                 }
                         );
 
-                    }else {
+                    } else {
                         Toast.makeText(LoginActivity.this, "Please Enter Correct Number", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(LoginActivity.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                 }
             }

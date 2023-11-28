@@ -1,4 +1,4 @@
-package com.dss.dsboxplus;
+package com.dss.dsboxplus.loginandverification;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.dss.dsboxplus.R;
 
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;

@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/margin_medium"
-            tools:context=".LoginActivity">
+            tools:context=".loginandverification.LoginActivity">
 
 
             <TextView
@@ -130,8 +130,9 @@
 
 
             <TextView
-                android:id="@+id/textView"
-                style="@style/DSTextMedium"
+                android:id="@+id/tvTermsAndPrivacyPolicy"
+                style="@style/DSTextMediumBold"
+                android:textColor="@color/cyan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_large"
