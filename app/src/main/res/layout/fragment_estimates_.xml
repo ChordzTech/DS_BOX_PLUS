@@ -12,8 +12,8 @@
 
 
         <androidx.appcompat.widget.SearchView
-            style="@style/DSTextRegular"
             android:id="@+id/svSearch"
+            style="@style/DSTextRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -54,5 +54,28 @@
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:src="@drawable/cancel_sign"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/fabEstimates"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:src="@drawable/correct_sign"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/fabCancel"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

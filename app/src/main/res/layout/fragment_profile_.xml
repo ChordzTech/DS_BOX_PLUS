@@ -360,7 +360,6 @@
                     android:layout_height="60dp">
 
                     <ImageView
-
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_margin="@dimen/margin_small"
@@ -415,7 +414,6 @@
                     android:layout_height="60dp">
 
                     <ImageView
-
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_margin="@dimen/margin_small"
@@ -424,17 +422,32 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        style="@style/DSTextMedium"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/subscription_settings"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        style="@style/DSTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/subscription_settings" />
+                        <TextView
+                            style="@style/DSTextRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="start"
+                            android:text="@string/sub_status" />
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -465,7 +478,7 @@
 
                     <TextView
                         style="@style/DSTextMedium"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"

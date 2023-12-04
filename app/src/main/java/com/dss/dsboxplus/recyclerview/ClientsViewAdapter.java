@@ -14,13 +14,13 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.model.ClientsDataModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
     private ArrayList<ClientsDataModel> clientsList;
     private OnClientSelectedI onClientSelectedListner;
-    public void setFilteredList(ArrayList<ClientsDataModel>filteredList){
-        this.clientsList=filteredList;
+
+    public void setFilteredList(ArrayList<ClientsDataModel> filteredList) {
+        this.clientsList = filteredList;
         notifyDataSetChanged();
     }
 
@@ -64,8 +64,6 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
     public void setOnClientSelectedListner(OnClientSelectedI onClientSelectedListner) {
         this.onClientSelectedListner = onClientSelectedListner;
     }
-
-
 
 
     public interface OnClientSelectedI {

@@ -3,19 +3,13 @@ package com.dss.dsboxplus.estimates;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.os.Environment;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
-import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.model.EstimatesDataModel;
-import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
@@ -40,33 +34,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
-    MaterialButton btCreatePDF;
+public class PdfGeneration extends AppCompatActivity {
     EstimatesDataModel estimatesDataModel;
-    EstimatesFragment estimatesFragment;
-    ActivityQuotationInBoxEstimateDetailsBinding activityQuotationInBoxEstimateDetailsBinding;
     private ArrayList<EstimatesDataModel> selectedEstimatesList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        activityQuotationInBoxEstimateDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_quotation_in_box_estimate_details);
-        if (getIntent().getExtras().getParcelable("EstimateDetails_Bundle") != null) {
-            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
+    public void generatePdf(){
+        try {
+            createDsPdf();
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
         }
-        btCreatePDF = findViewById(R.id.btCreateQuotationPDF);
-        btCreatePDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    createDsPdf();
-                } catch (FileNotFoundException exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
     }
-
     private void createDsPdf() throws FileNotFoundException {
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "Quotation.pdf");
@@ -74,7 +52,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         PdfWriter writer = new PdfWriter(file);
         PdfDocument pdfDocument = new PdfDocument(writer);
         Document document = new Document(pdfDocument);
-        DeviceRgb gray = new DeviceRgb(128, 128, 128);
+        DeviceRgb gray=new DeviceRgb(128,128,128);
 
         float columnWidth[] = {62, 140, 140, 140};
         Table table = new Table(columnWidth);
@@ -90,7 +68,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
 
         //table 1-01
 
-        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell(4,1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph(estimatesDataModel.getNameofClients())
                 .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
@@ -121,7 +99,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-06
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
@@ -150,11 +128,11 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
 
         table1.addCell(new Cell().add(new Paragraph("2")));
         table1.addCell(new Cell().add(new Paragraph("5 Ply Box,DemoBox\n" +
-                "Box outer Dimension-" + estimatesDataModel.getDimensionOfBox() + "\n" +
+                "Box outer Dimension-"+estimatesDataModel.getDimensionOfBox()+"\n"+
                 "Paper Specification as below\n" +
                 "1.Top Paper 14/200\n" +
                 "2.Flute Paper 12/120\n" +
-                "3.Middle One 14/200\n" +
+                "3.Middle One 14/200\n"+
                 "4.Bottom Paper 14/150\n" +
                 "5.Flute Two Paper 14/200\n")));
         table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
@@ -178,7 +156,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n"));
-        document.add(new Paragraph("for " + estimatesDataModel.getNameofClients()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("for "+estimatesDataModel.getNameofClients()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("Terms & Conditions:"));
         document.add(new Paragraph("1.Valid : for 15 days only.\n" +
@@ -188,6 +166,6 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         document.add(new Paragraph("Auto generated copy,no signature requried").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
         document.add(image3);
         document.close();
-        Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -11,7 +11,6 @@ import com.google.android.material.button.MaterialButton;
 
 public class QuotationTerms extends AppCompatActivity {
     MaterialButton btCloseInQuotationTerms;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

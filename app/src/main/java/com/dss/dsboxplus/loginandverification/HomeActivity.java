@@ -9,15 +9,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.dss.dsboxplus.R;
-
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
+import com.dss.dsboxplus.model.EstimatesDataModel;
+import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 
 
 public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
     ActivityHomeScreenBinding homeScreenBinding;
+    private boolean estimateSelection;
+    private EstimatesViewAdapter estimatesViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,4 +50,6 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
     public void loadClientFragmentOnEmptyEstimates() {
         replaceFragment(new ClientFragment());
     }
+
+
 }

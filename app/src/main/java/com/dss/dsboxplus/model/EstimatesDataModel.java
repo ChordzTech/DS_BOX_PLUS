@@ -23,15 +23,19 @@ public class EstimatesDataModel implements Parcelable {
     String dimensionOfBox;
     String costOfBox;
     String dateOfEstimate;
+    private boolean isSelected;
 
-    public EstimatesDataModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox, String dateOfEstimate) {
+    public EstimatesDataModel(String imageURL, String nameOfBox, String nameofClients, String dimensionOfBox, String costOfBox, String dateOfEstimate,boolean isSelected) {
         this.imageURL = imageURL;
         this.nameOfBox = nameOfBox;
         this.nameofClients = nameofClients;
         this.dimensionOfBox = dimensionOfBox;
         this.costOfBox = costOfBox;
         this.dateOfEstimate = dateOfEstimate;
-
+        this.isSelected = isSelected;
+    }
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     protected EstimatesDataModel(Parcel in) {
@@ -105,5 +109,9 @@ public class EstimatesDataModel implements Parcelable {
         parcel.writeString(dimensionOfBox);
         parcel.writeString(costOfBox);
         parcel.writeString(dateOfEstimate);
+    }
+
+    public boolean isSelected() {
+        return isSelected;
     }
 }

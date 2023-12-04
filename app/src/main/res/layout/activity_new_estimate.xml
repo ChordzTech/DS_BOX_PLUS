@@ -328,6 +328,7 @@
                             android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietCuttingLength"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -361,6 +362,7 @@
                             android:layout_weight="0.6">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietDecalSize"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

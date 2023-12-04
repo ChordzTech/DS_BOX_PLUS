@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvQuotationInQuotationActivity">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="371dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_medium">
 

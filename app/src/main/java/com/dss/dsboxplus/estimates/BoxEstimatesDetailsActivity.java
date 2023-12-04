@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +14,13 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 
+import java.util.ArrayList;
+
 public class BoxEstimatesDetailsActivity extends AppCompatActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     private EstimatesDataModel estimatesDataModel;
+    TextView tvClientNameInBoxEstimateDetails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +29,18 @@ public class BoxEstimatesDetailsActivity extends AppCompatActivity {
         if (getIntent().getExtras().getParcelable("ESTIMATES_BUNDLE") != null) {
             estimatesDataModel = getIntent().getExtras().getBundle("ESTIMATES_BUNDLE").getParcelable("ESTIMATES");
         }
+
+        boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(estimatesDataModel.getNameofClients());
+        boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.setText(estimatesDataModel.getNameOfBox());
         //Quotation
         boxEstimatesDetailsBinding.btQuotation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuotationInBoxEstimateDetailsActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putParcelable("EstimateDetails",estimatesDataModel);
+                intent.putExtra("EstimateDetails_Bundle",bundle);
                 startActivity(intent);
-
             }
         });
         //Production

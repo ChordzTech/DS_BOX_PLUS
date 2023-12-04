@@ -170,4 +170,5 @@
     <string name="flute_two_paper">Flute Two Paper</string>
     <string name="middle_two_paper">Middle Two Paper</string>
     <string name="flute_three_paper">Flute Three Paper</string>
+    <string name="sub_status">Subscription Status:Active</string>
 </resources>

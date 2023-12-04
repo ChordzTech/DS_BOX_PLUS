@@ -106,7 +106,6 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
             }
         });
 
-
         initView(view);
         prepareData();
         loadData();
@@ -132,12 +131,12 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         rvClientRecyclerView = view.findViewById(R.id.rvClientRecyclerView);
         clientsViewAdapter = new ClientsViewAdapter();
         clientsViewAdapter.setOnClientSelectedListner(this);
-        rvClientRecyclerView.setAdapter(clientsViewAdapter);
+
     }
 
     private void loadData() {
-
         clientsViewAdapter.setClientsList(prepareData());
+        rvClientRecyclerView.setAdapter(clientsViewAdapter);
         clientsViewAdapter.notifyDataSetChanged();
     }
 

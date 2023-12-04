@@ -9,14 +9,17 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
+import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class NewEstimateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ActivityNewEstimateBinding newEstimateBinding;
+    DefaultPaperSettings defaultPaperSettings;
     Spinner spinner, plySpinner;
     TextInputEditText tietnumberOfBox;
     TextInputLayout tilHeight,tilWidth,tilLength;
@@ -27,7 +30,7 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_estimate);
+        newEstimateBinding= DataBindingUtil.setContentView(this,R.layout.activity_new_estimate);
         tietnumberOfBox=findViewById(R.id.tietnumberOfBox);
         tilHeight=findViewById(R.id.tilHeight);
         tilWidth=findViewById(R.id.tilWidth);
@@ -58,6 +61,8 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
                 startActivity(intent);
             }
         });
+        newEstimateBinding.tietCuttingLength.setText("30");
+        newEstimateBinding.tietDecalSize.setText("20");
     }
 
     @Override
