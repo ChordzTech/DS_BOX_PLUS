@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DSTextRegular" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextMedium" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextMediumBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextLight" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextThin" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">8sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextLarge" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">32sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextLargeBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">32sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextXLarge" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">36sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DSTextXLargeBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">48sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
