@@ -19,8 +19,6 @@ import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 
 public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
     ActivityHomeScreenBinding homeScreenBinding;
-    private boolean estimateSelection;
-    private EstimatesViewAdapter estimatesViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

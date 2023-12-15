@@ -110,7 +110,7 @@
     <string name="conv_cost">Conv.Cost</string>
     <string name="paper_cost">Paper Cost</string>
     <string name="overhead">Overhead</string>
-    <string name="box_mfg_cost">Box Mfg.Cost</string>
+    <string name="box_mfg_cost">Box MFG.Cost</string>
     <string name="price_Incl">Price Incl.Tax</string>
     <string name="quotation">Quotation </string>
     <string name="production">Production </string>
@@ -134,7 +134,7 @@
     <string name="enable_tax_and_price">Enable Tax with Price</string>
     <string name="enable_tax_and_price_text">Display Tax percentage and Tax with Price in Quotation.</string>
     <string name="otp_verification">OTP Verification</string>
-    <string name="verify_sms_text">We have sent you an OTP \n foe phone number verification.</string>
+    <string name="verify_sms_text">We have sent you an OTP \n for phone number verification.</string>
     <string name="verifyotp">Verify OTP</string>
     <string name="enter_business_details">Enter Business Details</string>
     <string name="enter_business_details_text">This information will show on your \n estimates, quotations</string>
@@ -171,4 +171,10 @@
     <string name="middle_two_paper">Middle Two Paper</string>
     <string name="flute_three_paper">Flute Three Paper</string>
     <string name="sub_status">Subscription Status:Active</string>
+    <string name="no_estimates_add_one">No Estimates Add One</string>
+    <string name="your_active_subscription_has_ended">Your Active Subscription has ended.\n
+    Please,Upgrade Your Premium Membership</string>
+    <string name="upgrade_membership">UPGRADE MEMBERSHIP</string>
+    <string name="conti_nue">CONTINUE</string>
+    <string name="go_premium">Go Premium</string>
 </resources>

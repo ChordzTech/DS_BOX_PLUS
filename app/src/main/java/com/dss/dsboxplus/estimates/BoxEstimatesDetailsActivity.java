@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class BoxEstimatesDetailsActivity extends AppCompatActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     private EstimatesDataModel estimatesDataModel;
-    TextView tvClientNameInBoxEstimateDetails;
+
 
 
     @Override

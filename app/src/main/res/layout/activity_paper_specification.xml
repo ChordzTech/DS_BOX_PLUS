@@ -128,6 +128,7 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInTopPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -144,6 +145,7 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInTopPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -159,6 +161,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInTopPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -218,6 +221,7 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInFlutePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -233,6 +237,7 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInFlutePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -248,6 +253,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInFlutePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -263,10 +269,11 @@
                             android:hint="@string/ff">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/ffInFlutePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -320,6 +327,7 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInMiddleOnePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -335,6 +343,7 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInMiddleOnePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -350,6 +359,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInMiddleOnePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -407,6 +417,7 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInFluteTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -422,6 +433,7 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInFluteTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -437,6 +449,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInFluteTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -452,10 +465,11 @@
                             android:hint="@string/ff">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/ffInFluteTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -472,10 +486,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvFluteTwoPaper">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_medium">
+
                     <TextView
                         android:id="@+id/tvMiddleTwoPaper"
                         style="@style/DSTextMediumBold"
@@ -485,6 +501,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <LinearLayout
                         android:id="@+id/llInMiddleTwoPaper"
                         android:layout_width="match_parent"
@@ -495,6 +512,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvMiddleTwoPaper">
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -504,11 +522,13 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInMiddleTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -518,11 +538,13 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInMiddleTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -532,6 +554,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInMiddleTwoPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -542,6 +565,7 @@
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvFluteThreePaper"
                 android:layout_width="match_parent"
@@ -552,10 +576,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvMiddleTwoPaper">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_medium">
+
                     <TextView
                         android:id="@+id/tvFluteThreePaper"
                         style="@style/DSTextMediumBold"
@@ -565,6 +591,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <LinearLayout
                         android:id="@+id/llInFluteThreePaper"
                         android:layout_width="match_parent"
@@ -572,9 +599,10 @@
                         android:orientation="horizontal"
                         android:padding="@dimen/padding_small"
                         android:weightSum="4"
-                        app:layout_constraintTop_toBottomOf="@id/tvFluteThreePaper"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFluteThreePaper">
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -584,11 +612,13 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInFluteThreePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -598,11 +628,13 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInFluteThreePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -612,11 +644,13 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInFluteThreePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -626,14 +660,16 @@
                             android:hint="@string/ff">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/ffInFluteThreePaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvBottomPaper"
                 android:layout_width="match_parent"
@@ -644,10 +680,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvFluteThreePaper">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_medium">
+
                     <TextView
                         android:id="@+id/tvBottomPaper"
                         style="@style/DSTextMediumBold"
@@ -657,6 +695,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <LinearLayout
                         android:id="@+id/llInBottomPaper"
                         android:layout_width="match_parent"
@@ -664,9 +703,10 @@
                         android:orientation="horizontal"
                         android:padding="@dimen/padding_small"
                         android:weightSum="3"
-                        app:layout_constraintTop_toBottomOf="@id/tvBottomPaper"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBottomPaper">
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -676,11 +716,13 @@
                             android:hint="@string/bf">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bfInBottomPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -690,11 +732,13 @@
                             android:hint="@string/gsm">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/gsmInBottomPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -704,6 +748,7 @@
                             android:hint="@string/rate_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rateKgInBottomPaper"
                                 style="@style/DSTextMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -713,6 +758,7 @@
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <LinearLayout
                 android:id="@+id/llButtons"
                 android:layout_width="match_parent"
@@ -740,6 +786,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/next" />
             </LinearLayout>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvDummyViewInPaperSpecification"
                 android:layout_width="match_parent"
