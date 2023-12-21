@@ -1,15 +1,13 @@
 package com.dss.dsboxplus.fragments;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupWindow;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
-import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.model.EstimatesDataModel;
+import com.dss.dsboxplus.profile.SubscriptionActivity;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -41,7 +39,6 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.OnEstimatesSelectedI {
-    List<ClientsDataModel> dataModelList;
     ConstraintLayout estimatePopup, subPopup;
     MaterialButton btUpgradeSub, btContinue;
     private RecyclerView rvEstimatesRecyclerView;
@@ -112,18 +109,25 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
             }
         });
         createAddNewEstiPopUp();
-//        createSubPopUp();
+        createSubPopUp();
         initView(view);
         prepareData();
         loadData();
     }
 
     private void createSubPopUp() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.subscription_popup, subPopup);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(view);
-        final AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        DialogUtils.showCustomDialog(getContext(), new DialogUtils.DialogListener() {
+            @Override
+            public void onPositiveButtonClick() {
+                Intent intent = new Intent(getActivity(), SubscriptionActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onNegativeButtonClick() {
+
+            }
+        });
     }
 
     private void createAddNewEstiPopUp() {

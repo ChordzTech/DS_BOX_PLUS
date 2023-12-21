@@ -64,7 +64,8 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         float val3 = (bfOFBottomPaper * gsmOfBottomPaper * 1) / 1000;
         //Total BS
         float totalBS = (val1 + val2 + val3);
-        activityBoxSpecificationAndCostBinding.tvTotalBs.setText(String.valueOf(totalBS));
+        String resOfTotalBs=String.format("%.2f",totalBS);
+        activityBoxSpecificationAndCostBinding.tvTotalBs.setText(resOfTotalBs);
 
         //Total GSM
         //Value for Top
@@ -84,24 +85,29 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         float decal = Float.parseFloat(decalM);
         float cutting = Float.parseFloat(cuttingL);
         float valueFirstOFTW = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
-
+        String valueFirstOFTWString=String.format("%.3f",valueFirstOFTW);
         //2nd Value
         float valueSecondOfTW = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+        String valueSecondOfTWString=String.format("%.3f",valueSecondOfTW);
 
         //3rd Value
         float valueThirdOfTW = (decal * cutting * gsmOfBottomPaper * mm * mm / divide / divide / divide);
-
+        String valueThirdOfTWString=String.format("%.3f",valueThirdOfTW);
         //Total
         float total = (valueFirstOFTW + valueSecondOfTW + valueThirdOfTW);
+        String totalString=String.format("%.3f",total);
         //Waste value
         float wastePercentage = ((total * 3) / 100);
         //Total weight
         float totalWeight = total + wastePercentage;
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeight));
+        String resultOftotalWeight=String.format("%.3f",totalWeight);
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(resultOftotalWeight);
 
         //ConversionCostPerKG
         float resultOfConvCost = (totalWeight * 9);
-        activityBoxSpecificationAndCostBinding.tvConversionCost.setText(String.valueOf(resultOfConvCost));
+        String resultOfConvCostString=String.format("%.3f",resultOfConvCost);
+
+        activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
 
 
         //Costs
@@ -119,20 +125,33 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         float valueThirdNPC = (valueThirdOfTW * rateOfBottom);
         //NetPaperCost
         float resultOfNPC = (valueFirstNPC + valueSecondNPC + valueThirdNPC);
-        activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPC));
+        String resultOfNpcString=String.format("%.3f",resultOfNPC);
+        activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(resultOfNpcString);
 
         //WasteCost
         float resultWasteCost=((resultOfNPC*3)/100);
-        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCost));
+        String resultOfwasteString=String.format("%.3f",resultWasteCost);
+        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(resultOfwasteString);
 
         //GrossPaperCost
         float grossPaperCost=(resultOfNPC+resultWasteCost);
-        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCost));
+        String resultOfgrossPaperCost=String.format("%.3f",grossPaperCost);
+        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(resultOfgrossPaperCost);
 
         //BoxMFGCost
         double resultOfBoxMFG=(grossPaperCost+resultOfConvCost+1.5);
-        activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFG));
+        String resultOfBoxMFGString=String.format("%.3f",resultOfBoxMFG);
+        activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(resultOfBoxMFGString);
 
+        //Box Price
+        double boxPrice=((resultOfBoxMFG*10/100)+resultOfBoxMFG);
+        String resultOfboxPrice=String.format("%.2f",boxPrice);
+        activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(resultOfboxPrice);
+
+        //Box Price with Tax
+        double boxPriceWithTax=((boxPrice*18/100)+boxPrice);
+        String resultOfboxPriceWithTax=String.format("%.2f",boxPriceWithTax);
+        activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
 
         activityBoxSpecificationAndCostBinding.btBackInBoxSpecification.setOnClickListener(new View.OnClickListener() {
             @Override

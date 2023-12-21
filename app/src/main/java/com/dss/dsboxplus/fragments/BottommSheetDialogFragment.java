@@ -37,8 +37,6 @@ public class BottommSheetDialogFragment extends com.google.android.material.bott
         btCreatePDFInBottomSheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                PdfGeneration pdfGeneration=new PdfGeneration();
-//                pdfGeneration.generatePdf();
                 Toast.makeText(getActivity(), "hiii", Toast.LENGTH_SHORT).show();
             }
         });

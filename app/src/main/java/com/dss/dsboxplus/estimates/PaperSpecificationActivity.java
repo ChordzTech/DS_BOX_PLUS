@@ -14,13 +14,14 @@ import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 
 public class PaperSpecificationActivity extends AppCompatActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
+//    Intent intent = getIntent();
+//    String selectedItem = intent.getStringExtra("selectedItem");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         paperSpecificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_paper_specification);
         initView();
-
     }
 
     private void initView() {
@@ -95,8 +96,8 @@ public class PaperSpecificationActivity extends AppCompatActivity {
         paperSpecificationBinding.btNextInPaperSpecfication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String cuttingL=getIntent().getStringExtra("cuttingLength");
-                String decalM=getIntent().getStringExtra("decalSize");
+                String cuttingL = getIntent().getStringExtra("cuttingLength");
+                String decalM = getIntent().getStringExtra("decalSize");
                 String bfInTopPaper = paperSpecificationBinding.bfInTopPaper.getText().toString();
                 String bfInFlutePaper = paperSpecificationBinding.bfInFlutePaper.getText().toString();
                 String bfInMiddleOnePaper = paperSpecificationBinding.bfInMiddleOnePaper.getText().toString();
@@ -147,8 +148,8 @@ public class PaperSpecificationActivity extends AppCompatActivity {
                 intent.putExtra("ffInFluteOnePaper", ffInFluteOnePaper);
                 intent.putExtra("ffInFluteTwoPaper", ffInFluteTwoPaper);
                 intent.putExtra("ffInFluteThreePaper", ffInFluteThreePaper);
-                intent.putExtra("cuttingLengthResult",cuttingL);
-                intent.putExtra("decalSizeResult",decalM);
+                intent.putExtra("cuttingLengthResult", cuttingL);
+                intent.putExtra("decalSizeResult", decalM);
                 startActivity(intent);
             }
         });

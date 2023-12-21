@@ -20,8 +20,6 @@ public class BoxEstimatesDetailsActivity extends AppCompatActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     private EstimatesDataModel estimatesDataModel;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

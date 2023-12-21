@@ -65,9 +65,11 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String selectedItem=newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
                 Intent intent = new Intent(getApplicationContext(), PaperSpecificationActivity.class);
                 intent.putExtra("cuttingLength", newEstimateBinding.tietCuttingLength.getText().toString());
                 intent.putExtra("decalSize", newEstimateBinding.tietDecalSize.getText().toString());
+//                intent.putExtra("selectedItem",selectedItem);
                 startActivity(intent);
             }
         });
@@ -88,13 +90,15 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
                         double v = getInstance().cuttingLength(length, width, height, d1);
-                        double resForCuttingTiet=getInstance().cuttingLengthInTiet(length,width,height,d1);
+                        double resForCuttingTiet=getInstance().cuttingLengthInTiet(v);
+                        String resOfCuttingTiet=String.format("%.2f",resForCuttingTiet);
                         double decalSize = getInstance().decalSize(width, height, d2);
-                        double resForDecalTiet=getInstance().decalSizeInTiet(length,height,d2);
+                        double resForDecalTiet=getInstance().decalSizeInTiet(decalSize);
+                        String resOfDecalTiet=String.format("%.2f",resForDecalTiet);
                         newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
                         newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(decalSize));
-                        newEstimateBinding.tietCuttingLength.setText(String.valueOf(resForCuttingTiet));
-                        newEstimateBinding.tietDecalSize.setText(String.valueOf(resForDecalTiet));
+                        newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
+                        newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
                     }
                 }
 
@@ -121,13 +125,15 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
                         double v = getInstance().cuttingLength(length, width, height, d1);
-                        double resForCuttingTiet=getInstance().cuttingLengthInTiet(length,width,height,d1);
+                        double resForCuttingTiet=getInstance().cuttingLengthInTiet(v);
+                        String resOfCuttingTiet=String.format("%.2f",resForCuttingTiet);
                         double decalSize = getInstance().decalSize(width, height, d2);
-                        double resForDecalTiet=getInstance().decalSizeInTiet(length,height,d2);
+                        double resForDecalTiet=getInstance().decalSizeInTiet(decalSize);
+                        String resOfDecalTiet=String.format("%.2f",resForDecalTiet);
                         newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
                         newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(decalSize));
-                        newEstimateBinding.tietCuttingLength.setText(String.valueOf(resForCuttingTiet));
-                        newEstimateBinding.tietDecalSize.setText(String.valueOf(resForDecalTiet));
+                        newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
+                        newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
                     }
                 }
 
@@ -156,12 +162,13 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
                         double v = getInstance().cuttingLength(length, width, height, d1);
-                        double resForCuttingTiet=getInstance().cuttingLengthInTiet(length,width,height,d1);
+                        double resForCuttingTiet=getInstance().cuttingLengthInTiet(v);
+                        String resOfCuttingTiet=String.format("%.2f",resForCuttingTiet);
                         double decalSize = getInstance().decalSize(width, height, d2);
-                        double resForDecalTiet=getInstance().decalSizeInTiet(length,height,d2);
-
-                        newEstimateBinding.tietCuttingLength.setText(String.valueOf(resForCuttingTiet));
-                        newEstimateBinding.tietDecalSize.setText(String.valueOf(resForDecalTiet));
+                        double resForDecalTiet=getInstance().decalSizeInTiet(decalSize);
+                        String resOfDecalTiet=String.format("%.2f",resForDecalTiet);
+                        newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
+                        newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
                         newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
                         newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(decalSize));
                     }
@@ -174,6 +181,7 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
             }
         });
+
     }
 
 
@@ -190,11 +198,11 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
         }
 
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

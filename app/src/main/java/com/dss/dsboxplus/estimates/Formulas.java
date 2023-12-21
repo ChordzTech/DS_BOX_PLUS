@@ -19,9 +19,8 @@ public class Formulas {
         double v = (((length + width) * 2) + tvMargin) ;
         return v;
     }
-    public double cuttingLengthInTiet(Double length, Double width, Double height, Double tvMargin){
-        double resForCuttingTiet=(((length + width) * 2) + tvMargin)/mm;
-        return resForCuttingTiet;
+    public double cuttingLengthInTiet(Double v){
+        return v/mm;
     }
 
     public double decalSize(Double width, Double height, Double d2) {
@@ -29,9 +28,8 @@ public class Formulas {
         double result = ((width + height) + d2) ;
         return result;
     }
-    public double decalSizeInTiet(Double width, Double height, Double d2){
-        double resForCuttingTiet=((width + height) + d2) /mm;
-        return resForCuttingTiet;
+    public double decalSizeInTiet(Double decalSize){
+        return decalSize/mm;
     }
 
     public void totalGsm() {
