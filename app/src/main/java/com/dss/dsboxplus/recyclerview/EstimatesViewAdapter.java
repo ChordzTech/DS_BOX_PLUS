@@ -110,10 +110,11 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
                         } else {
                             root.setBackgroundColor(Color.WHITE);
                             estimatesDataModel.setSelected(false);
-                        }onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
-                    }else {
+                        }
+                        onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
+                    } else {
                         onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
-                 }
+                    }
 
                 }
             });

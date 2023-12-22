@@ -47,8 +47,6 @@ public class VerifyOtpActivity extends AppCompatActivity {
         btVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (!inputOtpOne.getText().toString().trim().isEmpty() && !inputOtpTwo.getText().toString().trim().isEmpty()) {
                     String enterCodeOtp=inputOtpOne.getText().toString()+
                             inputOtpTwo.getText().toString()+

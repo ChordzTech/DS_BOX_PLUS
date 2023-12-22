@@ -131,9 +131,10 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextMedium"
+                                android:id="@+id/tietLength"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal" />
+                                android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -165,9 +166,10 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextMedium"
+                                android:id="@+id/tietWidth"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal" />
+                                android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -198,9 +200,10 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/DSTextMedium"
+                                android:id="@+id/tietHeight"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal" />
+                                android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -310,6 +313,7 @@
                         android:layout_marginTop="@dimen/margin_medium"
                         android:orientation="horizontal"
                         android:weightSum="1"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvSheetDetails">
 
@@ -325,7 +329,8 @@
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6">
+                            android:layout_weight="0.6"
+                            android:hint="@string/inch">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/tietCuttingLength"
@@ -343,6 +348,7 @@
                         android:layout_marginTop="@dimen/margin_medium"
                         android:orientation="horizontal"
                         android:weightSum="1"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/llCuttingLength">
 
@@ -359,7 +365,8 @@
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6">
+                            android:layout_weight="0.6"
+                            android:hint="@string/inch">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/tietDecalSize"
@@ -394,20 +401,22 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:weightSum="1"
-                                    android:orientation="vertical">
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:weightSum="1">
+
                                     <TextView
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
                                         android:id="@+id/tvCuttingMargin"
                                         style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
+                                        android:layout_gravity="center"
                                         android:layout_weight="0.5"
+                                        android:gravity="center"
                                         android:text="@string/cutting_margin" />
+
                                     <TextView
                                         android:id="@+id/tvMargin"
                                         style="@style/DSTextMedium"
@@ -418,20 +427,22 @@
                                         android:text="50" />
 
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:weightSum="1"
-                                    android:orientation="vertical">
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:weightSum="1">
+
                                     <TextView
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
                                         android:id="@+id/tvDecalMargin"
                                         style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
+                                        android:layout_gravity="center"
                                         android:layout_weight="0.5"
+                                        android:gravity="center"
                                         android:text="@string/decal_margin" />
 
                                     <TextView
@@ -441,7 +452,7 @@
                                         android:layout_height="0dp"
                                         android:layout_gravity="center"
                                         android:layout_weight="0.5"
-                                        android:text="50" />
+                                        android:text="20" />
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -449,16 +460,19 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cvCuttingAndDecalMarginCardView">
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_medium">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -467,21 +481,24 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:weightSum="1"
-                                    android:orientation="vertical">
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:weightSum="1">
+
                                     <TextView
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
                                         android:id="@+id/tvCuttingLengthmm"
                                         style="@style/DSTextMedium"
                                         android:layout_width="wrap_content"
                                         android:layout_height="0dp"
+                                        android:layout_gravity="center"
                                         android:layout_weight="0.5"
+                                        android:gravity="center"
                                         android:text="@string/cutting_length_mm" />
+
                                     <TextView
                                         android:id="@+id/tvCuttingLengthSize"
                                         style="@style/DSTextMedium"
@@ -489,32 +506,35 @@
                                         android:layout_height="0dp"
                                         android:layout_gravity="center"
                                         android:layout_weight="0.5"
-                                        android:text="50" />
+                                        android:text="0" />
                                 </LinearLayout>
-                            <LinearLayout
-                                android:layout_weight="1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:weightSum="1"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:id="@+id/tvDecalSizemm"
-                                    style="@style/DSTextMedium"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="0.5"
-                                    android:text="@string/decal_Size_mm" />
 
-                                <TextView
-                                    style="@style/DSTextMedium"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
-                                    android:layout_height="0dp"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.5"
-                                    android:text="50" />
-                            </LinearLayout>
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:id="@+id/tvDecalSizemm"
+                                        style="@style/DSTextMedium"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="0.5"
+                                        android:gravity="center"
+                                        android:text="@string/decal_Size_mm" />
+
+                                    <TextView
+                                        android:id="@+id/tvDecalSizeValue"
+                                        style="@style/DSTextMedium"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="0.5"
+                                        android:text="0" />
+                                </LinearLayout>
 
                             </LinearLayout>
 

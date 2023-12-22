@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, TermsAndPrivacyPolicyActivity.class);
-                intent.putExtra("termsandprivacylink",url);
+                intent.putExtra("termsandprivacylink", url);
                 startActivity(intent);
             }
         });
