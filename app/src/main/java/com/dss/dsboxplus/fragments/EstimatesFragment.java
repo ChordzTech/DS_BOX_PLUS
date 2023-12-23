@@ -82,6 +82,8 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         subPopup = view.findViewById(R.id.subPopup);
         btUpgradeSub = view.findViewById(R.id.btUpgradeSub);
         btContinue = view.findViewById(R.id.btContinue);
+        //search
+
         fabCorrect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

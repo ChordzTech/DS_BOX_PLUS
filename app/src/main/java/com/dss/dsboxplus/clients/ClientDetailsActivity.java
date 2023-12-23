@@ -30,5 +30,6 @@ public class ClientDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }

@@ -14,14 +14,75 @@ import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 
 public class PaperSpecificationActivity extends AppCompatActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
-//    Intent intent = getIntent();
-//    String selectedItem = intent.getStringExtra("selectedItem");
+    String noOfPly = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         paperSpecificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_paper_specification);
         initView();
+
+        noOfPly = this.getIntent().getStringExtra("noOfPly");
+
+        switch (noOfPly) {
+            case "1Ply":
+                paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.GONE);
+                break;
+            case "2Ply":
+                paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
+                break;
+            case "3Ply":
+                paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
+                break;
+            case "5Ply":
+                paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.tvMiddleOnePaper.setText("Middle Paper");
+                paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.tvFlutePaper.setText("Flute One Paper");
+                paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
+                break;
+            case "7Ply":
+                paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.tvFlutePaper.setText("Flute One Paper");
+                paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
+                break;
+            case "2Ply(KG)":
+                paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     private void initView() {

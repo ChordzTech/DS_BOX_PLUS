@@ -65,12 +65,20 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String selectedItem=newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
-                Intent intent = new Intent(getApplicationContext(), PaperSpecificationActivity.class);
-                intent.putExtra("cuttingLength", newEstimateBinding.tietCuttingLength.getText().toString());
-                intent.putExtra("decalSize", newEstimateBinding.tietDecalSize.getText().toString());
-//                intent.putExtra("selectedItem",selectedItem);
-                startActivity(intent);
+
+                String enterBoxName=newEstimateBinding.tietEnterBoxName.getText().toString();
+                String enterLength=newEstimateBinding.tietLength.getText().toString();
+                String enterWidth=newEstimateBinding.tietWidth.getText().toString();
+                String enterHeight=newEstimateBinding.tietHeight.getText().toString();
+                boolean check=validateInfo(enterBoxName,enterLength,enterWidth,enterHeight);
+                if (check==true){
+                    String noOfPly=newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
+                    Intent intent = new Intent(getApplicationContext(), PaperSpecificationActivity.class);
+                    intent.putExtra("cuttingLength", newEstimateBinding.tietCuttingLength.getText().toString());
+                    intent.putExtra("decalSize", newEstimateBinding.tietDecalSize.getText().toString());
+                    intent.putExtra("noOfPly",noOfPly);
+                    startActivity(intent);
+                }
             }
         });
         newEstimateBinding.tietLength.addTextChangedListener(new TextWatcher() {
@@ -181,6 +189,29 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
             }
         });
+
+    }
+
+    private boolean validateInfo(String enterBoxName, String enterLength, String enterWidth, String enterHeight) {
+        if (enterBoxName.isEmpty()){
+            newEstimateBinding.tietEnterBoxName.requestFocus();
+            newEstimateBinding.tietEnterBoxName.setError("Please Enter Box Name");
+            return false;
+        }else if (enterLength.isEmpty()){
+            newEstimateBinding.tietLength.requestFocus();
+            newEstimateBinding.tietLength.setError("Enter Length");
+            return false;
+        } else if (enterWidth.isEmpty()) {
+            newEstimateBinding.tietWidth.requestFocus();
+            newEstimateBinding.tietWidth.setError("Enter Width");
+            return false;
+        } else if (enterHeight.isEmpty()) {
+            newEstimateBinding.tietHeight.requestFocus();
+            newEstimateBinding.tietHeight.setError("Enter Height");
+            return false;
+        }else {
+            return true;
+        }
 
     }
 

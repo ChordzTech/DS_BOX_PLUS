@@ -17,8 +17,9 @@ import java.util.ArrayList;
 
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
-    ArrayList<EstimatesDataModel> selectedItems = new ArrayList<>();
+    private ArrayList<EstimatesDataModel> selectedItems = new ArrayList<>();
     private ArrayList<EstimatesDataModel> estimatesList;
+    private ArrayList<EstimatesDataModel> filteredList;
     private OnEstimatesSelectedI onEstimatesSelectedListner;
     private boolean estimateSelection;
 

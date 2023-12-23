@@ -83,7 +83,7 @@ public class ProfileFragment extends Fragment {
         ivProfile = v.findViewById(R.id.ivProfileInProfileFragment);
         fabAddImage = v.findViewById(R.id.fabAddImage);
         cvsuperUserSettings = v.findViewById(R.id.cvSuperUserSettings);
-        swMultiUser=v.findViewById(R.id.swMultiUser);
+        swMultiUser = v.findViewById(R.id.swMultiUser);
         fabAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,9 +98,9 @@ public class ProfileFragment extends Fragment {
         swMultiUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-showDialog();
-                }else {
+                if (isChecked) {
+                    showDialog();
+                } else {
                 }
             }
         });
@@ -132,13 +132,13 @@ showDialog();
                 startActivity(intent);
             }
         });
-//        cvProfileName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
-//                startActivity(intent);
-//            }
-//        });
+        cvProfileName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
+                startActivity(intent);
+            }
+        });
         cvHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

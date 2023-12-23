@@ -177,4 +177,12 @@
     <string name="upgrade_membership">UPGRADE MEMBERSHIP</string>
     <string name="conti_nue">CONTINUE</string>
     <string name="go_premium">Go Premium</string>
+    <string-array name="noOfPly">
+        <item>1Ply</item>
+        <item>2Ply</item>
+        <item>3Ply</item>
+        <item>5Ply</item>
+        <item>7Ply</item>
+        <item>2Ply(KG)</item>
+    </string-array>
 </resources>
