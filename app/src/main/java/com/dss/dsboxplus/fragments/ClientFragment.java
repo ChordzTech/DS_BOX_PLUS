@@ -93,7 +93,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//         filterList(newText);
+//              filterList(newText);
                 return true;
             }
         });

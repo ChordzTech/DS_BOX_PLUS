@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.profile.BusinessDetails;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
@@ -31,6 +34,7 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ShapeableImageView ivProfile;
+    SwitchCompat swMultiUser;
     FloatingActionButton fabAddImage;
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
     // TODO: Rename and change types of parameters
@@ -79,7 +83,7 @@ public class ProfileFragment extends Fragment {
         ivProfile = v.findViewById(R.id.ivProfileInProfileFragment);
         fabAddImage = v.findViewById(R.id.fabAddImage);
         cvsuperUserSettings = v.findViewById(R.id.cvSuperUserSettings);
-
+        swMultiUser = v.findViewById(R.id.swMultiUser);
         fabAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +93,15 @@ public class ProfileFragment extends Fragment {
                         .compress(1024)            //Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
+            }
+        });
+        swMultiUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    showDialog();
+                } else {
+                }
             }
         });
         cvBusiness.setOnClickListener(new View.OnClickListener() {
@@ -119,13 +132,13 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-//        cvProfileName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
-//                startActivity(intent);
-//            }
-//        });
+        cvProfileName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
+                startActivity(intent);
+            }
+        });
         cvHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,6 +162,22 @@ public class ProfileFragment extends Fragment {
         });
         return v;
     }
+
+    private void showDialog() {
+        DialogUtils.showCustomDialog(getContext(), new DialogUtils.DialogListener() {
+            @Override
+            public void onPositiveButtonClick() {
+                Intent intent = new Intent(getActivity(), SubscriptionActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onNegativeButtonClick() {
+
+            }
+        });
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

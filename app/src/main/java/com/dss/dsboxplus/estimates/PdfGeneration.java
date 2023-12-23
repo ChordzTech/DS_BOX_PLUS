@@ -70,7 +70,7 @@ public class PdfGeneration extends AppCompatActivity {
 
         table.addCell(new Cell(4,1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(estimatesDataModel.getNameofClients())
+        table.addCell(new Cell().add(new Paragraph("Client NAme")
                 .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
@@ -156,7 +156,7 @@ public class PdfGeneration extends AppCompatActivity {
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n"));
-        document.add(new Paragraph("for "+estimatesDataModel.getNameofClients()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("for Clients Name").setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("Terms & Conditions:"));
         document.add(new Paragraph("1.Valid : for 15 days only.\n" +

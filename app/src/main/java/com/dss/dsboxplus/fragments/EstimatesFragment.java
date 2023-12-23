@@ -1,26 +1,30 @@
 package com.dss.dsboxplus.fragments;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.estimates.NewEstimateActivity;
-import com.dss.dsboxplus.estimates.QuotationInBoxEstimateDetailsActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
-import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.model.EstimatesDataModel;
+import com.dss.dsboxplus.profile.SubscriptionActivity;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
@@ -28,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -36,7 +39,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.OnEstimatesSelectedI {
-    List<ClientsDataModel> dataModelList;
+    ConstraintLayout estimatePopup, subPopup;
+    MaterialButton btUpgradeSub, btContinue;
     private RecyclerView rvEstimatesRecyclerView;
     private EstimatesViewAdapter estimatesViewAdapter;
     private FloatingActionButton fabEstimates, fabCancel, fabCorrect;
@@ -74,6 +78,12 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         fabCancel = view.findViewById(R.id.fabCancel);
         fabCorrect = view.findViewById(R.id.fabCorrect);
         searchView = view.findViewById(R.id.svSearch);
+        estimatePopup = view.findViewById(R.id.estimatePopup);
+        subPopup = view.findViewById(R.id.subPopup);
+        btUpgradeSub = view.findViewById(R.id.btUpgradeSub);
+        btContinue = view.findViewById(R.id.btContinue);
+        //search
+
         fabCorrect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,9 +110,36 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
                 startActivity(intent);
             }
         });
+        createAddNewEstiPopUp();
+        createSubPopUp();
         initView(view);
         prepareData();
         loadData();
+    }
+
+    private void createSubPopUp() {
+        DialogUtils.showCustomDialog(getContext(), new DialogUtils.DialogListener() {
+            @Override
+            public void onPositiveButtonClick() {
+                Intent intent = new Intent(getActivity(), SubscriptionActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onNegativeButtonClick() {
+
+            }
+        });
+    }
+
+    private void createAddNewEstiPopUp() {
+        if (prepareData().isEmpty()) {
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.add_new_estimate_popup, estimatePopup);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setView(view);
+            final AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
     }
 
 

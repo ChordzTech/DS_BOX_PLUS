@@ -441,6 +441,7 @@
                         android:gravity="center"
                         android:text="@string/subscription_settings" />
                         <TextView
+                            android:background="@color/green"
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

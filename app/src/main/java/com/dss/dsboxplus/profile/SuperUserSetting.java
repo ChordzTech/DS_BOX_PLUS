@@ -13,7 +13,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class SuperUserSetting extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Spinner spinner;
-    String[] access = {"Full Access","No Access"};
+    String[] access = {"Full Access","No Access","Read Only"};
     MaterialButton btCloseInUserDetails;
 
     @Override

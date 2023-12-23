@@ -118,6 +118,7 @@
                             android:text="@string/total_gsm" />
 
                         <TextView
+                            android:id="@+id/tvTotalGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -143,6 +144,7 @@
                             android:text="@string/total_bs" />
 
                         <TextView
+                            android:id="@+id/tvTotalBs"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -153,6 +155,7 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvTotalWeightAndNetPaperCost"
                 android:layout_width="match_parent"
@@ -160,9 +163,10 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvTotalGsmAndBs">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -188,6 +192,7 @@
                             android:text="@string/total_weight" />
 
                         <TextView
+                            android:id="@+id/tvTotalWeight"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -213,6 +218,7 @@
                             android:text="@string/net_paper_cost" />
 
                         <TextView
+                            android:id="@+id/tvNetPaperCost"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -222,6 +228,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvWasteAndWasteCost"
                 android:layout_width="match_parent"
@@ -229,8 +236,8 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvTotalWeightAndNetPaperCost">
 
                 <LinearLayout
@@ -256,6 +263,7 @@
                             android:hint="@string/waste">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietWaste"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -266,9 +274,9 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="0.5"
                         android:orientation="vertical"
-                        android:layout_gravity="center"
                         android:padding="@dimen/padding_medium">
 
                         <TextView
@@ -281,6 +289,7 @@
                             android:text="@string/waste_cost" />
 
                         <TextView
+                            android:id="@+id/tvWasteCost"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -290,6 +299,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvGrossPaperCost"
                 android:layout_width="match_parent"
@@ -297,9 +307,10 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvWasteAndWasteCost">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -320,6 +331,7 @@
                             android:gravity="center"
                             android:text="@string/gross_paper_cost_formula" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -337,6 +349,7 @@
                             android:text="@string/gross_paper_cost" />
 
                         <TextView
+                            android:id="@+id/tvgrossPaperCost"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -346,6 +359,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvConversionCost"
                 android:layout_width="match_parent"
@@ -353,8 +367,8 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvGrossPaperCost">
 
 
@@ -381,6 +395,7 @@
                             android:hint="@string/conv_cost_kg">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietConversionCost"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -389,9 +404,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_gravity="center"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="0.5"
                         android:orientation="vertical"
                         android:padding="@dimen/padding_medium">
@@ -406,6 +421,7 @@
                             android:text="@string/conversion_cost" />
 
                         <TextView
+                            android:id="@+id/tvConversionCost"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -415,6 +431,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvOverHeadCharges"
                 android:layout_width="match_parent"
@@ -422,8 +439,8 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvConversionCost">
 
                 <LinearLayout
@@ -450,10 +467,10 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:orientation="vertical"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="@dimen/padding_medium">
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -465,6 +482,7 @@
                             android:hint="@string/over_head_charges">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietOverHeadCharges"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -473,6 +491,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvBoxMfgCost"
                 android:layout_width="match_parent"
@@ -480,9 +499,10 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvOverHeadCharges"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/cvOverHeadCharges">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -523,6 +543,7 @@
                             android:text="@string/box_mfg_cost" />
 
                         <TextView
+                            android:id="@+id/tvBoxMFGCost"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -567,6 +588,7 @@
                             android:hint="@string/profit">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietProfit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -575,9 +597,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_gravity="center"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="0.5"
                         android:orientation="vertical"
                         android:padding="@dimen/padding_medium">
@@ -592,6 +614,7 @@
                             android:text="@string/box_price" />
 
                         <TextView
+                            android:id="@+id/tvBoxPrice"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -602,73 +625,77 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cvBoxPriceWithTax"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvBoxPriceWithTax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:elevation="20dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvBoxPrice">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:elevation="20dp"
-                    app:cardCornerRadius="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cvBoxPrice">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_medium">
 
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/DSTextMedium"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:orientation="vertical"
-                            android:padding="@dimen/padding_medium">
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/DSTextMedium"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:hint="@string/tax">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
                             android:layout_gravity="center"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:orientation="vertical"
-                            android:padding="@dimen/padding_medium">
+                            android:gravity="center"
+                            android:hint="@string/tax">
 
-                            <TextView
-                                style="@style/DSTextMedium"
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tietTax"
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:gravity="center"
-                                android:text="@string/box_price_with_tax" />
+                                android:layout_height="wrap_content" />
 
-                            <TextView
-                                style="@style/DSTextMedium"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:text="2.13" />
-                        </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_medium">
+
+                        <TextView
+                            style="@style/DSTextMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="@string/box_price_with_tax" />
+
+                        <TextView
+                            android:id="@+id/tvBoxPriceWithTax"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="2.13" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <LinearLayout
                 android:id="@+id/llButtonsInBoxSpecifications"
                 android:layout_width="match_parent"
@@ -679,6 +706,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvBoxPriceWithTax">
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btBackInBoxSpecification"
                     style="@style/DSTextMedium"
@@ -694,6 +722,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/save" />
             </LinearLayout>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvDummyViewInBoxSpecification"
                 android:layout_width="match_parent"
