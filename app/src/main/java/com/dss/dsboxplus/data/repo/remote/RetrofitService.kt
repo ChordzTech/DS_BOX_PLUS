@@ -1,5 +1,6 @@
 package com.example.mvvmretrofit.data.repo.remote
 
+import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
@@ -15,9 +16,13 @@ import retrofit2.http.GET
 
 interface RetrofitService {
 
-    //Estimate APIs
+    //Estimate list APIs
     @GET("EstimateDetails/")
     suspend fun getEstimateList() : Response<EstimateListResponse>
+
+     //client list APIs
+    @GET("ClientsDetails/")
+    suspend fun getClientList() : Response<ClientListResponse>
 
 
     companion object {
@@ -60,7 +65,7 @@ interface RetrofitService {
 
         private fun getLogger(): OkHttpClient {
             val interceptor = HttpLoggingInterceptor()
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             return OkHttpClient.Builder().addInterceptor(interceptor).build();
         }
 

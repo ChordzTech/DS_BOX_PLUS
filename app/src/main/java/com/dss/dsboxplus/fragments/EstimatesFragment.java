@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
+import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -51,6 +53,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private ArrayList<EstimatesDataModel> estimatesList = new ArrayList<>();
     private ArrayList<EstimatesDataModel> selectedEstimatesList;
     private EstimatesViewAdapter.OnEstimatesSelectedI onEstimatesSelectedListner;
+    private ArrayList<DataItem> estimateList;
 
     public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
         // Required empty public constructor
@@ -150,7 +153,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     }
 
     private void loadData() {
-        estimatesViewAdapter.setEstimatesList(prepareData());
+        estimatesViewAdapter.setEstimatesList(estimateList);
         rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
         estimatesViewAdapter.notifyDataSetChanged();
     }
@@ -219,5 +222,14 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         } else {
             //open details
         }
+    }
+
+    public void setEstimateList(ArrayList<DataItem> estimateList) {
+        this.estimateList = estimateList;
+        loadData();
+    }
+
+    public ArrayList<DataItem> getEstimateList() {
+        return estimateList;
     }
 }

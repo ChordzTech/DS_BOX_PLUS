@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
@@ -25,11 +27,14 @@ import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
+import java.util.ArrayList;
+
 
 public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
-    ActivityHomeScreenBinding homeScreenBinding;
-    private RetrofitService retrofitService;
-    private MainRepository mainRepository;
+    private EstimatesFragment estimatesFragment;
+    private ClientFragment clientFragment;
+    private ProfileFragment profileFragment;
+    private ActivityHomeScreenBinding homeScreenBinding;
     private HomeViewModel homeViewModel;
 
     @Override
@@ -43,27 +48,36 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
 
     private void fetchData() {
         homeViewModel.getEstimateList();
+        homeViewModel.getClientList();
     }
 
     private void initObservables() {
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
-            Log.e("TAG", "estimateListResponse: "+estimateListResponse.getData().size() );
+            estimatesFragment.setEstimateList((ArrayList<DataItem>) estimateListResponse.getData());
+            Log.e("TAG", "estimateListResponse: " + estimateListResponse.getData().size());
+        });
+        homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
+            clientFragment.setEstimateList((ArrayList<Client>) clientListResponse.getData());
+            Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
         });
     }
 
     private void initView() {
-        retrofitService = RetrofitService.Companion.getInstance();
-        mainRepository = new MainRepository(retrofitService);
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
 
-        replaceFragment(new EstimatesFragment(this));
+        estimatesFragment = new EstimatesFragment(this);
+        clientFragment = new ClientFragment();
+        profileFragment = new ProfileFragment();
+        replaceFragment(estimatesFragment);
         homeScreenBinding.bottomNavigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.estimate) {
-                replaceFragment(new EstimatesFragment(this));
+                replaceFragment(estimatesFragment);
             } else if (item.getItemId() == R.id.users) {
-                replaceFragment(new ClientFragment());
+                replaceFragment(clientFragment);
             } else {
-                replaceFragment(new ProfileFragment());
+                replaceFragment(profileFragment);
             }
             return true;
         });
