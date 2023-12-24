@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
     private ArrayList<EstimatesDataModel> selectedItems = new ArrayList<>();
-    private ArrayList<EstimatesDataModel> estimatesList;
+    private ArrayList<DataItem> estimatesList;
     private ArrayList<EstimatesDataModel> filteredList;
     private OnEstimatesSelectedI onEstimatesSelectedListner;
     private boolean estimateSelection;
@@ -37,12 +38,12 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull EstimatesViewHolder holder, int position) {
-        EstimatesDataModel estimatesViewModel = estimatesList.get(position);
-        holder.tvBoxName.setText(estimatesViewModel.getNameOfBox());
-        holder.tvClientName.setText(estimatesViewModel.getNameofClients());
-        holder.tvBoxDimension.setText(estimatesViewModel.getDimensionOfBox());
-        holder.tvCost.setText(estimatesViewModel.getCostOfBox());
-        holder.tvEstimateDate.setText(estimatesViewModel.getDateOfEstimate());
+        DataItem dataItem = estimatesList.get(position);
+        holder.tvBoxName.setText(dataItem.getBoxname());
+        holder.tvClientName.setText(String.valueOf(dataItem.getClientid()));
+        holder.tvBoxDimension.setText(dataItem.getLengthMmField() + "x" + dataItem.getWidthMmField() + "x" + dataItem.getHeightMmField());
+        holder.tvCost.setText(dataItem.getBoxcost().toString());
+        holder.tvEstimateDate.setText(dataItem.getEstimatedate());
         //long click
         if (!estimateSelection) {
             holder.root.setBackgroundColor(Color.WHITE);
@@ -54,11 +55,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         return estimatesList.size();
     }
 
-    public ArrayList<EstimatesDataModel> getEstimatesList() {
-        return estimatesList;
-    }
-
-    public void setEstimatesList(ArrayList<EstimatesDataModel> estimatesList) {
+    public void setEstimatesList(ArrayList<DataItem> estimatesList) {
         this.estimatesList = estimatesList;
     }
 
@@ -92,30 +89,30 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    EstimatesDataModel estimatesDataModel = estimatesList.get(getAdapterPosition());
-                    estimatesDataModel.setSelected(true);
-                    estimateSelection = true;
-                    root.setBackgroundColor(Color.GRAY);
-                    onEstimatesSelectedListner.onItemLongPressed(estimatesList.get(getAdapterPosition()), getAdapterPosition());
+//                    EstimatesDataModel estimatesDataModel = estimatesList.get(getAdapterPosition());
+//                    estimatesDataModel.setSelected(true);
+//                    estimateSelection = true;
+//                    root.setBackgroundColor(Color.GRAY);
+//                    onEstimatesSelectedListner.onItemLongPressed(estimatesList.get(getAdapterPosition()), getAdapterPosition());
                     return true;
                 }
             });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    EstimatesDataModel estimatesDataModel = estimatesList.get(getAdapterPosition());
-                    if (estimateSelection) {
-                        if (!estimatesDataModel.isSelected()) {
-                            root.setBackgroundColor(Color.GRAY);
-                            estimatesDataModel.setSelected(true);
-                        } else {
-                            root.setBackgroundColor(Color.WHITE);
-                            estimatesDataModel.setSelected(false);
-                        }
-                        onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
-                    } else {
-                        onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
-                    }
+//                    EstimatesDataModel estimatesDataModel = estimatesList.get(getAdapterPosition());
+//                    if (estimateSelection) {
+//                        if (!estimatesDataModel.isSelected()) {
+//                            root.setBackgroundColor(Color.GRAY);
+//                            estimatesDataModel.setSelected(true);
+//                        } else {
+//                            root.setBackgroundColor(Color.WHITE);
+//                            estimatesDataModel.setSelected(false);
+//                        }
+//                        onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
+//                    } else {
+//                        onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
+//                    }
 
                 }
             });

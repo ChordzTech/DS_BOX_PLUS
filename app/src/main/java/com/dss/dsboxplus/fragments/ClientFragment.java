@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.AddNewClients;
 import com.dss.dsboxplus.clients.ClientDetailsActivity;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +45,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ArrayList<Client> estimateList;
 
     public ClientFragment() {
         // Required empty public constructor
@@ -172,5 +175,13 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         bundle.putParcelable("CLIENTS", clientsDataModel);
         intent.putExtra("CLIENTS_BUNDLE", bundle);
         startActivity(intent);
+    }
+
+    public void setEstimateList(ArrayList<Client> estimateList) {
+        this.estimateList = estimateList;
+    }
+
+    public ArrayList<Client> getEstimateList() {
+        return estimateList;
     }
 }
