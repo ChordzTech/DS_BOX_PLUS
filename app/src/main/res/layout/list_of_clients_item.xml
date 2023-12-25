@@ -34,39 +34,39 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/circularImageView" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvEstimates"
-            app:layout_constraintStart_toEndOf="@+id/ivClientPhoto"
-            app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvEstimates"
+                    app:layout_constraintStart_toEndOf="@+id/ivClientPhoto"
+                    app:layout_constraintTop_toTopOf="parent">
 
 
-            <TextView
-                android:id="@+id/tvClientsName"
-                style="@style/DSTextLargeBold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:ellipsize="end"
-                android:gravity="start"
-                android:maxLines="2"
-                android:text="@string/client_name" />
+                    <TextView
+                        android:id="@+id/tvClientsName"
+                        style="@style/DSTextMediumBoldA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:maxLines="2"
+                        android:text="@string/client_name" />
 
-            <TextView
-                android:id="@+id/tvPhoneNumber"
-                style="@style/DSTextMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:gravity="start"
-                android:text="+91 7709244796" />
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvPhoneNumber"
+                        style="@style/DSTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start"
+                        android:text="+91 7709244796" />
+                </LinearLayout>
 
         <TextView
             android:id="@+id/tvEstimates"

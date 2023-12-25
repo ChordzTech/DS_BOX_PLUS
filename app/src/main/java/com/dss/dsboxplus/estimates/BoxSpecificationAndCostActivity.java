@@ -9,10 +9,13 @@ import androidx.databinding.DataBindingUtil;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
 
+import java.util.Objects;
+
 public class BoxSpecificationAndCostActivity extends AppCompatActivity {
     ActivityBoxSpecificationAndCostBinding activityBoxSpecificationAndCostBinding;
     float mm = 25.4F;
     float divide = 1000F;
+    String formula="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +47,31 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         String ffInFluteThreePaper = getIntent().getStringExtra("ffInFluteThreePaper");
         String decalM = getIntent().getStringExtra("decalSizeResult");
         String cuttingL = getIntent().getStringExtra("cuttingLengthResult");
+        String formula = getIntent().getStringExtra("noOfPly");
 
-        //Formula for OnePly
-//        formulaForOnePly(bfInTopPaper, gsmInTop, rateKgInTop, decalM, cuttingL);
-//        formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
-//        formulaForThreePly(bfInTopPaper,gsmInTop,rateKgInTop,bfInFlutePaper,gsmInFlutePaper,rateKgInFlutePaper,ffInFluteOnePaper,bfInBottomPaper,gsmInBottomPaper,rateKgInBottomPaper,decalM, cuttingL);
-//        formulaForFivePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
-//        formulaForSevenPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper,bfInMiddleTwoPaper,gsmInMiddleTwoPaper,rateKgInMiddleTwoPaper,bfInFluteThreePaper,gsmInFluteThreePaper,rateKgInFluteThreePaper,ffInFluteThreePaper ,bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
+        switch (formula){
+            case "1Ply":{
+                formulaForOnePly(bfInTopPaper, gsmInTop, rateKgInTop, decalM, cuttingL);
+                break;
+            }
+            case "2Ply":{
+                formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
+                break;
+            }
+
+            case "3Ply":{
+                formulaForThreePly(bfInTopPaper,gsmInTop,rateKgInTop,bfInFlutePaper,gsmInFlutePaper,rateKgInFlutePaper,ffInFluteOnePaper,bfInBottomPaper,gsmInBottomPaper,rateKgInBottomPaper,decalM, cuttingL);
+                break;
+            }
+            case "5Ply":{
+                formulaForFivePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
+                break;
+            }
+            case "7Ply":{
+                formulaForSevenPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper,bfInMiddleTwoPaper,gsmInMiddleTwoPaper,rateKgInMiddleTwoPaper,bfInFluteThreePaper,gsmInFluteThreePaper,rateKgInFluteThreePaper,ffInFluteThreePaper ,bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
+                break;
+            }
+        }
         activityBoxSpecificationAndCostBinding.btBackInBoxSpecification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

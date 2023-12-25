@@ -22,9 +22,6 @@ import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +43,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     private String mParam1;
     private String mParam2;
     private ArrayList<Client> estimateList;
+    private ArrayList<Client> clientList=new ArrayList<>();
 
     public ClientFragment() {
         // Required empty public constructor
@@ -110,7 +108,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         });
 
         initView(view);
-        prepareData();
+//        prepareData();
         loadData();
 
     }
@@ -125,7 +123,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         if (filteredList.isEmpty()) {
             Toast.makeText(getActivity(), "No Data Found", Toast.LENGTH_SHORT).show();
         } else {
-            clientsViewAdapter.setFilteredList(filteredList);
+//            clientsViewAdapter.setFilteredList(filteredList);
         }
     }
 
@@ -138,38 +136,38 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     }
 
     private void loadData() {
-        clientsViewAdapter.setClientsList(prepareData());
+        clientsViewAdapter.setClientsList(clientList);
         rvClientRecyclerView.setAdapter(clientsViewAdapter);
         clientsViewAdapter.notifyDataSetChanged();
     }
 
-    private ArrayList<ClientsDataModel> prepareData() {
-        ArrayList<ClientsDataModel> clientsList = new ArrayList<>();
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Bunty", "7972546880", "1 Estimate"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Anurag", "7972546880", "5 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Cat", "7972546880", "2 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "XYZ", "7972546880", "7 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Aa", "7972546880", "7 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Estimate", "7972546880", "7 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Kallu", "7972546880", "7 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Shubham", "7972546880", "7 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "7 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "5 Estimates"));
-        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "MNO", "7972546880", "10 Estimate"));
-        Collections.sort(clientsList, new Comparator<ClientsDataModel>() {
-            @Override
-            public int compare(ClientsDataModel clientsDataModel, ClientsDataModel t1) {
-                return clientsDataModel.getNameOfClient().compareTo(t1.getNameOfClient());
-            }
-        });
-
-        return clientsList;
-
-    }
+//    private ArrayList<ClientsDataModel> prepareData() {
+//        ArrayList<ClientsDataModel> clientsList = new ArrayList<>();
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Bunty", "7972546880", "1 Estimate"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Anurag", "7972546880", "5 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Cat", "7972546880", "2 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "XYZ", "7972546880", "7 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Aa", "7972546880", "7 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Estimate", "7972546880", "7 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Kallu", "7972546880", "7 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Shubham", "7972546880", "7 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "7 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "5 Estimates"));
+//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "MNO", "7972546880", "10 Estimate"));
+//        Collections.sort(clientsList, new Comparator<ClientsDataModel>() {
+//            @Override
+//            public int compare(ClientsDataModel clientsDataModel, ClientsDataModel t1) {
+//                return clientsDataModel.getNameOfClient().compareTo(t1.getNameOfClient());
+//            }
+//        });
+//
+//        return clientsList;
+//
+//    }
 
 
     @Override
-    public void onClientSelectedI(ClientsDataModel clientsDataModel) {
+    public void onClientSelectedI(Client clientsDataModel) {
         Intent intent = new Intent(getActivity(), ClientDetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("CLIENTS", clientsDataModel);
@@ -177,11 +175,19 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         startActivity(intent);
     }
 
-    public void setEstimateList(ArrayList<Client> estimateList) {
-        this.estimateList = estimateList;
+    public void setClientsList(ArrayList<Client> estimateList) {
+        this.clientList = clientList;
     }
 
     public ArrayList<Client> getEstimateList() {
-        return estimateList;
+        return clientList;
+    }
+
+    public void setClientList(ArrayList<Client> clientList) {
+        this.clientList = clientList;
+    }
+
+    public ArrayList<Client> getClientList() {
+        return clientList;
     }
 }

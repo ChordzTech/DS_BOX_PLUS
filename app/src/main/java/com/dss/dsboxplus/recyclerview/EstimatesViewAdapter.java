@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
-    private ArrayList<EstimatesDataModel> selectedItems = new ArrayList<>();
-    private ArrayList<DataItem> estimatesList;
+    private ArrayList<EstimatesDataModel> selectedItems;
+    private ArrayList<DataItem> estimatesList=new ArrayList<>();
     private ArrayList<EstimatesDataModel> filteredList;
     private OnEstimatesSelectedI onEstimatesSelectedListner;
     private boolean estimateSelection;
@@ -42,7 +42,9 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         holder.tvBoxName.setText(dataItem.getBoxname());
         holder.tvClientName.setText(String.valueOf(dataItem.getClientid()));
         holder.tvBoxDimension.setText(dataItem.getLengthMmField() + "x" + dataItem.getWidthMmField() + "x" + dataItem.getHeightMmField());
-        holder.tvCost.setText(dataItem.getBoxcost().toString());
+        String boxCost=String.format("%.2f",dataItem.getBoxprice());
+        String finalBox="₹ "+boxCost;
+        holder.tvCost.setText(finalBox);
         holder.tvEstimateDate.setText(dataItem.getEstimatedate());
         //long click
         if (!estimateSelection) {

@@ -11,17 +11,19 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(val repository: MainRepository) : ViewModel() {
 
-     var estimateListLiveData = MutableLiveData<EstimateListResponse>()
+    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
         get() = field
     var clientListLiveData = MutableLiveData<ClientListResponse>()
         get() = field
 
-    fun getEstimateList(){
+
+    fun getEstimateList() {
         viewModelScope.launch {
-            when(val response = repository.getEstimateList() ){
+            when (val response = repository.getEstimateList()) {
                 is NetworkState.Success -> {
                     estimateListLiveData.postValue(response.data!!)
                 }
+
                 is NetworkState.Error -> {
                     if (response.response.code() == 401) {
 //                        estimateList.postValue(NetworkState.Error())
@@ -32,12 +34,14 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
             }
         }
     }
-    fun getClientList(){
+
+    fun getClientList() {
         viewModelScope.launch {
-            when(val response = repository.getClientList() ){
+            when (val response = repository.getClientList()) {
                 is NetworkState.Success -> {
                     clientListLiveData.postValue(response.data!!)
                 }
+
                 is NetworkState.Error -> {
                     if (response.response.code() == 401) {
 //                        estimateList.postValue(NetworkState.Error())

@@ -189,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llTitle">
 
@@ -245,6 +246,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llTop">
 
@@ -301,6 +303,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llFluteOne">
 
@@ -359,6 +362,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llMiddleOne">
 
@@ -417,6 +421,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llFluteTwo">
 
@@ -474,6 +479,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llMiddleTwo">
 
@@ -531,6 +537,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llFluteThree">
 

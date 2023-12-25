@@ -157,6 +157,7 @@ public class PaperSpecificationActivity extends AppCompatActivity {
         paperSpecificationBinding.btNextInPaperSpecfication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String noOfPly=getIntent().getStringExtra("noOfPly");
                 String cuttingL = getIntent().getStringExtra("cuttingLength");
                 String decalM = getIntent().getStringExtra("decalSize");
                 String bfInTopPaper = paperSpecificationBinding.bfInTopPaper.getText().toString();
@@ -211,6 +212,7 @@ public class PaperSpecificationActivity extends AppCompatActivity {
                 intent.putExtra("ffInFluteThreePaper", ffInFluteThreePaper);
                 intent.putExtra("cuttingLengthResult", cuttingL);
                 intent.putExtra("decalSizeResult", decalM);
+                intent.putExtra("noOfPly",noOfPly);
                 startActivity(intent);
             }
         });

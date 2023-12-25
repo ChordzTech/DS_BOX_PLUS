@@ -8,22 +8,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
-import com.dss.dsboxplus.data.repo.response.EstimateListResponse;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
-import com.dss.dsboxplus.model.EstimatesDataModel;
-import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
+import com.dss.dsboxplus.loginandverification.SplashActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
+import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
@@ -32,11 +30,13 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
     private EstimatesFragment estimatesFragment;
+    private ArrayList<Client> clientsList = new ArrayList<>();
+    private ArrayList<DataItem> estimateList = new ArrayList<>();
     private ClientFragment clientFragment;
     private ProfileFragment profileFragment;
     private ActivityHomeScreenBinding homeScreenBinding;
     private HomeViewModel homeViewModel;
-
+    //    private EstimatesFragment estimatesFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +53,17 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
 
     private void initObservables() {
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
-            estimatesFragment.setEstimateList((ArrayList<DataItem>) estimateListResponse.getData());
+            if (!estimateListResponse.getData().isEmpty()) {
+                estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
+                estimatesFragment.setEstimateList(estimateList);
+            }
             Log.e("TAG", "estimateListResponse: " + estimateListResponse.getData().size());
         });
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
-            clientFragment.setEstimateList((ArrayList<Client>) clientListResponse.getData());
+            if (!clientListResponse.getData().isEmpty()) {
+                clientsList = (ArrayList<Client>) clientListResponse.getData();
+                clientFragment.setClientList(clientsList);
+            }
             Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
         });
     }
@@ -74,8 +80,15 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
         homeScreenBinding.bottomNavigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.estimate) {
                 replaceFragment(estimatesFragment);
+                if (!estimateList.isEmpty()) {
+                    estimatesFragment.setEstimateList(estimateList);
+                }
             } else if (item.getItemId() == R.id.users) {
                 replaceFragment(clientFragment);
+                if (!clientsList.isEmpty()) {
+                    clientFragment.setClientList(clientsList);
+                }
+
             } else {
                 replaceFragment(profileFragment);
             }

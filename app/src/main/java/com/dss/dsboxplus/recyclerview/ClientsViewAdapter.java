@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.model.ClientsDataModel;
 
 import java.util.ArrayList;
 
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
-    private ArrayList<ClientsDataModel> clientsList;
+    private ArrayList<Client> clientsList;
     private OnClientSelectedI onClientSelectedListner;
-    public void setFilteredList(ArrayList<ClientsDataModel> filteredList) {
-        this.clientsList = filteredList;
-        notifyDataSetChanged();
-    }
+//    public void setFilteredList(ArrayList<ClientsDataModel> filteredList) {
+//        this.clientsList = filteredList;
+//        notifyDataSetChanged();
+//    }
 
     @NonNull
     @Override
@@ -32,15 +33,15 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ClientsViewHolder holder, int position) {
-        ClientsDataModel clientsViewModel = clientsList.get(position);
-        holder.tvClientsName.setText(clientsViewModel.getNameOfClient());
-        holder.tvPhoneNumber.setText(clientsViewModel.getPhoneNumberOfClient());
-        holder.tvEstimates.setText(clientsViewModel.getNumberOfEstimatesOfClients());
-        Glide.with(holder.itemView.getContext())
-                .load(clientsViewModel.getImageURL())
-                .placeholder(R.drawable.ic_launcher_background)
-                .centerCrop()
-                .into(holder.ivClientPhoto);
+        Client client = clientsList.get(position);
+        holder.tvClientsName.setText(client.getClientname());
+        holder.tvPhoneNumber.setText(client.getMobileno());
+        holder.tvEstimates.setText(client.getMobileno());
+//        Glide.with(holder.itemView.getContext())
+//                .load(clientsViewModel.getImageURL())
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .centerCrop()
+//                .into(holder.ivClientPhoto);
     }
 
     @Override
@@ -48,11 +49,9 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         return clientsList.size();
     }
 
-    public ArrayList<ClientsDataModel> getClientsList() {
-        return clientsList;
-    }
 
-    public void setClientsList(ArrayList<ClientsDataModel> clientsList) {
+
+    public void setClientsList(ArrayList<Client> clientsList) {
         this.clientsList = clientsList;
     }
 
@@ -66,7 +65,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 
 
     public interface OnClientSelectedI {
-        public void onClientSelectedI(ClientsDataModel clientsDataModel);
+        public void onClientSelectedI(Client clientsDataModel);
     }
 
     class ClientsViewHolder extends RecyclerView.ViewHolder {

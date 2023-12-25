@@ -32,7 +32,4 @@ public class Formulas {
         return decalSize/mm;
     }
 
-    public void totalGsm() {
-
-    }
 }

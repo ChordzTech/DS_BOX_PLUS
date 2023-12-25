@@ -2,12 +2,10 @@ package com.dss.dsboxplus.fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,15 +23,11 @@ import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.profile.SubscriptionActivity;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -50,10 +44,10 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private IHomeActivityCallBack iHomeActivityCallBack;
     private boolean estimateSelection;
     private EstimatesDataModel estimatesDataModel;
-    private ArrayList<EstimatesDataModel> estimatesList = new ArrayList<>();
     private ArrayList<EstimatesDataModel> selectedEstimatesList;
     private EstimatesViewAdapter.OnEstimatesSelectedI onEstimatesSelectedListner;
-    private ArrayList<DataItem> estimateList;
+    private ArrayList<DataItem> estimateList = new ArrayList<>();
+    private BottomNavigationView bottomNavigationView;
 
     public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
         // Required empty public constructor
@@ -85,8 +79,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         subPopup = view.findViewById(R.id.subPopup);
         btUpgradeSub = view.findViewById(R.id.btUpgradeSub);
         btContinue = view.findViewById(R.id.btContinue);
-        //search
-
+        bottomNavigationView = view.findViewById(R.id.bottomNavigation);
         fabCorrect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,11 +106,11 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
                 startActivity(intent);
             }
         });
-        createAddNewEstiPopUp();
-        createSubPopUp();
+//        createAddNewEstiPopUp();
+//        createSubPopUp();
         initView(view);
-        prepareData();
-        loadData();
+//        prepareData();
+//        loadData();
     }
 
     private void createSubPopUp() {
@@ -136,7 +129,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     }
 
     private void createAddNewEstiPopUp() {
-        if (prepareData().isEmpty()) {
+        if (estimateList.isEmpty()) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.add_new_estimate_popup, estimatePopup);
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setView(view);
@@ -149,49 +142,63 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private void initView(View view) {
         rvEstimatesRecyclerView = view.findViewById(R.id.rvEstimateRecyclerView);
         estimatesViewAdapter = new EstimatesViewAdapter();
+        rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
         estimatesViewAdapter.setOnEstimatesSelectedListner(this);
+        if (!estimateList.isEmpty()) {
+            loadData();
+        }
+//        rvEstimatesRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                if (dy > 0 && bottomNavigationView.isShown()) {
+//                    bottomNavigationView.setVisibility(View.GONE);
+//                } else if (dy < 0 && !bottomNavigationView.isShown()) {
+//                    bottomNavigationView.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
     }
 
     private void loadData() {
         estimatesViewAdapter.setEstimatesList(estimateList);
-        rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
         estimatesViewAdapter.notifyDataSetChanged();
     }
 
-    private ArrayList<EstimatesDataModel> prepareData() {
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Box", "ABC", "300X60X300", "Rs.40.00", "06/10/2020", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Pk", "Pankaj", "300X60X300", "Rs.700.00", "08/10/2021", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Pankaj", "Pankaj", "300X60X300", "Rs.60.00", "10/10/2023", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Shubham", "Pankaj", "300X60X300", "RS.500.00", "01/05/2023", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Abhishek", "Pankaj", "300X60X300", "Rs.50.00", "01/04/2023", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Kalyan", "Pankaj", "300X60X300", "Rs.80.00", "01/04/2023", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Shubham", "Pankaj", "300X60X300", "Rs.65.00", "03/05/2019", false));
-        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
-                "Rushi", "Pankaj", "300X60X300", "Rs.89.00", "05/04/2023", false));
-        Collections.sort(estimatesList, new Comparator<EstimatesDataModel>() {
-            @Override
-            public int compare(EstimatesDataModel estimatesDataModel, EstimatesDataModel t1) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date d1 = null, d2 = null;
-                try {
-                    d1 = sdf.parse(estimatesDataModel.getDateOfEstimate());
-                    d2 = sdf.parse(t1.getDateOfEstimate());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                return d1.compareTo(d2);
-            }
-        });
-
-        return estimatesList;
-    }
+//    private ArrayList<EstimatesDataModel> prepareData() {
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Box", "ABC", "300X60X300", "Rs.40.00", "06/10/2020", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Pk", "Pankaj", "300X60X300", "Rs.700.00", "08/10/2021", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Pankaj", "Pankaj", "300X60X300", "Rs.60.00", "10/10/2023", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Shubham", "Pankaj", "300X60X300", "RS.500.00", "01/05/2023", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Abhishek", "Pankaj", "300X60X300", "Rs.50.00", "01/04/2023", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Kalyan", "Pankaj", "300X60X300", "Rs.80.00", "01/04/2023", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Shubham", "Pankaj", "300X60X300", "Rs.65.00", "03/05/2019", false));
+//        estimatesList.add(new EstimatesDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s",
+//                "Rushi", "Pankaj", "300X60X300", "Rs.89.00", "05/04/2023", false));
+//        Collections.sort(estimatesList, new Comparator<EstimatesDataModel>() {
+//            @Override
+//            public int compare(EstimatesDataModel estimatesDataModel, EstimatesDataModel t1) {
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//                Date d1 = null, d2 = null;
+//                try {
+//                    d1 = sdf.parse(estimatesDataModel.getDateOfEstimate());
+//                    d2 = sdf.parse(t1.getDateOfEstimate());
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                return d1.compareTo(d2);
+//            }
+//        });
+//
+//        return estimatesList;
+//    }
 
 
     @Override
@@ -224,12 +231,12 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         }
     }
 
+    public ArrayList<DataItem> getEstimateList() {
+        return estimateList;
+    }
+
     public void setEstimateList(ArrayList<DataItem> estimateList) {
         this.estimateList = estimateList;
         loadData();
-    }
-
-    public ArrayList<DataItem> getEstimateList() {
-        return estimateList;
     }
 }

@@ -38,16 +38,18 @@
 
                 <LinearLayout
                     android:id="@+id/llEstimates"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCost"
                     app:layout_constraintStart_toEndOf="@id/tvEstimateDate"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/tvBoxName"
-                        style="@style/DSTextLargeBold"
+                        style="@style/DSTextMediumBoldA"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"

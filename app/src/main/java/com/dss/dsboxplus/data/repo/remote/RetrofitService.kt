@@ -1,5 +1,6 @@
 package com.example.mvvmretrofit.data.repo.remote
 
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.google.gson.GsonBuilder
@@ -23,6 +24,8 @@ interface RetrofitService {
      //client list APIs
     @GET("ClientsDetails/")
     suspend fun getClientList() : Response<ClientListResponse>
+    @GET("BusinessDetails/")
+    suspend fun getBusinessDetails():Response<BusinessDetailsResponse>
 
 
     companion object {
