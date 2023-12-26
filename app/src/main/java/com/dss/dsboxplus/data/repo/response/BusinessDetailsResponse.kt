@@ -12,7 +12,7 @@ data class BusinessDetailsResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<BusinessDetailsList?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,

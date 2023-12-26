@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
     private ArrayList<DataItem> estimateList = new ArrayList<>();
+    private ArrayList<AppConfigDataItems> appConfigList=new ArrayList<>();
     private ClientFragment clientFragment;
     private ProfileFragment profileFragment;
     private ActivityHomeScreenBinding homeScreenBinding;
@@ -49,6 +51,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
     private void fetchData() {
         homeViewModel.getEstimateList();
         homeViewModel.getClientList();
+        homeViewModel.getAppConfig();
     }
 
     private void initObservables() {
@@ -65,6 +68,13 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
                 clientFragment.setClientList(clientsList);
             }
             Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
+        });
+        homeViewModel.getAppConfigLiveData().observe(this,appConfigResponse -> {
+            if (!appConfigResponse.getData().isEmpty()) {
+                appConfigList = (ArrayList<AppConfigDataItems>) appConfigResponse.getData();
+                profileFragment.setAppConfigList(appConfigList);
+            }
+            Log.e("TAG", "estimateListResponse: " + appConfigResponse.getData().size());
         });
     }
 
@@ -91,6 +101,9 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
 
             } else {
                 replaceFragment(profileFragment);
+                if (!appConfigList.isEmpty()) {
+                    profileFragment.setAppConfigList(appConfigList);
+                }
             }
             return true;
         });

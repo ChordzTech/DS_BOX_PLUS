@@ -14,7 +14,13 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
 
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
@@ -45,10 +51,25 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         String boxCost=String.format("%.2f",dataItem.getBoxprice());
         String finalBox="₹ "+boxCost;
         holder.tvCost.setText(finalBox);
-        holder.tvEstimateDate.setText(dataItem.getEstimatedate());
+        String dateString=dataItem.getEstimatedate();
+        String formattedDate=formatDateFromApi(dateString);
+        holder.tvEstimateDate.setText(formattedDate);
+
         //long click
         if (!estimateSelection) {
             holder.root.setBackgroundColor(Color.WHITE);
+        }
+    }
+
+    private String formatDateFromApi(String inputDate) {
+        try{
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date date=inputFormat.parse(inputDate);
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+            return outputFormat.format(date);
+        }catch (ParseException e) {
+            e.printStackTrace();
+            return inputDate; // Return the original date string if parsing fails
         }
     }
 

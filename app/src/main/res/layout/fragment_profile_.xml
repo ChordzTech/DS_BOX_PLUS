@@ -44,11 +44,11 @@
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fabAddImage"
-                        android:backgroundTint="@color/transparent"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="@dimen/margin_small"
                         android:layout_marginBottom="@dimen/margin_small"
+                        android:backgroundTint="@color/transparent"
                         android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="@+id/ivProfileInProfileFragment"
                         app:layout_constraintEnd_toEndOf="@+id/ivProfileInProfileFragment"
@@ -80,7 +80,18 @@
                             android:gravity="center_horizontal"
                             android:text="+91 7709244796" />
 
+
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admin"
+                        style="@style/DSTextMediumBold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/llProfile"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -433,19 +444,20 @@
                         app:layout_constraintTop_toTopOf="parent">
 
 
-                    <TextView
-                        style="@style/DSTextMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/subscription_settings" />
                         <TextView
-                            android:background="@color/green"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/subscription_settings" />
+
+                        <TextView
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:background="@color/green"
                             android:gravity="start"
                             android:text="@string/sub_status" />
                     </LinearLayout>

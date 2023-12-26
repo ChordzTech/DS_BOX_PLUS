@@ -3,6 +3,7 @@ package com.dss.dsboxplus.viewmodels.homeviewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.example.mvvmretrofit.data.repo.MainRepository
@@ -15,6 +16,8 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
         get() = field
     var clientListLiveData = MutableLiveData<ClientListResponse>()
         get() = field
+    var appConfigLiveData=MutableLiveData<AppConfigResponse>()
+        get()=field
 
 
     fun getEstimateList() {
@@ -40,6 +43,23 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
             when (val response = repository.getClientList()) {
                 is NetworkState.Success -> {
                     clientListLiveData.postValue(response.data!!)
+                }
+
+                is NetworkState.Error -> {
+                    if (response.response.code() == 401) {
+//                        estimateList.postValue(NetworkState.Error())
+                    } else {
+//                        estimateList.postValue(NetworkState.Error)
+                    }
+                }
+            }
+        }
+    }
+    fun getAppConfig(){
+        viewModelScope.launch {
+            when (val response = repository.getAppConfigList()) {
+                is NetworkState.Success -> {
+                   appConfigLiveData.postValue(response.data!!)
                 }
 
                 is NetworkState.Error -> {

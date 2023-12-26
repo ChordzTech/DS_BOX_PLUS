@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,9 @@ import androidx.databinding.DataBindingUtil;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsList;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.databinding.ActivitySplashBinding;
+import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel;
 
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ public class SplashActivity extends AppCompatActivity {
     ActivitySplashBinding mainBinding;
     private SplashViewModel splashViewModel;
     private ArrayList<BusinessDetailsList> businessDetailsList=new ArrayList<>();
+    private ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.profile.BusinessDetails;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
@@ -27,6 +28,8 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.ArrayList;
+
 
 public class ProfileFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +39,7 @@ public class ProfileFragment extends Fragment {
     ShapeableImageView ivProfile;
     SwitchCompat swMultiUser;
     FloatingActionButton fabAddImage;
+    private ArrayList<AppConfigDataItems> appConfigList=new ArrayList<>();
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -184,5 +188,10 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
         ivProfile.setImageURI(uri);
+    }
+
+
+    public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {
+        this.appConfigList=appConfigList;
     }
 }

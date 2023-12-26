@@ -1,6 +1,5 @@
 package com.dss.dsboxplus.profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,17 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.databinding.ActivityDefaultPaperSettingsBinding;
-import com.dss.dsboxplus.estimates.NewEstimateActivity;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 
 
 public class DefaultPaperSettings extends AppCompatActivity {
     ActivityDefaultPaperSettingsBinding defaultPaperSettingsBinding;
-    String cutting="30.0";
-    String decal="30.0";
-    String flute="30.0";
+    private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
+    private int AppConfigDataItems;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +28,17 @@ public class DefaultPaperSettings extends AppCompatActivity {
     }
 
     private void initView() {
+
+        if (!appConfigList.isEmpty()) {
+            defaultPaperSettingsBinding.tietCuttingMargin.setText(String.valueOf(appConfigList.get(AppConfigDataItems).getConfigvalue()));
+        }
         defaultPaperSettingsBinding.btCloseInDefaultPaperSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        defaultPaperSettingsBinding.tietCuttingMargin.setText(cutting);
-        defaultPaperSettingsBinding.tietDecalMargin.setText(decal);
-        defaultPaperSettingsBinding.tietFluteFactor.setText(flute);
+
     }
+
 }

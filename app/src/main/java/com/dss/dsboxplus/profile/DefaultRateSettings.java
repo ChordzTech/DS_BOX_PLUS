@@ -28,9 +28,6 @@ public class DefaultRateSettings extends AppCompatActivity {
                 finish();
             }
         });
-        defaultRateSettingsBinding.tietWaste.setText("3.0");
-        defaultRateSettingsBinding.tietConversionCost.setText("15.0");
-        defaultRateSettingsBinding.tietProfit.setText("15.0");
-        defaultRateSettingsBinding.tietTax.setText("18.0");
+
     }
 }

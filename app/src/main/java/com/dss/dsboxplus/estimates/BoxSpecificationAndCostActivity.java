@@ -9,13 +9,11 @@ import androidx.databinding.DataBindingUtil;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
 
-import java.util.Objects;
-
 public class BoxSpecificationAndCostActivity extends AppCompatActivity {
     ActivityBoxSpecificationAndCostBinding activityBoxSpecificationAndCostBinding;
     float mm = 25.4F;
-    float divide = 1000F;
-    String formula="";
+    int divide = 1000;
+    String formula = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,26 +47,26 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         String cuttingL = getIntent().getStringExtra("cuttingLengthResult");
         String formula = getIntent().getStringExtra("noOfPly");
 
-        switch (formula){
-            case "1Ply":{
+        switch (formula) {
+            case "1Ply": {
                 formulaForOnePly(bfInTopPaper, gsmInTop, rateKgInTop, decalM, cuttingL);
                 break;
             }
-            case "2Ply":{
-                formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
+            case "2Ply": {
+                formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, decalM, cuttingL);
                 break;
             }
 
-            case "3Ply":{
-                formulaForThreePly(bfInTopPaper,gsmInTop,rateKgInTop,bfInFlutePaper,gsmInFlutePaper,rateKgInFlutePaper,ffInFluteOnePaper,bfInBottomPaper,gsmInBottomPaper,rateKgInBottomPaper,decalM, cuttingL);
+            case "3Ply": {
+                formulaForThreePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
                 break;
             }
-            case "5Ply":{
+            case "5Ply": {
                 formulaForFivePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
                 break;
             }
-            case "7Ply":{
-                formulaForSevenPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper,bfInMiddleTwoPaper,gsmInMiddleTwoPaper,rateKgInMiddleTwoPaper,bfInFluteThreePaper,gsmInFluteThreePaper,rateKgInFluteThreePaper,ffInFluteThreePaper ,bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
+            case "7Ply": {
+                formulaForSevenPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInMiddleTwoPaper, gsmInMiddleTwoPaper, rateKgInMiddleTwoPaper, bfInFluteThreePaper, gsmInFluteThreePaper, rateKgInFluteThreePaper, ffInFluteThreePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL);
                 break;
             }
         }
@@ -350,72 +348,73 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfBoxPriceWithTax);
     }
 
-    private void formulaForTwoPly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInBottomPaper, String gsmInBottomPaper, String rateKgInBottomPaper, String decalM, String cuttingL) {
+    private void formulaForTwoPly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String decalM, String cuttingL) {
+        //TotalBS Formula
+        //value for TopPaper
+        float bsOfTop = Float.parseFloat(bfInTopPaper);
+        float gsmOfTop = Float.parseFloat(gsmInTop);
+
+        float val1 = (bsOfTop * gsmOfTop * 1) / divide;
+        //Value for FlutePaper
+        float bsOfFlute = Float.parseFloat(bfInFlutePaper);
+        float gsmOfFlute = Float.parseFloat(gsmInFlutePaper);
+
+        float val2 = (float) ((bsOfFlute * gsmOfFlute * 0.5) / divide);
+        //Total BS
+        float totalBS = (val1 + val2);
+        String resOfTotalBs = String.format("%.2f", totalBS);
+        activityBoxSpecificationAndCostBinding.tvTotalBs.setText(resOfTotalBs);
         //Total GSM
-        //Value for top Paper
-        float gsmValueForTopPaper = Float.parseFloat(gsmInTop);
-        float valueForTopPaper = (gsmValueForTopPaper * 1);
-        //Value for Bottom Paper
-        float gsmValueForTwoPaper = Float.parseFloat(gsmInBottomPaper);
-        float valueForBottomPaper = (gsmValueForTwoPaper * 1);
-        //totalGSM
-        float totalGsmForTwoPly = (valueForTopPaper + valueForBottomPaper);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsmForTwoPly));
-
-
-        //Total BS
-        float bfForTopPaper = Float.parseFloat(bfInTopPaper);
-        float gsmForTopPaper = Float.parseFloat(gsmInTop);
-        //Value of TopPaper for BS
-        float valueOne = (bfForTopPaper * gsmForTopPaper * 1) / divide;
-        //Value for BottomPaper
-        float bfForBottomPaper = Float.parseFloat(bfInBottomPaper);
-        float gsmForBottomPaper = Float.parseFloat(gsmInBottomPaper);
-        float valueTwo = (bfForBottomPaper + gsmForBottomPaper * 1) / divide;
-        //Total BS
-        float totalBs = (valueOne + valueTwo);
-        activityBoxSpecificationAndCostBinding.tvTotalBs.setText(String.valueOf(totalBs));
-
+        //Value for Top
+        float val1ofGsm = (gsmOfTop * 1);
+        //Value for flute
+        float ffOfFluteOnePaper = Float.parseFloat(ffInFluteOnePaper);
+        float val2ofGsm = (gsmOfFlute * ffOfFluteOnePaper);
+        //Total Gsm
+        float totalGsm = (val1ofGsm + val2ofGsm);
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
         //Total Weight
-        //1st Value
+        //1St Value
         float decal = Float.parseFloat(decalM);
         float cutting = Float.parseFloat(cuttingL);
-        float valueFirstOFTW = (decal * cutting * gsmForTopPaper * mm * mm / divide / divide / divide);
-        //2ndValue
-        float valueSecondOfTW = (decal * cutting * gsmForBottomPaper * mm * mm / divide / divide / divide);
-        float total = (valueFirstOFTW + valueSecondOfTW);
+        float valueFirstOFTW = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
+        //2nd Value
+        float valueSecondOfTW = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+        //Total
+        float total = (valueFirstOFTW + valueSecondOfTW );
+        String totalString = String.format("%.3f", total);
         //Waste value
         float wastePercentage = ((total * 3) / 100);
         //Total weight
         float totalWeight = total + wastePercentage;
-        String resultOfTotalWeight = String.format("%.3f", totalWeight);
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(resultOfTotalWeight);
-
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeight));
         //ConversionCostPerKG
         float resultOfConvCost = (totalWeight * 9);
         String resultOfConvCostString = String.format("%.3f", resultOfConvCost);
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
-
         //Costs
         //NetPaperCost
         //1stValue
         float rateOfTop = Float.parseFloat(rateKgInTop);
         float valueFirstNPC = (valueFirstOFTW * rateOfTop);
-        //2rdValue
-        float rateOfBottom = Float.parseFloat(rateKgInBottomPaper);
-        float valueSecondNPC = (valueSecondOfTW * rateOfBottom);
+
+        //2ndValue
+        float rateOfFlute = Float.parseFloat(rateKgInFlutePaper);
+        float valueSecondNPC = (valueSecondOfTW * rateOfFlute);
         //NetPaperCost
-        float resultOfNPC = (valueFirstNPC + valueSecondNPC);
+        float resultOfNPC = (valueFirstNPC + valueSecondNPC );
         String resultOfNpcString = String.format("%.3f", resultOfNPC);
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(resultOfNpcString);
+
         //WasteCost
         float resultWasteCost = ((resultOfNPC * 3) / 100);
-        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCost));
+        String resultOfwasteString = String.format("%.3f", resultWasteCost);
+        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(resultOfwasteString);
 
         //GrossPaperCost
         float grossPaperCost = (resultOfNPC + resultWasteCost);
-        String resultOfGrossPaperCost = String.format("%.3f", grossPaperCost);
-        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(resultOfGrossPaperCost);
+        String resultOfgrossPaperCost = String.format("%.3f", grossPaperCost);
+        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(resultOfgrossPaperCost);
 
         //BoxMFGCost
         double resultOfBoxMFG = (grossPaperCost + resultOfConvCost + 1.5);
@@ -444,12 +443,12 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         float bsOfFlute = Float.parseFloat(bfInFlutePaper);
         float gsmOfFlute = Float.parseFloat(gsmInFlutePaper);
 
-        float val2 = (float) ((bsOfFlute * gsmOfFlute * 0.5) / 1000);
+        float val2 = (float) ((bsOfFlute * gsmOfFlute * 0.5) / divide);
         //Value for BottomPaper
         float bfOFBottomPaper = Float.parseFloat(bfInBottomPaper);
         float gsmOfBottomPaper = Float.parseFloat(gsmInBottomPaper);
 
-        float val3 = (bfOFBottomPaper * gsmOfBottomPaper * 1) / 1000;
+        float val3 = (bfOFBottomPaper * gsmOfBottomPaper * 1) / divide;
         //Total BS
         float totalBS = (val1 + val2 + val3);
         String resOfTotalBs = String.format("%.2f", totalBS);
@@ -472,28 +471,26 @@ public class BoxSpecificationAndCostActivity extends AppCompatActivity {
         float decal = Float.parseFloat(decalM);
         float cutting = Float.parseFloat(cuttingL);
         float valueFirstOFTW = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
-        String valueFirstOFTWString = String.format("%.3f", valueFirstOFTW);
+
         //2nd Value
         float valueSecondOfTW = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
-        String valueSecondOfTWString = String.format("%.3f", valueSecondOfTW);
+
 
         //3rd Value
         float valueThirdOfTW = (decal * cutting * gsmOfBottomPaper * mm * mm / divide / divide / divide);
-        String valueThirdOfTWString = String.format("%.3f", valueThirdOfTW);
+
         //Total
         float total = (valueFirstOFTW + valueSecondOfTW + valueThirdOfTW);
-        String totalString = String.format("%.3f", total);
         //Waste value
         float wastePercentage = ((total * 3) / 100);
         //Total weight
         float totalWeight = total + wastePercentage;
-        String resultOfTotalWeight = String.format("%.3f", totalWeight);
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(resultOfTotalWeight);
+        int weightInInt=(int) (totalWeight*1000);
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(weightInInt));
 
         //ConversionCostPerKG
         float resultOfConvCost = (totalWeight * 9);
         String resultOfConvCostString = String.format("%.3f", resultOfConvCost);
-
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
 
 
