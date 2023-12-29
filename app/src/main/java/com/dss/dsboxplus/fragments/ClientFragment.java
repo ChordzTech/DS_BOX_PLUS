@@ -167,11 +167,11 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
 
     @Override
-    public void onClientSelectedI(Client clientsDataModel) {
+    public void onClientSelectedI(Client clientData) {
         Intent intent = new Intent(getActivity(), ClientDetailsActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("CLIENTS", clientsDataModel);
-        intent.putExtra("CLIENTS_BUNDLE", bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelable("CLIENTS", clientData);
+//        intent.putExtra("CLIENTS_BUNDLE", bundle);
         startActivity(intent);
     }
 

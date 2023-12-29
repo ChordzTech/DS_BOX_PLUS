@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.databinding.ActivityDefaultPaperSettingsBinding;
 
 import java.util.ArrayList;
@@ -15,9 +17,6 @@ import java.util.ArrayList;
 
 public class DefaultPaperSettings extends AppCompatActivity {
     ActivityDefaultPaperSettingsBinding defaultPaperSettingsBinding;
-    private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
-    private int AppConfigDataItems;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +27,25 @@ public class DefaultPaperSettings extends AppCompatActivity {
     }
 
     private void initView() {
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                // Access individual properties of AppConfigDataItems
+                int configId = appConfigDataItem.getConfigid();
+                String configName = appConfigDataItem.getConfigname();
+                String configValue = appConfigDataItem.getConfigvalue();
 
-        if (!appConfigList.isEmpty()) {
-            defaultPaperSettingsBinding.tietCuttingMargin.setText(String.valueOf(appConfigList.get(AppConfigDataItems).getConfigvalue()));
+             if (configId==10){
+                 defaultPaperSettingsBinding.tietCuttingMargin.setText(configValue);
+             } else if (configId==11) {
+                 defaultPaperSettingsBinding.tietDecalMargin.setText(configValue);
+             } else if (configId==4) {
+                 defaultPaperSettingsBinding.tietFluteFactor.setText(configValue);
+             }
+
+            }
+
         }
         defaultPaperSettingsBinding.btCloseInDefaultPaperSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,5 +55,4 @@ public class DefaultPaperSettings extends AppCompatActivity {
         });
 
     }
-
 }

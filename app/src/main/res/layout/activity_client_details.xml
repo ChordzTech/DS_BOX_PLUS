@@ -6,6 +6,7 @@
 
     <ScrollView
         android:scrollbars="none"
+        android:background="@color/gery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".clients.ClientDetailsActivity">

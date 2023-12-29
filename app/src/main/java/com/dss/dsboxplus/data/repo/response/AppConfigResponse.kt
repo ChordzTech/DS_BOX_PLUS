@@ -11,7 +11,7 @@ data class AppConfigResponse(
     val code: Int? = null,
 
     @field:SerializedName("data")
-    val data: List<AppConfigDataItems?>? = null,
+    val data: ArrayList<AppConfigDataItems?>? = null,
 
     @field:SerializedName("message")
     val message: String? = null,

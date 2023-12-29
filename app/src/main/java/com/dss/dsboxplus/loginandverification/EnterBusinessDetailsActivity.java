@@ -40,21 +40,21 @@ public class EnterBusinessDetailsActivity extends AppCompatActivity {
     }
 
     private boolean validateInfo(String businessName, String businessContact, String businessAddress, String businessPinCode) {
-        if (businessDetailsBinding.tietBusinessName.length() == 0) {
+        if (businessName.length() == 0) {
             businessDetailsBinding.tietBusinessName.requestFocus();
             businessDetailsBinding.tietBusinessName.setError("Please Enter Business Name");
             return false;
-        } else if (businessDetailsBinding.tietBusinessContact.length() <= 9) {
+        } else if (businessContact.length() <= 9) {
             businessDetailsBinding.tietBusinessContact.requestFocus();
             businessDetailsBinding.tietBusinessContact.setError("Please Enter Business Contact");
             return false;
-        } else if (businessDetailsBinding.tietBusinessAddress.length() == 0) {
+        } else if (businessAddress.length() == 0) {
             businessDetailsBinding.tietBusinessAddress.requestFocus();
             businessDetailsBinding.tietBusinessAddress.setError("Please Enter Business Address");
             return false;
-        } else if (businessDetailsBinding.tietBusinessPinCode.length() <= 5) {
+        } else if (businessPinCode.length() <= 5) {
             businessDetailsBinding.tietBusinessPinCode.requestFocus();
-            businessDetailsBinding.tietBusinessPinCode.setError("Please Enter Business PinCode");
+            businessDetailsBinding.tietBusinessPinCode.setError("Enter Six Digits Code");
             return false;
         } else {
             return true;

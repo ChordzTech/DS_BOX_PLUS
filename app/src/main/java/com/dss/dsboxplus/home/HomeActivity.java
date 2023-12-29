@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.home;
 
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,18 +12,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
+import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
-import com.dss.dsboxplus.loginandverification.SplashActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
-import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
@@ -32,12 +33,15 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
+    private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
     private ArrayList<DataItem> estimateList = new ArrayList<>();
-    private ArrayList<AppConfigDataItems> appConfigList=new ArrayList<>();
+    private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private ClientFragment clientFragment;
+    private String base64Code=new String();
     private ProfileFragment profileFragment;
     private ActivityHomeScreenBinding homeScreenBinding;
     private HomeViewModel homeViewModel;
+
     //    private EstimatesFragment estimatesFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
         homeViewModel.getEstimateList();
         homeViewModel.getClientList();
         homeViewModel.getAppConfig();
+        homeViewModel.getSubscriptionList();
+        homeViewModel.getQrCode();
     }
 
     private void initObservables() {
@@ -59,6 +65,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
                 estimatesFragment.setEstimateList(estimateList);
+                ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
             }
             Log.e("TAG", "estimateListResponse: " + estimateListResponse.getData().size());
         });
@@ -66,15 +73,30 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
             if (!clientListResponse.getData().isEmpty()) {
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
                 clientFragment.setClientList(clientsList);
+
             }
             Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
         });
-        homeViewModel.getAppConfigLiveData().observe(this,appConfigResponse -> {
+        homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {
             if (!appConfigResponse.getData().isEmpty()) {
                 appConfigList = (ArrayList<AppConfigDataItems>) appConfigResponse.getData();
                 profileFragment.setAppConfigList(appConfigList);
+                ConfigDataProvider.INSTANCE.setAppConfigResponse(appConfigResponse);
             }
             Log.e("TAG", "estimateListResponse: " + appConfigResponse.getData().size());
+        });
+        homeViewModel.getSubscriptionLiveData().observe(this, subscriptionDetailsResponse -> {
+            if (!subscriptionDetailsResponse.getData().isEmpty()) {
+                subscriptionList = (ArrayList<SubscriptionDataItem>) subscriptionDetailsResponse.getData();
+                profileFragment.setSubscriptionList(subscriptionList);
+                ConfigDataProvider.INSTANCE.setSubResponse(subscriptionDetailsResponse);
+            }
+        });
+        homeViewModel.getQrCodeLiveData().observe(this, qrCodeResponse -> {
+            if (!qrCodeResponse.getBase64Code().isEmpty()) {
+                base64Code =qrCodeResponse.getBase64Code();
+                ConfigDataProvider.INSTANCE.setQrCodeBase64(base64Code);
+            }
         });
     }
 
@@ -103,6 +125,12 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
                 replaceFragment(profileFragment);
                 if (!appConfigList.isEmpty()) {
                     profileFragment.setAppConfigList(appConfigList);
+                }
+                if (!subscriptionList.isEmpty()) {
+                    profileFragment.setSubscriptionList(subscriptionList);
+                }
+                if (!base64Code.isEmpty()) {
+                    profileFragment.setQrCode(base64Code);
                 }
             }
             return true;

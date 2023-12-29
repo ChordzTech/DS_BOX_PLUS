@@ -20,9 +20,9 @@ public class ClientDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         clientDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_client_details);
-        if (getIntent().getExtras().getParcelable("CLIENTS_BUNDLE") != null) {
-            clientsDataModel = getIntent().getExtras().getBundle("CLIENTS_BUNDLE").getParcelable("CLIENTS");
-        }
+//        if (getIntent().getExtras().getParcelable("CLIENTS_BUNDLE") != null) {
+//            clientsDataModel = getIntent().getExtras().getBundle("CLIENTS_BUNDLE").getParcelable("CLIENTS");
+//        }
         btCloseInClientDetails = findViewById(R.id.btCloseInClientDetails);
         btCloseInClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override

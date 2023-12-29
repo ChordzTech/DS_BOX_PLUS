@@ -53,9 +53,9 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityQuotationInBoxEstimateDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_quotation_in_box_estimate_details);
-        if (getIntent().getExtras().getParcelable("EstimateDetails_Bundle") != null) {
-            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
-        }
+//        if (getIntent().getExtras().getParcelable("EstimateDetails_Bundle") != null) {
+//            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
+//        }
         btCreatePDF = findViewById(R.id.btCreateQuotationPDF);
         btCreatePDF.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
 
         table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(estimatesDataModel.getNameofClients())
+        table.addCell(new Cell().add(new Paragraph("Pankaj Kashid")
                 .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
@@ -149,16 +149,6 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         table1.addCell(new Cell().add(new Paragraph("Rs 15.22\n" +
                 "Tax@ 18.0%-2.74Rs\n" +
                 "Total:17.96Rs")).setTextAlignment(TextAlignment.RIGHT));
-
-        table1.addCell(new Cell().add(new Paragraph("2")));
-        table1.addCell(new Cell().add(new Paragraph("5 Ply Box,DemoBox\n" +
-                "Box outer Dimension-" + estimatesDataModel.getDimensionOfBox() + "\n" +
-                "Paper Specification as below\n" +
-                "1.Top Paper 14/200\n" +
-                "2.Flute Paper 12/120\n" +
-                "3.Middle One 14/200\n" +
-                "4.Bottom Paper 14/150\n" +
-                "5.Flute Two Paper 14/200\n")));
         table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
 
         Drawable d3 = getDrawable(R.drawable.thanks);
@@ -180,7 +170,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n"));
-        document.add(new Paragraph("for " + estimatesDataModel.getNameofClients()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("for " + "Pankaj Kashid").setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("Terms & Conditions:"));
         document.add(new Paragraph("1.Valid : for 15 days only.\n" +

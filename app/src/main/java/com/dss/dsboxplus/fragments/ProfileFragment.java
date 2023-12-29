@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.profile.BusinessDetails;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
@@ -40,6 +41,8 @@ public class ProfileFragment extends Fragment {
     SwitchCompat swMultiUser;
     FloatingActionButton fabAddImage;
     private ArrayList<AppConfigDataItems> appConfigList=new ArrayList<>();
+    private String base64Code;
+    private ArrayList<SubscriptionDataItem>subscriptionList=new ArrayList<>();
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -193,5 +196,13 @@ public class ProfileFragment extends Fragment {
 
     public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {
         this.appConfigList=appConfigList;
+    }
+
+    public void setSubscriptionList(ArrayList<SubscriptionDataItem> subscriptionList) {
+        this.subscriptionList=subscriptionList;
+    }
+
+    public void setQrCode(String base64Code) {
+        this.base64Code=base64Code;
     }
 }

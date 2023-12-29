@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.DataItem;
+import com.dss.dsboxplus.data.repo.response.EstimateListResponse;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 
@@ -18,26 +21,25 @@ import java.util.ArrayList;
 
 public class BoxEstimatesDetailsActivity extends AppCompatActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
-    private EstimatesDataModel estimatesDataModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boxEstimatesDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_box_estimates_details);
-        if (getIntent().getExtras().getParcelable("ESTIMATES_BUNDLE") != null) {
-            estimatesDataModel = getIntent().getExtras().getBundle("ESTIMATES_BUNDLE").getParcelable("ESTIMATES");
-        }
+        initView();
+        EstimateListResponse estimateListResponse =ConfigDataProvider.INSTANCE.getEstimateListResponse();
 
-        boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(estimatesDataModel.getNameofClients());
-        boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.setText(estimatesDataModel.getNameOfBox());
+    }
+
+    private void initView() {
         //Quotation
         boxEstimatesDetailsBinding.btQuotation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuotationInBoxEstimateDetailsActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putParcelable("EstimateDetails",estimatesDataModel);
-                intent.putExtra("EstimateDetails_Bundle",bundle);
+//                Bundle bundle=new Bundle();
+//                bundle.putParcelable("EstimateDetails",estimatesDataModel);
+//                intent.putExtra("EstimateDetails_Bundle",bundle);
                 startActivity(intent);
             }
         });

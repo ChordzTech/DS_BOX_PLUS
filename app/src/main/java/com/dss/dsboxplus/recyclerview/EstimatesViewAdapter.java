@@ -88,7 +88,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
 
     public interface OnEstimatesSelectedI {
-        public void onEstimatesSelectedI(EstimatesDataModel estimatesDataModel);
+        public void onEstimatesSelectedI(DataItem dataItem);
 
         void onItemLongPressed(EstimatesDataModel estimatesDataModel, int adapterPosition);
 
@@ -134,7 +134,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 //                        }
 //                        onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
 //                    } else {
-//                        onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
+                        onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
 //                    }
 
                 }

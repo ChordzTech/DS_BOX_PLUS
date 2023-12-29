@@ -40,6 +40,7 @@
     <string name="business_pinCode">Business PinCode</string>
     <string name="business_email">Business Email</string>
     <string name="save">Save</string>
+    <string name="create">Create</string>
     <string name="close">Close</string>
     <string name="cutting_margin">Cutting Margin (mm)</string>
     <string name="decal_margin">Decal Margin (mm)</string>
@@ -140,7 +141,7 @@
     <string name="enter_business_details_text">This information will show on your \n estimates, quotations</string>
     <string name="client_details">Client Details</string>
     <string name="customer_name">Customer Name</string>
-    <string name="contact_support">Contact Support: 9421013332</string>
+    <string name="contact_support">Contact Support : </string>
     <string name="package_details">Package Details</string>
     <string name="copyright">Copyright© 2020 Disha Swaraj Soft.All rights reserved.</string>
     <string name="monthly">Monthly</string>
@@ -177,6 +178,7 @@
     <string name="upgrade_membership">UPGRADE MEMBERSHIP</string>
     <string name="conti_nue">CONTINUE</string>
     <string name="go_premium">Go Premium</string>
+    <string name="add_new_users">Add New Users</string>
     <string-array name="noOfPly">
         <item>1Ply</item>
         <item>2Ply</item>

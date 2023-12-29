@@ -65,7 +65,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 
 
     public interface OnClientSelectedI {
-        public void onClientSelectedI(Client clientsDataModel);
+        public void onClientSelectedI(Client clientData);
     }
 
     class ClientsViewHolder extends RecyclerView.ViewHolder {

@@ -4,6 +4,8 @@ import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
+import com.dss.dsboxplus.data.repo.response.QrCodeResponse
+import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.Interceptor.*
@@ -20,22 +22,28 @@ interface RetrofitService {
 
     //Estimate list APIs
     @GET("EstimateDetails/")
-    suspend fun getEstimateList() : Response<EstimateListResponse>
+    suspend fun getEstimateList(): Response<EstimateListResponse>
 
-     //client list APIs
+    //client list APIs
     @GET("ClientsDetails/")
-    suspend fun getClientList() : Response<ClientListResponse>
+    suspend fun getClientList(): Response<ClientListResponse>
+
     //Business Details APIs
     @GET("BusinessDetails/")
-    suspend fun getBusinessDetails():Response<BusinessDetailsResponse>
+    suspend fun getBusinessDetails(): Response<BusinessDetailsResponse>
+
     //AppConfig
     @GET("AppConfig/")
-    suspend fun getAppConfig():Response<AppConfigResponse>
+    suspend fun getAppConfig(): Response<AppConfigResponse>
 
+    @GET("SubscriptionsDetails/")
+    suspend fun getSubscriptionDetails(): Response<SubscriptionDetailsResponse>
+    @GET("UploadCode/")
+    suspend fun getQrCode():Response<QrCodeResponse>
 
     companion object {
         var retrofitService: RetrofitService? = null
-        fun getInstance() : RetrofitService {
+        fun getInstance(): RetrofitService {
 
             val httpClientBuilder = OkHttpClient.Builder()
             httpClientBuilder.addInterceptor(Interceptor { chain ->
@@ -60,9 +68,9 @@ interface RetrofitService {
             return retrofitService!!
         }
 
-        private fun getHeaders(): OkHttpClient{
+        private fun getHeaders(): OkHttpClient {
             val httpClient = OkHttpClient()
-            val interceptors =httpClient.networkInterceptors as ArrayList<Interceptor>
+            val interceptors = httpClient.networkInterceptors as ArrayList<Interceptor>
             interceptors.add(Interceptor { chain ->
                 val requestBuilder: Request.Builder = chain.request().newBuilder()
                 requestBuilder.header("Content-Type", "application/json")

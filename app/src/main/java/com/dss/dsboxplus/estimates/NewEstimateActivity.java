@@ -18,9 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
 
 public class NewEstimateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ActivityNewEstimateBinding newEstimateBinding;
@@ -36,6 +41,10 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
         newEstimateBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_estimate);
         tietnumberOfBox = findViewById(R.id.tietnumberOfBox);
         tilHeight = findViewById(R.id.tilHeight);
@@ -61,7 +70,19 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
         // Number of box
         tietnumberOfBox.setText("1");
         tvMargin = findViewById(R.id.tvMargin);
-
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 10) {
+                    newEstimateBinding.tvMargin.setText(configValue);
+                } else if (configId == 11) {
+                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
+                }
+            }
+        }
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -202,6 +223,8 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
             }
         });
+
+
     }
 
     private void convertValue() {

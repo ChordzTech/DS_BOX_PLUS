@@ -10,7 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
+
+import java.util.ArrayList;
 
 public class PaperSpecificationActivity extends AppCompatActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
@@ -22,7 +27,12 @@ public class PaperSpecificationActivity extends AppCompatActivity {
         paperSpecificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_paper_specification);
         initView();
 
+
+    }
+
+    private void initView() {
         noOfPly = this.getIntent().getStringExtra("noOfPly");
+
 
         switch (noOfPly) {
             case "1Ply":
@@ -83,9 +93,19 @@ public class PaperSpecificationActivity extends AppCompatActivity {
                 paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
                 break;
         }
-    }
-
-    private void initView() {
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId==4){
+                    paperSpecificationBinding.ffInFlutePaper.setText(configValue);
+                    paperSpecificationBinding.ffInFluteTwoPaper.setText(configValue);
+                    paperSpecificationBinding.ffInFluteThreePaper.setText(configValue);
+                }
+            }
+        }
 
         paperSpecificationBinding.bfInTopPaper.addTextChangedListener(new TextWatcher() {
             @Override

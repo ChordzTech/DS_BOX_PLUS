@@ -7,6 +7,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gery"
         tools:context=".loginandverification.EnterBusinessDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,6 +85,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietBusinessContact"
+                    android:maxLength="10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -122,6 +124,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietBusinessPinCode"
                     android:layout_width="match_parent"
+                    android:maxLength="6"
                     android:layout_height="wrap_content"
                     style="@style/DSTextMedium"
                     android:inputType="number"/>
