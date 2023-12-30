@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(val repository: MainRepository) : ViewModel() {
 
-    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
-        get() = field
+//    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
+//        get() = field
     var clientListLiveData = MutableLiveData<ClientListResponse>()
         get() = field
     var appConfigLiveData = MutableLiveData<AppConfigResponse>()
@@ -24,24 +24,28 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
         get() = field
     var qrCodeLiveData=MutableLiveData<QrCodeResponse>()
         get()=field
+    var estimateListLiveData=MutableLiveData<EstimateListResponse>()
+        get()=field
+//    var clientListLiveData=MutableLiveData<ClientListResponse>()
+//        get()=field
 
-    fun getEstimateList() {
-        viewModelScope.launch {
-            when (val response = repository.getEstimateList()) {
-                is NetworkState.Success -> {
-                    estimateListLiveData.postValue(response.data!!)
-                }
-
-                is NetworkState.Error -> {
-                    if (response.response.code() == 401) {
-//                        estimateList.postValue(NetworkState.Error())
-                    } else {
-//                        estimateList.postValue(NetworkState.Error)
-                    }
-                }
-            }
-        }
-    }
+//    fun getEstimateList() {
+//        viewModelScope.launch {
+//            when (val response = repository.getEstimateList()) {
+//                is NetworkState.Success -> {
+//                    estimateListLiveData.postValue(response.data!!)
+//                }
+//
+//                is NetworkState.Error -> {
+//                    if (response.response.code() == 401) {
+////                        estimateList.postValue(NetworkState.Error())
+//                    } else {
+////                        estimateList.postValue(NetworkState.Error)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     fun getClientList() {
         viewModelScope.launch {
@@ -113,4 +117,38 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
             }
         }
     }
+    fun getEstimateByBusinessClientId(){
+        viewModelScope.launch {
+            when (val response = repository.getEstimateListByBusinessUserID()) {
+                is NetworkState.Success -> {
+                    estimateListLiveData.postValue(response.data!!)
+                }
+
+                is NetworkState.Error -> {
+                    if (response.response.code() == 401) {
+//                        estimateList.postValue(NetworkState.Error())
+                    } else {
+//                        estimateList.postValue(NetworkState.Error)
+                    }
+                }
+            }
+        }
+    }
+//    fun getClientListByBusinessUserId() {
+//        viewModelScope.launch {
+//            when (val response = repository.getClientLisByBusinessUserId()) {
+//                is NetworkState.Success -> {
+//                    clientListLiveData.postValue(response.data!!)
+//                }
+//
+//                is NetworkState.Error -> {
+//                    if (response.response.code() == 401) {
+////                        estimateList.postValue(NetworkState.Error())
+//                    } else {
+////                        estimateList.postValue(NetworkState.Error)
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

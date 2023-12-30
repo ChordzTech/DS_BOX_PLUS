@@ -213,9 +213,9 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     @Override
     public void onEstimatesSelectedI(DataItem dataItem) {
         Intent intent = new Intent(getActivity(), BoxEstimatesDetailsActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelable("ESTIMATES", dataItem);
-//        intent.putExtra("ESTIMATES_BUNDLE", bundle);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("ESTIMATES", dataItem);
+        intent.putExtra("ESTIMATES_BUNDLE", bundle);
         startActivity(intent);
     }
 

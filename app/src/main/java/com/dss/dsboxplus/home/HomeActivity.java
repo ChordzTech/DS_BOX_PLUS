@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private ClientFragment clientFragment;
-    private String base64Code=new String();
+    private String base64Code = new String();
     private ProfileFragment profileFragment;
     private ActivityHomeScreenBinding homeScreenBinding;
     private HomeViewModel homeViewModel;
@@ -53,30 +53,47 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
     }
 
     private void fetchData() {
-        homeViewModel.getEstimateList();
+//        homeViewModel.getEstimateList();
         homeViewModel.getClientList();
         homeViewModel.getAppConfig();
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
+        homeViewModel.getEstimateByBusinessClientId();
+//        homeViewModel.getClientListByBusinessUserId();
+
     }
 
     private void initObservables() {
+//        homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
+//            if (!estimateListResponse.getData().isEmpty()) {
+//                estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
+//                estimatesFragment.setEstimateList(estimateList);
+//                ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
+//            }
+//            Log.e("TAG", "estimateListResponse: " + estimateListResponse.getData().size());
+//        });
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
                 estimatesFragment.setEstimateList(estimateList);
                 ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
             }
-            Log.e("TAG", "estimateListResponse: " + estimateListResponse.getData().size());
         });
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
             if (!clientListResponse.getData().isEmpty()) {
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
                 clientFragment.setClientList(clientsList);
-
+                ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
             }
             Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
         });
+//        homeViewModel.getClientListLiveData().observe(this,clientListResponse -> {
+//            if (!clientListResponse.getData().isEmpty()){
+//                clientsList=(ArrayList<Client>) clientListResponse.getData();
+//                clientFragment.setClientList(clientsList);
+//                ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
+//            }
+//        });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {
             if (!appConfigResponse.getData().isEmpty()) {
                 appConfigList = (ArrayList<AppConfigDataItems>) appConfigResponse.getData();
@@ -94,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
         });
         homeViewModel.getQrCodeLiveData().observe(this, qrCodeResponse -> {
             if (!qrCodeResponse.getBase64Code().isEmpty()) {
-                base64Code =qrCodeResponse.getBase64Code();
+                base64Code = qrCodeResponse.getBase64Code();
                 ConfigDataProvider.INSTANCE.setQrCodeBase64(base64Code);
             }
         });

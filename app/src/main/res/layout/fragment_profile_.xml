@@ -46,8 +46,6 @@
                         android:id="@+id/fabAddImage"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginEnd="@dimen/margin_small"
-                        android:layout_marginBottom="@dimen/margin_small"
                         android:backgroundTint="@color/transparent"
                         android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="@+id/ivProfileInProfileFragment"

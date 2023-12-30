@@ -94,6 +94,11 @@ public class SubscriptionActivity extends AppCompatActivity {
     }
 
     private Bitmap decodeBase64ToBitmap(String base64Code) {
+        String prefix = "data:image/png;base64,";
+        if (base64Code.startsWith(prefix)) {
+            // Remove the prefix before decoding
+            base64Code = base64Code.substring(prefix.length());
+        }
         byte[] decodedBytes = android.util.Base64.decode(base64Code, android.util.Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }

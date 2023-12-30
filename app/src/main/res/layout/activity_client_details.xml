@@ -54,6 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvClientDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietClientNameInClientdetails"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilCustomerName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietClientContactNoInClientdetails"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,6 +94,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietClientAddressInClientdetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />

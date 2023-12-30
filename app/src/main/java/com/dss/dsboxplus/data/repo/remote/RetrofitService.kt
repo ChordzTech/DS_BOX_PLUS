@@ -40,6 +40,11 @@ interface RetrofitService {
     suspend fun getSubscriptionDetails(): Response<SubscriptionDetailsResponse>
     @GET("UploadCode/")
     suspend fun getQrCode():Response<QrCodeResponse>
+    @GET("GetEstimatesByUB/1000002/100000201/")
+    suspend fun getEstimateByBusinessIdUserId():Response<EstimateListResponse>
+
+    @GET("")
+    suspend fun getClientListBuBusinessIdUserId():Response<ClientListResponse>
 
     companion object {
         var retrofitService: RetrofitService? = null

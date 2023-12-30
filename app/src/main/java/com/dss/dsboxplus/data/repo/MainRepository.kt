@@ -10,19 +10,19 @@ import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService
 
 class MainRepository constructor(private val retrofitService: RetrofitService) {
-    suspend fun getEstimateList(): NetworkState<EstimateListResponse> {
-        val response = retrofitService.getEstimateList()
-        return if (response.isSuccessful) {
-            val responseBody = response.body()
-            if (responseBody != null) {
-                NetworkState.Success(responseBody)
-            } else {
-                NetworkState.Error(response)
-            }
-        } else {
-            NetworkState.Error(response)
-        }
-    }
+//    suspend fun getEstimateList(): NetworkState<EstimateListResponse> {
+//        val response = retrofitService.getEstimateList()
+//        return if (response.isSuccessful) {
+//            val responseBody = response.body()
+//            if (responseBody != null) {
+//                NetworkState.Success(responseBody)
+//            } else {
+//                NetworkState.Error(response)
+//            }
+//        } else {
+//            NetworkState.Error(response)
+//        }
+//    }
 
     suspend fun getClientList(): NetworkState<ClientListResponse> {
         val response = retrofitService.getClientList()
@@ -92,4 +92,30 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
+    suspend fun getEstimateListByBusinessUserID(): NetworkState<EstimateListResponse> {
+        val response = retrofitService.getEstimateByBusinessIdUserId()
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+//    suspend fun getClientLisByBusinessUserId():NetworkState<ClientListResponse>{
+//        val response = retrofitService.getClientListBuBusinessIdUserId()
+//        return if (response.isSuccessful) {
+//            val responseBody = response.body()
+//            if (responseBody != null) {
+//                NetworkState.Success(responseBody)
+//            } else {
+//                NetworkState.Error(response)
+//            }
+//        } else {
+//            NetworkState.Error(response)
+//        }
+//    }
 }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -14,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.DataItem;
+import com.dss.dsboxplus.data.repo.response.EstimateListResponse;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
-import com.dss.dsboxplus.fragments.EstimatesFragment;
-import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -40,22 +39,37 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
     MaterialButton btCreatePDF;
-    EstimatesDataModel estimatesDataModel;
-    EstimatesFragment estimatesFragment;
     ActivityQuotationInBoxEstimateDetailsBinding activityQuotationInBoxEstimateDetailsBinding;
-    private ArrayList<EstimatesDataModel> selectedEstimatesList;
+
+    private DataItem dataItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityQuotationInBoxEstimateDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_quotation_in_box_estimate_details);
+        initView();
+//
+
+    }
+
+    private void initView() {
 //        if (getIntent().getExtras().getParcelable("EstimateDetails_Bundle") != null) {
-//            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
-//        }
+////            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
+////        }
+        Intent intent = getIntent();
+        if (intent.hasExtra("EstimateDetails_Bundle")) {
+            // Retrieve the bundle from the intent
+            Bundle bundle = intent.getBundleExtra("EstimateDetails_Bundle");
+            if (bundle != null) {
+                // Retrieve the DataItem object from the bundle
+                dataItem=bundle.getParcelable("EstimateDetails");
+            }
+        }
+
+
         btCreatePDF = findViewById(R.id.btCreateQuotationPDF);
         btCreatePDF.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,10 +84,13 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
     }
 
     private void createDsPdf() throws FileNotFoundException {
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        String pdfFileName = "Quotation_" + timestamp + ".pdf"; // Unique file name with timestamp
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "Quotation.pdf");
         OutputStream outputStream = new FileOutputStream(file);
         PdfWriter writer = new PdfWriter(file);
+
         PdfDocument pdfDocument = new PdfDocument(writer);
         Document document = new Document(pdfDocument);
         DeviceRgb gray = new DeviceRgb(128, 128, 128);
@@ -141,7 +158,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         //table2-02
         table1.addCell(new Cell().add(new Paragraph("1")));
         table1.addCell(new Cell().add(new Paragraph("3 Ply Box,DemoBox\n" +
-                "Box outer Dimension-300mmX250mmX250mm\n" +
+//                dataItem.getLengthMmField() + "X" + dataItem.getWidthMmField() + "X" + dataItem.getHeightMmField() +
                 "Paper Specification as below\n" +
                 "1.Top Paper 14/200\n" +
                 "2.Flute Paper 12/120\n" +
@@ -180,6 +197,7 @@ public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
         document.add(new Paragraph("Auto generated copy,no signature requried").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
         document.add(image3);
         document.close();
-        Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "PDF Created: " + pdfFileName, Toast.LENGTH_SHORT).show();
     }
 }

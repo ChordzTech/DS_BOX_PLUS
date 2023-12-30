@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityProductionInBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.itextpdf.io.image.ImageData;
@@ -37,12 +38,22 @@ import java.time.format.DateTimeFormatter;
 
 public class ProductionInBoxEstimatesDetailsActivity extends AppCompatActivity {
     EstimatesDataModel estimatesDataModel;
+    private DataItem dataItem;
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         productionInBoxEstimatesDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_production_in_box_estimates_details);
         super.onCreate(savedInstanceState);
+        initView();
+
+
+    }
+
+    private void initView() {
+
+
+
         productionInBoxEstimatesDetailsBinding.btCloseInProduction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,10 +71,10 @@ public class ProductionInBoxEstimatesDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void createProductionDsPdf() throws FileNotFoundException {
+
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "Production.pdf");
         OutputStream outputStream = new FileOutputStream(file);

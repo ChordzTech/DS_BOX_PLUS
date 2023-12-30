@@ -203,6 +203,7 @@
                             android:text="@string/top" />
 
                         <TextView
+                            android:id="@+id/tvTopBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -212,6 +213,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvTopGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -221,6 +223,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvTopRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -260,6 +263,7 @@
                             android:text="@string/flute_one" />
 
                         <TextView
+                            android:id="@+id/tvFluteOnebf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -269,6 +273,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvGsmFluteOne"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -278,6 +283,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvRateFluteOne"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -287,6 +293,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFFFluteOne"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -317,6 +324,7 @@
                             android:text="@string/middle_one" />
 
                         <TextView
+                            android:id="@+id/tvMiddleOneBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -326,6 +334,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvMiddleOneGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -335,6 +344,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvMiddleOneRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -376,6 +386,7 @@
                             android:text="@string/flute_two" />
 
                         <TextView
+                            android:id="@+id/tvFluteTwoBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -385,6 +396,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFluteTwoGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -394,6 +406,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFluteTwoRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -403,6 +416,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFluteTwoFf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -435,6 +449,7 @@
                             android:text="@string/middle_two" />
 
                         <TextView
+                            android:id="@+id/tvMiddleTwoBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -444,6 +459,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvMiddleTwoGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -453,6 +469,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvMiddleTwoRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -493,6 +510,7 @@
                             android:text="@string/flute_three" />
 
                         <TextView
+                            android:id="@+id/tvFluteThreeBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -502,6 +520,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFluteThreeGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -511,6 +530,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFluteThreeRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -520,6 +540,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvFluteThreeFf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -551,6 +572,7 @@
                             android:text="@string/bottom" />
 
                         <TextView
+                            android:id="@+id/tvBottomBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -560,6 +582,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvBottomGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -569,6 +592,7 @@
                             android:text="@string/zero" />
 
                         <TextView
+                            android:id="@+id/tvBottomRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -627,6 +651,8 @@
                             android:text="@string/no_of_boxes_ups" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvnoOfBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -652,6 +678,8 @@
                             android:text="@string/total_gsm" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvtotalGsm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -677,6 +705,8 @@
                             android:text="@string/waste" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvWaste"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -723,6 +753,8 @@
                             android:text="@string/conv_kg" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvConvKg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -747,6 +779,8 @@
                             android:text="@string/conv_cost" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvConvCost"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -771,6 +805,8 @@
                             android:text="@string/paper_cost" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvPaperCost"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -816,6 +852,8 @@
                             android:text="@string/overhead" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvOverhead"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -840,6 +878,8 @@
                             android:text="@string/box_mfg_cost" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvBoxMfg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -864,6 +904,8 @@
                             android:text="@string/profit" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvProfit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -910,6 +952,8 @@
                             android:text="@string/box_price" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvBoxpriceInEstimateDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -934,6 +978,8 @@
                             android:text="@string/tax" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvTax"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -958,6 +1004,8 @@
                             android:text="@string/price_Incl" />
 
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvPriceWithtax"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

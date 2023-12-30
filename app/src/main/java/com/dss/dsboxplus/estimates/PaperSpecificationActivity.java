@@ -26,8 +26,6 @@ public class PaperSpecificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         paperSpecificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_paper_specification);
         initView();
-
-
     }
 
     private void initView() {
