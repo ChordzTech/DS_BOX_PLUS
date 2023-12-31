@@ -89,25 +89,132 @@
                     android:layout_height="wrap_content">
 
 
-                    <ImageView
-                        android:id="@+id/ivBoxImage"
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
-                        android:background="@color/transparent"
-                        android:src="@drawable/boximage"
+                    <FrameLayout
+                        android:id="@+id/flImage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/ivrollImage"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:background="@color/transparent"
-                        android:src="@drawable/rollimgae"
+
+                        <ImageView
+                            android:id="@+id/ivBoxImage"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/transparent"
+                            android:src="@drawable/box_with_dimension"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvLength"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|start"
+                            android:layout_marginStart="85dp"
+                            android:layout_marginTop="40dp"
+                            android:rotation="330"
+                            android:text="Text1" />
+
+                        <!-- Second TextView centered horizontally -->
+                        <TextView
+                            android:id="@+id/tvWidth"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="80dp"
+                            android:layout_marginTop="25dp"
+                            android:rotation="30"
+                            android:text="Text2" />
+
+                        <!-- Third TextView aligned with bottom right -->
+                        <TextView
+                            android:id="@+id/tvHeight"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginEnd="20dp"
+                            android:rotation="90"
+                            android:text="Text3" />
+
+                        <TextView
+                            android:id="@+id/tvTotalWeight"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:layout_marginBottom="60dp"
+                            android:rotation="330"
+                            android:text="Text4" />
+
+                        <TextView
+                            android:id="@+id/tvBS"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_medium"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:rotation="330"
+                            android:text="Text5" />
+
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
+                        app:layout_constraintTop_toBottomOf="@+id/flImage1">
+
+                        <ImageView
+                            android:id="@+id/ivrollImage"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/rollimgae"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
+
+                        <TextView
+                            android:id="@+id/tvDecalSizeForBox"
+                            android:layout_marginStart="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_medium"
+                            android:rotation="22"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Text1"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv"
+                            android:rotation="25"
+                            android:layout_marginBottom="@dimen/margin_large"
+                            android:layout_gravity="center"
+                            android:text="Text2"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="Text3"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="Text4"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </FrameLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -651,8 +758,8 @@
                             android:text="@string/no_of_boxes_ups" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvnoOfBox"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -678,8 +785,8 @@
                             android:text="@string/total_gsm" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvtotalGsm"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -705,8 +812,8 @@
                             android:text="@string/waste" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvWaste"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -753,8 +860,8 @@
                             android:text="@string/conv_kg" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvConvKg"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -779,8 +886,8 @@
                             android:text="@string/conv_cost" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvConvCost"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -805,8 +912,8 @@
                             android:text="@string/paper_cost" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvPaperCost"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -852,8 +959,8 @@
                             android:text="@string/overhead" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvOverhead"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -878,8 +985,8 @@
                             android:text="@string/box_mfg_cost" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvBoxMfg"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -904,8 +1011,8 @@
                             android:text="@string/profit" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvProfit"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -952,8 +1059,8 @@
                             android:text="@string/box_price" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvBoxpriceInEstimateDetails"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -978,8 +1085,8 @@
                             android:text="@string/tax" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvTax"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -1004,8 +1111,8 @@
                             android:text="@string/price_Incl" />
 
                         <TextView
-                            style="@style/DSTextMedium"
                             android:id="@+id/tvPriceWithtax"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

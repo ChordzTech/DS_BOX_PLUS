@@ -34,6 +34,17 @@ public class BoxEstimatesDetailsActivity extends AppCompatActivity {
                 // Retrieve the DataItem object from the bundle
                 DataItem dataItem = bundle.getParcelable("ESTIMATES");
                 if (dataItem != null) {
+                    //Dimension For ImageOne
+                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField()+"mm"));
+                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthMmField()+"mm"));
+                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightMmField()+"mm"));
+                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf(dataItem.getTotalweight()+"gm"));
+                    boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
+                    //Dimension For ImageTwo
+                    boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize()+"inch"));
+
+
+                    //Dimensions for ply
                     boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf(dataItem.getTopbf()));
                     boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf(dataItem.getTopgsm()));
                     boxEstimatesDetailsBinding.tvTopRate.setText(String.valueOf(dataItem.getToprate()));

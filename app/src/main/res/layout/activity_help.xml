@@ -31,69 +31,81 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/llHelp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHelp">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/llHelp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/margin_medium"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tvHelp">-->
 
 
-                <ImageView
-                    android:id="@+id/ivHelpLogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_help_center_24" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivHelpLogo"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/baseline_help_center_24" />-->
 
-                <TextView
-                    android:id="@+id/tvForHelp"
-                    style="@style/DSTextMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/for_help_contact" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tvForHelp"-->
+<!--                    style="@style/DSTextMedium"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/for_help_contact" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
-            <TextView
-                android:id="@+id/tvPhoneNumberInHelp"
-                style="@style/DSTextLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:text="@string/help_contact_no"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llHelp" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvPhoneNumberInHelp"-->
+<!--                style="@style/DSTextLarge"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/margin_medium"-->
+<!--                android:text="@string/help_contact_no"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/llHelp" />-->
 
-            <ProgressBar
-                android:id="@+id/loadingSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/wvYT"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wvYT" />
+<!--            <ProgressBar-->
+<!--                android:id="@+id/loadingSpinner"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/wvYT"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/wvYT" />-->
 
-            <WebView
-                android:id="@+id/wvYT"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="@dimen/margin_medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPhoneNumberInHelp" />
+<!--            <WebView-->
+<!--                android:id="@+id/wvYT"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_marginTop="@dimen/margin_medium"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvPhoneNumberInHelp" />-->
 
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:visibility="invisible"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/wvYT">-->
+
+<!--            </androidx.cardview.widget.CardView>-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvHelp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="invisible"
+                android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wvYT">
-
+                app:layout_constraintTop_toBottomOf="@id/tvHelp">
+                <WebView
+                    android:id="@+id/vHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

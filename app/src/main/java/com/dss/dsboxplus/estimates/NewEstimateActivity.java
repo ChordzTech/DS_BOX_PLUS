@@ -46,7 +46,7 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
     private void initView() {
         newEstimateBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_estimate);
-        tietnumberOfBox = findViewById(R.id.tietnumberOfBox);
+        tietnumberOfBox = findViewById(R.id.tietNumberOfBox);
         tilHeight = findViewById(R.id.tilHeight);
         tilWidth = findViewById(R.id.tilWidth);
         tilLength = findViewById(R.id.tilLength);
@@ -208,6 +208,33 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
             public void afterTextChanged(Editable s) {
 
 
+            }
+        })  ;
+
+        newEstimateBinding.tietNumberOfBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String noOfBox=s.toString();
+                if (noOfBox.isEmpty()){
+                    noOfBox="1";
+                }
+                try {
+                    int numberOfBoxes = Integer.parseInt(noOfBox);
+
+
+                }catch (NumberFormatException e){
+
+                }
             }
         });
         newEstimateBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

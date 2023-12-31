@@ -7,36 +7,40 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.databinding.ActivityHelpBinding;
+
+import java.util.ArrayList;
 
 
 public class Help extends AppCompatActivity {
-    WebView wvyt;
-    private ProgressBar loadingSpinner;
-
+    ActivityHelpBinding helpBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        helpBinding= DataBindingUtil. setContentView(this,R.layout.activity_help);
         initView();
 
     }
 
     private void initView() {
-        loadingSpinner = findViewById(R.id.loadingSpinner);
-        wvyt = findViewById(R.id.wvYT);
-        String ytVideo = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/rTqrdLBdIwA?si=rRkHygwNqSCcp9x9\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>";
-        wvyt.loadData(ytVideo, "text/html", "utf-8");
-        wvyt.getSettings().setJavaScriptEnabled(true);
-        wvyt.setWebChromeClient(new WebChromeClient());
-        wvyt.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                // Hide the loading spinner when the page is finished loading
-                loadingSpinner.setVisibility(android.view.View.GONE);
-            }
-        });
+//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+//        if (appConfigResponse.getData() != null) {
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                int configId = appConfigDataItem.getConfigid();
+//                String configName = appConfigDataItem.getConfigname();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId == 8) {
+//
+//                }
+//            }
+//
+//        }
     }
-
 }
