@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
@@ -25,7 +26,7 @@ import java.util.Locale;
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
     private ArrayList<EstimatesDataModel> selectedItems;
-    private ArrayList<DataItem> estimatesList=new ArrayList<>();
+    private ArrayList<DataItem> estimatesList = new ArrayList<>();
     private ArrayList<EstimatesDataModel> filteredList;
     private OnEstimatesSelectedI onEstimatesSelectedListner;
     private boolean estimateSelection;
@@ -44,30 +45,34 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull EstimatesViewHolder holder, int position) {
+
         DataItem dataItem = estimatesList.get(position);
         holder.tvBoxName.setText(dataItem.getBoxname());
         holder.tvClientName.setText(String.valueOf(dataItem.getClientid()));
         holder.tvBoxDimension.setText(dataItem.getLengthMmField() + "x" + dataItem.getWidthMmField() + "x" + dataItem.getHeightMmField());
-        String boxCost=String.format("%.2f",dataItem.getBoxprice());
-        String finalBox="₹ "+boxCost;
+        String boxCost = String.format("%.2f", dataItem.getBoxprice());
+        String finalBox = "₹ " + boxCost;
         holder.tvCost.setText(finalBox);
-        String dateString=dataItem.getEstimatedate();
-        String formattedDate=formatDateFromApi(dateString);
+        String dateString = dataItem.getEstimatedate();
+        String formattedDate = formatDateFromApi(dateString);
         holder.tvEstimateDate.setText(formattedDate);
-
+        holder.cvDummyView.setVisibility(View.GONE);
         //long click
         if (!estimateSelection) {
             holder.root.setBackgroundColor(Color.WHITE);
         }
+        if (position == getItemCount() - 1) {
+            holder.cvDummyView.setVisibility(View.VISIBLE);
+        }
     }
 
     private String formatDateFromApi(String inputDate) {
-        try{
+        try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            Date date=inputFormat.parse(inputDate);
+            Date date = inputFormat.parse(inputDate);
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy", Locale.US);
             return outputFormat.format(date);
-        }catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
             return inputDate; // Return the original date string if parsing fails
         }
@@ -98,6 +103,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
         private CardView root;
+        private ConstraintLayout cvDummyView;
         private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost, tvEstimateDate;
 
         public EstimatesViewHolder(@NonNull View itemView) {
@@ -109,6 +115,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             tvCost = itemView.findViewById(R.id.tvCost);
             tvEstimateDate = itemView.findViewById(R.id.tvEstimateDate);
             root = itemView.findViewById(R.id.root);
+            cvDummyView = itemView.findViewById(R.id.cvDummyView);
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -134,7 +141,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 //                        }
 //                        onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
 //                    } else {
-                        onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
+                    onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
 //                    }
 
                 }
