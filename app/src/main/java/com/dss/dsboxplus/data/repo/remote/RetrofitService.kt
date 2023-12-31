@@ -6,6 +6,7 @@ import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.Interceptor.*
@@ -16,6 +17,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 interface RetrofitService {
@@ -38,13 +40,24 @@ interface RetrofitService {
 
     @GET("SubscriptionsDetails/")
     suspend fun getSubscriptionDetails(): Response<SubscriptionDetailsResponse>
+
     @GET("UploadCode/")
-    suspend fun getQrCode():Response<QrCodeResponse>
-    @GET("GetEstimatesByUB/1000002/100000201/")
-    suspend fun getEstimateByBusinessIdUserId():Response<EstimateListResponse>
+    suspend fun getQrCode(): Response<QrCodeResponse>
+
+    @GET("GetEstimatesByUB/{businessid}/{userid}/")
+    suspend fun getEstimateByBusinessIdUserId(
+        @Path(value = "businessid") businessId: Long,
+        @Path(value = "userid") userId: Long
+    ): Response<EstimateListResponse>
 
     @GET("")
-    suspend fun getClientListBuBusinessIdUserId():Response<ClientListResponse>
+    suspend fun getClientListBuBusinessIdUserId(): Response<ClientListResponse>
+
+    @GET("GetUserDetails/{mobileno}/{deviceinfo}")
+    suspend fun getUserDetails(
+        @Path(value = "mobileno") mobileno: String,
+        @Path(value = "deviceinfo") deviceinfo: String
+    ): Response<UserDetailsResponse>
 
     companion object {
         var retrofitService: RetrofitService? = null

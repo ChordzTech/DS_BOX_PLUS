@@ -3,18 +3,20 @@ package com.dss.dsboxplus.viewmodels.homeviewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import kotlinx.coroutines.launch
 
-class HomeViewModel(val repository: MainRepository) : ViewModel() {
+class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 
-//    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
+    //    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
 //        get() = field
     var clientListLiveData = MutableLiveData<ClientListResponse>()
         get() = field
@@ -22,10 +24,10 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
         get() = field
     var subscriptionLiveData = MutableLiveData<SubscriptionDetailsResponse>()
         get() = field
-    var qrCodeLiveData=MutableLiveData<QrCodeResponse>()
-        get()=field
-    var estimateListLiveData=MutableLiveData<EstimateListResponse>()
-        get()=field
+    var qrCodeLiveData = MutableLiveData<QrCodeResponse>()
+        get() = field
+    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
+        get() = field
 //    var clientListLiveData=MutableLiveData<ClientListResponse>()
 //        get()=field
 
@@ -100,6 +102,7 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
             }
         }
     }
+
     fun getQrCode() {
         viewModelScope.launch {
             when (val response = repository.getQrcode()) {
@@ -117,14 +120,21 @@ class HomeViewModel(val repository: MainRepository) : ViewModel() {
             }
         }
     }
-    fun getEstimateByBusinessClientId(){
+
+    fun getEstimateByBusinessIdUserId() {
+        showLoader()
+        val businessId =
+            AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
+        val userId = AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID)
         viewModelScope.launch {
-            when (val response = repository.getEstimateListByBusinessUserID()) {
+            when (val response = repository.getEstimateListByBusinessUserID(businessId, userId)) {
                 is NetworkState.Success -> {
+                    hideLoader()
                     estimateListLiveData.postValue(response.data!!)
                 }
 
                 is NetworkState.Error -> {
+                    hideLoader()
                     if (response.response.code() == 401) {
 //                        estimateList.postValue(NetworkState.Error())
                     } else {

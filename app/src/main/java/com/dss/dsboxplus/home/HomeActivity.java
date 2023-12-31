@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeActivityCall
         homeViewModel.getAppConfig();
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
-        homeViewModel.getEstimateByBusinessClientId();
+        homeViewModel.getEstimateByBusinessIdUserId();
 //        homeViewModel.getClientListByBusinessUserId();
 
     }
