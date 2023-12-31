@@ -16,6 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.databinding.ActivityLoginScreenBinding;
 import com.dss.dsboxplus.home.HomeActivity;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -71,6 +72,8 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                         pbSendingOtp.setVisibility(View.GONE);
+                                        AppPreferences.INSTANCE.saveLongToSharedPreferences(LoginActivity.this,
+                                                AppPreferences.MOBILE_NUMBER, Long.parseLong(etPhoneNumber.getText().toString()));
                                         btNext.setVisibility(View.VISIBLE);
                                     }
 

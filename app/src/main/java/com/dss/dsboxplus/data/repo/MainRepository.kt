@@ -6,23 +6,28 @@ import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService
 
 class MainRepository constructor(private val retrofitService: RetrofitService) {
-//    suspend fun getEstimateList(): NetworkState<EstimateListResponse> {
-//        val response = retrofitService.getEstimateList()
-//        return if (response.isSuccessful) {
-//            val responseBody = response.body()
-//            if (responseBody != null) {
-//                NetworkState.Success(responseBody)
-//            } else {
-//                NetworkState.Error(response)
-//            }
-//        } else {
-//            NetworkState.Error(response)
-//        }
-//    }
+
+    suspend fun getUserDetails(
+        mobileno: String,
+        deviceinfo: String
+    ): NetworkState<UserDetailsResponse> {
+        val response = retrofitService.getUserDetails(mobileno, deviceinfo)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
 
     suspend fun getClientList(): NetworkState<ClientListResponse> {
         val response = retrofitService.getClientList()
@@ -79,7 +84,8 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
-    suspend fun getQrcode():NetworkState<QrCodeResponse>{
+
+    suspend fun getQrcode(): NetworkState<QrCodeResponse> {
         val response = retrofitService.getQrCode()
         return if (response.isSuccessful) {
             val responseBody = response.body()
@@ -92,8 +98,9 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
-    suspend fun getEstimateListByBusinessUserID(): NetworkState<EstimateListResponse> {
-        val response = retrofitService.getEstimateByBusinessIdUserId()
+
+    suspend fun getEstimateListByBusinessUserID(businessId: Long, userId: Long): NetworkState<EstimateListResponse> {
+        val response = retrofitService.getEstimateByBusinessIdUserId(businessId,userId)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -105,17 +112,5 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
-//    suspend fun getClientLisByBusinessUserId():NetworkState<ClientListResponse>{
-//        val response = retrofitService.getClientListBuBusinessIdUserId()
-//        return if (response.isSuccessful) {
-//            val responseBody = response.body()
-//            if (responseBody != null) {
-//                NetworkState.Success(responseBody)
-//            } else {
-//                NetworkState.Error(response)
-//            }
-//        } else {
-//            NetworkState.Error(response)
-//        }
-//    }
+
 }
