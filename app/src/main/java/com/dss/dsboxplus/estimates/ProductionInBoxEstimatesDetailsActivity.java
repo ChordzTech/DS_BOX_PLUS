@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityProductionInBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.model.EstimatesDataModel;
@@ -36,7 +37,7 @@ import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class ProductionInBoxEstimatesDetailsActivity extends AppCompatActivity {
+public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
     EstimatesDataModel estimatesDataModel;
     private DataItem dataItem;
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;

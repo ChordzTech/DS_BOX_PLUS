@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivityLoginScreenBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -24,7 +25,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     ActivityLoginScreenBinding loginScreenBinding;
     TextView dsBox;
     EditText etPhoneNumber;

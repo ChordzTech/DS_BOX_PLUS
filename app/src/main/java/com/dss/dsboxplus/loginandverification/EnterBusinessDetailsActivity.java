@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivityEnterBusinessDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -19,7 +20,7 @@ import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.button.MaterialButton;
 
-public class EnterBusinessDetailsActivity extends AppCompatActivity {
+public class EnterBusinessDetailsActivity extends BaseActivity {
     ActivityEnterBusinessDetailsBinding businessDetailsBinding;
     MaterialButton btSubmitInEnterBusinessDetails;
     private EnterBusinessDetailsActivityViewModel viewModel;

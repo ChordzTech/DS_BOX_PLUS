@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -15,7 +16,7 @@ import com.dss.dsboxplus.databinding.ActivityDefaultRateSettingsBinding;
 import java.util.ArrayList;
 
 
-public class DefaultRateSettings extends AppCompatActivity {
+public class DefaultRateSettings extends BaseActivity {
 
     ActivityDefaultRateSettingsBinding defaultRateSettingsBinding;
 

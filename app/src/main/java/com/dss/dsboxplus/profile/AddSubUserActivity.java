@@ -8,9 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivityAddSubUserBinding;
 
-public class AddSubUserActivity extends AppCompatActivity {
+public class AddSubUserActivity extends BaseActivity {
     ActivityAddSubUserBinding addSubUserBinding;
 
     @Override

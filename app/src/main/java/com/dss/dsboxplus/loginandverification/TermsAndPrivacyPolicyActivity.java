@@ -8,8 +8,9 @@ import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 
-public class TermsAndPrivacyPolicyActivity extends AppCompatActivity {
+public class TermsAndPrivacyPolicyActivity extends BaseActivity {
     WebView wvTermsAndPrivacy;
 
     @Override

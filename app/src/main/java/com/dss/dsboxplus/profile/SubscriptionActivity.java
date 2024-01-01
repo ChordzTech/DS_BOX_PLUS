@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -20,7 +21,7 @@ import com.dss.dsboxplus.databinding.ActivitySubscriptionBinding;
 
 import java.util.ArrayList;
 
-public class SubscriptionActivity extends AppCompatActivity {
+public class SubscriptionActivity extends BaseActivity {
     TextView tvCopyright;
     ActivitySubscriptionBinding subscriptionBinding;
     String url = "https://dishaswarajsoft.in/";
