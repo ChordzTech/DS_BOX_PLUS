@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -27,7 +27,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
-public class NewEstimateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class NewEstimateActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     ActivityNewEstimateBinding newEstimateBinding;
     Spinner spinner, plySpinner;
     TextInputEditText tietnumberOfBox;
@@ -36,6 +36,7 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
     String[] dimensions = {"mm", "cm", "inch"};
     String[] noOfPly = {"1Ply", "2Ply", "3Ply", "5Ply", "7Ply", "2Ply(KG)"};
     Double length = 0.0, width = 0.0, height = 0.0;
+    Double lengthMm = 0.0, widthMm = 0.0, heightMm = 0.0;
     TextView tvMargin;
 
     @Override
@@ -66,6 +67,8 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
         adapter1.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         plySpinner.setAdapter(adapter1);
+        int defaultPlyPosition = 2; // Index of "3Ply" in the noOfPly array
+        plySpinner.setSelection(defaultPlyPosition);
 
         // Number of box
         tietnumberOfBox.setText("1");
@@ -94,12 +97,16 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
                 boolean check = validateInfo(enterBoxName, enterLength, enterWidth, enterHeight);
                 if (check == true) {
                     String noOfPly = newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
+                    String updatedCuttingLength = newEstimateBinding.tietCuttingLength.getText().toString();
+                    String updatedDecalSize = newEstimateBinding.tietDecalSize.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), PaperSpecificationActivity.class);
-                    intent.putExtra("cuttingLength", newEstimateBinding.tietCuttingLength.getText().toString());
-                    intent.putExtra("decalSize", newEstimateBinding.tietDecalSize.getText().toString());
+                    intent.putExtra("cuttingLength", updatedCuttingLength);
+                    intent.putExtra("decalSize", updatedDecalSize);
+                    intent.putExtra("noOfBox", newEstimateBinding.tietNumberOfBox.getText().toString());
                     intent.putExtra("noOfPly", noOfPly);
                     startActivity(intent);
                 }
+
             }
         });
         newEstimateBinding.tietLength.addTextChangedListener(new TextWatcher() {
@@ -113,15 +120,16 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 //                Log.e("TAG", "onTextChanged: " + s);
                 if (!s.toString().isEmpty()) {
                     length = Double.parseDouble(s.toString());
+                    convertValue();
                     String s1 = tvMargin.getText().toString();
                     String s2 = newEstimateBinding.tvDecalMarginSize.getText().toString();
                     Double d1 = Double.parseDouble(s1);
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
-                        double v = getInstance().cuttingLength(length, width, height, d1);
+                        double v = getInstance().cuttingLength(lengthMm, widthMm, heightMm, d1);
                         double resForCuttingTiet = getInstance().cuttingLengthInTiet(v);
                         String resOfCuttingTiet = String.format("%.2f", resForCuttingTiet);
-                        double decalSize = getInstance().decalSize(width, height, d2);
+                        double decalSize = getInstance().decalSize(widthMm, heightMm, d2);
                         double resForDecalTiet = getInstance().decalSizeInTiet(decalSize);
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
                         newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
@@ -148,15 +156,16 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().isEmpty()) {
                     width = Double.parseDouble(s.toString());
+                    convertValue();
                     String s1 = tvMargin.getText().toString();
                     String s2 = newEstimateBinding.tvDecalMarginSize.getText().toString();
                     Double d1 = Double.parseDouble(s1);
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
-                        double v = getInstance().cuttingLength(length, width, height, d1);
+                        double v = getInstance().cuttingLength(lengthMm, widthMm, heightMm, d1);
                         double resForCuttingTiet = getInstance().cuttingLengthInTiet(v);
                         String resOfCuttingTiet = String.format("%.2f", resForCuttingTiet);
-                        double decalSize = getInstance().decalSize(width, height, d2);
+                        double decalSize = getInstance().decalSize(widthMm, heightMm, d2);
                         double resForDecalTiet = getInstance().decalSizeInTiet(decalSize);
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
                         newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
@@ -185,15 +194,16 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
                 if (!s.toString().isEmpty()) {
                     height = Double.parseDouble(s.toString());
+                    convertValue();
                     String s1 = tvMargin.getText().toString();
                     String s2 = newEstimateBinding.tvDecalMarginSize.getText().toString();
                     Double d1 = Double.parseDouble(s1);
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
-                        double v = getInstance().cuttingLength(length, width, height, d1);
+                        double v = getInstance().cuttingLength(lengthMm, widthMm, heightMm, d1);
                         double resForCuttingTiet = getInstance().cuttingLengthInTiet(v);
                         String resOfCuttingTiet = String.format("%.2f", resForCuttingTiet);
-                        double decalSize = getInstance().decalSize(width, height, d2);
+                        double decalSize = getInstance().decalSize(widthMm, heightMm, d2);
                         double resForDecalTiet = getInstance().decalSizeInTiet(decalSize);
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
                         newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
@@ -207,9 +217,8 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void afterTextChanged(Editable s) {
 
-
             }
-        })  ;
+        });
 
         newEstimateBinding.tietNumberOfBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -224,65 +233,51 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
 
             @Override
             public void afterTextChanged(Editable s) {
-                String noOfBox=s.toString();
-                if (noOfBox.isEmpty()){
-                    noOfBox="1";
+                String noOfBox = s.toString();
+                if (noOfBox.isEmpty()) {
+                    noOfBox = "1";
                 }
                 try {
                     int numberOfBoxes = Integer.parseInt(noOfBox);
+                    double newDecalSize = calculateNewDecalSize(numberOfBoxes);
+                    double newDecalSizeInTiet = getInstance().decalSizeInTiet(newDecalSize);
+                    String newResOfDecalTiet = String.format("%.2f", newDecalSizeInTiet);
+                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(newDecalSize));
+                    newEstimateBinding.tietDecalSize.setText(newResOfDecalTiet);
 
-
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
 
                 }
             }
         });
-        newEstimateBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != adapter.getPosition("mm")) {
-//                    convertValue();
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+    }
 
-            }
-        });
-
-
+    private double calculateNewDecalSize(int numberOfBoxes) {
+        String decalMarginSize = newEstimateBinding.tvDecalMarginSize.getText().toString();
+        double decalMarginSizeDouble = Double.parseDouble(decalMarginSize);
+        double newResult = (width + height) * numberOfBoxes + decalMarginSizeDouble;
+        return newResult;
     }
 
     private void convertValue() {
         String selectedUnit = spinner.getSelectedItem().toString();
-        double lengthValue = Double.parseDouble(newEstimateBinding.tietLength.getText().toString());
-        double widthValue = Double.parseDouble(newEstimateBinding.tietWidth.getText().toString());
-        double heightValue = Double.parseDouble(newEstimateBinding.tietHeight.getText().toString());
 
-        double convertedValue1;
-        double convertedValue2;
-        double convertedValue3;
         switch (selectedUnit) {
             case "mm":
-                convertedValue1 = lengthValue;
-                convertedValue2 = widthValue;
-                convertedValue3 = heightValue;
+                lengthMm = length;
+                widthMm = width;
+                heightMm = height;
                 break;
             case "cm":
-                convertedValue1 = lengthValue * 10;
-                convertedValue2 = widthValue * 10;
-                convertedValue3 = heightValue * 10;
+                lengthMm = length * 10;
+                widthMm = width * 10;
+                heightMm = height * 10;
                 break;
             case "inch":
-                convertedValue1 = lengthValue * 2.54 * 10;
-                convertedValue2 = widthValue * 2.54 * 10;
-                convertedValue3 = heightValue * 2.54 * 10;
-                break;
-            default:
-                convertedValue1 = lengthValue;
-                convertedValue2 = widthValue;
-                convertedValue3 = heightValue;
+                lengthMm = length * 2.54 * 10;
+                widthMm = width * 2.54 * 10;
+                heightMm = height * 2.54 * 10;
                 break;
         }
     }
@@ -320,6 +315,7 @@ public class NewEstimateActivity extends AppCompatActivity implements AdapterVie
             tilLength.setHint(size);
             tilWidth.setHint(size);
         }
+
     }
 
     @Override

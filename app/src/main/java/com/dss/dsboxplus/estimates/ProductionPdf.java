@@ -8,6 +8,7 @@ import android.os.Environment;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -23,7 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-public class ProductionPdf extends AppCompatActivity {
+public class ProductionPdf extends BaseActivity {
     EstimatesDataModel estimatesDataModel;
     public void dsProductionPdf(){
         try {

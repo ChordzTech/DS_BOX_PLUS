@@ -10,8 +10,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends BaseActivity {
     WebView wvWebsite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

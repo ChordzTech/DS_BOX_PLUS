@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivityAddNewClientsBinding;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.model.ClientsDataModel;
@@ -21,7 +22,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 
 
-public class AddNewClients extends AppCompatActivity {
+public class AddNewClients extends BaseActivity {
     ClientsViewAdapter clientsViewAdapter;
     TextInputEditText tietClientName, tietContactNumber, tietAddress;
     MaterialButton btSubmitInNewClientsDetails;

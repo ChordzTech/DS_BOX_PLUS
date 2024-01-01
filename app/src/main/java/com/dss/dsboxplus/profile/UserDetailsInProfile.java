@@ -9,9 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 
 
-public class UserDetailsInProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class UserDetailsInProfile extends BaseActivity implements AdapterView.OnItemSelectedListener {
     Spinner userAccessSpinnerInUserDetails;
     String[] access = {"Full Access","No Access","Read Only"};
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.ClientListResponse;
@@ -19,7 +20,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientDetailsActivity extends AppCompatActivity {
+public class ClientDetailsActivity extends BaseActivity {
     ActivityClientDetailsBinding clientDetailsBinding;
     MaterialButton btCloseInClientDetails;
     //    private ClientsDataModel clientsDataModel;

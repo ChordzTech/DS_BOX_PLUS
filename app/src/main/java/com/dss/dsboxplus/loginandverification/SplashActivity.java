@@ -56,12 +56,13 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void initObservers() {
-        splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
-            addUserDataToPreferences(userDetailsResponse);
-            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        });
+//        splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
+//            addUserDataToPreferences(userDetailsResponse);
+//
+//        });
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
 
         splashViewModel.getLoaderLiveData().observe(this, aBoolean -> {
             if (aBoolean) {

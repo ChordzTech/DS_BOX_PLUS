@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.Client;
@@ -30,7 +31,7 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import java.util.ArrayList;
 
 
-public class HomeActivity extends AppCompatActivity implements IHomeActivityCallBack {
+public class HomeActivity extends BaseActivity implements IHomeActivityCallBack {
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();

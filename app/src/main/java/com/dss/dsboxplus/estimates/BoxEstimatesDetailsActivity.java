@@ -10,10 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
 
-public class BoxEstimatesDetailsActivity extends AppCompatActivity {
+public class BoxEstimatesDetailsActivity extends BaseActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     private DataItem dataItem;
 

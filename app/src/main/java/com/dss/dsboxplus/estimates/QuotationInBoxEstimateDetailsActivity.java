@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
@@ -40,7 +41,7 @@ import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class QuotationInBoxEstimateDetailsActivity extends AppCompatActivity {
+public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
     MaterialButton btCreatePDF;
     ActivityQuotationInBoxEstimateDetailsBinding activityQuotationInBoxEstimateDetailsBinding;
 

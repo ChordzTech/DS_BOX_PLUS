@@ -6,10 +6,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -17,7 +17,7 @@ import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 
 import java.util.ArrayList;
 
-public class PaperSpecificationActivity extends AppCompatActivity {
+public class PaperSpecificationActivity extends BaseActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
     String noOfPly = "";
 
@@ -30,8 +30,9 @@ public class PaperSpecificationActivity extends AppCompatActivity {
 
     private void initView() {
         noOfPly = this.getIntent().getStringExtra("noOfPly");
-
-
+        String noOfBox = getIntent().getStringExtra("noOfBox");
+        String cuttingL = getIntent().getStringExtra("cuttingLength");
+        String decalM = getIntent().getStringExtra("decalSize");
         switch (noOfPly) {
             case "1Ply":
                 paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
@@ -97,7 +98,7 @@ public class PaperSpecificationActivity extends AppCompatActivity {
             for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
                 int configId = appConfigDataItem.getConfigid();
                 String configValue = appConfigDataItem.getConfigvalue();
-                if (configId==4){
+                if (configId == 4) {
                     paperSpecificationBinding.ffInFlutePaper.setText(configValue);
                     paperSpecificationBinding.ffInFluteTwoPaper.setText(configValue);
                     paperSpecificationBinding.ffInFluteThreePaper.setText(configValue);
@@ -175,9 +176,7 @@ public class PaperSpecificationActivity extends AppCompatActivity {
         paperSpecificationBinding.btNextInPaperSpecfication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String noOfPly=getIntent().getStringExtra("noOfPly");
-                String cuttingL = getIntent().getStringExtra("cuttingLength");
-                String decalM = getIntent().getStringExtra("decalSize");
+                String noOfPly = getIntent().getStringExtra("noOfPly");
                 String bfInTopPaper = paperSpecificationBinding.bfInTopPaper.getText().toString();
                 String bfInFlutePaper = paperSpecificationBinding.bfInFlutePaper.getText().toString();
                 String bfInMiddleOnePaper = paperSpecificationBinding.bfInMiddleOnePaper.getText().toString();
@@ -230,7 +229,8 @@ public class PaperSpecificationActivity extends AppCompatActivity {
                 intent.putExtra("ffInFluteThreePaper", ffInFluteThreePaper);
                 intent.putExtra("cuttingLengthResult", cuttingL);
                 intent.putExtra("decalSizeResult", decalM);
-                intent.putExtra("noOfPly",noOfPly);
+                intent.putExtra("noOfPly", noOfPly);
+                intent.putExtra("noOfBox", noOfBox);
                 startActivity(intent);
             }
         });

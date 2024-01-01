@@ -9,13 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivitySuperUserSettingBinding;
 import com.dss.dsboxplus.model.AddSubNewUserDataModel;
 import com.dss.dsboxplus.recyclerview.SubUserViewAdapter;
 
 import java.util.ArrayList;
 
-public class SuperUserSetting extends AppCompatActivity {
+public class SuperUserSetting extends BaseActivity {
     private static final int REQUEST_CODE_SECOND_ACTIVITY = 1001;
     ActivitySuperUserSettingBinding superUserSettingBinding;
     private ArrayList<AddSubNewUserDataModel> dataList = new ArrayList<>();

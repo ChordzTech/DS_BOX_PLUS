@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.baseview.BaseActivity;
 import com.google.android.material.button.MaterialButton;
 
 
-public class QuotationTerms extends AppCompatActivity {
+public class QuotationTerms extends BaseActivity {
     MaterialButton btCloseInQuotationTerms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
