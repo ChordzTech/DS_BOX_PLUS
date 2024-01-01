@@ -66,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                     if ((etPhoneNumber.getText().toString().trim()).length() == 10) {
                         pbSendingOtp.setVisibility(View.VISIBLE);
                         btNext.setVisibility(View.INVISIBLE);
+                        AppPreferences.INSTANCE.saveLongToSharedPreferences(LoginActivity.this,
+                                AppPreferences.MOBILE_NUMBER, Long.parseLong(etPhoneNumber.getText().toString()));
 
                         PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + etPhoneNumber.getText().toString(),
                                 60, TimeUnit.SECONDS, LoginActivity.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -82,6 +84,11 @@ public class LoginActivity extends AppCompatActivity {
                                         pbSendingOtp.setVisibility(View.GONE);
                                         btNext.setVisibility(View.VISIBLE);
                                         Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                                        Intent intent=new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
                                     }
 
                                     @Override

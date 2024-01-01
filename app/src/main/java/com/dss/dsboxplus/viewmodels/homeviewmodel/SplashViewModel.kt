@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
+import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import kotlinx.coroutines.launch
@@ -18,29 +19,12 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
         get() = field
 
 
-    fun getBusinessDetails() {
-        viewModelScope.launch {
-            when (val response = repository.getBusinessList()) {
-                is NetworkState.Success -> {
-                    businessDetailsLiveData.postValue(response.data!!)
-                }
-
-                is NetworkState.Error -> {
-                    if (response.response.code() == 401) {
-//                        estimateList.postValue(NetworkState.Error())
-                    } else {
-//                        estimateList.postValue(NetworkState.Error)
-                    }
-                }
-            }
-        }
-    }
-
     fun getUserDetails(
         mobileno: String,
         deviceinfo: String
     ) {
         showLoader()
+
         viewModelScope.launch {
             when (val response =
                 repository.getUserDetails(mobileno = mobileno, deviceinfo = deviceinfo)) {
@@ -51,10 +35,21 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
 
                 is NetworkState.Error -> {
                     hideLoader()
-                    if (response.response.code() == 401) {
-//                        estimateList.postValue(NetworkState.Error())
+                    if (response.response.code() == 404) {
+
+                        userDetailsResponse.postValue(
+                            UserDetailsResponse(
+                                response.response.code(), arrayListOf(),
+                                response.response.message(), ""
+                            )
+                        )
                     } else {
-//                        estimateList.postValue(NetworkState.Error)
+                        userDetailsResponse.postValue(
+                            UserDetailsResponse(
+                                response.response.code(), arrayListOf(),
+                                response.response.message(), ""
+                            )
+                        )
                     }
                 }
             }

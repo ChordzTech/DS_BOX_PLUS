@@ -6,21 +6,33 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityEnterBusinessDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
+import com.dss.dsboxplus.preferences.AppPreferences;
+import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.EnterBusinessDetailsActivityViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.button.MaterialButton;
 
 public class EnterBusinessDetailsActivity extends AppCompatActivity {
     ActivityEnterBusinessDetailsBinding businessDetailsBinding;
     MaterialButton btSubmitInEnterBusinessDetails;
+    private EnterBusinessDetailsActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         businessDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_enter_business_details);
 
+        initViewModel();
+        addOververs();
+
+//        businessDetailsBinding.tietBusinessContact.setText((int) AppPreferences.INSTANCE.getLongValueFromSharedPreferences(AppPreferences.MOBILE_NUMBER));
         btSubmitInEnterBusinessDetails = findViewById(R.id.btSubmitInEnterBusinessDetails);
         btSubmitInEnterBusinessDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,11 +44,40 @@ public class EnterBusinessDetailsActivity extends AppCompatActivity {
                 String businessPinCode = businessDetailsBinding.tietBusinessPinCode.getText().toString();
                 boolean check = validateInfo(businessName, businessContact, businessAddress, businessPinCode);
                 if (check == true) {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);
+                    viewModel.addBusinessDetails(businessName, businessContact, businessAddress, businessPinCode);
                 }
             }
         });
+    }
+
+    private void addOververs() {
+        viewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
+            AppPreferences.INSTANCE.saveLongToSharedPreferences(this, AppPreferences.BUSINESS_ID,
+                    businessDetailsResponse.getData().getBusinessid());
+
+            addUserForBusiness(businessDetailsResponse);
+
+        });
+
+        viewModel.getAddUserResponseLiveData().observe(this, addUserResponse -> {
+            AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
+                    AppPreferences.USER_ID, addUserResponse.getData().getUserid());
+
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    private void addUserForBusiness(BusinessDetailsResponse businessDetailsResponse) {
+        viewModel.addUser(businessDetailsResponse, this);
+    }
+
+    private void initViewModel() {
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(EnterBusinessDetailsActivityViewModel.class);
+
     }
 
     private boolean validateInfo(String businessName, String businessContact, String businessAddress, String businessPinCode) {

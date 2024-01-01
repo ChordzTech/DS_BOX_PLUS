@@ -3,7 +3,6 @@ package com.dss.dsboxplus.data.repo.response
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class BusinessDetailsResponse(
@@ -12,7 +11,7 @@ data class BusinessDetailsResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<BusinessDetailsList?>? = null,
+	val data: BusinessDetails? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,
@@ -22,7 +21,7 @@ data class BusinessDetailsResponse(
 ) : Parcelable
 
 @Parcelize
-data class BusinessDetailsList(
+data class BusinessDetails(
 
 	@field:SerializedName("gsm")
 	val gsm: Int? = null,
@@ -70,7 +69,7 @@ data class BusinessDetailsList(
 	val multiuser: Int? = null,
 
 	@field:SerializedName("flutefactor")
-	val flutefactor:@RawValue Any? = null,
+	val flutefactor: Int? = null,
 
 	@field:SerializedName("conversionrate")
 	val conversionrate: Int? = null,

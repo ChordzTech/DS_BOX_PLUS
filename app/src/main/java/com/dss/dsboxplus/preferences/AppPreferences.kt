@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 
 object AppPreferences {
     const val MOBILE_NUMBER: String = "mobile_number"
+    const val DEVICE_INFO: String = "device_info"
     const val USER_ID: String = "user_id"
     const val BUSINESS_ID: String = "business_id"
     private var sharedPreferences: SharedPreferences? = null

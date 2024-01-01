@@ -1,5 +1,8 @@
 package com.example.mvvmretrofit.data.repo.remote
 
+import com.dss.dsboxplus.data.repo.request.AddUserRequest
+import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
+import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
@@ -16,7 +19,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 
@@ -33,6 +38,9 @@ interface RetrofitService {
     //Business Details APIs
     @GET("BusinessDetails/")
     suspend fun getBusinessDetails(): Response<BusinessDetailsResponse>
+
+    @POST("BusinessDetails/")
+    suspend fun addBusinessDetails(@Body businessDetailsRequest: BusinessDetailsRequest): Response<BusinessDetailsResponse>
 
     //AppConfig
     @GET("AppConfig/")
@@ -58,6 +66,9 @@ interface RetrofitService {
         @Path(value = "mobileno") mobileno: String,
         @Path(value = "deviceinfo") deviceinfo: String
     ): Response<UserDetailsResponse>
+
+    @POST("UserDetails/")
+    suspend fun addUser(@Body request: AddUserRequest): Response<AddUserResponse>
 
     companion object {
         var retrofitService: RetrofitService? = null
