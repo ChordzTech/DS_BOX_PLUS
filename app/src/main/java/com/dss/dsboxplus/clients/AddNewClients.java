@@ -8,13 +8,19 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivityAddNewClientsBinding;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.model.ClientsDataModel;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
+import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.clientsviewmodels.AddNewClientsActivityViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -28,11 +34,14 @@ public class AddNewClients extends BaseActivity {
     MaterialButton btSubmitInNewClientsDetails;
     ActivityAddNewClientsBinding addNewClientsBinding;
     private ArrayList<ClientsDataModel> clientsList = new ArrayList<>();
+    private AddNewClientsActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addNewClientsBinding=DataBindingUtil.setContentView(this,R.layout.activity_add_new_clients);
+//        initViewModel();
+//        addOververs();
         tietClientName = findViewById(R.id.tietClientName);
         tietContactNumber = findViewById(R.id.tietContactNumber);
         tietAddress = findViewById(R.id.tietAddress);
@@ -51,18 +60,32 @@ public class AddNewClients extends BaseActivity {
         btSubmitInNewClientsDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String clientName = addNewClientsBinding.tietClientName.getText().toString();
-//                String clientContactNo = addNewClientsBinding.tietContactNumber.getText().toString();
-//                String clientAddress = addNewClientsBinding.tietAddress.getText().toString();
-//                addClient();
-//                boolean check=validateInfo(clientName,clientContactNo,clientAddress);
-//                if (check==true){
-//                    finish();
-//                }
+                String clientName = addNewClientsBinding.tietClientName.getText().toString();
+                String clientContactNo = addNewClientsBinding.tietContactNumber.getText().toString();
+                String clientAddress = addNewClientsBinding.tietAddress.getText().toString();
+                addClient();
+                boolean check=validateInfo(clientName,clientContactNo,clientAddress);
+                if (check==true){
+                    viewModel.addClient(clientName,clientContactNo,clientAddress);
+                    finish();
+                }
             }
         });
 
     }
+
+//    private void addOververs() {
+//        viewModel.getAddClientRequestLiveData().observe(this,clientListResponse -> {
+//            AppPreferences.INSTANCE.saveLongToSharedPreferences(this,AppPreferences.CLIENT_ID,
+//                    clientListResponse.getData());
+//        });
+//    }
+
+//    private void initViewModel() {
+//        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+//        MainRepository mainRepository = new MainRepository(retrofitService);
+//        viewModel=new ViewModelProvider(this,new AppViewModelFactory(mainRepository)).get(AddNewClientsActivityViewModel.class);
+//    }
 
     private boolean validateInfo(String clientName, String clientContactNo, String clientAddress) {
         if (clientName.isEmpty()){

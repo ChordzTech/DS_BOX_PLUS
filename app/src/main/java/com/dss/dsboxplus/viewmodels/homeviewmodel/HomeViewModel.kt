@@ -49,23 +49,23 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 //        }
 //    }
 
-    fun getClientList() {
-        viewModelScope.launch {
-            when (val response = repository.getClientList()) {
-                is NetworkState.Success -> {
-                    clientListLiveData.postValue(response.data!!)
-                }
-
-                is NetworkState.Error -> {
-                    if (response.response.code() == 401) {
-//                        estimateList.postValue(NetworkState.Error())
-                    } else {
-//                        estimateList.postValue(NetworkState.Error)
-                    }
-                }
-            }
-        }
-    }
+//    fun getClientList() {
+//        viewModelScope.launch {
+//            when (val response = repository.getClientList()) {
+//                is NetworkState.Success -> {
+//                    clientListLiveData.postValue(response.data!!)
+//                }
+//
+//                is NetworkState.Error -> {
+//                    if (response.response.code() == 401) {
+////                        estimateList.postValue(NetworkState.Error())
+//                    } else {
+////                        estimateList.postValue(NetworkState.Error)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     fun getAppConfig() {
         viewModelScope.launch {

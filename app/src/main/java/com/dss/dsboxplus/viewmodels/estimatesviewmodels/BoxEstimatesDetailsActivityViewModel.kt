@@ -1,6 +1,5 @@
-package com.dss.dsboxplus.viewmodels.estimatesviewmodels;
+package com.dss.dsboxplus.viewmodels.estimatesviewmodels
 
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel
 
-public class BoxEstimatesDetailsActivityViewModel extends ViewModel {
-}
+class BoxEstimatesDetailsActivityViewModel : ViewModel()

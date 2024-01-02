@@ -5,6 +5,7 @@ import static com.dss.dsboxplus.estimates.Formulas.getInstance;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;

@@ -8,6 +8,7 @@ object AppPreferences {
     const val DEVICE_INFO: String = "device_info"
     const val USER_ID: String = "user_id"
     const val BUSINESS_ID: String = "business_id"
+    const val CLIENT_ID:String="client_id"
     private var sharedPreferences: SharedPreferences? = null
 
     private const val SharedPreferencesName = "DSBOX_PREFERENCES"

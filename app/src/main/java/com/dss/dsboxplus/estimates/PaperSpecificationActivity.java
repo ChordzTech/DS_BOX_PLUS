@@ -84,12 +84,12 @@ public class PaperSpecificationActivity extends BaseActivity {
                 break;
             case "2Ply(KG)":
                 paperSpecificationBinding.cvTopPaper.setVisibility(View.VISIBLE);
-                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.GONE);
+                paperSpecificationBinding.cvFluteOnePaper.setVisibility(View.VISIBLE);
                 paperSpecificationBinding.cvMiddleOnePaper.setVisibility(View.GONE);
                 paperSpecificationBinding.cvFluteTwoPaper.setVisibility(View.GONE);
                 paperSpecificationBinding.cvMiddleTwoPaper.setVisibility(View.GONE);
                 paperSpecificationBinding.cvFluteThreePaper.setVisibility(View.GONE);
-                paperSpecificationBinding.cvBottomPaper.setVisibility(View.VISIBLE);
+                paperSpecificationBinding.cvBottomPaper.setVisibility(View.GONE);
                 break;
         }
         AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();

@@ -2,6 +2,8 @@ package com.example.mvvmretrofit.data.repo.remote
 
 import com.dss.dsboxplus.data.repo.request.AddUserRequest
 import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
+import com.dss.dsboxplus.data.repo.response.AddClientRequest
+import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
@@ -34,6 +36,8 @@ interface RetrofitService {
     //client list APIs
     @GET("ClientsDetails/")
     suspend fun getClientList(): Response<ClientListResponse>
+    @POST ("ClientsDetails/")
+    suspend fun addClient(@Body request: AddClientRequest):Response<ClientListResponse>
 
     //Business Details APIs
     @GET("BusinessDetails/")
@@ -69,6 +73,9 @@ interface RetrofitService {
 
     @POST("UserDetails/")
     suspend fun addUser(@Body request: AddUserRequest): Response<AddUserResponse>
+    @POST("EstimateDetails/")
+    suspend fun addEstimate(@Body request: AddEstimateRequest):Response<EstimateListResponse>
+
 
     companion object {
         var retrofitService: RetrofitService? = null

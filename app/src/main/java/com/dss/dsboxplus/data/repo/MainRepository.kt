@@ -2,6 +2,8 @@ package com.example.mvvmretrofit.data.repo
 
 import com.dss.dsboxplus.data.repo.request.AddUserRequest
 import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
+import com.dss.dsboxplus.data.repo.response.AddClientRequest
+import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
@@ -145,6 +147,30 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         } else {
             NetworkState.Error(response)
         }
+    } suspend fun addEstimate(request: AddEstimateRequest): NetworkState<EstimateListResponse> {
+        val response = retrofitService.addEstimate(request)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
     }
-
+    suspend fun addClient(request: AddClientRequest):NetworkState<ClientListResponse>{
+        val response = retrofitService.addClient(request)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
 }

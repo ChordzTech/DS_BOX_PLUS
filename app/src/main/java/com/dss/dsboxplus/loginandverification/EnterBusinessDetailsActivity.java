@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityEnterBusinessDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -57,21 +56,31 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
                     businessDetailsResponse.getData().getBusinessid());
 
             addUserForBusiness(businessDetailsResponse);
-
+            addClientForBusiness(businessDetailsResponse);
         });
 
         viewModel.getAddUserResponseLiveData().observe(this, addUserResponse -> {
             AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
                     AppPreferences.USER_ID, addUserResponse.getData().getUserid());
 
+
+        });
+        viewModel.getAddClientRequestLiveData().observe(this, clientListResponse -> {
+            AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
+                    AppPreferences.CLIENT_ID, clientListResponse.getData().getClientid());
             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(intent);
             finish();
         });
     }
 
+    private void addClientForBusiness(BusinessDetailsResponse businessDetailsResponse) {
+        viewModel.addClient(businessDetailsResponse.getData().getBusinessname(), businessDetailsResponse.getData().getContactno(), businessDetailsResponse.getData().getAddress());
+    }
+
     private void addUserForBusiness(BusinessDetailsResponse businessDetailsResponse) {
         viewModel.addUser(businessDetailsResponse, this);
+
     }
 
     private void initViewModel() {

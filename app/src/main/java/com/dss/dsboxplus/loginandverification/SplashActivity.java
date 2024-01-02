@@ -72,6 +72,7 @@ public class SplashActivity extends BaseActivity {
                 AppPreferences.USER_ID, userId);
         AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
                 AppPreferences.BUSINESS_ID, businessId);
+
     }
 
     private void fetchData() {
