@@ -75,7 +75,7 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
     }
 
     private void addClientForBusiness(BusinessDetailsResponse businessDetailsResponse) {
-        viewModel.addClient(businessDetailsResponse.getData().getBusinessname(), businessDetailsResponse.getData().getContactno(), businessDetailsResponse.getData().getAddress());
+        viewModel.addClient(businessDetailsResponse);
     }
 
     private void addUserForBusiness(BusinessDetailsResponse businessDetailsResponse) {

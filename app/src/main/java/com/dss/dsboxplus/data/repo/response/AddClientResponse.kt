@@ -5,13 +5,13 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class ClientListResponse(
+data class AddClientResponse(
 
 	@field:SerializedName("code")
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<Client?>? = null,
+	val data: AddClientsDetails? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,
@@ -21,7 +21,7 @@ data class ClientListResponse(
 ) : Parcelable
 
 @Parcelize
-data class Client(
+data class AddClientsDetails(
 
 	@field:SerializedName("clientid")
 	val clientid: Long? = null,

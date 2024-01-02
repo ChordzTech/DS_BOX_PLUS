@@ -11,6 +11,7 @@ import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.request.AddUserRequest
 import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
+import com.dss.dsboxplus.data.repo.response.AddClientResponse
 import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
@@ -26,7 +27,7 @@ class EnterBusinessDetailsActivityViewModel(val repository: MainRepository) : Ba
         get() = field
     var addUserResponseLiveData = MutableLiveData<AddUserResponse>()
         get() = field
-    var addClientRequestLiveData = MutableLiveData<ClientListResponse>()
+    var addClientRequestLiveData = MutableLiveData<AddClientResponse>()
         get() = field
 
     fun addBusinessDetails(
@@ -99,15 +100,15 @@ class EnterBusinessDetailsActivityViewModel(val repository: MainRepository) : Ba
         }
     }
     fun addClient(
-        clientName: String,
-        clientContactNo: String,
-        clientAddress: String
+        buz:BusinessDetailsResponse
     ) {
         showLoader()
         val request= AddClientRequest()
-        request.clientname=clientName
-        request.mobileno=clientContactNo
-        request.address=clientAddress
+
+        request.clientname=buz.data!!.businessname
+        request.mobileno=buz.data.contactno
+        request.address=buz.data.address
+        request.businessid=buz.data.businessid
 
         viewModelScope.launch {
             when (val response = repository.addClient(request)) {

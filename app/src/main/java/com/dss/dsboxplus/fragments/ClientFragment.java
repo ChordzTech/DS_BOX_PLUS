@@ -184,6 +184,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
     public void setClientList(ArrayList<Client> clientList) {
         this.clientList = clientList;
+        loadData();
     }
 
     public ArrayList<Client> getClientList() {

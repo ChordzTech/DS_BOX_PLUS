@@ -55,7 +55,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
 
     private void fetchData() {
 //        homeViewModel.getEstimateList();
-//        homeViewModel.getClientList();
+        homeViewModel.getClientList();
         homeViewModel.getAppConfig();
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
@@ -80,21 +80,14 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
             }
         });
-//        homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
-//            if (!clientListResponse.getData().isEmpty()) {
-//                clientsList = (ArrayList<Client>) clientListResponse.getData();
-//                clientFragment.setClientList(clientsList);
-//                ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
-//            }
-//            Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
-//        });
-//        homeViewModel.getClientListLiveData().observe(this,clientListResponse -> {
-//            if (!clientListResponse.getData().isEmpty()){
-//                clientsList=(ArrayList<Client>) clientListResponse.getData();
-//                clientFragment.setClientList(clientsList);
-//                ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
-//            }
-//        });
+        homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
+            if (!clientListResponse.getData().isEmpty()) {
+                clientsList = (ArrayList<Client>) clientListResponse.getData();
+                clientFragment.setClientList(clientsList);
+                ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
+            }
+            Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
+        });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {
             if (!appConfigResponse.getData().isEmpty()) {
                 appConfigList = (ArrayList<AppConfigDataItems>) appConfigResponse.getData();
