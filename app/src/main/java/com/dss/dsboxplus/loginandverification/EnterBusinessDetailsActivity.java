@@ -62,12 +62,12 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
         viewModel.getAddUserResponseLiveData().observe(this, addUserResponse -> {
             AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
                     AppPreferences.USER_ID, addUserResponse.getData().getUserid());
-
-
+            AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
+                    AppPreferences.BUSINESS_ID, addUserResponse.getData().getBusinessid());
+            AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
+                    AppPreferences.MOBILE_NUMBER, Long.parseLong(addUserResponse.getData().getMobileno()));
         });
         viewModel.getAddClientRequestLiveData().observe(this, clientListResponse -> {
-            AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
-                    AppPreferences.CLIENT_ID, clientListResponse.getData().getClientid());
             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(intent);
             finish();

@@ -68,7 +68,7 @@
             android:name=".profile.UserDetailsInProfile"
             android:exported="false" />
         <activity
-            android:name=".clients.AddNewClients"
+            android:name=".clients.AddNewClientsActivity"
             android:exported="false" />
         <activity
             android:name=".profile.QuotationTerms"

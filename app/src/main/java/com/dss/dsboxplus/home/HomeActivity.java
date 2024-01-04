@@ -55,25 +55,15 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     }
 
     private void fetchData() {
-//        homeViewModel.getEstimateList();
         homeViewModel.getClientList();
         homeViewModel.getAppConfig();
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
         homeViewModel.getEstimateByBusinessIdUserId();
-//        homeViewModel.getClientListByBusinessUserId();
-
     }
 
     private void initObservables() {
-//        homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
-//            if (!estimateListResponse.getData().isEmpty()) {
-//                estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
-//                estimatesFragment.setEstimateList(estimateList);
-//                ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
-//            }
-//            Log.e("TAG", "estimateListResponse: " + estimateListResponse.getData().size());
-//        });
+
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
@@ -86,7 +76,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
                 ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
             }
-            Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
         });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {
             if (!appConfigResponse.getData().isEmpty()) {
@@ -94,7 +83,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 profileFragment.setAppConfigList(appConfigList);
                 ConfigDataProvider.INSTANCE.setAppConfigResponse(appConfigResponse);
             }
-            Log.e("TAG", "estimateListResponse: " + appConfigResponse.getData().size());
         });
         homeViewModel.getSubscriptionLiveData().observe(this, subscriptionDetailsResponse -> {
             if (!subscriptionDetailsResponse.getData().isEmpty()) {
@@ -123,11 +111,13 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeScreenBinding.bottomNavigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.estimate) {
                 replaceFragment(estimatesFragment);
+                homeViewModel.getEstimateByBusinessIdUserId();
                 if (!estimateList.isEmpty()) {
                     estimatesFragment.setEstimateList(estimateList);
                 }
             } else if (item.getItemId() == R.id.users) {
                 replaceFragment(clientFragment);
+                homeViewModel.getClientList();
                 if (!clientsList.isEmpty()) {
                     clientFragment.setClientList(clientsList);
                 }

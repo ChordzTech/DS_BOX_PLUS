@@ -2,6 +2,7 @@ package com.example.mvvmretrofit.data.repo
 
 import com.dss.dsboxplus.data.repo.request.AddUserRequest
 import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
+import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
 import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
@@ -12,6 +13,7 @@ import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService
@@ -163,6 +165,19 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
     }
     suspend fun addClient(request: AddClientRequest):NetworkState<AddClientResponse>{
         val response = retrofitService.addClient(request)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+    suspend fun updateClient(request: UpdateClientRequest):NetworkState<UpdateClientResponse>{
+        val response = retrofitService.updateClientDetails(request.clientid!!,request)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {

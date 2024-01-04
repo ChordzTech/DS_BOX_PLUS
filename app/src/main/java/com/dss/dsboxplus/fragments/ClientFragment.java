@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
-import com.dss.dsboxplus.clients.AddNewClients;
+import com.dss.dsboxplus.clients.AddNewClientsActivity;
 import com.dss.dsboxplus.clients.ClientDetailsActivity;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.model.ClientsDataModel;
@@ -101,7 +101,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddNewClients.class);
+                Intent intent = new Intent(getActivity(), AddNewClientsActivity.class);
                 startActivity(intent);
             }
         });

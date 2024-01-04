@@ -2,6 +2,7 @@ package com.example.mvvmretrofit.data.repo.remote
 
 import com.dss.dsboxplus.data.repo.request.AddUserRequest
 import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
+import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
 import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
@@ -12,6 +13,7 @@ import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
@@ -25,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 
@@ -34,11 +37,20 @@ interface RetrofitService {
     @GET("EstimateDetails/")
     suspend fun getEstimateList(): Response<EstimateListResponse>
 
+
+    //client list APIs
+    @PUT("ClientsDetails/{clientid}/")
+    suspend fun updateClientDetails(
+        @Path(value = "clientid") clientid: Long,
+        @Body request: UpdateClientRequest
+    ): Response<UpdateClientResponse>
+
     //client list APIs
     @GET("GetClientByB/{businessid}")
     suspend fun getClientList(@Path(value = "businessid") businessId: Long): Response<ClientListResponse>
-    @POST ("ClientsDetails/")
-    suspend fun addClient(@Body request: AddClientRequest):Response<AddClientResponse>
+
+    @POST("ClientsDetails/")
+    suspend fun addClient(@Body request: AddClientRequest): Response<AddClientResponse>
 
     //Business Details APIs
     @GET("BusinessDetails/")
@@ -59,8 +71,7 @@ interface RetrofitService {
 
     @GET("GetEstimatesByUB/{businessid}/{userid}/")
     suspend fun getEstimateByBusinessIdUserId(
-        @Path(value = "businessid") businessId: Long,
-        @Path(value = "userid") userId: Long
+        @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long
     ): Response<EstimateListResponse>
 
     @GET("")
@@ -68,14 +79,14 @@ interface RetrofitService {
 
     @GET("GetUserDetails/{mobileno}/{deviceinfo}")
     suspend fun getUserDetails(
-        @Path(value = "mobileno") mobileno: String,
-        @Path(value = "deviceinfo") deviceinfo: String
+        @Path(value = "mobileno") mobileno: String, @Path(value = "deviceinfo") deviceinfo: String
     ): Response<UserDetailsResponse>
 
     @POST("UserDetails/")
     suspend fun addUser(@Body request: AddUserRequest): Response<AddUserResponse>
+
     @POST("EstimateDetails/")
-    suspend fun addEstimate(@Body request: AddEstimateRequest):Response<EstimateListResponse>
+    suspend fun addEstimate(@Body request: AddEstimateRequest): Response<EstimateListResponse>
 
 
     companion object {
@@ -86,20 +97,15 @@ interface RetrofitService {
             httpClientBuilder.addInterceptor(Interceptor { chain ->
                 val requestBuilder: Request.Builder = chain.request().newBuilder()
                 requestBuilder.header("Content-Type", "application/json")
-//                requestBuilder.header("Accept", "application/json")
                 chain.proceed(requestBuilder.build())
             })
 
-            val gson = GsonBuilder()
-                .setLenient()
-                .create()
+            val gson = GsonBuilder().setLenient().create()
             if (retrofitService == null) {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl("https://dsboxapi.beatsacademy.in/api/")
+                val retrofit = Retrofit.Builder().baseUrl("https://dsboxapi.beatsacademy.in/api/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(getLogger())
-                    .client(httpClientBuilder.build())
-                    .build()
+                    .client(httpClientBuilder.build()).build()
                 retrofitService = retrofit.create(RetrofitService::class.java)
             }
             return retrofitService!!

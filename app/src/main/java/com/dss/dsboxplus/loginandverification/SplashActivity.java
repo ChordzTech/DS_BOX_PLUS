@@ -66,12 +66,15 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void addUserDataToPreferences(UserDetailsResponse userDetailsResponse) {
-        Integer userId = userDetailsResponse.getData().get(0).getUserid();
-        Integer businessId = userDetailsResponse.getData().get(0).getBusinessid();
+        int userId = userDetailsResponse.getData().get(0).getUserid();
+        int businessId = userDetailsResponse.getData().get(0).getBusinessid();
+        Long mobileno = Long.parseLong(userDetailsResponse.getData().get(0).getMobileno());
         AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
                 AppPreferences.USER_ID, userId);
         AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
                 AppPreferences.BUSINESS_ID, businessId);
+        AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
+                AppPreferences.MOBILE_NUMBER, mobileno);
 
     }
 
