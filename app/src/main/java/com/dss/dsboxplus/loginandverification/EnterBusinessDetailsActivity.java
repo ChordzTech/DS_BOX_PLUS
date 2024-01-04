@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityEnterBusinessDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -54,7 +55,6 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
         viewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
             AppPreferences.INSTANCE.saveLongToSharedPreferences(this, AppPreferences.BUSINESS_ID,
                     businessDetailsResponse.getData().getBusinessid());
-
             addUserForBusiness(businessDetailsResponse);
             addClientForBusiness(businessDetailsResponse);
         });

@@ -1,6 +1,8 @@
 package com.dss.dsboxplus.data.configdata
 
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
+import com.dss.dsboxplus.data.repo.response.BusinessDetails
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
