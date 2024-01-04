@@ -140,30 +140,6 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         clientsViewAdapter.notifyDataSetChanged();
     }
 
-//    private ArrayList<ClientsDataModel> prepareData() {
-//        ArrayList<ClientsDataModel> clientsList = new ArrayList<>();
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Bunty", "7972546880", "1 Estimate"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Anurag", "7972546880", "5 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Cat", "7972546880", "2 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "XYZ", "7972546880", "7 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Aa", "7972546880", "7 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Estimate", "7972546880", "7 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Kallu", "7972546880", "7 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "Shubham", "7972546880", "7 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "7 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "John", "7972546880", "5 Estimates"));
-//        clientsList.add(new ClientsDataModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMO2ILOr-K0b2G2KSf0c5fAKMRmcxou9hL6mODP2eJ&s", "MNO", "7972546880", "10 Estimate"));
-//        Collections.sort(clientsList, new Comparator<ClientsDataModel>() {
-//            @Override
-//            public int compare(ClientsDataModel clientsDataModel, ClientsDataModel t1) {
-//                return clientsDataModel.getNameOfClient().compareTo(t1.getNameOfClient());
-//            }
-//        });
-//
-//        return clientsList;
-//
-//    }
-
 
     @Override
     public void onClientSelectedI(Client clientData) {
@@ -184,7 +160,6 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
     public void setClientList(ArrayList<Client> clientList) {
         this.clientList = clientList;
-        loadData();
     }
 
     public ArrayList<Client> getClientList() {

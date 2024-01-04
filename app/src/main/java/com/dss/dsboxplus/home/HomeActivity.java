@@ -4,6 +4,7 @@ package com.dss.dsboxplus.home;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -83,7 +84,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
             if (!clientListResponse.getData().isEmpty()) {
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
-                clientFragment.setClientList(clientsList);
                 ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
             }
             Log.e("TAG", "clientListResponse: " + clientListResponse.getData().size());
@@ -146,6 +146,13 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             }
             return true;
         });
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                showLogoutPopUp();
+            }
+        });
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -159,6 +166,4 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     public void loadClientFragmentOnEmptyEstimates() {
         replaceFragment(new ClientFragment());
     }
-
-
 }
