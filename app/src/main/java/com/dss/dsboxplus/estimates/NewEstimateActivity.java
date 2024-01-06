@@ -5,7 +5,6 @@ import static com.dss.dsboxplus.estimates.Formulas.getInstance;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -19,10 +18,12 @@ import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
+import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -39,12 +40,14 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     Double length = 0.0, width = 0.0, height = 0.0;
     Double lengthMm = 0.0, widthMm = 0.0, heightMm = 0.0;
     TextView tvMargin;
+    private NewEstimatesActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
     }
+
 
     private void initView() {
         newEstimateBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_estimate);
@@ -90,6 +93,29 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CreateEstimateDataHolder.INSTANCE.setBoxName(newEstimateBinding.tietEnterBoxName.getText().toString());
+                CreateEstimateDataHolder.INSTANCE.setBoxDimension(newEstimateBinding.spinner.getSelectedItem().toString());
+                CreateEstimateDataHolder.INSTANCE.setLengthMm(newEstimateBinding.tietLength.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setWidthMm(newEstimateBinding.tietWidth.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setHeightMm(newEstimateBinding.tietHeight.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setLengthCm(newEstimateBinding.tietLength.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setWidthCm(newEstimateBinding.tietWidth.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setHeightCm(newEstimateBinding.tietHeight.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setLengthInch(newEstimateBinding.tietLength.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setWidthInch(newEstimateBinding.tietWidth.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setHeightInch(newEstimateBinding.tietHeight.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setNoOfPly(String.valueOf(newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString().charAt(0)));
+                CreateEstimateDataHolder.INSTANCE.setNoOfBox(newEstimateBinding.tietNumberOfBox.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setCuttingLength(newEstimateBinding.tietCuttingLength.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setDecalSize(newEstimateBinding.tietDecalSize.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setCuttingMarginMm(newEstimateBinding.tvMargin.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setDecalMarginMm(newEstimateBinding.tvDecalMarginSize.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setCuttingLengthMm(newEstimateBinding.tvCuttingLengthSize.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setDecalSizeMm(newEstimateBinding.tvDecalSizeValue.getText().length());
+
+
+
+
 
                 String enterBoxName = newEstimateBinding.tietEnterBoxName.getText().toString();
                 String enterLength = newEstimateBinding.tietLength.getText().toString();
@@ -209,8 +235,10 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
                         newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
                         newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
-                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
-                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(decalSize));
+                        int cuttingLengthMm = (int) v;
+                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(cuttingLengthMm));
+                        int DecalSizeMm = (int) decalSize;
+                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(DecalSizeMm));
                     }
                 }
             }
@@ -251,6 +279,55 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 }
             }
         });
+//        newEstimateBinding.tietCuttingLength.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (!s.toString().isEmpty()) {
+//                        String tietCuttingLength = s.toString();
+//                        float tietCuttingLengthF = Float.parseFloat(tietCuttingLength);
+//                        float multiplication = (float) (tietCuttingLengthF * 25.4);
+//                        int result = Math.round(multiplication);
+//
+//                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(result));
+//                        newEstimateBinding.tvMargin.setText(String.valueOf(result));
+//                }
+//            }
+//
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//        newEstimateBinding.tietDecalSize.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (!s.toString().isEmpty()) {
+//                    String tietDecalSize= s.toString();
+//                    float tietDecalSizeF = Float.parseFloat(tietDecalSize);
+//                    float multiplication = (float) (tietDecalSizeF * 25.4);
+//                    int result = Math.round(multiplication);
+//
+//                    newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(result));
+//                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(result));
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
     }
 

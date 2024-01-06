@@ -1,5 +1,150 @@
 package com.dss.dsboxplus.viewmodels.estimatesviewmodels
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.dss.dsboxplus.DateUtils
+import com.dss.dsboxplus.baseview.BaseViewModel
+import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
+import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
+import com.dss.dsboxplus.preferences.AppPreferences
+import com.example.mvvmretrofit.data.repo.MainRepository
+import com.example.mvvmretrofit.data.repo.remote.NetworkState
+import kotlinx.coroutines.launch
 
-class BoxSpecificationAndCostActivityViewModel : ViewModel()
+class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) : BaseViewModel() {
+
+     var createEstimateLiveData = MutableLiveData<AddEstimateResponse>()
+        get() = field
+
+
+    fun createEstimate(
+        boxName: String,
+        lengthMm: Int,
+        widthMm: Int,
+        heightMm: Int,
+        noOfPly: String,
+        noOfBox: Int,
+        cuttingLength: Double,
+        decalSize: Double,
+        cuttingMarginMm: Int,
+        decalMarginMm: Int,
+        topBf: Int,
+        topGsm: Int,
+        topRate: Float,
+        f1Bf: Int,
+        f1Gsm: Int,
+        f1RateKg: Float,
+        f1ff: Float,
+        m1bf: Int,
+        m1Gsm: Int,
+        m1RateKg: Float,
+        f2Bf: Int,
+        f2Gsm: Int,
+        f2RateKg: Float,
+        f2ff: Float,
+        m2bf: Int,
+        m2Gsm: Int,
+        m2RateKg: Float,
+        f3Bf: Int,
+        f3Gsm: Int,
+        f3RateKg: Float,
+        f3ff: Float,
+        bottomBF: Int,
+        bottomGsm: Int,
+        bottomRateKg: Float,
+        totalGsm: Double,
+        totalBs: Double,
+        totalWeight: Double,
+        netPaperCost: Double,
+//        wasteCost: Double,
+//        grossPaperCost: Double,
+//        convCost: Double,
+        boxMfg: Double,
+        boxPrice: Double,
+        boxPriceTax: Double,
+        wasteInput: Float,
+        convRate: Float,
+        overHead: Float,
+        tax: Float
+    ) {
+        showLoader()
+        var createEstimateRequest = AddEstimateRequest()
+
+        createEstimateRequest.businessid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID).toInt()
+        createEstimateRequest.clientid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.CLIENT_ID).toInt()
+        createEstimateRequest.userid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID).toInt()
+        createEstimateRequest.boxname = boxName
+        createEstimateRequest.lengthMmField = lengthMm
+        createEstimateRequest.widthMmField = widthMm
+        createEstimateRequest.heightMmField = heightMm
+        createEstimateRequest.ply = noOfPly.toInt()
+        createEstimateRequest.ups = noOfBox
+        createEstimateRequest.cuttinglength = cuttingLength.toInt()
+        createEstimateRequest.decalsize = decalSize.toInt()
+        createEstimateRequest.cuttinglengthmargin = cuttingMarginMm
+        createEstimateRequest.decalsizemargin = decalMarginMm
+
+        createEstimateRequest.topbf = topBf
+        createEstimateRequest.topgsm = topGsm
+        createEstimateRequest.toprate = topRate.toInt()
+
+        createEstimateRequest.f1bf = f1Bf
+        createEstimateRequest.f1gsm = f1Gsm
+        createEstimateRequest.f1rate = f1RateKg.toInt()
+        createEstimateRequest.f1ff = f1ff.toInt()
+
+        createEstimateRequest.m1bf = m1bf
+        createEstimateRequest.m1gsm = m1Gsm
+        createEstimateRequest.m1rate = m1RateKg.toInt()
+
+        createEstimateRequest.f2bf = f2Bf
+        createEstimateRequest.f2gsm = f2Gsm
+        createEstimateRequest.f2rate = f2RateKg.toInt()
+        createEstimateRequest.f2ff = f2ff.toInt()
+
+        createEstimateRequest.m2bf = m2bf
+        createEstimateRequest.m2gsm = m2Gsm
+        createEstimateRequest.m2rate = m2RateKg.toInt()
+
+        createEstimateRequest.f3bf = f3Bf
+        createEstimateRequest.f3gsm = f3Gsm
+        createEstimateRequest.f3rate = f3RateKg.toInt()
+        createEstimateRequest.f3ff = f3ff.toInt()
+
+        createEstimateRequest.bottombf = bottomBF
+        createEstimateRequest.bottomgsm = bottomGsm
+        createEstimateRequest.bottomrate = bottomRateKg.toInt()
+
+        createEstimateRequest.totalgsm = totalGsm.toInt()
+        createEstimateRequest.totalbs = totalBs.toInt()
+        createEstimateRequest.totalweight = totalWeight.toInt()
+        createEstimateRequest.netpapercost = netPaperCost.toInt()
+        createEstimateRequest.boxcost = boxMfg.toInt()
+        createEstimateRequest.boxprice = boxPrice.toInt()
+        createEstimateRequest.boxpricewithtax = boxPriceTax.toInt()
+        createEstimateRequest.waste=wasteInput.toInt()
+        createEstimateRequest.conversionrate=convRate.toInt()
+        createEstimateRequest.overheadcharges=overHead.toInt()
+
+        createEstimateRequest.tax=tax.toInt()
+        createEstimateRequest.estimatedate= DateUtils.getDateInYYYYMMDDFormat()
+
+        viewModelScope.launch {
+            when(val response=repository.addEstimate(createEstimateRequest)){
+                is NetworkState.Success->{
+                    hideLoader()
+                    createEstimateLiveData.postValue(response.data!!)
+                }
+                is NetworkState.Error -> {
+                    hideLoader()
+                    if (response.response.code() == 401) {
+//                        estimateList.postValue(NetworkState.Error())
+                    } else {
+//                        estimateList.postValue(NetworkState.Error)
+                    }
+                }
+            }
+        }
+    }
+}

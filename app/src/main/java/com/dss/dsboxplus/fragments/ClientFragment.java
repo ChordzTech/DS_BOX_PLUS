@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +16,7 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.AddNewClientsActivity;
 import com.dss.dsboxplus.clients.ClientDetailsActivity;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,8 +42,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<Client> clientList=new ArrayList<>();
-
+    private ArrayList<Client> clientList = new ArrayList<>();
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -84,7 +83,6 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         super.onViewCreated(view, savedInstanceState);
         add = view.findViewById(R.id.fabAdd);
         searchView = view.findViewById(R.id.svSearchInClients);
-        searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -93,10 +91,11 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//              filterList(newText);
+                filterClientList(newText);
                 return true;
             }
         });
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,19 +111,19 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
     }
 
-    private void filterList(String newText) {
-        ArrayList<ClientsDataModel> filteredList = new ArrayList<>();
-        for (ClientsDataModel clientsDataModel : clientsList) {
-            if (clientsDataModel.getNameOfClient().toLowerCase().contains(newText.toLowerCase())) {
-                filteredList.add(clientsDataModel);
+    private void filterClientList(String newText) {
+        ArrayList<Client> filteredList = new ArrayList<>();
+
+        for (Client client : clientList) {
+            if (client.getClientname().toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(client);
             }
         }
-        if (filteredList.isEmpty()) {
-            Toast.makeText(getActivity(), "No Data Found", Toast.LENGTH_SHORT).show();
-        } else {
-//            clientsViewAdapter.setFilteredList(filteredList);
-        }
+
+        clientsViewAdapter.setClientsList(filteredList);
+        clientsViewAdapter.notifyDataSetChanged();
     }
+
 
 
     private void initView(View view) {
@@ -158,11 +157,12 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
         return clientList;
     }
 
+    public ArrayList<Client> getClientList() {
+        return clientList;
+    }
+
     public void setClientList(ArrayList<Client> clientList) {
         this.clientList = clientList;
     }
 
-    public ArrayList<Client> getClientList() {
-        return clientList;
-    }
 }

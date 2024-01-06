@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.viewmodels.clientsviewmodels.ClientViewModel
+import com.dss.dsboxplus.viewmodels.clientsviewmodels.EstimateListViewModel
+import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxSpecificationAndCostActivityViewModel
 import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.EnterBusinessDetailsActivityViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel
@@ -23,6 +25,10 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
             EnterBusinessDetailsActivityViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(ClientViewModel::class.java)) {
             ClientViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(BoxSpecificationAndCostActivityViewModel::class.java)) {
+            BoxSpecificationAndCostActivityViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(EstimateListViewModel::class.java)) {
+            EstimateListViewModel(repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }

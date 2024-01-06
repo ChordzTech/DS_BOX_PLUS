@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivitySuperUserSettingBinding;
 import com.dss.dsboxplus.model.AddSubNewUserDataModel;
+import com.dss.dsboxplus.profile.subUser.AddSubUserActivity;
 import com.dss.dsboxplus.recyclerview.SubUserViewAdapter;
 
 import java.util.ArrayList;

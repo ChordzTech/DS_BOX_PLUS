@@ -12,13 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
-import com.dss.dsboxplus.estimates.NewEstimateActivity;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.profile.SubscriptionActivity;
@@ -48,6 +49,8 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private EstimatesViewAdapter.OnEstimatesSelectedI onEstimatesSelectedListner;
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private BottomNavigationView bottomNavigationView;
+    private HomeActivity homeActivity;
+    private MutableLiveData<Boolean> onFloatingActionClickLiveData = new MutableLiveData<Boolean>();
 
     public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
         // Required empty public constructor
@@ -80,6 +83,20 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         btUpgradeSub = view.findViewById(R.id.btUpgradeSub);
         btContinue = view.findViewById(R.id.btContinue);
         bottomNavigationView = view.findViewById(R.id.bottomNavigation);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterEstimatesList(newText);
+                return true;
+            }
+        });
+
         fabCorrect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,19 +115,35 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         fabEstimates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if list is empty then load client fragment
-//                if(){
+                onFloatingActionClickLiveData.postValue(true);
+
+//                if(true){
 //                    iHomeActivityCallBack.loadClientFragmentOnEmptyEstimates();
+//                    Toast.makeText(getContext(), "Select Client", Toast.LENGTH_SHORT).show();
 //                }
-                Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
-                startActivity(intent);
             }
+
+
         });
 //        createAddNewEstiPopUp();
 //        createSubPopUp();
         initView(view);
 //        prepareData();
 //        loadData();
+    }
+
+    private void filterEstimatesList(String newText) {
+        ArrayList<DataItem> filteredList = new ArrayList<>();
+
+        for (DataItem dataItem : estimateList) {
+            // Assuming your DataItem class has a method to get the name, adjust accordingly
+            if (dataItem.getBoxname().toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(dataItem);
+            }
+        }
+
+        estimatesViewAdapter.setEstimatesList(filteredList);
+        estimatesViewAdapter.notifyDataSetChanged();
     }
 
     private void createSubPopUp() {
@@ -249,5 +282,13 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     public void setEstimateList(ArrayList<DataItem> estimateList) {
         this.estimateList = estimateList;
         loadData();
+    }
+
+    public MutableLiveData<Boolean> getOnFloatingActionClickLiveData() {
+        return onFloatingActionClickLiveData;
+    }
+
+    public void setOnFloatingActionClickLiveData(MutableLiveData<Boolean> onFloatingActionClickLiveData) {
+        this.onFloatingActionClickLiveData = onFloatingActionClickLiveData;
     }
 }

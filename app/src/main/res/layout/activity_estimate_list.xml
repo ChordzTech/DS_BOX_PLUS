@@ -3,50 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gery"
-        tools:context=".profile.SuperUserSetting">
-
-
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/DSTextLargeBold"
+        tools:context=".clients.EstimateListActivity">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/svSearch"
+            style="@style/DSTextRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/add_new_users"
-            android:textColor="@color/cyan"
+            android:layout_margin="8dp"
+            android:background="@drawable/search_bar_background"
+            app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Search Here">
+
+        </androidx.appcompat.widget.SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRecyclerView"
+            android:id="@+id/rvEstimateRecyclerViewInEstimateList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/sub_user_item_list"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@id/svSearch"
+            tools:listitem="@layout/estimate_item_list">
 
         </androidx.recyclerview.widget.RecyclerView>
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAddSubUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/fabAddEstimateInEstimateList"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/margin_large"
-            android:src="@drawable/add_clients"
+            android:src="@drawable/add_estimates"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

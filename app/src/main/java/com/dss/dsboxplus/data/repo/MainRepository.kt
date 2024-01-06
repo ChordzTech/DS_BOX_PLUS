@@ -6,6 +6,7 @@ import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
 import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
+import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
 import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
@@ -124,6 +125,22 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
 
+    suspend fun getEstimateByClientID(
+        clientId:Long
+    ):NetworkState<EstimateListResponse>{
+        val response = retrofitService.getEstimateByClientId(clientId)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+
     suspend fun addBusinessDetails(businessDetailsRequest: BusinessDetailsRequest): NetworkState<BusinessDetailsResponse> {
         val response = retrofitService.addBusinessDetails(businessDetailsRequest)
         return if (response.isSuccessful) {
@@ -150,7 +167,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         } else {
             NetworkState.Error(response)
         }
-    } suspend fun addEstimate(request: AddEstimateRequest): NetworkState<EstimateListResponse> {
+    } suspend fun addEstimate(request: AddEstimateRequest): NetworkState<AddEstimateResponse> {
         val response = retrofitService.addEstimate(request)
         return if (response.isSuccessful) {
             val responseBody = response.body()

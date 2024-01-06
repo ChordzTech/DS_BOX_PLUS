@@ -31,5 +31,4 @@ public class Formulas {
     public double decalSizeInTiet(Double decalSize){
         return decalSize/mm;
     }
-
 }

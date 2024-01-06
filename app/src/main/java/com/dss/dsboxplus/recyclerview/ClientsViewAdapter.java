@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.recyclerview;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.clients.EstimateListActivity;
 import com.dss.dsboxplus.data.repo.response.Client;
-import com.dss.dsboxplus.model.ClientsDataModel;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         Client client = clientsList.get(position);
         holder.tvClientsName.setText(client.getClientname());
         holder.tvPhoneNumber.setText(client.getMobileno());
-        holder.tvEstimates.setText(client.getMobileno());
+//        holder.tvEstimates.setText(client.getMobileno());
 //        Glide.with(holder.itemView.getContext())
 //                .load(clientsViewModel.getImageURL())
 //                .placeholder(R.drawable.ic_launcher_background)
@@ -48,7 +48,6 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
     public int getItemCount() {
         return clientsList.size();
     }
-
 
 
     public void setClientsList(ArrayList<Client> clientsList) {
@@ -69,15 +68,29 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
     }
 
     class ClientsViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivClientPhoto;
-        private TextView tvClientsName, tvPhoneNumber, tvEstimates;
+        private ImageView ivClientPhoto, ivEstimates;
+        private TextView tvClientsName, tvPhoneNumber;
 
         public ClientsViewHolder(@NonNull View itemView) {
             super(itemView);
             ivClientPhoto = itemView.findViewById(R.id.ivClientPhoto);
             tvClientsName = itemView.findViewById(R.id.tvClientsName);
             tvPhoneNumber = itemView.findViewById(R.id.tvPhoneNumber);
-            tvEstimates = itemView.findViewById(R.id.tvEstimates);
+            ivEstimates = itemView.findViewById(R.id.ivEstimates);
+
+            ivEstimates.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Open a new activity here
+                    if (view.getContext()!=null){
+                        Intent intent=new Intent(view.getContext(), EstimateListActivity.class);
+                        intent.putExtra("clientId",clientsList.get(getAdapterPosition()).getClientid());
+                        view.getContext().startActivity(intent) ;
+                    }
+
+                }
+            });
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

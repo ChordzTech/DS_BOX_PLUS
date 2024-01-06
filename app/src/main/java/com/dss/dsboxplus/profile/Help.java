@@ -1,12 +1,7 @@
 package com.dss.dsboxplus.profile;
 
 import android.os.Bundle;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
@@ -21,27 +16,30 @@ import java.util.ArrayList;
 
 public class Help extends BaseActivity {
     ActivityHelpBinding helpBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        helpBinding= DataBindingUtil. setContentView(this,R.layout.activity_help);
+        helpBinding = DataBindingUtil.setContentView(this, R.layout.activity_help);
         initView();
 
     }
 
     private void initView() {
-//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-//        if (appConfigResponse.getData() != null) {
-//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-//                int configId = appConfigDataItem.getConfigid();
-//                String configName = appConfigDataItem.getConfigname();
-//                String configValue = appConfigDataItem.getConfigvalue();
-//                if (configId == 8) {
-//
-//                }
-//            }
-//
-//        }
+
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 8) {
+                    helpBinding.wvHelp.loadUrl(configValue);
+                    helpBinding.wvHelp.getSettings().setJavaScriptEnabled(true);
+//                    helpBinding.wvHelp.setWebViewClient();
+                }
+            }
+
+        }
     }
 }

@@ -1,16 +1,25 @@
 package com.dss.dsboxplus.estimates;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
+import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxSpecificationAndCostActivityViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
 import java.util.ArrayList;
 
@@ -19,12 +28,31 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     double mm = 25.4;
     double divide = 1000.0;
     String formula = "";
+    private double wasteFromTiet;
+    private double wastePercentage;
+    private BoxSpecificationAndCostActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityBoxSpecificationAndCostBinding = DataBindingUtil.setContentView(this, R.layout.activity_box_specification_and_cost);
         initView();
+        initViewModel();
+        addOververs();
+    }
+
+    private void addOververs() {
+        viewModel.getCreateEstimateLiveData().observe(this, addEstimateResponse -> {
+            Toast.makeText(this, "Estimate Added Sucessfully", Toast.LENGTH_SHORT).show();
+            finish();
+        });
+    }
+
+    private void initViewModel() {
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxSpecificationAndCostActivityViewModel.class);
+
     }
 
     private void initView() {
@@ -115,9 +143,93 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.btBackInBoxSpecification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CreateEstimateDataHolder.INSTANCE.setTotalGsm(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setTotalBs(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setTotalWeight(activityBoxSpecificationAndCostBinding.tvTotalWeight.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setNetPaperCost(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setWasteCost(activityBoxSpecificationAndCostBinding.tvWasteCost.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setGrossPaperCost(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setConvCost(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setBoxMfg(activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setBoxPrice(activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setWasteInput(activityBoxSpecificationAndCostBinding.tietWaste.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setConvRate(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setOverHead(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setTax(activityBoxSpecificationAndCostBinding.tietTax.getText().length());
+
                 finish();
             }
         });
+        activityBoxSpecificationAndCostBinding.btNextInBoxSpecification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callCreateEstimateAPI();
+                CreateEstimateDataHolder.INSTANCE.resetValues();
+            }
+        });
+    }
+
+    private void callCreateEstimateAPI() {
+        viewModel.createEstimate(
+                CreateEstimateDataHolder.INSTANCE.getBoxName(),
+                CreateEstimateDataHolder.INSTANCE.getLengthMm(),
+                CreateEstimateDataHolder.INSTANCE.getWidthMm(),
+                CreateEstimateDataHolder.INSTANCE.getHeightMm(),
+                CreateEstimateDataHolder.INSTANCE.getNoOfPly(),
+                CreateEstimateDataHolder.INSTANCE.getNoOfBox(),
+                CreateEstimateDataHolder.INSTANCE.getCuttingLength(),
+                CreateEstimateDataHolder.INSTANCE.getDecalSize(),
+                CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(),
+                CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
+
+                CreateEstimateDataHolder.INSTANCE.getTopBf(),
+                CreateEstimateDataHolder.INSTANCE.getTopGsm(),
+                CreateEstimateDataHolder.INSTANCE.getTopRate(),
+
+                CreateEstimateDataHolder.INSTANCE.getF1Bf(),
+                CreateEstimateDataHolder.INSTANCE.getF1Gsm(),
+                CreateEstimateDataHolder.INSTANCE.getF1RateKg(),
+                CreateEstimateDataHolder.INSTANCE.getF1ff(),
+
+                CreateEstimateDataHolder.INSTANCE.getM1bf(),
+                CreateEstimateDataHolder.INSTANCE.getM1Gsm(),
+                CreateEstimateDataHolder.INSTANCE.getM1RateKg(),
+
+                CreateEstimateDataHolder.INSTANCE.getF2Bf(),
+                CreateEstimateDataHolder.INSTANCE.getF2Gsm(),
+                CreateEstimateDataHolder.INSTANCE.getF2RateKg(),
+                CreateEstimateDataHolder.INSTANCE.getF2ff(),
+
+                CreateEstimateDataHolder.INSTANCE.getM2bf(),
+                CreateEstimateDataHolder.INSTANCE.getM2Gsm(),
+                CreateEstimateDataHolder.INSTANCE.getM2RateKg(),
+
+                CreateEstimateDataHolder.INSTANCE.getF3Bf(),
+                CreateEstimateDataHolder.INSTANCE.getF3Gsm(),
+                CreateEstimateDataHolder.INSTANCE.getF3RateKg(),
+                CreateEstimateDataHolder.INSTANCE.getF3ff(),
+
+                CreateEstimateDataHolder.INSTANCE.getBottomBF(),
+                CreateEstimateDataHolder.INSTANCE.getBottomGsm(),
+                CreateEstimateDataHolder.INSTANCE.getBottomRateKg(),
+
+                CreateEstimateDataHolder.INSTANCE.getTotalGsm(),
+                CreateEstimateDataHolder.INSTANCE.getTotalBs(),
+                CreateEstimateDataHolder.INSTANCE.getTotalWeight(),
+                CreateEstimateDataHolder.INSTANCE.getNetPaperCost(),
+//                CreateEstimateDataHolder.INSTANCE.getWasteCost(),
+//                CreateEstimateDataHolder.INSTANCE.getGrossPaperCost(),
+//                CreateEstimateDataHolder.INSTANCE.getConvCost(),
+                CreateEstimateDataHolder.INSTANCE.getBoxMfg(),
+                CreateEstimateDataHolder.INSTANCE.getBoxPrice(),
+                CreateEstimateDataHolder.INSTANCE.getBoxPriceTax(),
+
+                CreateEstimateDataHolder.INSTANCE.getWasteInput(),
+                CreateEstimateDataHolder.INSTANCE.getConvRate(),
+                CreateEstimateDataHolder.INSTANCE.getOverHead(),
+                CreateEstimateDataHolder.INSTANCE.getTax()
+        );
     }
 
     private void formulaForTwoPlyKg() {
@@ -215,15 +327,15 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits +
                 valueThirdOFTotalWeightThreeDigits + valueFourthOFTotalWeightThreeDigits + valueFifthOFTotalWeightThreeDigits +
                 valueSixthOFTotalWeightThreeDigits + valueSeventhOFTotalWeightThreeDigits);
-        double totalThreeDigits=Double.valueOf(String.format("%.3f", total));
+        double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
         double wastePercentage = ((totalThreeDigits * wasteFromTiet) / 100);
-        double wastePercentageThreeDigits= Double.valueOf(String.format("%.3f", wastePercentage));
+        double wastePercentageThreeDigits = Double.valueOf(String.format("%.3f", wastePercentage));
         //Total weight
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
-        double totalWeightThreeDigits=Double.valueOf(String.format("%.3f",totalWeight));
+        double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
         int weightInInt = (int) (totalWeightThreeDigits * 1000);
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
         //ConversionCostPerKG
@@ -261,26 +373,26 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueSeventhNPC = (valueSeventhOFTotalWeightThreeDigits * rateOfBottom);
         //NPC
         double resultOfNPC = ((valueFirstNPC + valueSecondNPC + valueThirdNPC + valueFourthNPC + valueFifthNPC + valueSixthNPC + valueSeventhNPC)) / noOFBoxUps;
-        double resultOfNPCThreeDigits=Double.valueOf(String.format("%.3f",resultOfNPC));
+        double resultOfNPCThreeDigits = Double.valueOf(String.format("%.3f", resultOfNPC));
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
         //WasteCost
         double resultWasteCost = ((resultOfNPC * wasteFromTiet) / 100);
-        double resultWasteCostTwoDigits=Double.valueOf(String.format("%.2f",resultWasteCost));
+        double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
         activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
         //GrossPaperCost
         double grossPaperCost = (resultOfNPC + resultWasteCost);
-        double grossPaperCostTwoDigits=Double.valueOf(String.format("%.3f",grossPaperCost));
+        double grossPaperCostTwoDigits = Double.valueOf(String.format("%.3f", grossPaperCost));
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
         double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCost + 1.5);
-        double resultOfBoxMFGTwoDigits=Double.valueOf(String.format("%.3f",resultOfBoxMFG));
+        double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
 //        //Box Price
         double profitFromTiet = Double.parseDouble(profit);
         double boxPrice = ((resultOfBoxMFGTwoDigits * profitFromTiet / 100) + resultOfBoxMFGTwoDigits);
-        String boxPriceThreeDigits=String.format("%.3f",boxPrice);
+        String boxPriceThreeDigits = String.format("%.3f", boxPrice);
         activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(boxPriceThreeDigits);
 //
 //        //Box Price with Tax
@@ -360,21 +472,21 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Total
         double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits
                 + valueThirdOFTotalWeightThreeDigits + valueFourthOFTotalWeightThreeDigits + valueFifthOFTotalWeightThreeDigits);
-        double totalThreeDigits=Double.valueOf(String.format("%.3f", total));
+        double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
         double wastePercentage = ((totalThreeDigits * wasteFromTiet) / 100);
-        double wastePercentageThreeDigits= Double.valueOf(String.format("%.3f", wastePercentage));
+        double wastePercentageThreeDigits = Double.valueOf(String.format("%.3f", wastePercentage));
         //Total weight
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
-        double totalWeightThreeDigits=Double.valueOf(String.format("%.3f",totalWeight));
+        double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
         int weightInInt = (int) (totalWeight * 1000);
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
-        double resultOfConvCostTwoDigits=Double.valueOf(String.format("%.2f",resultOfConvCost));
+        double resultOfConvCostTwoDigits = Double.valueOf(String.format("%.2f", resultOfConvCost));
         String resultOfConvCostString = String.format("%.2f", resultOfConvCostTwoDigits);
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
 
@@ -401,29 +513,28 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueFifthNPC = (valueFifthOFTotalWeightThreeDigits * rateOfBottom);
         //NetPaperCost
         double resultOfNPC = ((valueFirstNPC + valueSecondNPC + valueThirdNPC + valueFourthNPC + valueFifthNPC) / noOFBoxUps);
-        double resultOfNPCThreeDigits=Double.valueOf(String.format("%.3f",resultOfNPC));
+        double resultOfNPCThreeDigits = Double.valueOf(String.format("%.3f", resultOfNPC));
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
 
         //WasteCost
         double resultWasteCost = ((resultOfNPCThreeDigits * 3) / 100);
-        double resultWasteCostTwoDigits=Double.valueOf(String.format("%.2f",resultWasteCost));
+        double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
         activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
         //GrossPaperCost
         double grossPaperCost = (resultOfNPCThreeDigits + resultWasteCost);
-        double grossPaperCostTwoDigits=Double.valueOf(String.format("%.2f",grossPaperCost));
+        double grossPaperCostTwoDigits = Double.valueOf(String.format("%.2f", grossPaperCost));
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
-        double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCostTwoDigits );
-        double resultOfBoxMFGTwoDigits=Double.valueOf(String.format("%.2f",resultOfBoxMFG));
+        double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCostTwoDigits);
+        double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.2f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
 //        //Box Price
         double profitFromTiet = Double.parseDouble(profit);
         double boxPrice = ((resultOfBoxMFGTwoDigits * profitFromTiet / 100) + resultOfBoxMFGTwoDigits);
-        String boxPriceThreeDigits=String.format("%.2f",boxPrice);
+        String boxPriceThreeDigits = String.format("%.2f", boxPrice);
         activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(boxPriceThreeDigits);
-//
 
 //        //Box Price with Tax
         double taxFromTiet = Double.parseDouble(tax);
@@ -473,15 +584,15 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOfTotalWeight));
         //Total
         double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits);
-        double totalThreeDigits=Double.valueOf(String.format("%.3f", total));
+        double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
         double wastePercentage = ((totalThreeDigits * wasteFromTiet) / 100.0);
-        double wastePercentageThreeDigits= Double.valueOf(String.format("%.3f", wastePercentage));
+        double wastePercentageThreeDigits = Double.valueOf(String.format("%.3f", wastePercentage));
         //Total weight
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
-        double totalWeightThreeDigits=Double.valueOf(String.format("%.3f",totalWeight));
+        double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
@@ -499,22 +610,22 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueSecondNPC = (valueSecondOFTotalWeightThreeDigits * rateOfFlute);
         //NPC
         double resultOfNPC = ((valueFirstNPC + valueSecondNPC) / noOFBoxUps);
-        double resultOfNPCThreeDigits=Double.valueOf(String.format("%.3f",resultOfNPC));
+        double resultOfNPCThreeDigits = Double.valueOf(String.format("%.3f", resultOfNPC));
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
 
         //WasteCost
         double resultWasteCost = ((resultOfNPC * wasteFromTiet) / 100);
-        double resultWasteCostTwoDigits=Double.valueOf(String.format("%.2f",resultWasteCost));
+        double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
         activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
         //GrossPaperCost
         double grossPaperCost = (resultOfNPCThreeDigits + resultWasteCostTwoDigits);
-        double grossPaperCostTwoDigits=Double.valueOf(String.format("%.2f",grossPaperCost));
+        double grossPaperCostTwoDigits = Double.valueOf(String.format("%.2f", grossPaperCost));
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
 
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
         double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCost + 1.5);
-        double resultOfBoxMFGTwoDigits=Double.valueOf(String.format("%.3f",resultOfBoxMFG));
+        double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
 //        //Box Price
@@ -563,7 +674,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double val3ofGsm = (gsmOfBottomPaper * 1);
         //Total Gsm
         double totalGsm = (val1ofGsm + val2ofGsm + val3ofGsm);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
+        int resTotalGsmInt = (int) totalGsm;
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(resTotalGsmInt));
 
         //Total Weight
         //1St Value
@@ -581,15 +693,15 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueThirdOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueThirdOfThirdWeight));
         //Total
         double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits + valueThirdOFTotalWeightThreeDigits);
-        double totalThreeDigits=Double.valueOf(String.format("%.3f", total));
+        double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
         double wastePercentage = ((totalThreeDigits * wasteFromTiet) / 100);
-        double wastePercentageThreeDigits= Double.valueOf(String.format("%.3f", wastePercentage));
+        double wastePercentageThreeDigits = Double.valueOf(String.format("%.3f", wastePercentage));
         //Total weight
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
-        double totalWeightThreeDigits=Double.valueOf(String.format("%.3f",totalWeight));
+        double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
         int weightInInt = (int) (totalWeight * 1000);
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
 
@@ -616,30 +728,30 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //NetPaperCost
 
         double resultOfNPC = ((valueFirstNPC + valueSecondNPC + valueThirdNPC) / noOFBoxUps);
-        double resultOfNPCThreeDigits=Double.valueOf(String.format("%.3f",resultOfNPC));
+        double resultOfNPCThreeDigits = Double.valueOf(String.format("%.3f", resultOfNPC));
 
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
 
         //WasteCost
         double resultWasteCost = ((resultOfNPCThreeDigits * wasteFromTiet) / 100);
-        double resultWasteCostTwoDigits=Double.valueOf(String.format("%.2f",resultWasteCost));
+        double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
         activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
 
         //GrossPaperCost
         double grossPaperCost = (resultOfNPCThreeDigits + resultWasteCostTwoDigits);
-        double grossPaperCostTwoDigits=Double.valueOf(String.format("%.3f",grossPaperCost));
+        double grossPaperCostTwoDigits = Double.valueOf(String.format("%.3f", grossPaperCost));
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
 
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
         double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCost + 1.5);
-        double resultOfBoxMFGTwoDigits=Double.valueOf(String.format("%.3f",resultOfBoxMFG));
+        double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
 //        //Box Price
         double profitFromTiet = Double.parseDouble(profit);
         double boxPrice = ((resultOfBoxMFGTwoDigits * profitFromTiet / 100) + resultOfBoxMFGTwoDigits);
-        String boxPriceThreeDigits=String.format("%.3f",boxPrice);
+        String boxPriceThreeDigits = String.format("%.3f", boxPrice);
         activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(boxPriceThreeDigits);
 //
 //        //Box Price with Tax
@@ -653,7 +765,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //GSM
         double gsmForOnePly = Double.parseDouble(gsmInTop);
         double resTotalGsm = (gsmForOnePly * 1);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(resTotalGsm));
+        int resTotalGsmInt = (int) resTotalGsm;
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(resTotalGsmInt));
 
         //BS
         double bsOfTop = Double.parseDouble(bfInTopPaper);
@@ -666,35 +779,44 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double decalValue = Double.parseDouble(decalM);
         double cuttingValue = Double.parseDouble(cuttingL);
         double totalWeightInTopPaper = (decalValue * cuttingValue * gsmForOnePly * mm * mm / divide / divide / divide);
+        double totalWeightInTopPaperThreeDigits = Double.valueOf(String.format("%.3f", totalWeightInTopPaper));
 
-        //Waste
+
+
+
+
+        // Waste
         double wasteFromTiet = Double.parseDouble(waste);
-        double wastePercentage = ((totalWeightInTopPaper * wasteFromTiet) / 100.0);
+        double wastePercentage = ((totalWeightInTopPaperThreeDigits * wasteFromTiet) / 100.0);
 
         //totalWeigth
         int noOFBoxUps = Integer.parseInt(noOfBox);
-        double totalWeight = (totalWeightInTopPaper + wastePercentage) / noOFBoxUps;
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeight));
+        double totalWeight = (totalWeightInTopPaperThreeDigits + wastePercentage) / noOFBoxUps;
+        double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
 
         //NetPaperCost
         //CostValue
         double rateKgInTopForOnePly = Double.parseDouble(rateKgInTop);
-        double costValue = (totalWeightInTopPaper * rateKgInTopForOnePly);
+        double costValue = (totalWeightInTopPaperThreeDigits * rateKgInTopForOnePly);
 
         //NetpaperCostForOnePly
         double netPaperCost = (costValue / noOFBoxUps);
-        activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(netPaperCost));
+        double resultOfNPCThreeDigits = Double.valueOf(String.format("%.3f", netPaperCost));
+        activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
 
         //WasteCost
         double resultWasteCost = ((costValue * wasteFromTiet) / 100.0);
-        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCost));
+        double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
+        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
         //GrossPaperCost
-        double grossPaperCost = (costValue + resultWasteCost);
-        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCost));
+        double grossPaperCost = (costValue + resultWasteCostTwoDigits);
+        double grossPaperCostTwoDigits = Double.valueOf(String.format("%.2f", grossPaperCost));
+        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
 
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
-        double resultOfConvCost = (totalWeight * convCostTiet);
+        double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(String.valueOf(resultOfConvCost));
 
         //BoxMFGCost
@@ -707,16 +829,21 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         }
 
         double resultOfBoxMFG = (grossPaperCost + resultOfConvCost + overheadChargesTiet);
-        activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFG));
+        double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
+        activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 
         //Box Price
         double profitFromTiet = Double.parseDouble(profit);
-        double boxPrice = ((resultOfBoxMFG * profitFromTiet / 100.0) + resultOfBoxMFG);
-        activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(String.valueOf(boxPrice));
+        double boxPrice = ((resultOfBoxMFGTwoDigits * profitFromTiet / 100.0) + resultOfBoxMFGTwoDigits);
+        String boxPriceThreeDigits = String.format("%.3f", boxPrice);
+        activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(boxPriceThreeDigits);
+
+
         //Box Price with Tax
         double taxFromTiet = Double.parseDouble(tax);
         double boxPriceWithTax = ((boxPrice * taxFromTiet / 100.0) + boxPrice);
-        activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(String.valueOf(boxPriceWithTax));
+        String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
+        activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
     }
 
 

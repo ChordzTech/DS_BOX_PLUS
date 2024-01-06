@@ -2,14 +2,14 @@ package com.dss.dsboxplus.home;
 
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 
 public class HomeActivity extends BaseActivity implements IHomeActivityCallBack {
+    MutableLiveData<Boolean> onFloatingActionClickLiveData;
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
@@ -105,6 +106,13 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
 
         estimatesFragment = new EstimatesFragment(this);
+        onFloatingActionClickLiveData = estimatesFragment.getOnFloatingActionClickLiveData();
+        onFloatingActionClickLiveData.observe(this, onClicked -> {
+            if (onClicked) {
+                homeScreenBinding.bottomNavigation.setSelectedItemId( R.id.users);
+                Toast.makeText(this, "Select Client", Toast.LENGTH_SHORT).show();
+            }
+        });
         clientFragment = new ClientFragment();
         profileFragment = new ProfileFragment();
         replaceFragment(estimatesFragment);
@@ -156,4 +164,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     public void loadClientFragmentOnEmptyEstimates() {
         replaceFragment(new ClientFragment());
     }
+
+
 }

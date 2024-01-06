@@ -45,7 +45,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMediumBold"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 

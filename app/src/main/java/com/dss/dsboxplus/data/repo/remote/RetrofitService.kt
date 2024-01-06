@@ -6,6 +6,7 @@ import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
 import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
+import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
 import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
@@ -74,6 +75,11 @@ interface RetrofitService {
         @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long
     ): Response<EstimateListResponse>
 
+    @GET("GetEstimatesByClient/{clientid}")
+    suspend fun getEstimateByClientId(
+        @Path(value="clientid") clientId:Long,
+    ):Response<EstimateListResponse>
+
     @GET("")
     suspend fun getClientListBuBusinessIdUserId(): Response<ClientListResponse>
 
@@ -86,7 +92,7 @@ interface RetrofitService {
     suspend fun addUser(@Body request: AddUserRequest): Response<AddUserResponse>
 
     @POST("EstimateDetails/")
-    suspend fun addEstimate(@Body request: AddEstimateRequest): Response<EstimateListResponse>
+    suspend fun addEstimate(@Body request: AddEstimateRequest): Response<AddEstimateResponse>
 
 
     companion object {

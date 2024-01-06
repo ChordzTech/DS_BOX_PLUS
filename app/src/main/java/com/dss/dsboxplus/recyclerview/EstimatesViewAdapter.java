@@ -25,9 +25,9 @@ import java.util.Locale;
 
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
-    private ArrayList<EstimatesDataModel> selectedItems;
+
     private ArrayList<DataItem> estimatesList = new ArrayList<>();
-    private ArrayList<EstimatesDataModel> filteredList;
+
     private OnEstimatesSelectedI onEstimatesSelectedListner;
     private boolean estimateSelection;
 

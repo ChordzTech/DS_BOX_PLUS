@@ -127,6 +127,13 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 finish();
             }
         });
+        boxEstimatesDetailsBinding.btEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void dialog(View view) {

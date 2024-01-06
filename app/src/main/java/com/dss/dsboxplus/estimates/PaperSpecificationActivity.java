@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -29,6 +30,11 @@ public class PaperSpecificationActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
+        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm()+"X"+CreateEstimateDataHolder.INSTANCE.getWidthMm()+"X"+CreateEstimateDataHolder.INSTANCE.getHeightMm());
+
+
         noOfPly = this.getIntent().getStringExtra("noOfPly");
         String noOfBox = getIntent().getStringExtra("noOfBox");
         String cuttingL = getIntent().getStringExtra("cuttingLength");
@@ -176,6 +182,42 @@ public class PaperSpecificationActivity extends BaseActivity {
         paperSpecificationBinding.btNextInPaperSpecfication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                CreateEstimateDataHolder.INSTANCE.setTopBf(paperSpecificationBinding.bfInTopPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setTopGsm(paperSpecificationBinding.gsmInTopPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setTopRate(paperSpecificationBinding.rateKgInTopPaper.getText().length());
+
+                CreateEstimateDataHolder.INSTANCE.setF1Bf(paperSpecificationBinding.bfInFlutePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF1Gsm(paperSpecificationBinding.gsmInFlutePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF1RateKg(paperSpecificationBinding.rateKgInFlutePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF1ff(paperSpecificationBinding.ffInFlutePaper.getText().length());
+
+                CreateEstimateDataHolder.INSTANCE.setM1bf(paperSpecificationBinding.bfInMiddleOnePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setM1Gsm(paperSpecificationBinding.gsmInMiddleOnePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setM1RateKg(paperSpecificationBinding.rateKgInMiddleOnePaper.getText().length());
+
+                CreateEstimateDataHolder.INSTANCE.setF2Bf(paperSpecificationBinding.bfInFluteTwoPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF2Gsm(paperSpecificationBinding.gsmInFluteTwoPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF2RateKg(paperSpecificationBinding.rateKgInFluteTwoPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF2ff(paperSpecificationBinding.ffInFluteTwoPaper.getText().length());
+
+                CreateEstimateDataHolder.INSTANCE.setM2bf(paperSpecificationBinding.bfInMiddleTwoPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setM2Gsm(paperSpecificationBinding.gsmInMiddleTwoPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setM2RateKg(paperSpecificationBinding.rateKgInMiddleTwoPaper.getText().length());
+
+                CreateEstimateDataHolder.INSTANCE.setF3Bf(paperSpecificationBinding.bfInFluteThreePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF3Gsm(paperSpecificationBinding.gsmInFluteThreePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF3RateKg(paperSpecificationBinding.rateKgInFluteThreePaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setF3ff(paperSpecificationBinding.ffInFluteThreePaper.getText().length());
+
+                CreateEstimateDataHolder.INSTANCE.setBottomBF(paperSpecificationBinding.bfInBottomPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setBottomGsm(paperSpecificationBinding.gsmInBottomPaper.getText().length());
+                CreateEstimateDataHolder.INSTANCE.setBottomRateKg(paperSpecificationBinding.rateKgInBottomPaper.getText().length());
+
+
+
+
+
                 String noOfPly = getIntent().getStringExtra("noOfPly");
                 String bfInTopPaper = paperSpecificationBinding.bfInTopPaper.getText().toString();
                 String bfInFlutePaper = paperSpecificationBinding.bfInFlutePaper.getText().toString();

@@ -8,182 +8,197 @@ import com.google.gson.annotations.SerializedName
 data class AddEstimateRequest(
 
 	@field:SerializedName("clientid")
-	val clientid: Int? = null,
+	var clientid: Int? = 0,
 
 	@field:SerializedName("totalweight")
-	val totalweight: Int? = null,
+	var totalweight: Int? = 0,
 
 	@field:SerializedName("m1gsm")
-	val m1gsm: Int? = null,
+	var m1gsm: Int? = 0,
 
 	@field:SerializedName("height_cm_field")
-	val heightCmField: Int? = null,
+	val heightCmField: Int? = 0,
 
 	@field:SerializedName("userid")
-	val userid: Int? = null,
+	var userid: Int? = 0,
 
 	@field:SerializedName("boxname")
-	val boxname: String? = null,
+	var boxname: String? = "",
 
 	@field:SerializedName("length_inch_field")
-	val lengthInchField: Int? = null,
+	val lengthInchField: Int? = 0,
 
 	@field:SerializedName("m1bf")
-	val m1bf: Int? = null,
+	var m1bf: Int? = 0,
 
 	@field:SerializedName("width_mm_field")
-	val widthMmField: Int? = null,
+	var widthMmField: Int? = 0,
 
 	@field:SerializedName("f1rate")
-	val f1rate: Int? = null,
+	var f1rate: Int? = 0,
+
 
 	@field:SerializedName("bottomgsm")
-	val bottomgsm: Int? = null,
+	var bottomgsm: Int? = 0,
 
 	@field:SerializedName("f1bf")
-	val f1bf: Int? = null,
+	var f1bf: Int? = 0,
 
 	@field:SerializedName("bottombf")
-	val bottombf: Int? = null,
+	var bottombf: Int? = 0,
 
 	@field:SerializedName("waste")
-	val waste: Int? = null,
+	var waste: Int? = 0,
+
 
 	@field:SerializedName("f3ff")
-	val f3ff: Int? = null,
+	var f3ff: Int? = 0,
+
 
 	@field:SerializedName("width_cm_field")
-	val widthCmField: Int? = null,
+	val widthCmField: Int? = 0,
 
 	@field:SerializedName("f1gsm")
-	val f1gsm: Int? = null,
+	var f1gsm: Int? = 0,
 
 	@field:SerializedName("length_cm_field")
-	val lengthCmField: Int? = null,
+	val lengthCmField: Int? = 0,
 
 	@field:SerializedName("f1ff")
-	val f1ff: Int? = null,
+	var f1ff: Int? = 0,
+
 
 	@field:SerializedName("businessid")
-	var businessid: Int? = null,
+	var businessid: Int? = 0,
 
 	@field:SerializedName("toprate")
-	val toprate: Int? = null,
+	var toprate: Int? = 0,
+
 
 	@field:SerializedName("totalpapercost")
-	val totalpapercost: Int? = null,
+	val totalpapercost: Int? = 0,
 
 	@field:SerializedName("tax")
-	val tax: Int? = null,
+	var tax: Int? = 0,
+
 
 	@field:SerializedName("m1rate")
-	val m1rate: Int? = null,
+	var m1rate: Int? = 0,
 
 	@field:SerializedName("estimatedate")
-	val estimatedate: String? = null,
+	var estimatedate: String? = "",
 
 	@field:SerializedName("decalsizemargin")
-	val decalsizemargin: Int? = null,
+	var decalsizemargin: Int? = 0,
 
 	@field:SerializedName("height_inch_field")
-	val heightInchField: Int? = null,
+	val heightInchField: Int? = 0,
 
 	@field:SerializedName("m2rate")
-	val m2rate: Int? = null,
+	var m2rate: Int? = 0,
 
 	@field:SerializedName("netweight")
-	val netweight: Int? = null,
+	val netweight: Int? = 0,
 
 	@field:SerializedName("width_inch_field")
-	val widthInchField: Int? = null,
+	val widthInchField: Int? = 0,
 
 	@field:SerializedName("ups")
-	val ups: Int? = null,
+	var ups: Int? = 0,
 
 	@field:SerializedName("f3bf")
-	val f3bf: Int? = null,
+	var f3bf: Int? = 0,
 
 	@field:SerializedName("cuttinglengthmargin")
-	val cuttinglengthmargin: Int? = null,
+	var cuttinglengthmargin: Int? = 0,
 
 	@field:SerializedName("f2gsm")
-	val f2gsm: Int? = null,
+	var f2gsm: Int? = 0,
 
 	@field:SerializedName("bottomrate")
-	val bottomrate: Int? = null,
+	var bottomrate: Int? = 0,
 
 	@field:SerializedName("topgsm")
-	val topgsm: Int? = null,
+	var topgsm: Int? = 0,
 
 	@field:SerializedName("boxcost")
-	val boxcost: Int? = null,
+	var boxcost: Int? = 0,
 
 	@field:SerializedName("topbf")
-	val topbf: Int? = null,
+	var topbf: Int? = 0,
 
 	@field:SerializedName("boxpricewithtax")
-	val boxpricewithtax: Int? = null,
+	var boxpricewithtax: Int? = 0,
+
 
 	@field:SerializedName("cuttinglength")
-	val cuttinglength: Int? = null,
+	var cuttinglength: Int? = 0,
+
 
 	@field:SerializedName("length_mm_field")
-	val lengthMmField: Int? = null,
+	var lengthMmField: Int? = 0,
 
 	@field:SerializedName("totalbs")
-	val totalbs: Int? = null,
+	var totalbs: Int? = 0,
+
 
 	@field:SerializedName("m2bf")
-	val m2bf: Int? = null,
+	var m2bf: Int? = 0,
 
 	@field:SerializedName("profit")
-	val profit: Int? = null,
+	val profit: Int? = 0,
 
 	@field:SerializedName("f3gsm")
-	val f3gsm: Int? = null,
+	var f3gsm: Int? = 0,
 
 	@field:SerializedName("f2ff")
-	val f2ff: Int? = null,
+	var f2ff: Int? = 0,
+
 
 	@field:SerializedName("m2gsm")
-	val m2gsm: Int? = null,
+	var m2gsm: Int? = 0,
 
 	@field:SerializedName("decalsize")
-	val decalsize: Int? = null,
+	var decalsize: Int? = 0,
+
 
 	@field:SerializedName("f2rate")
-	val f2rate: Int? = null,
+	var f2rate: Int? = 0,
+
 
 	@field:SerializedName("totalgsm")
-	val totalgsm: Int? = null,
+	var totalgsm: Int? = 0,
+
 
 	@field:SerializedName("height_mm_field")
-	val heightMmField: Int? = null,
+	var heightMmField: Int? = 0,
 
 	@field:SerializedName("boxprice")
-	val boxprice: Int? = null,
+	var boxprice: Int? = 0,
+
 
 	@field:SerializedName("overheadcharges")
-	val overheadcharges: Int? = null,
+	var overheadcharges: Int? = 0,
 
 	@field:SerializedName("estimateid")
-	val estimateid: Int? = null,
+	val estimateid: Int? = 0,
 
 	@field:SerializedName("comment")
-	val comment: String? = null,
+	val comment: String? = "",
 
 	@field:SerializedName("ply")
-	val ply: Int? = null,
+	var ply: Int? = 0,
+
 
 	@field:SerializedName("conversionrate")
-	val conversionrate: Int? = null,
+	var conversionrate: Int? = 0,
 
 	@field:SerializedName("netpapercost")
-	val netpapercost: Int? = null,
+	var netpapercost: Int? = 0,
 
 	@field:SerializedName("f2bf")
-	val f2bf: Int? = null,
+	var f2bf: Int? = 0,
 
 	@field:SerializedName("f3rate")
-	val f3rate: Int? = null
+	var f3rate: Int? = 0
 ) : Parcelable
