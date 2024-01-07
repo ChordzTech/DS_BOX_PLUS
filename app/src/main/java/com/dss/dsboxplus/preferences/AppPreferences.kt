@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 
 object AppPreferences {
+
+    const val IS_CREATING_ESTIMATE: String = "is_creating_estimate"
     const val MOBILE_NUMBER: String = "mobile_number"
     const val DEVICE_INFO: String = "device_info"
     const val USER_ID: String = "user_id"
@@ -29,7 +31,23 @@ object AppPreferences {
         edit.apply()
         edit.commit()
     }
+    fun isCreatingEstimate(context: Context, key: String, value: Boolean) {
+        if (sharedPreferences == null) {
+            sharedPreferences =
+                context.getSharedPreferences(SharedPreferencesName, Context.MODE_PRIVATE)
+        }
+        val edit = sharedPreferences!!.edit()
+        edit.putBoolean(key, value)
+        edit.apply()
+        edit.commit()
+    }
 
+    fun getIsCreatingEstimate(key: String): Boolean {
+        if (sharedPreferences != null) {
+            return sharedPreferences!!.getBoolean(key, false)
+        }
+        return false;
+    }
     fun getLongValueFromSharedPreferences(key: String): Long {
         if (sharedPreferences != null) {
             return sharedPreferences!!.getLong(key, 0)

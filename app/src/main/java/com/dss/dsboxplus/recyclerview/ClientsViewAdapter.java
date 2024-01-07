@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.EstimateListActivity;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.estimates.NewEstimateActivity;
+import com.dss.dsboxplus.preferences.AppPreferences;
 
 import java.util.ArrayList;
 
@@ -82,10 +84,17 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
                 @Override
                 public void onClick(View view) {
                     // Open a new activity here
-                    if (view.getContext()!=null){
-                        Intent intent=new Intent(view.getContext(), EstimateListActivity.class);
-                        intent.putExtra("clientId",clientsList.get(getAdapterPosition()).getClientid());
-                        view.getContext().startActivity(intent) ;
+                    if (AppPreferences.INSTANCE.getIsCreatingEstimate(AppPreferences.IS_CREATING_ESTIMATE)) {
+                        AppPreferences.INSTANCE.isCreatingEstimate(view.getContext(), AppPreferences.IS_CREATING_ESTIMATE, false);
+                        Intent intent = new Intent(view.getContext(), NewEstimateActivity.class);
+                        intent.putExtra("clientId", clientsList.get(getAdapterPosition()).getClientid());
+                        view.getContext().startActivity(intent);
+                    } else {
+                        if (view.getContext() != null) {
+                            Intent intent = new Intent(view.getContext(), EstimateListActivity.class);
+                            intent.putExtra("clientId", clientsList.get(getAdapterPosition()).getClientid());
+                            view.getContext().startActivity(intent);
+                        }
                     }
 
                 }

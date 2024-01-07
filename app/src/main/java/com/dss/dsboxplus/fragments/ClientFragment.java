@@ -15,9 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.AddNewClientsActivity;
 import com.dss.dsboxplus.clients.ClientDetailsActivity;
+import com.dss.dsboxplus.clients.EstimateListActivity;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,6 +46,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     private String mParam1;
     private String mParam2;
     private ArrayList<Client> clientList = new ArrayList<>();
+
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -125,7 +129,6 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     }
 
 
-
     private void initView(View view) {
         rvClientRecyclerView = view.findViewById(R.id.rvClientRecyclerView);
         clientsViewAdapter = new ClientsViewAdapter();
@@ -142,11 +145,18 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
     @Override
     public void onClientSelectedI(Client clientData) {
-        Intent intent = new Intent(getActivity(), ClientDetailsActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("CLIENTS", clientData);
-        intent.putExtra("CLIENTS_BUNDLE", bundle);
-        startActivity(intent);
+        if (AppPreferences.INSTANCE.getIsCreatingEstimate(AppPreferences.IS_CREATING_ESTIMATE)) {
+            AppPreferences.INSTANCE.isCreatingEstimate(getActivity(),AppPreferences.IS_CREATING_ESTIMATE, false);
+            Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
+            intent.putExtra("clientId",clientData.getClientid());
+            startActivity(intent) ;
+        } else {
+            Intent intent = new Intent(getActivity(), ClientDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("CLIENTS", clientData);
+            intent.putExtra("CLIENTS_BUNDLE", bundle);
+            startActivity(intent);
+        }
     }
 
     public void setClientsList(ArrayList<Client> estimateList) {

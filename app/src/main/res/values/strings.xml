@@ -179,6 +179,9 @@
     <string name="conti_nue">CONTINUE</string>
     <string name="go_premium">Go Premium</string>
     <string name="add_new_users">Add New Users</string>
+    <string name="title_estimates">Estimates</string>
+    <string name="title_clients">Clients</string>
+    <string name="title_profile">Profile</string>
     <string-array name="noOfPly">
         <item>1Ply</item>
         <item>2Ply</item>

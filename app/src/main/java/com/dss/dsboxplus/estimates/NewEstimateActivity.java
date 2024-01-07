@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,6 +42,9 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     Double lengthMm = 0.0, widthMm = 0.0, heightMm = 0.0;
     TextView tvMargin;
     private NewEstimatesActivityViewModel viewModel;
+    private String configMargin = "0";
+    private String configDecal = "0";
+    private boolean isSheetDetailsTouched = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,19 +81,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         // Number of box
         tietnumberOfBox.setText("1");
         tvMargin = findViewById(R.id.tvMargin);
-        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-        if (appConfigResponse.getData() != null) {
-            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-                int configId = appConfigDataItem.getConfigid();
-                String configValue = appConfigDataItem.getConfigvalue();
-                if (configId == 10) {
-                    newEstimateBinding.tvMargin.setText(configValue);
-                } else if (configId == 11) {
-                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
-                }
-            }
-        }
+        setDefaultSheetSizes();
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,9 +104,6 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 CreateEstimateDataHolder.INSTANCE.setDecalMarginMm(newEstimateBinding.tvDecalMarginSize.getText().length());
                 CreateEstimateDataHolder.INSTANCE.setCuttingLengthMm(newEstimateBinding.tvCuttingLengthSize.getText().length());
                 CreateEstimateDataHolder.INSTANCE.setDecalSizeMm(newEstimateBinding.tvDecalSizeValue.getText().length());
-
-
-
 
 
                 String enterBoxName = newEstimateBinding.tietEnterBoxName.getText().toString();
@@ -146,10 +135,11 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //                Log.e("TAG", "onTextChanged: " + s);
                 if (!s.toString().isEmpty()) {
+                    setDefaultSheetSizes();
                     length = Double.parseDouble(s.toString());
                     convertValue();
-                    String s1 = tvMargin.getText().toString();
-                    String s2 = newEstimateBinding.tvDecalMarginSize.getText().toString();
+                    String s1 = configMargin;
+                    String s2 = configDecal;
                     Double d1 = Double.parseDouble(s1);
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
@@ -182,10 +172,11 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().isEmpty()) {
+                    setDefaultSheetSizes();
                     width = Double.parseDouble(s.toString());
                     convertValue();
-                    String s1 = tvMargin.getText().toString();
-                    String s2 = newEstimateBinding.tvDecalMarginSize.getText().toString();
+                    String s1 = configMargin;
+                    String s2 = configDecal;
                     Double d1 = Double.parseDouble(s1);
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
@@ -220,10 +211,11 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (!s.toString().isEmpty()) {
+                    setDefaultSheetSizes();
                     height = Double.parseDouble(s.toString());
                     convertValue();
-                    String s1 = tvMargin.getText().toString();
-                    String s2 = newEstimateBinding.tvDecalMarginSize.getText().toString();
+                    String s1 = configMargin;
+                    String s2 = configDecal;
                     Double d1 = Double.parseDouble(s1);
                     Double d2 = Double.parseDouble(s2);
                     if (length != 0.0 && width != 0.0 && height != 0.0) {
@@ -279,56 +271,93 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 }
             }
         });
-//        newEstimateBinding.tietCuttingLength.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if (!s.toString().isEmpty()) {
-//                        String tietCuttingLength = s.toString();
-//                        float tietCuttingLengthF = Float.parseFloat(tietCuttingLength);
-//                        float multiplication = (float) (tietCuttingLengthF * 25.4);
-//                        int result = Math.round(multiplication);
-//
-//                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(result));
-//                        newEstimateBinding.tvMargin.setText(String.valueOf(result));
-//                }
-//            }
-//
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-//        newEstimateBinding.tietDecalSize.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if (!s.toString().isEmpty()) {
-//                    String tietDecalSize= s.toString();
-//                    float tietDecalSizeF = Float.parseFloat(tietDecalSize);
-//                    float multiplication = (float) (tietDecalSizeF * 25.4);
-//                    int result = Math.round(multiplication);
-//
-//                    newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(result));
-//                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(result));
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
+        newEstimateBinding.tietCuttingLength.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                isSheetDetailsTouched = true;
+                return false;
+            }
+        });
+        newEstimateBinding.tietDecalSize.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                isSheetDetailsTouched = true;
 
+                return false;
+            }
+        });
+        newEstimateBinding.tietCuttingLength.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    String tietCuttingLength = s.toString();
+                    float tietCuttingLengthF = Float.parseFloat(tietCuttingLength);
+                    float multiplication = (float) (tietCuttingLengthF * 25.4);
+                    int result = Math.round(multiplication);
+                    if (isSheetDetailsTouched) {
+                        isSheetDetailsTouched = false;
+                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(result));
+                        newEstimateBinding.tvMargin.setText(String.valueOf(result));
+                    }
+                }
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        newEstimateBinding.tietDecalSize.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    String tietDecalSize = s.toString();
+                    float tietDecalSizeF = Float.parseFloat(tietDecalSize);
+                    float multiplication = (float) (tietDecalSizeF * 25.4);
+                    int result = Math.round(multiplication);
+                    if (isSheetDetailsTouched) {
+                        isSheetDetailsTouched = false;
+                        newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(result));
+                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(result));
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void setDefaultSheetSizes() {
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 10) {
+                    this.configMargin = configValue;
+                    newEstimateBinding.tvMargin.setText(configValue);
+                } else if (configId == 11) {
+                    this.configDecal = configValue;
+                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
+                }
+            }
+        }
     }
 
     private double calculateNewDecalSize(int numberOfBoxes) {

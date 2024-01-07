@@ -22,6 +22,7 @@ import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
 import com.dss.dsboxplus.model.EstimatesDataModel;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.profile.SubscriptionActivity;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -116,7 +117,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
             @Override
             public void onClick(View view) {
                 onFloatingActionClickLiveData.postValue(true);
-
+                AppPreferences.INSTANCE.isCreatingEstimate(getActivity(),AppPreferences.IS_CREATING_ESTIMATE, true);
 //                if(true){
 //                    iHomeActivityCallBack.loadClientFragmentOnEmptyEstimates();
 //                    Toast.makeText(getContext(), "Select Client", Toast.LENGTH_SHORT).show();

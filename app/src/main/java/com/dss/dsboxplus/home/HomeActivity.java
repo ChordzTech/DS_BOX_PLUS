@@ -109,21 +109,24 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         onFloatingActionClickLiveData = estimatesFragment.getOnFloatingActionClickLiveData();
         onFloatingActionClickLiveData.observe(this, onClicked -> {
             if (onClicked) {
-                homeScreenBinding.bottomNavigation.setSelectedItemId( R.id.users);
+                homeScreenBinding.bottomNavigation.setSelectedItemId(R.id.users);
                 Toast.makeText(this, "Select Client", Toast.LENGTH_SHORT).show();
             }
         });
         clientFragment = new ClientFragment();
         profileFragment = new ProfileFragment();
         replaceFragment(estimatesFragment);
+        homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
         homeScreenBinding.bottomNavigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.estimate) {
+                homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
                 replaceFragment(estimatesFragment);
                 homeViewModel.getEstimateByBusinessIdUserId();
                 if (!estimateList.isEmpty()) {
                     estimatesFragment.setEstimateList(estimateList);
                 }
             } else if (item.getItemId() == R.id.users) {
+                homeScreenBinding.tvPageTitle.setText(R.string.title_clients);
                 replaceFragment(clientFragment);
                 homeViewModel.getClientList();
                 if (!clientsList.isEmpty()) {
@@ -131,6 +134,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 }
 
             } else {
+                homeScreenBinding.tvPageTitle.setText(R.string.title_profile);
                 replaceFragment(profileFragment);
                 if (!appConfigList.isEmpty()) {
                     profileFragment.setAppConfigList(appConfigList);
