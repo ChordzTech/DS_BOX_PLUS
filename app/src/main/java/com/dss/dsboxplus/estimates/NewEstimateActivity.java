@@ -282,7 +282,6 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 isSheetDetailsTouched = true;
-
                 return false;
             }
         });

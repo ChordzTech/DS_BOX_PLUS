@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivitySplashBinding;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -50,6 +51,7 @@ public class SplashActivity extends BaseActivity {
                 finish();
             } else {
                 addUserDataToPreferences(userDetailsResponse);
+                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();

@@ -32,7 +32,7 @@ public class PaperSpecificationActivity extends BaseActivity {
     private void initView() {
 
         paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
-        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm()+"X"+CreateEstimateDataHolder.INSTANCE.getWidthMm()+"X"+CreateEstimateDataHolder.INSTANCE.getHeightMm());
+        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm() + "X" + CreateEstimateDataHolder.INSTANCE.getWidthMm() + "X" + CreateEstimateDataHolder.INSTANCE.getHeightMm());
 
 
         noOfPly = this.getIntent().getStringExtra("noOfPly");
@@ -183,6 +183,7 @@ public class PaperSpecificationActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
+
                 CreateEstimateDataHolder.INSTANCE.setTopBf(paperSpecificationBinding.bfInTopPaper.getText().length());
                 CreateEstimateDataHolder.INSTANCE.setTopGsm(paperSpecificationBinding.gsmInTopPaper.getText().length());
                 CreateEstimateDataHolder.INSTANCE.setTopRate(paperSpecificationBinding.rateKgInTopPaper.getText().length());
@@ -215,9 +216,6 @@ public class PaperSpecificationActivity extends BaseActivity {
                 CreateEstimateDataHolder.INSTANCE.setBottomRateKg(paperSpecificationBinding.rateKgInBottomPaper.getText().length());
 
 
-
-
-
                 String noOfPly = getIntent().getStringExtra("noOfPly");
                 String bfInTopPaper = paperSpecificationBinding.bfInTopPaper.getText().toString();
                 String bfInFlutePaper = paperSpecificationBinding.bfInFlutePaper.getText().toString();
@@ -244,36 +242,43 @@ public class PaperSpecificationActivity extends BaseActivity {
                 String ffInFluteTwoPaper = paperSpecificationBinding.ffInFluteTwoPaper.getText().toString();
                 String ffInFluteThreePaper = paperSpecificationBinding.ffInFluteThreePaper.getText().toString();
 
-                Intent intent = new Intent(getApplicationContext(), BoxSpecificationAndCostActivity.class);
-                intent.putExtra("bfInTopPaper", bfInTopPaper);
-                intent.putExtra("bfInFlutePaper", bfInFlutePaper);
-                intent.putExtra("bfInMiddleOnePaper", bfInMiddleOnePaper);
-                intent.putExtra("bfInFluteTwoPaper", bfInFluteTwoPaper);
-                intent.putExtra("bfInMiddleTwoPaper", bfInMiddleTwoPaper);
-                intent.putExtra("bfInFluteThreePaper", bfInFluteThreePaper);
-                intent.putExtra("bfInBottomPaper", bfInBottomPaper);
-                intent.putExtra("gsmInTop", gsmInTop);
-                intent.putExtra("gsmInFlutePaper", gsmInFlutePaper);
-                intent.putExtra("gsmInMiddleOnePaper", gsmInMiddleOnePaper);
-                intent.putExtra("gsmInFluteTwoPaper", gsmInFluteTwoPaper);
-                intent.putExtra("gsmInMiddleTwoPaper", gsmInMiddleTwoPaper);
-                intent.putExtra("gsmInFluteThreePaper", gsmInFluteThreePaper);
-                intent.putExtra("gsmInBottomPaper", gsmInBottomPaper);
-                intent.putExtra("rateKgInTop", rateKgInTop);
-                intent.putExtra("rateKgInFlutePaper", rateKgInFlutePaper);
-                intent.putExtra("rateKgInMiddleOnePaper", rateKgInMiddleOnePaper);
-                intent.putExtra("rateKgInFluteTwoPaper", rateKgInFluteTwoPaper);
-                intent.putExtra("rateKgInMiddleTwoPaper", rateKgInMiddleTwoPaper);
-                intent.putExtra("rateKgInFluteThreePaper", rateKgInFluteThreePaper);
-                intent.putExtra("rateKgInBottomPaper", rateKgInBottomPaper);
-                intent.putExtra("ffInFluteOnePaper", ffInFluteOnePaper);
-                intent.putExtra("ffInFluteTwoPaper", ffInFluteTwoPaper);
-                intent.putExtra("ffInFluteThreePaper", ffInFluteThreePaper);
-                intent.putExtra("cuttingLengthResult", cuttingL);
-                intent.putExtra("decalSizeResult", decalM);
-                intent.putExtra("noOfPly", noOfPly);
-                intent.putExtra("noOfBox", noOfBox);
-                startActivity(intent);
+                boolean check = validateInfo(bfInTopPaper, bfInFlutePaper, bfInMiddleOnePaper, bfInFluteTwoPaper, bfInMiddleTwoPaper
+                        , bfInFluteThreePaper, bfInBottomPaper, gsmInTop, gsmInFlutePaper, gsmInMiddleOnePaper, gsmInFluteTwoPaper, gsmInMiddleTwoPaper,
+                        gsmInFluteThreePaper, gsmInBottomPaper, rateKgInTop, rateKgInFlutePaper, rateKgInMiddleOnePaper, rateKgInFluteTwoPaper
+                        , rateKgInMiddleTwoPaper, rateKgInBottomPaper, ffInFluteOnePaper, ffInFluteTwoPaper, ffInFluteThreePaper, rateKgInFluteThreePaper);
+                if (check == true) {
+                    Intent intent = new Intent(getApplicationContext(), BoxSpecificationAndCostActivity.class);
+                    intent.putExtra("bfInTopPaper", bfInTopPaper);
+                    intent.putExtra("bfInFlutePaper", bfInFlutePaper);
+                    intent.putExtra("bfInMiddleOnePaper", bfInMiddleOnePaper);
+                    intent.putExtra("bfInFluteTwoPaper", bfInFluteTwoPaper);
+                    intent.putExtra("bfInMiddleTwoPaper", bfInMiddleTwoPaper);
+                    intent.putExtra("bfInFluteThreePaper", bfInFluteThreePaper);
+                    intent.putExtra("bfInBottomPaper", bfInBottomPaper);
+                    intent.putExtra("gsmInTop", gsmInTop);
+                    intent.putExtra("gsmInFlutePaper", gsmInFlutePaper);
+                    intent.putExtra("gsmInMiddleOnePaper", gsmInMiddleOnePaper);
+                    intent.putExtra("gsmInFluteTwoPaper", gsmInFluteTwoPaper);
+                    intent.putExtra("gsmInMiddleTwoPaper", gsmInMiddleTwoPaper);
+                    intent.putExtra("gsmInFluteThreePaper", gsmInFluteThreePaper);
+                    intent.putExtra("gsmInBottomPaper", gsmInBottomPaper);
+                    intent.putExtra("rateKgInTop", rateKgInTop);
+                    intent.putExtra("rateKgInFlutePaper", rateKgInFlutePaper);
+                    intent.putExtra("rateKgInMiddleOnePaper", rateKgInMiddleOnePaper);
+                    intent.putExtra("rateKgInFluteTwoPaper", rateKgInFluteTwoPaper);
+                    intent.putExtra("rateKgInMiddleTwoPaper", rateKgInMiddleTwoPaper);
+                    intent.putExtra("rateKgInFluteThreePaper", rateKgInFluteThreePaper);
+                    intent.putExtra("rateKgInBottomPaper", rateKgInBottomPaper);
+                    intent.putExtra("ffInFluteOnePaper", ffInFluteOnePaper);
+                    intent.putExtra("ffInFluteTwoPaper", ffInFluteTwoPaper);
+                    intent.putExtra("ffInFluteThreePaper", ffInFluteThreePaper);
+                    intent.putExtra("cuttingLengthResult", cuttingL);
+                    intent.putExtra("decalSizeResult", decalM);
+                    intent.putExtra("noOfPly", noOfPly);
+                    intent.putExtra("noOfBox", noOfBox);
+                    startActivity(intent);
+                }
+
             }
         });
         paperSpecificationBinding.btBackInPaperSpecification.setOnClickListener(new View.OnClickListener() {
@@ -284,6 +289,112 @@ public class PaperSpecificationActivity extends BaseActivity {
         });
     }
 
+    private boolean validateInfo(String bfInTopPaper, String bfInFlutePaper, String bfInMiddleOnePaper, String bfInFluteTwoPaper, String bfInMiddleTwoPaper, String bfInFluteThreePaper,
+                                 String bfInBottomPaper, String gsmInTop, String gsmInFlutePaper, String gsmInMiddleOnePaper, String gsmInFluteTwoPaper, String gsmInMiddleTwoPaper, String gsmInFluteThreePaper,
+                                 String gsmInBottomPaper, String rateKgInTop, String rateKgInFlutePaper, String rateKgInMiddleOnePaper, String rateKgInFluteTwoPaper, String rateKgInMiddleTwoPaper,
+                                 String rateKgInBottomPaper, String ffInFluteOnePaper, String ffInFluteTwoPaper, String ffInFluteThreePaper, String rateKgInFluteThreePaper) {
+        if (bfInTopPaper.isEmpty()) {
+            paperSpecificationBinding.bfInTopPaper.requestFocus();
+            paperSpecificationBinding.bfInTopPaper.setError("Enter Value");
+            return false;
+        } else if (bfInFlutePaper.isEmpty()) {
+            paperSpecificationBinding.bfInFlutePaper.requestFocus();
+            paperSpecificationBinding.bfInFlutePaper.setError("Enter Value");
+            return false;
+        } else if (bfInMiddleOnePaper.isEmpty()) {
+            paperSpecificationBinding.bfInMiddleOnePaper.requestFocus();
+            paperSpecificationBinding.bfInMiddleOnePaper.setError("Enter Value");
+            return false;
+        } else if (bfInFluteTwoPaper.isEmpty()) {
+            paperSpecificationBinding.bfInFluteTwoPaper.requestFocus();
+            paperSpecificationBinding.bfInFluteTwoPaper.setError("Enter Value");
+            return false;
+        } else if (bfInMiddleTwoPaper.isEmpty()) {
+            paperSpecificationBinding.bfInMiddleTwoPaper.requestFocus();
+            paperSpecificationBinding.bfInMiddleTwoPaper.setError("Enter Value");
+            return false;
+        } else if (bfInFluteThreePaper.isEmpty()) {
+            paperSpecificationBinding.bfInFluteThreePaper.requestFocus();
+            paperSpecificationBinding.bfInFluteThreePaper.setError("Enter Value");
+            return false;
+        } else if (bfInBottomPaper.isEmpty()) {
+            paperSpecificationBinding.bfInBottomPaper.requestFocus();
+            paperSpecificationBinding.bfInBottomPaper.setError("Enter Value");
+            return false;
+        } else if (gsmInTop.isEmpty()) {
+            paperSpecificationBinding.gsmInTopPaper.requestFocus();
+            paperSpecificationBinding.gsmInTopPaper.setError("Enter Value");
+            return false;
+        } else if (gsmInFlutePaper.isEmpty()) {
+            paperSpecificationBinding.gsmInFlutePaper.requestFocus();
+            paperSpecificationBinding.gsmInFlutePaper.setError("Enter Value");
+            return false;
+        } else if (gsmInMiddleOnePaper.isEmpty()) {
+            paperSpecificationBinding.gsmInMiddleOnePaper.requestFocus();
+            paperSpecificationBinding.gsmInMiddleOnePaper.setError("Enter Value");
+            return false;
+        } else if (gsmInFluteTwoPaper.isEmpty()) {
+            paperSpecificationBinding.gsmInFluteTwoPaper.requestFocus();
+            paperSpecificationBinding.gsmInFluteTwoPaper.setError("Enter Value");
+            return false;
+        } else if (gsmInMiddleTwoPaper.isEmpty()) {
+            paperSpecificationBinding.gsmInMiddleTwoPaper.requestFocus();
+            paperSpecificationBinding.gsmInMiddleTwoPaper.setError("Enter Value");
+            return false;
+        } else if (gsmInFluteThreePaper.isEmpty()) {
+            paperSpecificationBinding.gsmInFluteThreePaper.requestFocus();
+            paperSpecificationBinding.gsmInFluteThreePaper.setError("Enter Value");
+            return false;
+        } else if (gsmInBottomPaper.isEmpty()) {
+            paperSpecificationBinding.gsmInBottomPaper.requestFocus();
+            paperSpecificationBinding.gsmInBottomPaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInTop.isEmpty()) {
+            paperSpecificationBinding.rateKgInTopPaper.requestFocus();
+            paperSpecificationBinding.rateKgInTopPaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInFlutePaper.isEmpty()) {
+            paperSpecificationBinding.rateKgInFlutePaper.requestFocus();
+            paperSpecificationBinding.rateKgInFlutePaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInMiddleOnePaper.isEmpty()) {
+            paperSpecificationBinding.rateKgInMiddleOnePaper.requestFocus();
+            paperSpecificationBinding.rateKgInMiddleOnePaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInFluteTwoPaper.isEmpty()) {
+            paperSpecificationBinding.rateKgInFluteTwoPaper.requestFocus();
+            paperSpecificationBinding.rateKgInFluteTwoPaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInMiddleTwoPaper.isEmpty()) {
+            paperSpecificationBinding.rateKgInMiddleTwoPaper.requestFocus();
+            paperSpecificationBinding.rateKgInMiddleTwoPaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInBottomPaper.isEmpty()) {
+            paperSpecificationBinding.rateKgInBottomPaper.requestFocus();
+            paperSpecificationBinding.rateKgInBottomPaper.setError("Enter Value");
+            return false;
+        } else if (ffInFluteOnePaper.isEmpty()) {
+            paperSpecificationBinding.ffInFlutePaper.requestFocus();
+            paperSpecificationBinding.ffInFlutePaper.setError("Enter Value");
+            return false;
+        } else if (ffInFluteTwoPaper.isEmpty()) {
+            paperSpecificationBinding.ffInFluteTwoPaper.requestFocus();
+            paperSpecificationBinding.ffInFluteTwoPaper.setError("Enter Value");
+            return false;
+        } else if (ffInFluteThreePaper.isEmpty()) {
+            paperSpecificationBinding.ffInFluteThreePaper.requestFocus();
+            paperSpecificationBinding.ffInFluteThreePaper.setError("Enter Value");
+            return false;
+        } else if (rateKgInFluteThreePaper.isEmpty()) {
+            paperSpecificationBinding.rateKgInFluteThreePaper.requestFocus();
+            paperSpecificationBinding.rateKgInFluteThreePaper.setError("Enter Value");
+            return false;
+        } else {
+            return true;
+        }
+
+
+    }
 }
 
 

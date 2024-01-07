@@ -65,12 +65,14 @@
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="127dp"
+                            android:id="@+id/tvName"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="@string/profile_name" />
 
                         <TextView
+                            android:id="@+id/tvContactNumber"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -82,10 +84,11 @@
                     </LinearLayout>
 
                     <TextView
+                        style="@style/DSTextMediumBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Admin"
-                        style="@style/DSTextMediumBold"
+                        android:id="@+id/tvRole"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/llProfile"

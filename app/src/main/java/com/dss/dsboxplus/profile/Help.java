@@ -1,6 +1,9 @@
 package com.dss.dsboxplus.profile;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -26,6 +29,8 @@ public class Help extends BaseActivity {
     }
 
     private void initView() {
+        helpBinding.wvHelp.getSettings().setJavaScriptEnabled(true);
+        helpBinding.wvHelp.setWebViewClient(new HelpWebClient());
 
         AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
         if (appConfigResponse.getData() != null) {
@@ -35,11 +40,23 @@ public class Help extends BaseActivity {
                 String configValue = appConfigDataItem.getConfigvalue();
                 if (configId == 8) {
                     helpBinding.wvHelp.loadUrl(configValue);
-                    helpBinding.wvHelp.getSettings().setJavaScriptEnabled(true);
-//                    helpBinding.wvHelp.setWebViewClient();
                 }
             }
 
+        }
+    }
+
+    class HelpWebClient extends WebViewClient {
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            showLoader();
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            hideLoader();
         }
     }
 }

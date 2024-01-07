@@ -11,7 +11,7 @@ data class AddUserRequest(
 	var businessid: Int? = 0,
 
 	@field:SerializedName("userrole")
-	var userrole: String? = "",
+	var userrole: String? = "user",
 
 	@field:SerializedName("mobileno")
 	var mobileno: String? = "",
@@ -29,7 +29,7 @@ data class AddUserRequest(
 	var androidid: String? = "",
 
 	@field:SerializedName("userpassword")
-	var userpassword: String? = "",
+	var userpassword: String? = "user",
 
 	@field:SerializedName("username")
 	var username: String? = "",

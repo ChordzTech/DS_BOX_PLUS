@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
@@ -15,8 +16,10 @@ import androidx.fragment.app.Fragment;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
+import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.profile.BusinessDetails;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
@@ -40,13 +43,14 @@ public class ProfileFragment extends Fragment {
     ShapeableImageView ivProfile;
     SwitchCompat swMultiUser;
     FloatingActionButton fabAddImage;
-    private ArrayList<AppConfigDataItems> appConfigList=new ArrayList<>();
-    private String base64Code;
-    private ArrayList<SubscriptionDataItem>subscriptionList=new ArrayList<>();
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
+    private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
+    private String base64Code;
+    private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView name, contact, role;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -91,6 +95,14 @@ public class ProfileFragment extends Fragment {
         fabAddImage = v.findViewById(R.id.fabAddImage);
         cvsuperUserSettings = v.findViewById(R.id.cvSuperUserSettings);
         swMultiUser = v.findViewById(R.id.swMultiUser);
+        name = v.findViewById(R.id.tvName);
+        contact = v.findViewById(R.id.tvContactNumber);
+        role = v.findViewById(R.id.tvRole);
+        UserData userData = ((ArrayList<UserData>) ConfigDataProvider.INSTANCE.getUserDetails().getData()).get(0);
+        name.setText(userData.getUsername());
+        contact.setText(userData.getMobileno());
+        role.setText(userData.getUserrole());
+
         fabAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,14 +207,14 @@ public class ProfileFragment extends Fragment {
 
 
     public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {
-        this.appConfigList=appConfigList;
+        this.appConfigList = appConfigList;
     }
 
     public void setSubscriptionList(ArrayList<SubscriptionDataItem> subscriptionList) {
-        this.subscriptionList=subscriptionList;
+        this.subscriptionList = subscriptionList;
     }
 
     public void setQrCode(String base64Code) {
-        this.base64Code=base64Code;
+        this.base64Code = base64Code;
     }
 }

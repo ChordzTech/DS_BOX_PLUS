@@ -28,9 +28,14 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     double mm = 25.4;
     double divide = 1000.0;
     String formula = "";
-    private double wasteFromTiet;
-    private double wastePercentage;
+    private final double wasteFromTiet = 0.0;
+    private final double wastePercentage = 0.0;
     private BoxSpecificationAndCostActivityViewModel viewModel;
+    private String waste = "0";
+    private String convCostKg = "0";
+    private String profit = "0";
+    private String tax = "0";
+    private String overhead = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,67 +84,109 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             }
         }
 
-        String bfInTopPaper = getIntent().getStringExtra("bfInTopPaper");
-        String bfInFlutePaper = getIntent().getStringExtra("bfInFlutePaper");
-        String bfInMiddleOnePaper = getIntent().getStringExtra("bfInMiddleOnePaper");
-        String bfInFluteTwoPaper = getIntent().getStringExtra("bfInFluteTwoPaper");
-        String bfInMiddleTwoPaper = getIntent().getStringExtra("bfInMiddleTwoPaper");
-        String bfInFluteThreePaper = getIntent().getStringExtra("bfInFluteThreePaper");
-        String bfInBottomPaper = getIntent().getStringExtra("bfInBottomPaper");
-        String gsmInTop = getIntent().getStringExtra("gsmInTop");
-        String gsmInFlutePaper = getIntent().getStringExtra("gsmInFlutePaper");
-        String gsmInMiddleOnePaper = getIntent().getStringExtra("gsmInMiddleOnePaper");
-        String gsmInFluteTwoPaper = getIntent().getStringExtra("gsmInFluteTwoPaper");
-        String gsmInMiddleTwoPaper = getIntent().getStringExtra("gsmInMiddleTwoPaper");
-        String gsmInFluteThreePaper = getIntent().getStringExtra("gsmInFluteThreePaper");
-        String gsmInBottomPaper = getIntent().getStringExtra("gsmInBottomPaper");
-        String rateKgInTop = getIntent().getStringExtra("rateKgInTop");
-        String rateKgInFlutePaper = getIntent().getStringExtra("rateKgInFlutePaper");
-        String rateKgInMiddleOnePaper = getIntent().getStringExtra("rateKgInMiddleOnePaper");
-        String rateKgInFluteTwoPaper = getIntent().getStringExtra("rateKgInFluteTwoPaper");
-        String rateKgInMiddleTwoPaper = getIntent().getStringExtra("rateKgInMiddleTwoPaper");
-        String rateKgInFluteThreePaper = getIntent().getStringExtra("rateKgInFluteThreePaper");
-        String rateKgInBottomPaper = getIntent().getStringExtra("rateKgInBottomPaper");
-        String ffInFluteOnePaper = getIntent().getStringExtra("ffInFluteOnePaper");
-        String ffInFluteTwoPaper = getIntent().getStringExtra("ffInFluteTwoPaper");
-        String ffInFluteThreePaper = getIntent().getStringExtra("ffInFluteThreePaper");
-        String decalM = getIntent().getStringExtra("decalSizeResult");
-        String cuttingL = getIntent().getStringExtra("cuttingLengthResult");
-        String formula = getIntent().getStringExtra("noOfPly");
-        String noOfBox = getIntent().getStringExtra("noOfBox");
-        String waste = activityBoxSpecificationAndCostBinding.tietWaste.getText().toString();
-        String convCostKg = activityBoxSpecificationAndCostBinding.tietConversionCost.getText().toString();
-        String profit = activityBoxSpecificationAndCostBinding.tietProfit.getText().toString();
-        String tax = activityBoxSpecificationAndCostBinding.tietTax.getText().toString();
-        String overhead = activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().toString();
-        switch (formula) {
-            case "1Ply": {
-                formulaForOnePly(bfInTopPaper, gsmInTop, rateKgInTop, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
-                break;
-            }
-            case "2Ply": {
-                formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
-                break;
+        waste = activityBoxSpecificationAndCostBinding.tietWaste.getText().toString();
+        activityBoxSpecificationAndCostBinding.tietWaste.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
-            case "3Ply": {
-                formulaForThreePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
-                break;
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    waste = s.toString();
+                    callFormula();
+                }
             }
-            case "5Ply": {
-                formulaForFivePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
-                break;
-            }
-            case "7Ply": {
-                formulaForSevenPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInMiddleTwoPaper, gsmInMiddleTwoPaper, rateKgInMiddleTwoPaper, bfInFluteThreePaper, gsmInFluteThreePaper, rateKgInFluteThreePaper, ffInFluteThreePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
-                break;
-            }
-            case "2Ply(KG)": {
-//                formulaForTwoPlyKg()
-                break;
-            }
-        }
 
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        convCostKg = activityBoxSpecificationAndCostBinding.tietConversionCost.getText().toString();
+        activityBoxSpecificationAndCostBinding.tietConversionCost.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    convCostKg = s.toString();
+                    callFormula();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        profit = activityBoxSpecificationAndCostBinding.tietProfit.getText().toString();
+        activityBoxSpecificationAndCostBinding.tietProfit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    profit = s.toString();
+                    callFormula();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        tax = activityBoxSpecificationAndCostBinding.tietTax.getText().toString();
+        activityBoxSpecificationAndCostBinding.tietTax.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    tax = s.toString();
+                    callFormula();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        overhead = activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().toString();
+        activityBoxSpecificationAndCostBinding.tietOverHeadCharges.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty()) {
+                    overhead = s.toString();
+                    callFormula();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        callFormula();
         activityBoxSpecificationAndCostBinding.btBackInBoxSpecification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +215,66 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 CreateEstimateDataHolder.INSTANCE.resetValues();
             }
         });
+    }
+
+    private void callFormula() {
+        String bfInTopPaper = getIntent().getStringExtra("bfInTopPaper");
+        String bfInFlutePaper = getIntent().getStringExtra("bfInFlutePaper");
+        String bfInMiddleOnePaper = getIntent().getStringExtra("bfInMiddleOnePaper");
+        String bfInFluteTwoPaper = getIntent().getStringExtra("bfInFluteTwoPaper");
+        String bfInMiddleTwoPaper = getIntent().getStringExtra("bfInMiddleTwoPaper");
+        String bfInFluteThreePaper = getIntent().getStringExtra("bfInFluteThreePaper");
+        String bfInBottomPaper = getIntent().getStringExtra("bfInBottomPaper");
+        String gsmInTop = getIntent().getStringExtra("gsmInTop");
+        String gsmInFlutePaper = getIntent().getStringExtra("gsmInFlutePaper");
+        String gsmInMiddleOnePaper = getIntent().getStringExtra("gsmInMiddleOnePaper");
+        String gsmInFluteTwoPaper = getIntent().getStringExtra("gsmInFluteTwoPaper");
+        String gsmInMiddleTwoPaper = getIntent().getStringExtra("gsmInMiddleTwoPaper");
+        String gsmInFluteThreePaper = getIntent().getStringExtra("gsmInFluteThreePaper");
+        String gsmInBottomPaper = getIntent().getStringExtra("gsmInBottomPaper");
+        String rateKgInTop = getIntent().getStringExtra("rateKgInTop");
+        String rateKgInFlutePaper = getIntent().getStringExtra("rateKgInFlutePaper");
+        String rateKgInMiddleOnePaper = getIntent().getStringExtra("rateKgInMiddleOnePaper");
+        String rateKgInFluteTwoPaper = getIntent().getStringExtra("rateKgInFluteTwoPaper");
+        String rateKgInMiddleTwoPaper = getIntent().getStringExtra("rateKgInMiddleTwoPaper");
+        String rateKgInFluteThreePaper = getIntent().getStringExtra("rateKgInFluteThreePaper");
+        String rateKgInBottomPaper = getIntent().getStringExtra("rateKgInBottomPaper");
+        String ffInFluteOnePaper = getIntent().getStringExtra("ffInFluteOnePaper");
+        String ffInFluteTwoPaper = getIntent().getStringExtra("ffInFluteTwoPaper");
+        String ffInFluteThreePaper = getIntent().getStringExtra("ffInFluteThreePaper");
+        String decalM = getIntent().getStringExtra("decalSizeResult");
+        String cuttingL = getIntent().getStringExtra("cuttingLengthResult");
+        String formula = getIntent().getStringExtra("noOfPly");
+        String noOfBox = getIntent().getStringExtra("noOfBox");
+
+        switch (formula) {
+            case "1Ply": {
+                formulaForOnePly(bfInTopPaper, gsmInTop, rateKgInTop, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
+                break;
+            }
+            case "2Ply": {
+                formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
+                break;
+            }
+
+            case "3Ply": {
+                formulaForThreePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
+                break;
+            }
+            case "5Ply": {
+                formulaForFivePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
+                break;
+            }
+            case "7Ply": {
+                formulaForSevenPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInMiddleOnePaper, gsmInMiddleOnePaper, rateKgInMiddleOnePaper, bfInFluteTwoPaper, gsmInFluteTwoPaper, rateKgInFluteTwoPaper, ffInFluteTwoPaper, bfInMiddleTwoPaper, gsmInMiddleTwoPaper, rateKgInMiddleTwoPaper, bfInFluteThreePaper, gsmInFluteThreePaper, rateKgInFluteThreePaper, ffInFluteThreePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
+                break;
+            }
+            case "2Ply(KG)": {
+//                formulaForTwoPlyKg()
+                break;
+            }
+        }
+
     }
 
     private void callCreateEstimateAPI() {
@@ -782,9 +889,6 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double totalWeightInTopPaperThreeDigits = Double.valueOf(String.format("%.3f", totalWeightInTopPaper));
 
 
-
-
-
         // Waste
         double wasteFromTiet = Double.parseDouble(waste);
         double wastePercentage = ((totalWeightInTopPaperThreeDigits * wasteFromTiet) / 100.0);
@@ -845,6 +949,5 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
     }
-
 
 }

@@ -9,6 +9,7 @@ import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxSpecificationAndCostA
 import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.EnterBusinessDetailsActivityViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.AddSubUserViewModel
 import com.example.mvvmretrofit.data.repo.MainRepository
 
 class AppViewModelFactory constructor(private val repository: MainRepository) :
@@ -29,6 +30,8 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
             BoxSpecificationAndCostActivityViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(EstimateListViewModel::class.java)) {
             EstimateListViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(AddSubUserViewModel::class.java)) {
+            AddSubUserViewModel(repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }

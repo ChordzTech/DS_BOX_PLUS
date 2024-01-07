@@ -7,15 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.repo.response.DataItem;
-import com.dss.dsboxplus.data.repo.response.EstimateListResponse;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
 import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
@@ -46,30 +45,51 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
     ActivityQuotationInBoxEstimateDetailsBinding activityQuotationInBoxEstimateDetailsBinding;
 
     private DataItem dataItem;
+    private boolean isPaperSpecification = false;
+    private boolean isTaxEnable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityQuotationInBoxEstimateDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_quotation_in_box_estimate_details);
         initView();
-//
 
     }
 
     private void initView() {
 //        if (getIntent().getExtras().getParcelable("EstimateDetails_Bundle") != null) {
-////            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
-////        }
+//            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
+//        }
         Intent intent = getIntent();
         if (intent.hasExtra("EstimateDetails_Bundle")) {
             // Retrieve the bundle from the intent
             Bundle bundle = intent.getBundleExtra("EstimateDetails_Bundle");
             if (bundle != null) {
                 // Retrieve the DataItem object from the bundle
-                dataItem=bundle.getParcelable("EstimateDetails");
+                dataItem = bundle.getParcelable("EstimateDetails");
             }
         }
 
+        activityQuotationInBoxEstimateDetailsBinding.swEnablePaperSpecification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    isPaperSpecification = true;
+                } else {
+                    isPaperSpecification = false;
+                }
+            }
+        });
+        activityQuotationInBoxEstimateDetailsBinding.swEnableTaxAndPrice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    isTaxEnable = true;
+                } else {
+                    isTaxEnable = false;
+                }
+            }
+        });
 
         btCreatePDF = findViewById(R.id.btCreateQuotationPDF);
         btCreatePDF.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +105,6 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
     }
 
     private void createDsPdf() throws FileNotFoundException {
-        String timestamp = String.valueOf(System.currentTimeMillis());
-        String pdfFileName = "Quotation_" + timestamp + ".pdf"; // Unique file name with timestamp
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "Quotation.pdf");
         OutputStream outputStream = new FileOutputStream(file);
@@ -158,15 +176,27 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
 
         //table2-02
         table1.addCell(new Cell().add(new Paragraph("1")));
-        table1.addCell(new Cell().add(new Paragraph("3 Ply Box,DemoBox\n" +
-//                dataItem.getLengthMmField() + "X" + dataItem.getWidthMmField() + "X" + dataItem.getHeightMmField() +
-                "Paper Specification as below\n" +
-                "1.Top Paper 14/200\n" +
-                "2.Flute Paper 12/120\n" +
-                "3.Bottom Paper 14/150")));
-        table1.addCell(new Cell().add(new Paragraph("Rs 15.22\n" +
-                "Tax@ 18.0%-2.74Rs\n" +
-                "Total:17.96Rs")).setTextAlignment(TextAlignment.RIGHT));
+        String paperSpecification = "";
+        if (isPaperSpecification) {
+            paperSpecification = "3 Ply Box,DemoBox\n" +
+                    "Paper Specification as below\n" +
+                    "1.Top Paper 14/200\n" +
+                    "2.Flute Paper 12/120\n" +
+                    "3.Bottom Paper 14/150";
+        } else {
+            paperSpecification = "3 Ply Box,DemoBox\n";
+        }
+        table1.addCell(new Cell().add(new Paragraph(paperSpecification)));
+
+        String rate = "";
+        if (isTaxEnable) {
+            rate = "Rs 15.22\n";
+        } else {
+            rate = "Rs 15.22\n" +
+                    "Tax@ 18.0%-2.74Rs\n" +
+                    "Total:17.96Rs";
+        }
+        table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
         table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
 
         Drawable d3 = getDrawable(R.drawable.thanks);
@@ -198,7 +228,6 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(new Paragraph("Auto generated copy,no signature requried").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
         document.add(image3);
         document.close();
-//        Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "PDF Created: " + pdfFileName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
     }
 }
