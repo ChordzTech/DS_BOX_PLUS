@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.model.AddSubNewUserDataModel;
 
 import java.util.ArrayList;
@@ -16,9 +17,13 @@ import java.util.List;
 
 public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.SubUserViewHolder> {
     private ArrayList<AddSubNewUserDataModel> dataList;
+    private ArrayList<UserData> userList = new ArrayList<>();
 
-    public SubUserViewAdapter(ArrayList<AddSubNewUserDataModel> dataList) {
-        this.dataList = dataList;
+//    public SubUserViewAdapter(ArrayList<AddSubNewUserDataModel> dataList) {
+//        this.dataList = dataList;
+//    }
+    public SubUserViewAdapter(ArrayList<UserData> userList){
+        this.userList=userList;
     }
 
     @NonNull
@@ -30,14 +35,18 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SubUserViewHolder holder, int position) {
-        AddSubNewUserDataModel data = dataList.get(position);
-        holder.tvSubUserName.setText(data.getUsername());
-        holder.tvSubUserContact.setText(data.getContact());
+//        AddSubNewUserDataModel data = dataList.get(position);
+//        holder.tvSubUserName.setText(data.getUsername());
+//        holder.tvSubUserContact.setText(data.getContact());
+        UserData userData=userList.get(position);
+        holder.tvSubUserName.setText(userData.getUsername());
+        holder.tvSubUserContact.setText(userData.getMobileno());
+
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return userList.size();
     }
 
     class SubUserViewHolder extends RecyclerView.ViewHolder {

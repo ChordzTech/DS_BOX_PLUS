@@ -10,6 +10,8 @@ import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.EnterBusinessDetailsAct
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.AddSubUserViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultPaperSettingsActivityViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.SuperUserViewModel
 import com.example.mvvmretrofit.data.repo.MainRepository
 
 class AppViewModelFactory constructor(private val repository: MainRepository) :
@@ -32,6 +34,10 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
             EstimateListViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(AddSubUserViewModel::class.java)) {
             AddSubUserViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(DefaultPaperSettingsActivityViewModel::class.java)) {
+            DefaultPaperSettingsActivityViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(SuperUserViewModel::class.java)) {
+            SuperUserViewModel(repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }

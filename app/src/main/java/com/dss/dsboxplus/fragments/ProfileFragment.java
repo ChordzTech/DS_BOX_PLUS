@@ -1,8 +1,10 @@
 package com.dss.dsboxplus.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.data.repo.response.UserData;
-import com.dss.dsboxplus.profile.BusinessDetails;
+import com.dss.dsboxplus.profile.BusinessDetailsActivity;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
 import com.dss.dsboxplus.profile.Help;
@@ -32,7 +34,9 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class ProfileFragment extends Fragment {
@@ -73,6 +77,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -84,6 +89,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile_, container, false);
+
         cvBusiness = v.findViewById(R.id.businessSettings);
         cvDefaultPaper = v.findViewById(R.id.cvDefaultPaperSettings);
         cvDefaultRate = v.findViewById(R.id.cvDefaultRateSettings);
@@ -98,7 +104,7 @@ public class ProfileFragment extends Fragment {
         name = v.findViewById(R.id.tvName);
         contact = v.findViewById(R.id.tvContactNumber);
         role = v.findViewById(R.id.tvRole);
-        UserData userData = ((ArrayList<UserData>) ConfigDataProvider.INSTANCE.getUserDetails().getData()).get(0);
+        UserData userData = ((ArrayList<UserData>) Objects.requireNonNull(Objects.requireNonNull(ConfigDataProvider.INSTANCE.getUserDetails()).getData())).get(0);
         name.setText(userData.getUsername());
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
@@ -126,7 +132,7 @@ public class ProfileFragment extends Fragment {
         cvBusiness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BusinessDetails.class);
+                Intent intent = new Intent(getActivity(), BusinessDetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -203,6 +209,8 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
         ivProfile.setImageURI(uri);
+
+
     }
 
 
@@ -217,4 +225,6 @@ public class ProfileFragment extends Fragment {
     public void setQrCode(String base64Code) {
         this.base64Code = base64Code;
     }
+
+
 }

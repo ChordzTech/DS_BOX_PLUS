@@ -1,10 +1,14 @@
 package com.dss.dsboxplus.home;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,6 +32,7 @@ import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
 
@@ -50,6 +55,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeScreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen);
+
         initView();
         initObservables();
         fetchData();

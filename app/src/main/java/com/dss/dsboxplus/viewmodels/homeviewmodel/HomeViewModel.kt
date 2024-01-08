@@ -64,6 +64,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 //                        estimateList.postValue(NetworkState.Error)
                     }
                 }
+
             }
         }
     }

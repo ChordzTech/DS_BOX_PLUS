@@ -48,17 +48,7 @@ public class AddNewClientsActivity extends BaseActivity {
         tietContactNumber = findViewById(R.id.tietContactNumber);
         tietAddress = findViewById(R.id.tietAddress);
         btSubmitInNewClientsDetails = findViewById(R.id.btSubmitInNewClientsDetails);
-        addNewClientsBinding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImagePicker.with(AddNewClientsActivity.this)
-                        .cropSquare()
-                        .crop()
-                        .compress(1024)
-                        .maxResultSize(1080, 1080)
-                        .start();
-            }
-        });
+
         btSubmitInNewClientsDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,10 +102,10 @@ public class AddNewClientsActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Uri uri = data.getData();
-        addNewClientsBinding.ivNewClients.setImageURI(uri);
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Uri uri = data.getData();
+//        addNewClientsBinding.ivNewClients.setImageURI(uri);
+//    }
 }

@@ -23,6 +23,7 @@
                 android:id="@+id/clImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -35,15 +36,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/circular"
-                    app:strokeColor="@color/black"/>
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivNewClients"
-                    app:layout_constraintEnd_toEndOf="@+id/ivNewClients"
-                    app:srcCompat="@drawable/baseline_linked_camera_24" />
+                    app:strokeColor="@color/black" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -84,7 +84,7 @@
             android:name=".profile.DefaultPaperSettings"
             android:exported="false" />
         <activity
-            android:name=".profile.BusinessDetails"
+            android:name=".profile.BusinessDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".home.HomeActivity"

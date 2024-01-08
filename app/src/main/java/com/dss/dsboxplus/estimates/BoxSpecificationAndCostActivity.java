@@ -492,7 +492,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
-        double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCost + 1.5);
+        double overheadValue = overhead.isEmpty() ? 0.0 : Double.parseDouble(overhead);
+        double resultOfBoxMFG = grossPaperCost + resultOfConvCost + overheadValue;
         double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
@@ -633,7 +634,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
-        double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCostTwoDigits);
+        double overheadValue = overhead.isEmpty() ? 0.0 : Double.parseDouble(overhead);
+        double resultOfBoxMFG = grossPaperCost + resultOfConvCost + overheadValue;
+
         double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.2f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
@@ -731,7 +734,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
         //BoxMFGCost
 //        float overheadChargesTiet=Double.parseDouble(overhead);
-        double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCost + 1.5);
+        double overheadValue = overhead.isEmpty() ? 0.0 : Double.parseDouble(overhead);
+        double resultOfBoxMFG = grossPaperCost + resultOfConvCost + overheadValue;
+
         double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
@@ -813,6 +818,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
 
         //ConversionCostPerKG
+
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
         String resultOfConvCostString = String.format("%.2f", resultOfConvCost);
@@ -850,8 +856,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
 
         //BoxMFGCost
-//        float overheadChargesTiet=Double.parseDouble(overhead);
-        double resultOfBoxMFG = (grossPaperCostTwoDigits + resultOfConvCost + 1.5);
+//        float overheadChargesTiet= (float) Double.parseDouble(overhead);
+        double overheadValue = overhead.isEmpty() ? 0.0 : Double.parseDouble(overhead);
+        double resultOfBoxMFG = grossPaperCost + resultOfConvCost + overheadValue;
         double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 //
@@ -924,15 +931,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(String.valueOf(resultOfConvCost));
 
         //BoxMFGCost
-        double overheadChargesTiet;
-
-        if (overhead != null && !overhead.isEmpty()) {
-            overheadChargesTiet = Double.parseDouble(overhead);
-        } else {
-            overheadChargesTiet = 0.0; // or any default value you want
-        }
-
-        double resultOfBoxMFG = (grossPaperCost + resultOfConvCost + overheadChargesTiet);
+        double overheadValue = overhead.isEmpty() ? 0.0 : Double.parseDouble(overhead);
+        double resultOfBoxMFG = grossPaperCost + resultOfConvCost + overheadValue;
         double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
         activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
 

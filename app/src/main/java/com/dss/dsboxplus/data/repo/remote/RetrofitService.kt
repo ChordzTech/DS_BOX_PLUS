@@ -2,6 +2,7 @@ package com.example.mvvmretrofit.data.repo.remote
 
 import com.dss.dsboxplus.data.repo.request.AddUserRequest
 import com.dss.dsboxplus.data.repo.request.BusinessDetailsRequest
+import com.dss.dsboxplus.data.repo.request.UpdateBusinessDetailsRequest
 import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
@@ -14,6 +15,7 @@ import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.UpdateBusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.google.gson.GsonBuilder
@@ -46,6 +48,7 @@ interface RetrofitService {
         @Body request: UpdateClientRequest
     ): Response<UpdateClientResponse>
 
+
     //client list APIs
     @GET("GetClientByB/{businessid}")
     suspend fun getClientList(@Path(value = "businessid") businessId: Long): Response<ClientListResponse>
@@ -56,6 +59,12 @@ interface RetrofitService {
     //Business Details APIs
     @GET("BusinessDetails/")
     suspend fun getBusinessDetails(): Response<BusinessDetailsResponse>
+    @PUT("BusinessDetails/{businessid}")
+    suspend fun updateBusinessDetails(
+        @Path(value="businessid") businessId: Long,
+        @Body request:UpdateBusinessDetailsRequest
+    ):Response<UpdateBusinessDetailsResponse>
+
 
     @POST("BusinessDetails/")
     suspend fun addBusinessDetails(@Body businessDetailsRequest: BusinessDetailsRequest): Response<BusinessDetailsResponse>
@@ -80,13 +89,17 @@ interface RetrofitService {
         @Path(value="clientid") clientId:Long,
     ):Response<EstimateListResponse>
 
-    @GET("")
-    suspend fun getClientListBuBusinessIdUserId(): Response<ClientListResponse>
 
     @GET("GetUserDetails/{mobileno}/{deviceinfo}")
     suspend fun getUserDetails(
         @Path(value = "mobileno") mobileno: String, @Path(value = "deviceinfo") deviceinfo: String
     ): Response<UserDetailsResponse>
+
+    @GET("GetSubUserList/{businessid}")
+    suspend fun getUsersByBusinessId(
+        @Path (value="businessid") businessId: Long,
+    ):Response<UserDetailsResponse>
+
 
     @POST("UserDetails/")
     suspend fun addUser(@Body request: AddUserRequest): Response<AddUserResponse>

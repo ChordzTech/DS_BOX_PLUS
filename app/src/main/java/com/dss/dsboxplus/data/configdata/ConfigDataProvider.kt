@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.data.configdata
 
+import android.graphics.Bitmap
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetails
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
@@ -15,4 +16,5 @@ object ConfigDataProvider{
     var qrCodeBase64:String ? =null
     var estimateListResponse:EstimateListResponse? =null
     var clientListResponse:ClientListResponse? =null
+    var profilePhotoBitmap: Bitmap? = null
 }

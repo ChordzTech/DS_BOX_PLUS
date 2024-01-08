@@ -3,6 +3,7 @@ package com.dss.dsboxplus.profile.subUser;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,7 +32,8 @@ public class AddSubUserActivity extends BaseActivity {
 
     private void addOververs() {
         viewModel.getAddSubUserLiveData().observe(this,addUserResponse -> {
-
+            Toast.makeText(this, "User added Successfully", Toast.LENGTH_SHORT);
+            finish();
         });
     }
 

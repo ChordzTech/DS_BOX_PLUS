@@ -190,11 +190,14 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
 
         String rate = "";
         if (isTaxEnable) {
-            rate = "Rs 15.22\n";
-        } else {
+
             rate = "Rs 15.22\n" +
                     "Tax@ 18.0%-2.74Rs\n" +
                     "Total:17.96Rs";
+
+        } else {
+            rate = "Rs 15.22\n";
+
         }
         table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
         table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
