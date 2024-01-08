@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.estimates;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,7 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxSpecificationAndCostActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -48,8 +50,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
     private void addOververs() {
         viewModel.getCreateEstimateLiveData().observe(this, addEstimateResponse -> {
-            Toast.makeText(this, "Estimate Added Sucessfully", Toast.LENGTH_SHORT).show();
-            finish();
+            Toast.makeText(this, "Estimate Added Successfully", Toast.LENGTH_SHORT).show();
+            finishAffinity();
+            startActivity(new Intent(BoxSpecificationAndCostActivity.this, HomeActivity.class));
         });
     }
 
@@ -190,31 +193,34 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.btBackInBoxSpecification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateEstimateDataHolder.INSTANCE.setTotalGsm(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setTotalBs(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setTotalWeight(activityBoxSpecificationAndCostBinding.tvTotalWeight.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setNetPaperCost(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setWasteCost(activityBoxSpecificationAndCostBinding.tvWasteCost.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setGrossPaperCost(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setConvCost(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setBoxMfg(activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setBoxPrice(activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setWasteInput(activityBoxSpecificationAndCostBinding.tietWaste.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setConvRate(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setOverHead(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().length());
-                CreateEstimateDataHolder.INSTANCE.setTax(activityBoxSpecificationAndCostBinding.tietTax.getText().length());
-
                 finish();
             }
         });
         activityBoxSpecificationAndCostBinding.btNextInBoxSpecification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                storeValuesInEstimateDataHolder();
                 callCreateEstimateAPI();
-                CreateEstimateDataHolder.INSTANCE.resetValues();
             }
         });
+    }
+
+    private void storeValuesInEstimateDataHolder() {
+        CreateEstimateDataHolder.INSTANCE.setTotalGsm(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setTotalBs(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setTotalWeight(activityBoxSpecificationAndCostBinding.tvTotalWeight.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setNetPaperCost(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().length());
+//                CreateEstimateDataHolder.INSTANCE.setWasteCost(activityBoxSpecificationAndCostBinding.tvWasteCost.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setGrossPaperCost(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setConvCost(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setBoxMfg(activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setBoxPrice(activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setWasteInput(activityBoxSpecificationAndCostBinding.tietWaste.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setConvRate(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setOverHead(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setTax(activityBoxSpecificationAndCostBinding.tietTax.getText().length());
+
     }
 
     private void callFormula() {
@@ -950,4 +956,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CreateEstimateDataHolder.INSTANCE.resetValues();
+    }
 }
