@@ -22,6 +22,8 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
+import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse;
+import com.dss.dsboxplus.data.repo.response.SubForBusiness;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
@@ -42,6 +44,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
+    private ArrayList<SubForBusiness> subscription=new ArrayList<>();
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private ClientFragment clientFragment;
@@ -67,6 +70,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
         homeViewModel.getEstimateByBusinessIdUserId();
+        homeViewModel.getSubForBusiness();
     }
 
     private void initObservables() {
@@ -102,6 +106,12 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (!qrCodeResponse.getBase64Code().isEmpty()) {
                 base64Code = qrCodeResponse.getBase64Code();
                 ConfigDataProvider.INSTANCE.setQrCodeBase64(base64Code);
+            }
+        });
+        homeViewModel.getSubForBusinessLiveData().observe(this,getSubForBusinessResponse -> {
+            if(!getSubForBusinessResponse.getData().isEmpty()){
+                subscription=(ArrayList<SubForBusiness>) getSubForBusinessResponse.getData();
+                profileFragment.setSubscription(subscription);
             }
         });
     }
@@ -150,6 +160,9 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 }
                 if (!base64Code.isEmpty()) {
                     profileFragment.setQrCode(base64Code);
+                }
+                if (!subscription.isEmpty()){
+                    profileFragment.setSubscription(subscription);
                 }
             }
             return true;

@@ -2,20 +2,17 @@ package com.dss.dsboxplus.clients;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
-import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.Client;
-import com.dss.dsboxplus.data.repo.response.ClientListResponse;
 import com.dss.dsboxplus.databinding.ActivityClientDetailsBinding;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.clientsviewmodels.ClientViewModel;
@@ -24,7 +21,6 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientDetailsActivity extends BaseActivity {
     ActivityClientDetailsBinding clientDetailsBinding;
@@ -38,7 +34,7 @@ public class ClientDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         clientDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_client_details);
         initView();
-        initViewModel();
+
 
     }
 
@@ -49,7 +45,7 @@ public class ClientDetailsActivity extends BaseActivity {
     }
 
     private void initView() {
-
+        initViewModel();
         Intent intent = getIntent();
         // Check if the intent has the CLIENTS_BUNDLE extra
         if (intent.hasExtra("CLIENTS_BUNDLE")) {
@@ -78,8 +74,13 @@ public class ClientDetailsActivity extends BaseActivity {
         clientDetailsBinding.btDeleteInClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                viewModel.deleteClient(client.getClientid());
             }
+        });
+        viewModel.getDeleteClientRequestLiveData().observe(this, deleteClientResponse -> {
+            Toast.makeText(this, "Client Deleted Successfully", Toast.LENGTH_SHORT).show();
+            finishAffinity();
+            startActivity(new Intent(ClientDetailsActivity.this, HomeActivity.class));
         });
         clientDetailsBinding.btUpdateInClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,12 @@ public class ClientDetailsActivity extends BaseActivity {
                         clientDetailsBinding.tietClientAddressInClientdetails.getText().toString()
                 );
             }
+
+        });
+        viewModel.getUpdateClientRequestLiveData().observe(this, updateClientResponse -> {
+            Toast.makeText(this, "Client Details Updated Successfully", Toast.LENGTH_SHORT).show();
+            finishAffinity();
+            startActivity(new Intent(ClientDetailsActivity.this, HomeActivity.class));
         });
     }
 }

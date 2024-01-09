@@ -6,6 +6,7 @@ import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
+import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.dss.dsboxplus.preferences.AppPreferences
@@ -27,8 +28,11 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
         get() = field
     var estimateListLiveData = MutableLiveData<EstimateListResponse>()
         get() = field
-//    var clientListLiveData=MutableLiveData<ClientListResponse>()
+
+    //    var clientListLiveData=MutableLiveData<ClientListResponse>()
 //        get()=field
+    var subForBusinessLiveData = MutableLiveData<GetSubForBusinessResponse>()
+        get() = field
 
 //    fun getEstimateList() {
 //        viewModelScope.launch {
@@ -148,7 +152,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
     }
 
 
-//    fun getClientListByBusinessUserId() {
+    //    fun getClientListByBusinessUserId() {
 //        viewModelScope.launch {
 //            when (val response = repository.getClientLisByBusinessUserId()) {
 //                is NetworkState.Success -> {
@@ -165,4 +169,24 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 //            }
 //        }
 //    }
+    fun getSubForBusiness() {
+        val businessId =
+            AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
+        viewModelScope.launch {
+            when (val response = repository.getSubForBusiness(businessId)) {
+                is NetworkState.Success -> {
+                    subForBusinessLiveData.postValue(response.data!!)
+                }
+
+                is NetworkState.Error -> {
+                    if (response.response.code() == 401) {
+//                        estimateList.postValue(NetworkState.Error())
+                    } else {
+//                        estimateList.postValue(NetworkState.Error)
+                    }
+                }
+            }
+        }
+    }
+
 }

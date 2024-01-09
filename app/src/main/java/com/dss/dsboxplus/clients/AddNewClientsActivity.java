@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.databinding.ActivityAddNewClientsBinding;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.recyclerview.ClientsViewAdapter;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
@@ -66,7 +67,8 @@ public class AddNewClientsActivity extends BaseActivity {
     private void addOververs() {
         viewModel.getAddClientRequestLiveData().observe(this, clientListResponse -> {
             Toast.makeText(this, "Client added Successfully", Toast.LENGTH_SHORT);
-            finish();
+            finishAffinity();
+            startActivity(new Intent(AddNewClientsActivity.this, HomeActivity.class));
         });
         viewModel.getRequesrFailedLiveData().observe(this, clientListResponse -> {
             Toast.makeText(this, clientListResponse.getMessage(), Toast.LENGTH_SHORT);

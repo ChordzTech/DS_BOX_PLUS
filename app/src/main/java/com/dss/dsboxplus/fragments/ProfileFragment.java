@@ -20,6 +20,8 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse;
+import com.dss.dsboxplus.data.repo.response.SubForBusiness;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.profile.BusinessDetailsActivity;
@@ -35,7 +37,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -46,12 +55,15 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     ShapeableImageView ivProfile;
     SwitchCompat swMultiUser;
+    TextView tvTrialActive,tvSubDays,tvSubDate;
     FloatingActionButton fabAddImage;
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private String base64Code;
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
     // TODO: Rename and change types of parameters
+
+    private ArrayList<SubForBusiness> subscription=new ArrayList<>();
     private String mParam1;
     private String mParam2;
     private TextView name, contact, role;
@@ -108,6 +120,37 @@ public class ProfileFragment extends Fragment {
         name.setText(userData.getUsername());
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
+        tvTrialActive=v.findViewById(R.id.tvTrialActive);
+        tvSubDays=v.findViewById(R.id.tvSubDays);
+        tvSubDate=v.findViewById(R.id.tvSubDate);
+
+        if (!subscription.isEmpty()) {
+            SubForBusiness subForBusiness = subscription.get(0); // Assuming you want data from the first item
+            // Assuming SubForBusiness has properties like subscriptionDays and subscriptionDate
+            double remainingDaysDouble = (double) subForBusiness.getRemainingDays();
+            int remainingDays = (int) remainingDaysDouble;
+            String subscriptionDays = String.valueOf(remainingDays);
+
+            String subscriptionDate = subForBusiness.getEndDate();
+            // Trim the string to remove potential whitespaces
+            subscriptionDate = subscriptionDate.trim();
+
+            String formattedDate = formatDateFromApi(subscriptionDate);
+            // Concatenate the message with the formatted date
+            String subscriptionMessage = "Subscription Till " + formattedDate;
+
+            // Concatenate the message with the remaining days and formatted date
+            String subscriptionMessageForDays = subscriptionDays + " Days Remaining for Renewal.";
+
+
+            tvSubDays.setText(subscriptionMessageForDays);
+            tvSubDate.setText(subscriptionMessage);
+        } else {
+            tvSubDays.setText("No subscription data available");
+            tvSubDate.setText(""); // You can set a default value or an empty string
+        }
+
+
 
         fabAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,6 +231,18 @@ public class ProfileFragment extends Fragment {
         return v;
     }
 
+    private String formatDateFromApi(String subscriptionDate) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date date = inputFormat.parse(subscriptionDate);
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+            return outputFormat.format(date);
+        }catch (ParseException e){
+            e.printStackTrace();
+            return subscriptionDate; // Return the original date string if parsing fails
+        }
+    }
+
     private void showDialog() {
         DialogUtils.showCustomDialog(getContext(), new DialogUtils.DialogListener() {
             @Override
@@ -226,5 +281,7 @@ public class ProfileFragment extends Fragment {
         this.base64Code = base64Code;
     }
 
-
+    public void setSubscription(ArrayList<SubForBusiness> subscription) {
+        this.subscription=subscription;
+    }
 }

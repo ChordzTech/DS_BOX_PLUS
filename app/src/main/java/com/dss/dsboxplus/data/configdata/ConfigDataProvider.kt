@@ -16,5 +16,5 @@ object ConfigDataProvider{
     var qrCodeBase64:String ? =null
     var estimateListResponse:EstimateListResponse? =null
     var clientListResponse:ClientListResponse? =null
-    var profilePhotoBitmap: Bitmap? = null
+    var profileImageBitmap: Bitmap? = null
 }

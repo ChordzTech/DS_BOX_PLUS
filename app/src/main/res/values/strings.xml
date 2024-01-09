@@ -171,7 +171,7 @@
     <string name="flute_two_paper">Flute Two Paper</string>
     <string name="middle_two_paper">Middle Two Paper</string>
     <string name="flute_three_paper">Flute Three Paper</string>
-    <string name="sub_status">Subscription Status:Active</string>
+    <string name="sub_status">Subscription Status:</string>
     <string name="no_estimates_add_one">No Estimates Add One</string>
     <string name="your_active_subscription_has_ended">Your Active Subscription has ended.\n
     Please,Upgrade Your Premium Membership</string>
@@ -182,6 +182,7 @@
     <string name="title_estimates">Estimates</string>
     <string name="title_clients">Clients</string>
     <string name="title_profile">Profile</string>
+    <string name="subscription_till">Subscription till</string>
     <string-array name="noOfPly">
         <item>1Ply</item>
         <item>2Ply</item>

@@ -412,7 +412,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvSubscription"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -423,7 +423,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -454,6 +454,7 @@
                             android:text="@string/subscription_settings" />
 
                         <TextView
+                            android:id="@+id/tvTrialActive"
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -461,6 +462,20 @@
                             android:background="@color/green"
                             android:gravity="start"
                             android:text="@string/sub_status" />
+                        <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvSubDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="start"/>
+                        <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvSubDays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="start" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

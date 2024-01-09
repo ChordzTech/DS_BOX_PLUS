@@ -1,6 +1,9 @@
 package com.dss.dsboxplus.recyclerview;
 
+
 import android.content.Intent;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
@@ -17,6 +21,7 @@ import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
     private ArrayList<Client> clientsList;
@@ -44,6 +49,15 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 //                .placeholder(R.drawable.ic_launcher_background)
 //                .centerCrop()
 //                .into(holder.ivClientPhoto);
+//
+        String initials = getInitials(client.getClientname());
+        holder.ivClientPhoto.setText(initials);
+
+//        if (position == getItemCount() - 1) {
+//            holder.cvDummyView.setVisibility(View.VISIBLE);
+//        }
+
+
     }
 
     @Override
@@ -63,15 +77,33 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
     public void setOnClientSelectedListner(OnClientSelectedI onClientSelectedListner) {
         this.onClientSelectedListner = onClientSelectedListner;
     }
+    private String getInitials(String clientName) {
+        String[] nameParts = clientName.split(" ");
+        StringBuilder initials = new StringBuilder();
 
+        for (String part : nameParts) {
+            if (!part.isEmpty()) {
+                initials.append(part.charAt(0));
+            }
+        }
+
+        return initials.toString().toUpperCase();
+    }
+//    private int getRandomColor() {
+//        // Generate a random color
+//        Random rand = new Random();
+//        return Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+//    }
 
     public interface OnClientSelectedI {
         public void onClientSelectedI(Client clientData);
     }
 
     class ClientsViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivClientPhoto, ivEstimates;
+        private ImageView  ivEstimates;
         private TextView tvClientsName, tvPhoneNumber;
+        private ConstraintLayout cvDummyView;
+        private TextView ivClientPhoto;
 
         public ClientsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +111,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
             tvClientsName = itemView.findViewById(R.id.tvClientsName);
             tvPhoneNumber = itemView.findViewById(R.id.tvPhoneNumber);
             ivEstimates = itemView.findViewById(R.id.ivEstimates);
-
+//            cvDummyView = itemView.findViewById(R.id.cvDummyViewInClients);
             ivEstimates.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -108,5 +140,5 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
             });
         }
     }
-
 }
+

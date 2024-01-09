@@ -446,7 +446,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
         int weightInInt = (int) (totalWeightThreeDigits * 1000);
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
+        String gm=weightInInt+" gm";
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
@@ -591,8 +592,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeight * 1000);
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
+        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+        String gm=weightInInt+" gm";
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
@@ -705,7 +707,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
+        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+        String gm=weightInInt+" gm";
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
@@ -816,8 +820,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeight * 1000);
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
+        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+        String gm=weightInInt+" gm";
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
 
         //ConversionCostPerKG
 
@@ -906,7 +911,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalWeightInTopPaperThreeDigits + wastePercentage) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(String.valueOf(totalWeightThreeDigits));
+        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+        String gm=weightInInt+" gm";
+        activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
 
         //NetPaperCost
         //CostValue

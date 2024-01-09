@@ -6,6 +6,7 @@ import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
+import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
 import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
@@ -18,6 +19,8 @@ class ClientViewModel(val repository: MainRepository) : BaseViewModel() {
     var updateClientRequestLiveData = MutableLiveData<UpdateClientResponse>()
         get() = field
     var requesrFailedLiveData = MutableLiveData<AddClientResponse>()
+        get() = field
+    var deleteClientRequestLiveData = MutableLiveData<DeleteClientResponse>()
         get() = field
 
     fun addClient(
@@ -80,6 +83,28 @@ class ClientViewModel(val repository: MainRepository) : BaseViewModel() {
                     hideLoader()
                     if (response.response.code() == 400) {
                         updateClientRequestLiveData.postValue(response.response.body())
+                    } else {
+//                        updateClientRequestLiveData.postValue(response.response.body()!!)
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteClient(clientid: Long) {
+        showLoader()
+
+        viewModelScope.launch {
+            when (val response = repository.deleteClient(clientid)) {
+                is NetworkState.Success -> {
+                    hideLoader()
+                    deleteClientRequestLiveData.postValue(response.data!!)
+                }
+
+                is NetworkState.Error -> {
+                    hideLoader()
+                    if (response.response.code() == 400) {
+                        deleteClientRequestLiveData.postValue(response.response.body())
                     } else {
 //                        updateClientRequestLiveData.postValue(response.response.body()!!)
                     }
