@@ -213,7 +213,7 @@ public class PaperSpecificationActivity extends BaseActivity {
                         , bfInFluteThreePaper, bfInBottomPaper, gsmInTop, gsmInFlutePaper, gsmInMiddleOnePaper, gsmInFluteTwoPaper, gsmInMiddleTwoPaper,
                         gsmInFluteThreePaper, gsmInBottomPaper, rateKgInTop, rateKgInFlutePaper, rateKgInMiddleOnePaper, rateKgInFluteTwoPaper
                         , rateKgInMiddleTwoPaper, rateKgInBottomPaper, ffInFluteOnePaper, ffInFluteTwoPaper, ffInFluteThreePaper, rateKgInFluteThreePaper);
-                if (check == true) {
+                if (check) {
                     storeValuesToEstimateDataHolder();
                     Intent intent = new Intent(getApplicationContext(), BoxSpecificationAndCostActivity.class);
                     intent.putExtra("bfInTopPaper", bfInTopPaper);
@@ -258,36 +258,36 @@ public class PaperSpecificationActivity extends BaseActivity {
     }
 
     private void storeValuesToEstimateDataHolder() {
-        CreateEstimateDataHolder.INSTANCE.setTopBf(paperSpecificationBinding.bfInTopPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setTopGsm(paperSpecificationBinding.gsmInTopPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setTopRate(paperSpecificationBinding.rateKgInTopPaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setTopBf(Integer.parseInt(paperSpecificationBinding.bfInTopPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTopGsm(Integer.parseInt(paperSpecificationBinding.gsmInTopPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTopRate(Float.parseFloat(paperSpecificationBinding.rateKgInTopPaper.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setF1Bf(paperSpecificationBinding.bfInFlutePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF1Gsm(paperSpecificationBinding.gsmInFlutePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF1RateKg(paperSpecificationBinding.rateKgInFlutePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF1ff(paperSpecificationBinding.ffInFlutePaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setF1Bf(Integer.parseInt(paperSpecificationBinding.bfInFlutePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF1Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFlutePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF1RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFlutePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF1ff(Float.parseFloat(paperSpecificationBinding.ffInFlutePaper.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setM1bf(paperSpecificationBinding.bfInMiddleOnePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setM1Gsm(paperSpecificationBinding.gsmInMiddleOnePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setM1RateKg(paperSpecificationBinding.rateKgInMiddleOnePaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setM1bf(Integer.parseInt(paperSpecificationBinding.bfInMiddleOnePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM1Gsm(Integer.parseInt(paperSpecificationBinding.gsmInMiddleOnePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM1RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInMiddleOnePaper.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setF2Bf(paperSpecificationBinding.bfInFluteTwoPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF2Gsm(paperSpecificationBinding.gsmInFluteTwoPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF2RateKg(paperSpecificationBinding.rateKgInFluteTwoPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF2ff(paperSpecificationBinding.ffInFluteTwoPaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setF2Bf(Integer.parseInt(paperSpecificationBinding.bfInFluteTwoPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFluteTwoPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFluteTwoPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2ff(Float.parseFloat(paperSpecificationBinding.ffInFluteTwoPaper.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setM2bf(paperSpecificationBinding.bfInMiddleTwoPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setM2Gsm(paperSpecificationBinding.gsmInMiddleTwoPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setM2RateKg(paperSpecificationBinding.rateKgInMiddleTwoPaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setM2bf(Integer.parseInt(paperSpecificationBinding.bfInMiddleTwoPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM2Gsm(Integer.parseInt(paperSpecificationBinding.gsmInMiddleTwoPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM2RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInMiddleTwoPaper.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setF3Bf(paperSpecificationBinding.bfInFluteThreePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF3Gsm(paperSpecificationBinding.gsmInFluteThreePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF3RateKg(paperSpecificationBinding.rateKgInFluteThreePaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setF3ff(paperSpecificationBinding.ffInFluteThreePaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setF3Bf(Integer.parseInt(paperSpecificationBinding.bfInFluteThreePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF3Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFluteThreePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF3RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFluteThreePaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF3ff(Float.parseFloat(paperSpecificationBinding.ffInFluteThreePaper.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setBottomBF(paperSpecificationBinding.bfInBottomPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setBottomGsm(paperSpecificationBinding.gsmInBottomPaper.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setBottomRateKg(paperSpecificationBinding.rateKgInBottomPaper.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setBottomBF(Integer.parseInt(paperSpecificationBinding.bfInBottomPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBottomGsm(Integer.parseInt(paperSpecificationBinding.gsmInBottomPaper.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBottomRateKg(Float.parseFloat(paperSpecificationBinding.rateKgInBottomPaper.getText().toString()));
 
     }
 

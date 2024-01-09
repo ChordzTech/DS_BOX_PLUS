@@ -152,7 +152,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_weight="0.5"
-                                android:text="52" />
+                                android:text="0" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -178,7 +178,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="0.45" />
+                                android:text="0.0" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -226,7 +226,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_weight="0.5"
-                                android:text="52" />
+                                android:text="0" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -252,7 +252,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="2.13" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -323,7 +323,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="2.13" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -383,7 +383,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="2.13" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -455,7 +455,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="2.13" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -512,7 +512,8 @@
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tietOverHeadCharges"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:text="0"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -577,7 +578,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="0.45" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -648,7 +649,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="2.13" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -719,7 +720,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="2.13" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

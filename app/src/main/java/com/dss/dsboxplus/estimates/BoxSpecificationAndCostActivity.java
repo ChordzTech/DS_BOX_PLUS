@@ -206,20 +206,19 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     }
 
     private void storeValuesInEstimateDataHolder() {
-        CreateEstimateDataHolder.INSTANCE.setTotalGsm(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setTotalBs(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setTotalGsm(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTotalBs(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setTotalWeight(activityBoxSpecificationAndCostBinding.tvTotalWeight.getText().length());
         CreateEstimateDataHolder.INSTANCE.setNetPaperCost(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setWasteCost(activityBoxSpecificationAndCostBinding.tvWasteCost.getText().length());
         CreateEstimateDataHolder.INSTANCE.setGrossPaperCost(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().length());
         CreateEstimateDataHolder.INSTANCE.setConvCost(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().length());
         CreateEstimateDataHolder.INSTANCE.setBoxMfg(activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().length());
         CreateEstimateDataHolder.INSTANCE.setBoxPrice(activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().length());
         CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setWasteInput(activityBoxSpecificationAndCostBinding.tietWaste.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setConvRate(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setOverHead(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setTax(activityBoxSpecificationAndCostBinding.tietTax.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setWasteInput(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietWaste.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setConvRate(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setOverHead(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTax(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietTax.getText().toString()));
 
     }
 
@@ -286,9 +285,9 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     private void callCreateEstimateAPI() {
         viewModel.createEstimate(
                 CreateEstimateDataHolder.INSTANCE.getBoxName(),
-                CreateEstimateDataHolder.INSTANCE.getLengthMm(),
-                CreateEstimateDataHolder.INSTANCE.getWidthMm(),
-                CreateEstimateDataHolder.INSTANCE.getHeightMm(),
+                (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(),
+                (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(),
+                (int) CreateEstimateDataHolder.INSTANCE.getHeightMm(),
                 CreateEstimateDataHolder.INSTANCE.getNoOfPly(),
                 CreateEstimateDataHolder.INSTANCE.getNoOfBox(),
                 CreateEstimateDataHolder.INSTANCE.getCuttingLength(),
@@ -331,9 +330,6 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 CreateEstimateDataHolder.INSTANCE.getTotalBs(),
                 CreateEstimateDataHolder.INSTANCE.getTotalWeight(),
                 CreateEstimateDataHolder.INSTANCE.getNetPaperCost(),
-//                CreateEstimateDataHolder.INSTANCE.getWasteCost(),
-//                CreateEstimateDataHolder.INSTANCE.getGrossPaperCost(),
-//                CreateEstimateDataHolder.INSTANCE.getConvCost(),
                 CreateEstimateDataHolder.INSTANCE.getBoxMfg(),
                 CreateEstimateDataHolder.INSTANCE.getBoxPrice(),
                 CreateEstimateDataHolder.INSTANCE.getBoxPriceTax(),

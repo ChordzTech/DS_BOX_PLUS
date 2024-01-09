@@ -45,6 +45,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private String configMargin = "0";
     private String configDecal = "0";
     private boolean isSheetDetailsTouched = false;
+    private String sizeMeasure = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 String enterWidth = newEstimateBinding.tietWidth.getText().toString();
                 String enterHeight = newEstimateBinding.tietHeight.getText().toString();
                 boolean check = validateInfo(enterBoxName, enterLength, enterWidth, enterHeight);
-                if (check == true) {
+                if (check) {
                     storeValuesToEstimateDataHolder();
                     String noOfPly = newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
                     String updatedCuttingLength = newEstimateBinding.tietCuttingLength.getText().toString();
@@ -324,25 +325,29 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private void storeValuesToEstimateDataHolder() {
         CreateEstimateDataHolder.INSTANCE.setBoxName(newEstimateBinding.tietEnterBoxName.getText().toString());
         CreateEstimateDataHolder.INSTANCE.setBoxDimension(newEstimateBinding.spinner.getSelectedItem().toString());
-        CreateEstimateDataHolder.INSTANCE.setLengthMm(newEstimateBinding.tietLength.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setWidthMm(newEstimateBinding.tietWidth.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setHeightMm(newEstimateBinding.tietHeight.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setLengthCm(newEstimateBinding.tietLength.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setWidthCm(newEstimateBinding.tietWidth.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setHeightCm(newEstimateBinding.tietHeight.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setLengthInch(newEstimateBinding.tietLength.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setWidthInch(newEstimateBinding.tietWidth.getText().length());
-//                CreateEstimateDataHolder.INSTANCE.setHeightInch(newEstimateBinding.tietHeight.getText().length());
+        CreateEstimateDataHolder.INSTANCE.setLengthMm(lengthMm);
+        CreateEstimateDataHolder.INSTANCE.setWidthMm(widthMm);
+        CreateEstimateDataHolder.INSTANCE.setHeightMm(heightMm);
+        switch (sizeMeasure) {
+            case "cm":
+                CreateEstimateDataHolder.INSTANCE.setLengthCm(Integer.parseInt(newEstimateBinding.tietLength.getText().toString()));
+                CreateEstimateDataHolder.INSTANCE.setWidthCm(Integer.parseInt(newEstimateBinding.tietWidth.getText().toString()));
+                CreateEstimateDataHolder.INSTANCE.setHeightCm(Integer.parseInt(newEstimateBinding.tietHeight.getText().toString()));
+                break;
+            case "inch":
+                CreateEstimateDataHolder.INSTANCE.setLengthInch(Integer.parseInt(newEstimateBinding.tietLength.getText().toString()));
+                CreateEstimateDataHolder.INSTANCE.setWidthInch(Integer.parseInt(newEstimateBinding.tietWidth.getText().toString()));
+                CreateEstimateDataHolder.INSTANCE.setHeightInch(Integer.parseInt(newEstimateBinding.tietHeight.getText().toString()));
+                break;
+        }
         CreateEstimateDataHolder.INSTANCE.setNoOfPly(String.valueOf(newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString().charAt(0)));
-        CreateEstimateDataHolder.INSTANCE.setNoOfBox(newEstimateBinding.tietNumberOfBox.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setCuttingLength(newEstimateBinding.tietCuttingLength.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setDecalSize(newEstimateBinding.tietDecalSize.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setCuttingMarginMm(newEstimateBinding.tvMargin.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setDecalMarginMm(newEstimateBinding.tvDecalMarginSize.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setCuttingLengthMm(newEstimateBinding.tvCuttingLengthSize.getText().length());
-        CreateEstimateDataHolder.INSTANCE.setDecalSizeMm(newEstimateBinding.tvDecalSizeValue.getText().length());
-
-
+        CreateEstimateDataHolder.INSTANCE.setNoOfBox(Integer.parseInt(newEstimateBinding.tietNumberOfBox.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setCuttingLength(Double.parseDouble(newEstimateBinding.tietCuttingLength.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setDecalSize(Double.parseDouble(newEstimateBinding.tietDecalSize.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setCuttingMarginMm(Integer.parseInt(newEstimateBinding.tvMargin.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setDecalMarginMm(Integer.parseInt(newEstimateBinding.tvDecalMarginSize.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setCuttingLengthMm(Integer.parseInt(newEstimateBinding.tvCuttingLengthSize.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setDecalSizeMm(Integer.parseInt(newEstimateBinding.tvDecalSizeValue.getText().toString()));
     }
 
     private void setDefaultSheetSizes() {
@@ -421,6 +426,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
         if (adapterView.getId() == R.id.spinner) {
             String size = spinner.getItemAtPosition(i).toString();
+            sizeMeasure = size;
             tilHeight.setHint(size);
             tilLength.setHint(size);
             tilWidth.setHint(size);
