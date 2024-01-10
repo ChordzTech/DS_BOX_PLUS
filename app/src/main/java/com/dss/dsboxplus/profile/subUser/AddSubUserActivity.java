@@ -52,14 +52,9 @@ public class AddSubUserActivity extends BaseActivity {
                 String contact = addSubUserBinding.tietContactNoInSubUser.getText().toString();
 
                 boolean check = validateInfo(username, contact);
-                if (check == true) {
+                if (check) {
                     viewModel.addSubUSer(username,contact);
 
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("username", username);
-                    resultIntent.putExtra("contact", contact);
-                    setResult(RESULT_OK, resultIntent);
-                    finish();
                 }
             }
         });

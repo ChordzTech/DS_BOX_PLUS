@@ -44,6 +44,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMediumBold"
+                    android:id="@+id/tietTermsAndConditions"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:inputType="textMultiLine" />

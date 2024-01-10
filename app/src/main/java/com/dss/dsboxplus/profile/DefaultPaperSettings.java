@@ -39,10 +39,10 @@ public class DefaultPaperSettings extends BaseActivity {
     }
 
     private void addOververs() {
-//        viewModel.getUpdateBusinessdetailsLiveData().observe(this,updateBusinessDetailsResponse -> {
-//            Toast.makeText(this, updateBusinessDetailsResponse.getMessage(), Toast.LENGTH_SHORT);
-//            finish();
-//        });
+        viewModel.getUpdateBusinessdetailsLiveData().observe(this,updateBusinessDetailsResponse -> {
+            Toast.makeText(this, updateBusinessDetailsResponse.getMessage(), Toast.LENGTH_SHORT);
+            finish();
+        });
     }
 
     private void initViewModel() {
@@ -58,7 +58,7 @@ public class DefaultPaperSettings extends BaseActivity {
             for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
                 // Access individual properties of AppConfigDataItems
                 int configId = appConfigDataItem.getConfigid();
-                String configName = appConfigDataItem.getConfigname();
+
                 String configValue = appConfigDataItem.getConfigvalue();
 
              if (configId==10){
@@ -82,11 +82,15 @@ public class DefaultPaperSettings extends BaseActivity {
         defaultPaperSettingsBinding.btSaveInDefaultPaperSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updatebusinessDetails(
-                        defaultPaperSettingsBinding.tietCuttingMargin.getText().toString(),
-                        defaultPaperSettingsBinding.tietDecalMargin.getText().toString(),
-                        defaultPaperSettingsBinding.tietFluteFactor.getText().toString()
-                );
+                    int cuttingMargin = Integer.parseInt(defaultPaperSettingsBinding.tietCuttingMargin.getText().toString());
+                    int decalMargin = Integer.parseInt(defaultPaperSettingsBinding.tietDecalMargin.getText().toString());
+                    float fluteFactor = Float.parseFloat(defaultPaperSettingsBinding.tietFluteFactor.getText().toString());
+
+                    viewModel.updatebusinessDetails(
+                            String.valueOf(cuttingMargin),
+                            String.valueOf(decalMargin),
+                            String.valueOf(fluteFactor)
+                    );
             }
         });
     }

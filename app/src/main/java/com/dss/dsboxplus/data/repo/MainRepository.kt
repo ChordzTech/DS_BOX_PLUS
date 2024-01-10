@@ -16,6 +16,7 @@ import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
+import com.dss.dsboxplus.data.repo.response.SubUserDetailsResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateBusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
@@ -42,7 +43,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
 
-    suspend fun getUsersByBusiness(businessId: Long): NetworkState<UserDetailsResponse> {
+    suspend fun getUsersByBusiness(businessId: Long): NetworkState<SubUserDetailsResponse> {
         val response = retrofitService.getUsersByBusinessId(businessId)
         return if (response.isSuccessful) {
             val responseBody = response.body()

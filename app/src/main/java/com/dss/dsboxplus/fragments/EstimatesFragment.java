@@ -29,7 +29,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 
 /**
@@ -130,8 +135,29 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 //        createSubPopUp();
         initView(view);
 //        prepareData();
+
 //        loadData();
     }
+
+//    private void prepareData() {
+//        Collections.sort(estimateList, new Comparator<DataItem>() {
+//            @Override
+//            public int compare(DataItem item1, DataItem item2) {
+//                // Assuming your DataItem class has a method to get the date, adjust accordingly
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//                Date date1, date2;
+//                try {
+//                    date1 = sdf.parse(item1.getEstimatedate());
+//                    date2 = sdf.parse(item2.getEstimatedate());
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                    return 0; // Handle the exception or return 0 if parsing fails
+//                }
+//                // Reverse the order to get the latest first
+//                return date2.compareTo(date1);
+//            }
+//        });
+//    }
 
     private void filterEstimatesList(String newText) {
         ArrayList<DataItem> filteredList = new ArrayList<>();

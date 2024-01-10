@@ -16,6 +16,7 @@ import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
+import com.dss.dsboxplus.data.repo.response.SubUserDetailsResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateBusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
@@ -32,6 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -107,7 +109,7 @@ interface RetrofitService {
     @GET("GetSubUserList/{businessid}")
     suspend fun getUsersByBusinessId(
         @Path(value = "businessid") businessId: Long,
-    ): Response<UserDetailsResponse>
+    ): Response<SubUserDetailsResponse>
 
 
     @POST("UserDetails/")

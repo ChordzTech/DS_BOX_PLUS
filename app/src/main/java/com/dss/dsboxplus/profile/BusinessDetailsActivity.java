@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.UserData;
@@ -15,6 +17,7 @@ import com.dss.dsboxplus.databinding.ActivityBusinessDetailsBinding;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class BusinessDetailsActivity extends BaseActivity {
@@ -30,8 +33,6 @@ public class BusinessDetailsActivity extends BaseActivity {
     }
 
     private void initView() {
-
-
 
         btCloseInBusinessDetails = findViewById(R.id.btCloseInBusinessDetails);
         btCloseInBusinessDetails.setOnClickListener(new View.OnClickListener() {

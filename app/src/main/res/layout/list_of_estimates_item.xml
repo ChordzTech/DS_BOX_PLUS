@@ -43,6 +43,7 @@
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tvCost"
                     app:layout_constraintStart_toEndOf="@id/tvEstimateDate"
                     app:layout_constraintTop_toTopOf="parent">
@@ -56,14 +57,6 @@
                         android:gravity="start"
                         android:text="@string/box_name" />
 
-                    <TextView
-                        android:id="@+id/tvClientName"
-                        style="@style/DSTextMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:gravity="start"
-                        android:text="@string/client_name" />
 
                     <TextView
                         android:id="@+id/tvBoxDimension"

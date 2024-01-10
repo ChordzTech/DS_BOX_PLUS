@@ -48,6 +48,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietSubUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -64,6 +65,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilUserName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietSubUserContact"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,6 +123,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietSubUserDeviceInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />

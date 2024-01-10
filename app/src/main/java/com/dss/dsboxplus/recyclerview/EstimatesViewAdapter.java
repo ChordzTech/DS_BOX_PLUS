@@ -48,7 +48,6 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
         DataItem dataItem = estimatesList.get(position);
         holder.tvBoxName.setText(dataItem.getBoxname());
-        holder.tvClientName.setText(String.valueOf(dataItem.getClientid()));
         holder.tvBoxDimension.setText(dataItem.getLengthMmField() + "x" + dataItem.getWidthMmField() + "x" + dataItem.getHeightMmField());
         String boxCost = String.format("%.2f", dataItem.getBoxprice());
         String finalBox = "₹ " + boxCost;
@@ -104,13 +103,12 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
         private CardView root;
         private ConstraintLayout cvDummyView;
-        private TextView tvClientPhoto, tvBoxName, tvClientName, tvBoxDimension, tvCost, tvEstimateDate;
+        private TextView tvClientPhoto, tvBoxName, tvBoxDimension, tvCost, tvEstimateDate;
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
             tvClientPhoto = itemView.findViewById(R.id.ivClientPhoto);
             tvBoxName = itemView.findViewById(R.id.tvBoxName);
-            tvClientName = itemView.findViewById(R.id.tvClientName);
             tvBoxDimension = itemView.findViewById(R.id.tvBoxDimension);
             tvCost = itemView.findViewById(R.id.tvCost);
             tvEstimateDate = itemView.findViewById(R.id.tvEstimateDate);

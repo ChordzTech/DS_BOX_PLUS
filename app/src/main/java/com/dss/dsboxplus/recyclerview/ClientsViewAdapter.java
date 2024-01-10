@@ -26,10 +26,6 @@ import java.util.Random;
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
     private ArrayList<Client> clientsList;
     private OnClientSelectedI onClientSelectedListner;
-//    public void setFilteredList(ArrayList<ClientsDataModel> filteredList) {
-//        this.clientsList = filteredList;
-//        notifyDataSetChanged();
-//    }
 
     @NonNull
     @Override

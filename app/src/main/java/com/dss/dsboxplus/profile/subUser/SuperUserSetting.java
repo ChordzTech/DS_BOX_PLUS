@@ -1,4 +1,4 @@
-package com.dss.dsboxplus.profile;
+package com.dss.dsboxplus.profile.subUser;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.repo.response.SubUser;
 import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.databinding.ActivitySuperUserSettingBinding;
 import com.dss.dsboxplus.model.AddSubNewUserDataModel;
-import com.dss.dsboxplus.profile.subUser.AddSubUserActivity;
 import com.dss.dsboxplus.recyclerview.SubUserViewAdapter;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.SuperUserViewModel;
@@ -23,12 +23,10 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import java.util.ArrayList;
 
 public class SuperUserSetting extends BaseActivity {
-    private static final int REQUEST_CODE_SECOND_ACTIVITY = 1001;
     ActivitySuperUserSettingBinding superUserSettingBinding;
-    private ArrayList<AddSubNewUserDataModel> dataList = new ArrayList<>();
     private SubUserViewAdapter adapter;
     private SuperUserViewModel viewModel;
-    private ArrayList<UserData> userList = new ArrayList<>();
+    private ArrayList<SubUser> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +40,13 @@ public class SuperUserSetting extends BaseActivity {
     private void initObservable() {
         viewModel.getUsersByBusinessLiveData().observe(this, userDetailsResponse -> {
             if (!userDetailsResponse.getData().isEmpty()) {
-                userList = (ArrayList<UserData>) userDetailsResponse.getData();
+                userList = (ArrayList<SubUser>) userDetailsResponse.getData();
+                adapter.updateUserList(userList);
             }
         });
+        userList = new ArrayList<>();
+        adapter = new SubUserViewAdapter(userList);
+        superUserSettingBinding.rvRecyclerView.setAdapter(adapter);
     }
 
     private void fetchData() {
@@ -58,10 +60,6 @@ public class SuperUserSetting extends BaseActivity {
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(SuperUserViewModel.class);
 
 
-//        clientsList = new ArrayList<>();
-//        adapter = new SubUserViewAdapter(clientsList);
-//        superUserSettingBinding.rvRecyclerView.setAdapter(adapter);
-
         userList=new ArrayList<>();
         adapter=new SubUserViewAdapter(userList);
         superUserSettingBinding.rvRecyclerView.setAdapter(adapter);
@@ -70,22 +68,8 @@ public class SuperUserSetting extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SuperUserSetting.this, AddSubUserActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY);
+                startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SECOND_ACTIVITY && resultCode == RESULT_OK && data != null) {
-            String username = data.getStringExtra("username");
-            String contact = data.getStringExtra("contact");
-
-
-            AddSubNewUserDataModel newUserDataModel = new AddSubNewUserDataModel(username, contact);
-            dataList.add(newUserDataModel);
-            adapter.notifyDataSetChanged();
-        }
     }
 }

@@ -1,8 +1,8 @@
 package com.dss.dsboxplus.data.repo.request
 
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UpdateBusinessDetailsRequest(
@@ -13,22 +13,22 @@ data class UpdateBusinessDetailsRequest(
     var waste: Int? = 0,
 
     @field:SerializedName("pincode")
-    var pincode: String? = "",
+    var pincode: String? = null,
 
     @field:SerializedName("burstingfactor")
     var burstingfactor: Int? = 0,
 
     @field:SerializedName("activationdate")
-    var activationdate: String? = "",
+    var activationdate: String? = null,
 
     @field:SerializedName("subscriptiondate")
-    var subscriptiondate: String? = "",
+    var subscriptiondate: String? = null,
 
     @field:SerializedName("address")
-    var address: String? = "",
+    var address: String? = null,
 
     @field:SerializedName("estimatenote")
-    var estimatenote: String? = "",
+    var estimatenote: String? = null,
 
     @field:SerializedName("businessid")
     var businessid: Int? = 0,
@@ -46,7 +46,7 @@ data class UpdateBusinessDetailsRequest(
     var rate: Int? = 0,
 
     @field:SerializedName("businessname")
-    var businessname: String? = "",
+    var businessname: String? = null,
 
     @field:SerializedName("multiuser")
     var multiuser: Int? = 0,
@@ -61,14 +61,14 @@ data class UpdateBusinessDetailsRequest(
     var profit: Int? = 0,
 
     @field:SerializedName("email")
-    var email: String? = "",
+    var email: String? = null,
 
     @field:SerializedName("contactno")
-    var contactno: String? = "",
+    var contactno: String? = null,
 
     @field:SerializedName("geolocation")
-    var geolocation: String? = "",
+    var geolocation: String? = null,
 
     @field:SerializedName("status")
-    var status: String? = ""
-): Parcelable
+    var status: String? = null
+) : Parcelable

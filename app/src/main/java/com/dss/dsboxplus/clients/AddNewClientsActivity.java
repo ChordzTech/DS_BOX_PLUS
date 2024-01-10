@@ -57,7 +57,7 @@ public class AddNewClientsActivity extends BaseActivity {
                 String clientContactNo = addNewClientsBinding.tietContactNumber.getText().toString();
                 String clientAddress = addNewClientsBinding.tietAddress.getText().toString();
                 boolean check = validateInfo(clientName, clientContactNo, clientAddress);
-                if (check == true) {
+                if (check) {
                     viewModel.addClient(clientName, clientContactNo, clientAddress);
                 }
             }

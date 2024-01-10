@@ -1,10 +1,10 @@
 package com.dss.dsboxplus.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,32 +20,25 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
-import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse;
 import com.dss.dsboxplus.data.repo.response.SubForBusiness;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
-import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.profile.BusinessDetailsActivity;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
 import com.dss.dsboxplus.profile.Help;
 import com.dss.dsboxplus.profile.QuotationTerms;
 import com.dss.dsboxplus.profile.SubscriptionActivity;
-import com.dss.dsboxplus.profile.SuperUserSetting;
+import com.dss.dsboxplus.profile.subUser.SuperUserSetting;
 import com.dss.dsboxplus.profile.UserDetailsInProfile;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class ProfileFragment extends Fragment {
@@ -116,10 +109,10 @@ public class ProfileFragment extends Fragment {
         name = v.findViewById(R.id.tvName);
         contact = v.findViewById(R.id.tvContactNumber);
         role = v.findViewById(R.id.tvRole);
-        UserData userData = ((ArrayList<UserData>) Objects.requireNonNull(Objects.requireNonNull(ConfigDataProvider.INSTANCE.getUserDetails()).getData())).get(0);
-        name.setText(userData.getUsername());
-        contact.setText(userData.getMobileno());
-        role.setText(userData.getUserrole());
+//        UserData userData = ((ArrayList<UserData>) Objects.requireNonNull(Objects.requireNonNull(ConfigDataProvider.INSTANCE.getUserDetails()).getData())).get(0);
+//        name.setText(userData.getUsername());
+//        contact.setText(userData.getMobileno());
+//        role.setText(userData.getUserrole());
         tvTrialActive=v.findViewById(R.id.tvTrialActive);
         tvSubDays=v.findViewById(R.id.tvSubDays);
         tvSubDate=v.findViewById(R.id.tvSubDate);
@@ -161,6 +154,8 @@ public class ProfileFragment extends Fragment {
                         .compress(1024)            //Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
+                // After user selects an image, update the profilePictureBitmap
+
             }
         });
         swMultiUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -258,15 +253,14 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
         ivProfile.setImageURI(uri);
 
+        }
 
-    }
 
 
     public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {

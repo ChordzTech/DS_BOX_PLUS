@@ -11,6 +11,8 @@ import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.AddSubUserViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultPaperSettingsActivityViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultRateSettingsActivityViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.SuperUserViewModel
 import com.example.mvvmretrofit.data.repo.MainRepository
 
@@ -36,6 +38,10 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
             AddSubUserViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(DefaultPaperSettingsActivityViewModel::class.java)) {
             DefaultPaperSettingsActivityViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(DefaultRateSettingsActivityViewModel::class.java)) {
+            DefaultRateSettingsActivityViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(QuotationTermsActivityViewModel::class.java)) {
+            QuotationTermsActivityViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(SuperUserViewModel::class.java)) {
             SuperUserViewModel(repository) as T
         } else {

@@ -33,7 +33,7 @@
             android:name=".profile.WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.SuperUserSetting"
+            android:name=".profile.subUser.SuperUserSetting"
             android:exported="false" />
         <activity
             android:name=".profile.SubscriptionActivity"
