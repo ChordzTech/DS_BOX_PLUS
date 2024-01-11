@@ -101,9 +101,9 @@ interface RetrofitService {
     ): Response<EstimateListResponse>
 
 
-    @GET("GetUserDetails/{mobileno}/{deviceinfo}")
+    @GET("GetUserDetails/{mobileno}/{androidid}")
     suspend fun getUserDetails(
-        @Path(value = "mobileno") mobileno: String, @Path(value = "deviceinfo") deviceinfo: String
+        @Path(value = "mobileno") mobileno: String, @Path(value = "androidid") deviceinfo: String
     ): Response<UserDetailsResponse>
 
     @GET("GetSubUserList/{businessid}")
