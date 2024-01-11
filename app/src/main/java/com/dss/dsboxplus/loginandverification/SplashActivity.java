@@ -3,6 +3,7 @@ package com.dss.dsboxplus.loginandverification;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.WindowManager;
 
 import androidx.databinding.DataBindingUtil;
@@ -81,7 +82,8 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void fetchData() {
-        String deviceInfo = Build.BRAND + Build.MODEL;
+//        String deviceInfo = (Build.BRAND + Build.MODEL).trim();
+        String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
 
