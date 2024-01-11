@@ -19,8 +19,9 @@
             android:padding="@dimen/margin_small">
 
             <TextView
+
                 android:textColor="@color/black"
-                android:background="@color/cyan_dark"
+                android:background="@drawable/circular_tv"
                 android:id="@+id/tvClientPhoto"
                 android:layout_width="80dp"
                 android:textSize="40sp"

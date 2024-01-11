@@ -10,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.data.repo.response.SubUser;
-import com.dss.dsboxplus.data.repo.response.UserData;
-import com.dss.dsboxplus.model.AddSubNewUserDataModel;
-import com.dss.dsboxplus.profile.subUser.SuperUserSetting;
 
 import java.util.ArrayList;
 
 public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.SubUserViewHolder> {
-    private ArrayList<SubUser> userList=new ArrayList<>();
+    private ArrayList<SubUser> userList = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
+
     public SubUserViewAdapter(ArrayList<SubUser> userList) {
         this.userList = userList;
     }
@@ -26,6 +25,10 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         userList.clear();
         userList.addAll(newList);
         notifyDataSetChanged();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -64,6 +67,9 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         return userList.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(SubUser subUser);
+    }
 
     class SubUserViewHolder extends RecyclerView.ViewHolder {
         TextView tvSubUserName, tvSubUserContact, tvClientPhoto;
@@ -73,6 +79,12 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
             tvSubUserName = itemView.findViewById(R.id.tvSubUserName);
             tvSubUserContact = itemView.findViewById(R.id.tvSubUserContact);
             tvClientPhoto = itemView.findViewById(R.id.tvClientPhoto);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(userList.get(getAdapterPosition()));
+                }
+            });
         }
     }
 }

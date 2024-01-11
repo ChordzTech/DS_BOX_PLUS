@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class DefaultPaperSettings extends BaseActivity {
     ActivityDefaultPaperSettingsBinding defaultPaperSettingsBinding;
     DefaultPaperSettingsActivityViewModel viewModel;
-    private BusinessDetails business;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

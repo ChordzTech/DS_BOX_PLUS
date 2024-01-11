@@ -57,21 +57,17 @@ public class DefaultRateSettings extends BaseActivity {
             for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
                 // Access individual properties of AppConfigDataItems
                 int configId = appConfigDataItem.getConfigid();
-                String configName = appConfigDataItem.getConfigname();
                 String configValue = appConfigDataItem.getConfigvalue();
 
                 if (configId == 29) {
-                    double tietWaste = Double.parseDouble(configValue);
-                    defaultRateSettingsBinding.tietWaste.setText(String.valueOf(tietWaste));
+                    defaultRateSettingsBinding.tietWaste.setText(String.valueOf(configValue));
                 } else if (configId == 3) {
-                    double tietConvcost = Double.parseDouble(configValue);
-                    defaultRateSettingsBinding.tietConversionCost.setText(String.valueOf(tietConvcost));
+                    defaultRateSettingsBinding.tietConversionCost.setText(String.valueOf(configValue));
                 } else if (configId == 19) {
-                    double tietProfit = Double.parseDouble(configValue);
-                    defaultRateSettingsBinding.tietProfit.setText(String.valueOf(tietProfit));
+
+                    defaultRateSettingsBinding.tietProfit.setText(String.valueOf(configValue));
                 } else if (configId == 24) {
-                    double tietTax = Double.parseDouble(configValue);
-                    defaultRateSettingsBinding.tietTax.setText(String.valueOf(tietTax));
+                    defaultRateSettingsBinding.tietTax.setText(String.valueOf(configValue));
 
                 }
 

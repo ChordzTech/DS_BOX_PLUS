@@ -92,7 +92,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.f1bf = f1Bf
         createEstimateRequest.f1gsm = f1Gsm
         createEstimateRequest.f1rate = f1RateKg.toInt()
-        createEstimateRequest.f1ff = f1ff.toInt()
+        createEstimateRequest.f1ff = f1ff
 
         createEstimateRequest.m1bf = m1bf
         createEstimateRequest.m1gsm = m1Gsm

@@ -208,6 +208,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
                         newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
                         newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
+
                         int cuttingLengthMm = (int) v;
                         newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(cuttingLengthMm));
                         int DecalSizeMm = (int) decalSize;
@@ -244,7 +245,10 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                     double newDecalSize = calculateNewDecalSize(numberOfBoxes);
                     double newDecalSizeInTiet = getInstance().decalSizeInTiet(newDecalSize);
                     String newResOfDecalTiet = String.format("%.2f", newDecalSizeInTiet);
-                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(newDecalSize));
+
+                    int newDecalSizea=Integer.parseInt(newResOfDecalTiet);
+                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(newDecalSizea));
+
                     newEstimateBinding.tietDecalSize.setText(newResOfDecalTiet);
 
                 } catch (NumberFormatException e) {

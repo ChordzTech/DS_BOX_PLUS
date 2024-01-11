@@ -52,6 +52,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 //        if (position == getItemCount() - 1) {
 //            holder.cvDummyView.setVisibility(View.VISIBLE);
 //        }
+        
 
 
     }

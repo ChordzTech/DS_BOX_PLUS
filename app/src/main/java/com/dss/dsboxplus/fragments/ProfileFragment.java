@@ -22,6 +22,7 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.SubForBusiness;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
+import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.profile.BusinessDetailsActivity;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
 import com.dss.dsboxplus.profile.DefaultRateSettings;
@@ -39,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class ProfileFragment extends Fragment {
@@ -109,10 +111,10 @@ public class ProfileFragment extends Fragment {
         name = v.findViewById(R.id.tvName);
         contact = v.findViewById(R.id.tvContactNumber);
         role = v.findViewById(R.id.tvRole);
-//        UserData userData = ((ArrayList<UserData>) Objects.requireNonNull(Objects.requireNonNull(ConfigDataProvider.INSTANCE.getUserDetails()).getData())).get(0);
-//        name.setText(userData.getUsername());
-//        contact.setText(userData.getMobileno());
-//        role.setText(userData.getUserrole());
+        UserData userData = ((ArrayList<UserData>) Objects.requireNonNull(Objects.requireNonNull(ConfigDataProvider.INSTANCE.getUserDetails()).getData())).get(0);
+        name.setText(userData.getUsername());
+        contact.setText(userData.getMobileno());
+        role.setText(userData.getUserrole());
         tvTrialActive=v.findViewById(R.id.tvTrialActive);
         tvSubDays=v.findViewById(R.id.tvSubDays);
         tvSubDate=v.findViewById(R.id.tvSubDate);

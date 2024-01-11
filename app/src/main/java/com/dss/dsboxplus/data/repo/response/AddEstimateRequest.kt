@@ -65,7 +65,7 @@ data class AddEstimateRequest(
 	val lengthCmField: Int? = 0,
 
 	@field:SerializedName("f1ff")
-	var f1ff: Int? = 0,
+	var f1ff: Float? = 0.0F,
 
 
 	@field:SerializedName("businessid")
