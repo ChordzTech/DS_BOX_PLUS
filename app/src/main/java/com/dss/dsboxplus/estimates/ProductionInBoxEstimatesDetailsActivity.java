@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.estimates;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,7 +9,6 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
@@ -39,8 +39,8 @@ import java.time.format.DateTimeFormatter;
 
 public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
     EstimatesDataModel estimatesDataModel;
-    private DataItem dataItem;
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;
+    private DataItem dataItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,6 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
     private void initView() {
 
 
-
         productionInBoxEstimatesDetailsBinding.btCloseInProduction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,18 +62,56 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         });
 
         productionInBoxEstimatesDetailsBinding.btCreatePDFInProduction.setOnClickListener(new View.OnClickListener() {
+            // Get the text from the TextInputEditText
+
             @Override
             public void onClick(View v) {
-                try {
-                    createProductionDsPdf();
-                } catch (FileNotFoundException exception) {
-                    exception.printStackTrace();
+                String boxQuantity = productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim();
+                if (!boxQuantity.isEmpty()) {
+                    try {
+                        createProductionDsPdf();
+                    } catch (FileNotFoundException exception) {
+                        exception.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(ProductionInBoxEstimatesDetailsActivity.this, "Enter Box Quantity", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
 
     private void createProductionDsPdf() throws FileNotFoundException {
+
+        Intent intent = getIntent();
+        String length = intent.getStringExtra("length");
+        String width = intent.getStringExtra("width");
+        String height = intent.getStringExtra("height");
+        String boxName = intent.getStringExtra("boxName");
+        String bfInTop = intent.getStringExtra("bfInTop");
+        String bfInF1 = intent.getStringExtra("bfInF1");
+        String bfInM1 = intent.getStringExtra("bfInM1");
+        String bfInF2 = intent.getStringExtra("bfInF2");
+        String bfInM2 = intent.getStringExtra("bfInM2");
+        String bfInF3 = intent.getStringExtra("bfInF3");
+        String bfInBottom = intent.getStringExtra("bfInBottom");
+
+        String gsmInTop = intent.getStringExtra("gsmInTop");
+        String gsmInF1 = intent.getStringExtra("gsmInF1");
+        String gsmInM1 = intent.getStringExtra("gsmInM1");
+        String gsmInF2 = intent.getStringExtra("gsmInF2");
+        String gsmInM2 = intent.getStringExtra("gsmInM2");
+        String gsmInF3 = intent.getStringExtra("gsmInF3");
+        String gsmInBottom = intent.getStringExtra("gsmInBottom");
+
+        String rate = intent.getStringExtra("rate");
+        String ply = intent.getStringExtra("ply");
+        String cuttingLength = intent.getStringExtra("cuttingLength");
+        String decalSize = intent.getStringExtra("decalSize"); // assuming this is the correct field name
+        String weight = intent.getStringExtra("weight");
+        String ups = intent.getStringExtra("ups");
+
+
 
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "Production.pdf");
@@ -138,19 +175,19 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Box Name:7Ply Box")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Box Name:"+boxName)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Box Outer Dimension:400mm X 200mm X 300mm")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Box Outer Dimension:"+length+"X"+width+"X"+height)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Cutting Length:")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Cutting Length:"+cuttingLength)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Decal Size:")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Decal Size:"+decalSize)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));

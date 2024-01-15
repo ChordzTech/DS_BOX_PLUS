@@ -20,8 +20,8 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
-import com.dss.dsboxplus.data.repo.response.SubForBusiness;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
+import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness;
 import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.profile.BusinessDetailsActivity;
 import com.dss.dsboxplus.profile.DefaultPaperSettings;
@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
     // TODO: Rename and change types of parameters
 
-    private ArrayList<SubForBusiness> subscription=new ArrayList<>();
+    private ArrayList<SubscriptionForBusiness> subscription=new ArrayList<>();
     private String mParam1;
     private String mParam2;
     private TextView name, contact, role;
@@ -120,7 +120,7 @@ public class ProfileFragment extends Fragment {
         tvSubDate=v.findViewById(R.id.tvSubDate);
 
         if (!subscription.isEmpty()) {
-            SubForBusiness subForBusiness = subscription.get(0); // Assuming you want data from the first item
+            SubscriptionForBusiness subForBusiness = subscription.get(0); // Assuming you want data from the first item
             // Assuming SubForBusiness has properties like subscriptionDays and subscriptionDate
             double remainingDaysDouble = (double) subForBusiness.getRemainingDays();
             int remainingDays = (int) remainingDaysDouble;
@@ -277,7 +277,7 @@ public class ProfileFragment extends Fragment {
         this.base64Code = base64Code;
     }
 
-    public void setSubscription(ArrayList<SubForBusiness> subscription) {
+    public void setSubscription(ArrayList<SubscriptionForBusiness> subscription) {
         this.subscription=subscription;
     }
 }

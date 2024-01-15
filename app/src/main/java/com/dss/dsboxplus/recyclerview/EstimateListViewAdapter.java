@@ -16,7 +16,7 @@ import com.dss.dsboxplus.data.repo.response.DataItem;
 import java.util.ArrayList;
 
 public class EstimateListViewAdapter extends RecyclerView.Adapter<EstimateListViewAdapter.EstimateListViewHolder> {
-
+    private ArrayList<DataItem> estimatesList = new ArrayList<>();
     @NonNull
     @Override
     public EstimateListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,7 +31,7 @@ public class EstimateListViewAdapter extends RecyclerView.Adapter<EstimateListVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return estimatesList.size();
     }
 
     class EstimateListViewHolder extends RecyclerView.ViewHolder {

@@ -14,7 +14,8 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
-import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse
+import com.dss.dsboxplus.data.repo.response.GetClientByClientIdResponse
+import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubUserDetailsResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
@@ -33,7 +34,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -70,6 +70,12 @@ interface RetrofitService {
     @GET("BusinessDetails/")
     suspend fun getBusinessDetails(): Response<BusinessDetailsResponse>
 
+    @GET("BusinessDetails/{businessid}")
+    suspend fun getBusinessDetailsByBusinessID(
+        @Path(value = "businessid") businessId: Long
+    ):
+            Response<BusinessDetailsResponse>
+
     @PUT("BusinessDetails/{businessid}")
     suspend fun updateBusinessDetails(
         @Path(value = "businessid") businessId: Long,
@@ -94,6 +100,10 @@ interface RetrofitService {
     suspend fun getEstimateByBusinessIdUserId(
         @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long
     ): Response<EstimateListResponse>
+
+    @GET("ClientsDetails/{clientid}")
+    suspend fun getClientByClientId(@Path(value = "clientid") clientid: Long): Response<GetClientByClientIdResponse>
+
 
     @GET("GetEstimatesByClient/{clientid}")
     suspend fun getEstimateByClientId(
@@ -121,7 +131,8 @@ interface RetrofitService {
     @GET("SubscriptionforBusiness/{businessid}")
     suspend fun getSubForBusiness(
         @Path(value = "businessid") businessId: Long,
-    ): Response<GetSubForBusinessResponse>
+    ): Response<GetSubscriptionForBusiness>
+
 
     companion object {
         var retrofitService: RetrofitService? = null

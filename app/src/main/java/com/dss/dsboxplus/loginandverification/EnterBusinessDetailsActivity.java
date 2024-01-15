@@ -44,7 +44,7 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
                 String businessAddress = businessDetailsBinding.tietBusinessAddress.getText().toString();
                 String businessPinCode = businessDetailsBinding.tietBusinessPinCode.getText().toString();
                 boolean check = validateInfo(businessName, businessContact, businessAddress, businessPinCode);
-                if (check == true) {
+                if (check) {
                     viewModel.addBusinessDetails(businessName, businessContact, businessAddress, businessPinCode);
                 }
             }

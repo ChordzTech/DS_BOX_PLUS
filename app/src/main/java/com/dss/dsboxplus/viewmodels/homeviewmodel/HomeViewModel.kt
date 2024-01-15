@@ -6,7 +6,7 @@ import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
-import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse
+import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.dss.dsboxplus.preferences.AppPreferences
@@ -31,7 +31,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 
     //    var clientListLiveData=MutableLiveData<ClientListResponse>()
 //        get()=field
-    var subForBusinessLiveData = MutableLiveData<GetSubForBusinessResponse>()
+    var subForBusinessLiveData = MutableLiveData<GetSubscriptionForBusiness>()
         get() = field
 
 //    fun getEstimateList() {
