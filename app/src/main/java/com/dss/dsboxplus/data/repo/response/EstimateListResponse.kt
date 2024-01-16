@@ -12,7 +12,7 @@ data class EstimateListResponse(
     val code: Double? = null,
 
     @field:SerializedName("data")
-    val data: List<DataItem?>? = null,
+    val data: List<DataItem?>? = arrayListOf(),
 
     @field:SerializedName("message")
     val message: String? = null,

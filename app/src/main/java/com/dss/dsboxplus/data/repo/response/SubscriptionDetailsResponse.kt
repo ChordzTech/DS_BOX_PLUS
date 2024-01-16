@@ -11,7 +11,7 @@ data class SubscriptionDetailsResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: ArrayList<SubscriptionDataItem?>? = null,
+	val data: ArrayList<SubscriptionDataItem?>? = arrayListOf(),
 
 	@field:SerializedName("message")
 	val message: String? = null,

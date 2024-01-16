@@ -12,7 +12,7 @@ data class GetSubForBusinessResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<SubForBusiness?>? = null,
+	val data: List<SubForBusiness?>? = arrayListOf(),
 
 	@field:SerializedName("message")
 	val message: String? = null,

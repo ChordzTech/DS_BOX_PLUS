@@ -11,7 +11,7 @@ data class ClientListResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<Client?>? = null,
+	val data: List<Client?>? = arrayListOf(),
 
 	@field:SerializedName("message")
 	val message: String? = null,
