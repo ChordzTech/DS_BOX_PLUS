@@ -56,7 +56,14 @@
                         android:layout_gravity="start"
                         android:gravity="start"
                         android:text="@string/box_name" />
-
+                    <TextView
+                        android:id="@+id/tvClientName"
+                        style="@style/DSTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start"
+                        android:text="@string/client_name" />
 
                     <TextView
                         android:id="@+id/tvBoxDimension"

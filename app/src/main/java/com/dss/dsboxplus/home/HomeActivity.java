@@ -87,6 +87,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (!clientListResponse.getData().isEmpty()) {
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
                 ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
+                ConfigDataProvider.INSTANCE.createClientIdMap(clientListResponse.getData());
             }
         });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {

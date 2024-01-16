@@ -12,14 +12,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.model.EstimatesDataModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -56,6 +55,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         String formattedDate = formatDateFromApi(dateString);
         holder.tvEstimateDate.setText(formattedDate);
         holder.cvDummyView.setVisibility(View.GONE);
+        holder.tvClientName.setText(getClientName(dataItem.getClientid()));
         //long click
         if (!estimateSelection) {
             holder.root.setBackgroundColor(Color.WHITE);
@@ -63,6 +63,12 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         if (position == getItemCount() - 1) {
             holder.cvDummyView.setVisibility(View.VISIBLE);
         }
+    }
+
+    private String getClientName(Long clientid) {
+        return ConfigDataProvider.INSTANCE.getClientIdMap().get(clientid) != null ?
+                ConfigDataProvider.INSTANCE.getClientIdMap().get(clientid).getClientname() :
+                "";
     }
 
     private String formatDateFromApi(String inputDate) {
@@ -103,7 +109,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
     class EstimatesViewHolder extends RecyclerView.ViewHolder {
         private CardView root;
         private ConstraintLayout cvDummyView;
-        private TextView tvClientPhoto, tvBoxName, tvBoxDimension, tvCost, tvEstimateDate;
+        private TextView tvClientPhoto, tvBoxName, tvBoxDimension, tvCost, tvEstimateDate, tvClientName;
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,6 +120,8 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             tvEstimateDate = itemView.findViewById(R.id.tvEstimateDate);
             root = itemView.findViewById(R.id.root);
             cvDummyView = itemView.findViewById(R.id.cvDummyView);
+            tvClientName = itemView.findViewById(R.id.tvClientName);
+
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
