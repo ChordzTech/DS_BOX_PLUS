@@ -6,16 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
+import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActivityViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
 public class BoxEstimatesDetailsActivity extends BaseActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
+    BoxEstimatesDetailsActivityViewModel viewModel;
     private DataItem dataItem;
 
     @Override
@@ -23,10 +30,47 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         boxEstimatesDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_box_estimates_details);
         initView();
+        fetchData();
+        initObservables();
+    }
 
+    private void initObservables() {
+        viewModel.getGetBusinessLiveData().observe(this, businessDetailsResponse -> {
+            if (businessDetailsResponse != null) {
+
+            }
+        });
+
+        viewModel.getGetClientByClientIdLiveData().observe(this, getClientByClientIdResponse -> {
+            if (getClientByClientIdResponse != null) {
+                handleClientDetailsResponse(getClientByClientIdResponse.getData());
+            }
+        });
+    }
+
+
+
+    private void handleClientDetailsResponse(ClientDetails clientDetails) {
+        if (clientDetails != null) {
+            // Access the data from the ClientDetails object and update your UI accordingly
+            String clientName = clientDetails.getClientname();
+            String address = clientDetails.getAddress();
+            // Update your UI elements with the obtained data
+            boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(clientName);
+        }
+    }
+
+    private void fetchData() {
+        viewModel.getBusinessDetailsByBusinessId();
+        viewModel.getClientByClientId();
     }
 
     private void initView() {
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
+
+
         Intent intent = getIntent();
         if (intent.hasExtra("ESTIMATES_BUNDLE")) {
             // Retrieve the bundle from the intent
@@ -36,14 +80,15 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 DataItem dataItem = bundle.getParcelable("ESTIMATES");
                 if (dataItem != null) {
                     //Dimension For ImageOne
-                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField()+"mm"));
-                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthMmField()+"mm"));
-                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightMmField()+"mm"));
-                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf(dataItem.getTotalweight()+"gm"));
+
+                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField() + "mm"));
+                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthMmField() + "mm"));
+                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightMmField() + "mm"));
+                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf(dataItem.getTotalweight() + "gm"));
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
                     //Dimension For ImageTwo
-                    boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize()+"inch"));
-
+                    boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize() + "inch"));
+                    boxEstimatesDetailsBinding.tvCuttingForBox.setText(String.valueOf(dataItem.getCuttinglength() + "inch"));
 
                     //Dimensions for ply
                     boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf(dataItem.getTopbf()));
@@ -85,6 +130,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.setText(String.valueOf(dataItem.getBoxprice()));
                     boxEstimatesDetailsBinding.tvTax.setText(String.valueOf(dataItem.getTax()));
                     boxEstimatesDetailsBinding.tvPriceWithtax.setText(String.valueOf(dataItem.getBoxpricewithtax()));
+
+                    boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + "Ply");
+
+
                 }
             }
         }
@@ -94,10 +143,30 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         boxEstimatesDetailsBinding.btQuotation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getApplicationContext(), QuotationInBoxEstimateDetailsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("EstimateDetails", dataItem);
-                intent.putExtra("EstimateDetails_Bundle", bundle);
+                intent.putExtra("length", boxEstimatesDetailsBinding.tvLength.getText().toString());
+                intent.putExtra("width", boxEstimatesDetailsBinding.tvWidth.getText().toString());
+                intent.putExtra("height", boxEstimatesDetailsBinding.tvHeight.getText().toString());
+                intent.putExtra("boxName", boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.getText().toString());
+                intent.putExtra("bfInTop", boxEstimatesDetailsBinding.tvTopBf.getText().toString());
+                intent.putExtra("bfInF1", boxEstimatesDetailsBinding.tvFluteOnebf.getText().toString());
+                intent.putExtra("bfInM1", boxEstimatesDetailsBinding.tvMiddleOneBf.getText().toString());
+                intent.putExtra("bfInF2", boxEstimatesDetailsBinding.tvFluteTwoBf.getText().toString());
+                intent.putExtra("bfInM2", boxEstimatesDetailsBinding.tvMiddleTwoBf.getText().toString());
+                intent.putExtra("bfInF3", boxEstimatesDetailsBinding.tvFluteThreeBf.getText().toString());
+                intent.putExtra("bfInBottom", boxEstimatesDetailsBinding.tvBottomBf.getText().toString());
+
+                intent.putExtra("gsmInTop", boxEstimatesDetailsBinding.tvTopGsm.getText().toString());
+                intent.putExtra("gsmInF1", boxEstimatesDetailsBinding.tvGsmFluteOne.getText().toString());
+                intent.putExtra("gsmInM1", boxEstimatesDetailsBinding.tvMiddleOneGsm.getText().toString());
+                intent.putExtra("gsmInF2", boxEstimatesDetailsBinding.tvFluteTwoGsm.getText().toString());
+                intent.putExtra("gsmInM2", boxEstimatesDetailsBinding.tvMiddleTwoGsm.getText().toString());
+                intent.putExtra("gsmInF3", boxEstimatesDetailsBinding.tvFluteThreeGsm.getText().toString());
+                intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
+                intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
+                intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
+
                 startActivity(intent);
             }
         });
@@ -106,10 +175,31 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ProductionInBoxEstimatesDetailsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("EstimateDetails", dataItem);
-                // Put the bundle into the intent
-                intent.putExtra("EstimateDetails_Bundle", bundle);
+                intent.putExtra("length", boxEstimatesDetailsBinding.tvLength.getText().toString());
+                intent.putExtra("width", boxEstimatesDetailsBinding.tvWidth.getText().toString());
+                intent.putExtra("height", boxEstimatesDetailsBinding.tvHeight.getText().toString());
+                intent.putExtra("boxName", boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.getText().toString());
+                intent.putExtra("bfInTop", boxEstimatesDetailsBinding.tvTopBf.getText().toString());
+                intent.putExtra("bfInF1", boxEstimatesDetailsBinding.tvFluteOnebf.getText().toString());
+                intent.putExtra("bfInM1", boxEstimatesDetailsBinding.tvMiddleOneBf.getText().toString());
+                intent.putExtra("bfInF2", boxEstimatesDetailsBinding.tvFluteTwoBf.getText().toString());
+                intent.putExtra("bfInM2", boxEstimatesDetailsBinding.tvMiddleTwoBf.getText().toString());
+                intent.putExtra("bfInF3", boxEstimatesDetailsBinding.tvFluteThreeBf.getText().toString());
+                intent.putExtra("bfInBottom", boxEstimatesDetailsBinding.tvBottomBf.getText().toString());
+
+                intent.putExtra("gsmInTop", boxEstimatesDetailsBinding.tvTopGsm.getText().toString());
+                intent.putExtra("gsmInF1", boxEstimatesDetailsBinding.tvGsmFluteOne.getText().toString());
+                intent.putExtra("gsmInM1", boxEstimatesDetailsBinding.tvMiddleOneGsm.getText().toString());
+                intent.putExtra("gsmInF2", boxEstimatesDetailsBinding.tvFluteTwoGsm.getText().toString());
+                intent.putExtra("gsmInM2", boxEstimatesDetailsBinding.tvMiddleTwoGsm.getText().toString());
+                intent.putExtra("gsmInF3", boxEstimatesDetailsBinding.tvFluteThreeGsm.getText().toString());
+                intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
+                intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
+                intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
+//                intent.putExtra("cuttingLength", dataItem.getCuttinglengthmargin());
+//                intent.putExtra("cuttingLength", dataItem.getDecalsizemargin());
+//                intent.putExtra("weight", dataItem.getTotalweight());
+//                intent.putExtra("ups", dataItem.getUps());
                 startActivity(intent);
 
             }
@@ -130,7 +220,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         boxEstimatesDetailsBinding.btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
+                Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
                 startActivity(intent);
             }
         });

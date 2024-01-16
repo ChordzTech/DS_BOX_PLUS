@@ -51,7 +51,9 @@
                 app:layout_constraintTop_toBottomOf="@id/tvProductionInProductionActivity">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietBoxQuantity"
                     style="@style/DSTextMedium"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

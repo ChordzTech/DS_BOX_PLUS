@@ -22,9 +22,10 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
-import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse;
-import com.dss.dsboxplus.data.repo.response.SubForBusiness;
+
+
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
+import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
@@ -44,7 +45,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
-    private ArrayList<SubForBusiness> subscription=new ArrayList<>();
+    private ArrayList<SubscriptionForBusiness> subscription=new ArrayList<>();
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private ClientFragment clientFragment;
@@ -110,7 +111,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         });
         homeViewModel.getSubForBusinessLiveData().observe(this,getSubForBusinessResponse -> {
             if(!getSubForBusinessResponse.getData().isEmpty()){
-                subscription=(ArrayList<SubForBusiness>) getSubForBusinessResponse.getData();
+                subscription=(ArrayList<SubscriptionForBusiness>) getSubForBusinessResponse.getData();
                 profileFragment.setSubscription(subscription);
             }
         });

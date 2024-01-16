@@ -13,13 +13,17 @@ import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
+import com.dss.dsboxplus.data.repo.response.DeleteSubUserResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
-import com.dss.dsboxplus.data.repo.response.GetSubForBusinessResponse
+import com.dss.dsboxplus.data.repo.response.GetClientByClientIdResponse
+import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubUserDetailsResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateBusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
+import com.dss.dsboxplus.data.repo.response.UpdateSubUserRequest
+import com.dss.dsboxplus.data.repo.response.UpdateSubUserResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService
@@ -85,6 +89,21 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
 
+    suspend fun getBusinessDetailsByBusinessID(businessId: Long): NetworkState<BusinessDetailsResponse> {
+        val response = retrofitService.getBusinessDetailsByBusinessID(businessId)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+
+
     suspend fun getAppConfigList(): NetworkState<AppConfigResponse> {
         val response = retrofitService.getAppConfig()
         return if (response.isSuccessful) {
@@ -132,6 +151,22 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         userId: Long
     ): NetworkState<EstimateListResponse> {
         val response = retrofitService.getEstimateByBusinessIdUserId(businessId, userId)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+
+    suspend fun getClientByClintId(
+        clientId: Long
+    ): NetworkState<GetClientByClientIdResponse> {
+        val response = retrofitService.getClientByClientId(clientId)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -229,9 +264,36 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
+    suspend fun updateSubUser(request: UpdateSubUserRequest): NetworkState<UpdateSubUserResponse> {
+        val response = retrofitService.updateSubUser(request.userid!!.toLong(), request)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+
 
     suspend fun deleteClient(clientId: Long): NetworkState<DeleteClientResponse> {
         val response = retrofitService.deleteClient(clientId)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+    suspend fun deleteSubUser(userId: Long):NetworkState<DeleteSubUserResponse>{
+        val response = retrofitService.deleteSubUser(userId)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -260,7 +322,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
 
     suspend fun getSubForBusiness(
         businessId: Long
-    ): NetworkState<GetSubForBusinessResponse> {
+    ): NetworkState<GetSubscriptionForBusiness> {
         val response = retrofitService.getSubForBusiness(businessId)
         return if (response.isSuccessful) {
             val responseBody = response.body()

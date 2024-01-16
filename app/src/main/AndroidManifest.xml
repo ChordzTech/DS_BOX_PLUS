@@ -86,6 +86,8 @@
         <activity
             android:name=".profile.BusinessDetailsActivity"
             android:exported="false" />
+        <activity android:name=".profile.subUser.SubUserDetailsActivity"
+            android:exported="false"/>
         <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
