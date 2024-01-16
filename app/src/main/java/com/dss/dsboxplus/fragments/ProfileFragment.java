@@ -1,8 +1,6 @@
 package com.dss.dsboxplus.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,8 +27,8 @@ import com.dss.dsboxplus.profile.DefaultRateSettings;
 import com.dss.dsboxplus.profile.Help;
 import com.dss.dsboxplus.profile.QuotationTerms;
 import com.dss.dsboxplus.profile.SubscriptionActivity;
-import com.dss.dsboxplus.profile.subUser.SuperUserSetting;
 import com.dss.dsboxplus.profile.UserDetailsInProfile;
+import com.dss.dsboxplus.profile.subUser.SuperUserSetting;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -40,7 +38,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class ProfileFragment extends Fragment {
@@ -50,15 +47,16 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     ShapeableImageView ivProfile;
     SwitchCompat swMultiUser;
-    TextView tvTrialActive,tvSubDays,tvSubDate;
+    TextView tvTrialActive, tvSubDays, tvSubDate;
     FloatingActionButton fabAddImage;
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private String base64Code;
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
+    private UserData userData;
     // TODO: Rename and change types of parameters
 
-    private ArrayList<SubscriptionForBusiness> subscription=new ArrayList<>();
+    private ArrayList<SubscriptionForBusiness> subscription = new ArrayList<>();
     private String mParam1;
     private String mParam2;
     private TextView name, contact, role;
@@ -111,13 +109,14 @@ public class ProfileFragment extends Fragment {
         name = v.findViewById(R.id.tvName);
         contact = v.findViewById(R.id.tvContactNumber);
         role = v.findViewById(R.id.tvRole);
-        UserData userData = ((ArrayList<UserData>) Objects.requireNonNull(Objects.requireNonNull(ConfigDataProvider.INSTANCE.getUserDetails()).getData())).get(0);
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null)
+            userData = ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0);
         name.setText(userData.getUsername());
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
-        tvTrialActive=v.findViewById(R.id.tvTrialActive);
-        tvSubDays=v.findViewById(R.id.tvSubDays);
-        tvSubDate=v.findViewById(R.id.tvSubDate);
+        tvTrialActive = v.findViewById(R.id.tvTrialActive);
+        tvSubDays = v.findViewById(R.id.tvSubDays);
+        tvSubDate = v.findViewById(R.id.tvSubDate);
 
         if (!subscription.isEmpty()) {
             SubscriptionForBusiness subForBusiness = subscription.get(0); // Assuming you want data from the first item
@@ -142,9 +141,8 @@ public class ProfileFragment extends Fragment {
             tvSubDate.setText(subscriptionMessage);
         } else {
             tvSubDays.setText("No subscription data available");
-            tvSubDate.setText(""); // You can set a default value or an empty string
+            tvSubDate.setText("No subscription data available"); // You can set a default value or an empty string
         }
-
 
 
         fabAddImage.setOnClickListener(new View.OnClickListener() {
@@ -234,7 +232,7 @@ public class ProfileFragment extends Fragment {
             Date date = inputFormat.parse(subscriptionDate);
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
             return outputFormat.format(date);
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
             return subscriptionDate; // Return the original date string if parsing fails
         }
@@ -261,8 +259,7 @@ public class ProfileFragment extends Fragment {
         Uri uri = data.getData();
         ivProfile.setImageURI(uri);
 
-        }
-
+    }
 
 
     public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {
@@ -278,6 +275,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public void setSubscription(ArrayList<SubscriptionForBusiness> subscription) {
-        this.subscription=subscription;
+        this.subscription = subscription;
     }
 }

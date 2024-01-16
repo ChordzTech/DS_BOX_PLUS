@@ -130,10 +130,13 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                         double decalSize = getInstance().decalSize(widthMm, heightMm, d2);
                         double resForDecalTiet = getInstance().decalSizeInTiet(decalSize);
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
-                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
-                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(decalSize));
                         newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
                         newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
+
+                        int cuttingLengthMm = (int) v;
+                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(cuttingLengthMm));
+                        int DecalSizeMm = (int) decalSize;
+                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(DecalSizeMm));
                     }
                 }
 
@@ -167,10 +170,13 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                         double decalSize = getInstance().decalSize(widthMm, heightMm, d2);
                         double resForDecalTiet = getInstance().decalSizeInTiet(decalSize);
                         String resOfDecalTiet = String.format("%.2f", resForDecalTiet);
-                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(v));
-                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(decalSize));
                         newEstimateBinding.tietCuttingLength.setText(resOfCuttingTiet);
                         newEstimateBinding.tietDecalSize.setText(resOfDecalTiet);
+
+                        int cuttingLengthMm = (int) v;
+                        newEstimateBinding.tvCuttingLengthSize.setText(String.valueOf(cuttingLengthMm));
+                        int DecalSizeMm = (int) decalSize;
+                        newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(DecalSizeMm));
                     }
                 }
 

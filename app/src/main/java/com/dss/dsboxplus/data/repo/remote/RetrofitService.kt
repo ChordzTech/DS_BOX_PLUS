@@ -13,6 +13,7 @@ import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
+import com.dss.dsboxplus.data.repo.response.DeleteSubUserResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetClientByClientIdResponse
 import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
@@ -21,6 +22,8 @@ import com.dss.dsboxplus.data.repo.response.SubUserDetailsResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateBusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UpdateClientResponse
+import com.dss.dsboxplus.data.repo.response.UpdateSubUserRequest
+import com.dss.dsboxplus.data.repo.response.UpdateSubUserResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
@@ -53,11 +56,19 @@ interface RetrofitService {
         @Body request: UpdateClientRequest
     ): Response<UpdateClientResponse>
 
+    @PUT("UserDetails/{userid}")
+    suspend fun updateSubUser(
+        @Path(value = "userid") userId: Long,
+        @Body request: UpdateSubUserRequest
+    ): Response<UpdateSubUserResponse>
+
     @DELETE("ClientsDetails/{clientid}/")
     suspend fun deleteClient(
         @Path(value = "clientid") clientid: Long
     ): Response<DeleteClientResponse>
 
+    @DELETE("UserDetails/{userid}")
+    suspend fun deleteSubUser(@Path(value = "userid") userId: Long): Response<DeleteSubUserResponse>
 
     //client list APIs
     @GET("GetClientByB/{businessid}")

@@ -14,6 +14,7 @@ import com.dss.dsboxplus.viewmodels.profileviewmodels.AddSubUserViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultPaperSettingsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultRateSettingsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.SubUserDetailsViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.SuperUserViewModel
 import com.example.mvvmretrofit.data.repo.MainRepository
 
@@ -47,6 +48,8 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
             SuperUserViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(BoxEstimatesDetailsActivityViewModel::class.java)) {
             BoxEstimatesDetailsActivityViewModel(repository) as T
+        }else if (modelClass.isAssignableFrom(SubUserDetailsViewModel::class.java)) {
+            SubUserDetailsViewModel(repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }

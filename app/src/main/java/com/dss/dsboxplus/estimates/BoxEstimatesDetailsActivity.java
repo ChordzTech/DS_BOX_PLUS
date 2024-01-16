@@ -196,10 +196,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
                 intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
-                intent.putExtra("cuttingLength", dataItem.getCuttinglengthmargin());
-                intent.putExtra("cuttingLength", dataItem.getDecalsizemargin());
-                intent.putExtra("weight", dataItem.getTotalweight());
-                intent.putExtra("ups", dataItem.getUps());
+//                intent.putExtra("cuttingLength", dataItem.getCuttinglengthmargin());
+//                intent.putExtra("cuttingLength", dataItem.getDecalsizemargin());
+//                intent.putExtra("weight", dataItem.getTotalweight());
+//                intent.putExtra("ups", dataItem.getUps());
                 startActivity(intent);
 
             }

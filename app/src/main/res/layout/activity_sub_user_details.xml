@@ -12,8 +12,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="@dimen/margin_medium"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_medium">
 
 
             <ImageView
@@ -47,8 +47,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tvUserDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextMedium"
                     android:id="@+id/tietSubUserName"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -65,6 +65,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tilUserName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:focusable="false"
+                    android:clickable="false"
                     android:id="@+id/tietSubUserContact"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
@@ -122,8 +124,10 @@
                 app:layout_constraintTop_toBottomOf="@id/cvUserAccess">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextMedium"
+                    android:focusable="false"
+                    android:clickable="false"
                     android:id="@+id/tietSubUserDeviceInfo"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -142,12 +146,21 @@
 
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btUpdateInSubUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btDeleteInSubUSer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:text="@string/delete" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btCloseInSubUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />
