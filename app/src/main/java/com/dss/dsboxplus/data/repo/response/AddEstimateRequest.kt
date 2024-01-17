@@ -17,7 +17,7 @@ data class AddEstimateRequest(
 	var m1gsm: Int? = 0,
 
 	@field:SerializedName("height_cm_field")
-	val heightCmField: Int? = 0,
+	var heightCmField: Int? = 0,
 
 	@field:SerializedName("userid")
 	var userid: Int? = 0,
@@ -26,7 +26,7 @@ data class AddEstimateRequest(
 	var boxname: String? = "",
 
 	@field:SerializedName("length_inch_field")
-	val lengthInchField: Int? = 0,
+	var lengthInchField: Int? = 0,
 
 	@field:SerializedName("m1bf")
 	var m1bf: Int? = 0,
@@ -56,13 +56,13 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("width_cm_field")
-	val widthCmField: Int? = 0,
+	var widthCmField: Int? = 0,
 
 	@field:SerializedName("f1gsm")
 	var f1gsm: Int? = 0,
 
 	@field:SerializedName("length_cm_field")
-	val lengthCmField: Int? = 0,
+	var lengthCmField: Int? = 0,
 
 	@field:SerializedName("f1ff")
 	var f1ff: Float? = 0.0F,
@@ -76,7 +76,7 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("totalpapercost")
-	val totalpapercost: Int? = 0,
+	var totalpapercost: Int? = 0,
 
 	@field:SerializedName("tax")
 	var tax: Int? = 0,
@@ -92,16 +92,16 @@ data class AddEstimateRequest(
 	var decalsizemargin: Int? = 0,
 
 	@field:SerializedName("height_inch_field")
-	val heightInchField: Int? = 0,
+	var heightInchField: Int? = 0,
 
 	@field:SerializedName("m2rate")
 	var m2rate: Int? = 0,
 
 	@field:SerializedName("netweight")
-	val netweight: Int? = 0,
+	var netweight: Int? = 0,
 
 	@field:SerializedName("width_inch_field")
-	val widthInchField: Int? = 0,
+	var widthInchField: Int? = 0,
 
 	@field:SerializedName("ups")
 	var ups: Int? = 0,
@@ -146,7 +146,7 @@ data class AddEstimateRequest(
 	var m2bf: Int? = 0,
 
 	@field:SerializedName("profit")
-	val profit: Int? = 0,
+	var profit: Int? = 0,
 
 	@field:SerializedName("f3gsm")
 	var f3gsm: Int? = 0,
@@ -181,10 +181,10 @@ data class AddEstimateRequest(
 	var overheadcharges: Int? = 0,
 
 	@field:SerializedName("estimateid")
-	val estimateid: Int? = 0,
+	var estimateid: Int? = 0,
 
 	@field:SerializedName("comment")
-	val comment: String? = "",
+	var comment: String? = "",
 
 	@field:SerializedName("ply")
 	var ply: Int? = 0,

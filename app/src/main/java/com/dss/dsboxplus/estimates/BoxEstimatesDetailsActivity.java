@@ -229,6 +229,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
+                intent.putExtra("EDIT_ESTIMATE",dataItem);
                 startActivity(intent);
             }
         });

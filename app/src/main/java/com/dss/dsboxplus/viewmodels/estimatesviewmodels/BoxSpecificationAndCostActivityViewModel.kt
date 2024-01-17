@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.DateUtils
 import com.dss.dsboxplus.baseview.BaseViewModel
+import com.dss.dsboxplus.data.CreateEstimateDataHolder
 import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
-import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
@@ -78,6 +78,12 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.lengthMmField = lengthMm
         createEstimateRequest.widthMmField = widthMm
         createEstimateRequest.heightMmField = heightMm
+        createEstimateRequest.lengthCmField = CreateEstimateDataHolder.lengthCm.toInt()
+        createEstimateRequest.widthCmField = CreateEstimateDataHolder.widthCm.toInt()
+        createEstimateRequest.heightCmField = CreateEstimateDataHolder.heightCm.toInt()
+        createEstimateRequest.lengthInchField = CreateEstimateDataHolder.lengthInch.toInt()
+        createEstimateRequest.widthInchField = CreateEstimateDataHolder.widthInch.toInt()
+        createEstimateRequest.heightInchField = CreateEstimateDataHolder.heightInch.toInt()
         createEstimateRequest.ply = noOfPly.toInt()
         createEstimateRequest.ups = noOfBox
         createEstimateRequest.cuttinglength = cuttingLength.toInt()

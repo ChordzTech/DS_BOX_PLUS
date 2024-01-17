@@ -23,6 +23,7 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel;
 import com.google.android.material.textfield.TextInputEditText;
@@ -47,10 +48,21 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private boolean isSheetDetailsTouched = false;
     private String sizeMeasure = "";
 
+    private DataItem dataItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
+        if(dataItem!=null)
+        {
+            updateUI();
+        }
+    }
+
+    private void updateUI() {
+        newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
     }
 
 
@@ -252,7 +264,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                     double newDecalSizeInTiet = getInstance().decalSizeInTiet(newDecalSize);
                     String newResOfDecalTiet = String.format("%.2f", newDecalSizeInTiet);
 
-                    int newDecalSizea=Integer.parseInt(newResOfDecalTiet);
+                    int newDecalSizea = Integer.parseInt(newResOfDecalTiet);
                     newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(newDecalSizea));
 
                     newEstimateBinding.tietDecalSize.setText(newResOfDecalTiet);
