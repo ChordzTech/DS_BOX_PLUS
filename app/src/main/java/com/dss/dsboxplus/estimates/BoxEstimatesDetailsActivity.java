@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -45,6 +47,12 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             if (getClientByClientIdResponse != null) {
                 handleClientDetailsResponse(getClientByClientIdResponse.getData());
             }
+        });
+
+        viewModel.getDeleteEstimateLiveData().observe(this,estimateDeleteResponse -> {
+            Toast.makeText(this, estimateDeleteResponse.getMessage(), Toast.LENGTH_SHORT).show();
+            finishAffinity();
+            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 
@@ -77,7 +85,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             Bundle bundle = intent.getBundleExtra("ESTIMATES_BUNDLE");
             if (bundle != null) {
                 // Retrieve the DataItem object from the bundle
-                DataItem dataItem = bundle.getParcelable("ESTIMATES");
+                dataItem = bundle.getParcelable("ESTIMATES");
                 if (dataItem != null) {
                     //Dimension For ImageOne
 
@@ -235,7 +243,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                viewModel.deleteEstimate(dataItem.getEstimateid());
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

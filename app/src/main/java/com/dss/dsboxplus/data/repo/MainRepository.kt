@@ -14,6 +14,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
 import com.dss.dsboxplus.data.repo.response.DeleteSubUserResponse
+import com.dss.dsboxplus.data.repo.response.EstimateDeleteResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetClientByClientIdResponse
 import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
@@ -324,6 +325,20 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         businessId: Long
     ): NetworkState<GetSubscriptionForBusiness> {
         val response = retrofitService.getSubForBusiness(businessId)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+
+    suspend fun deleteEstimate(estimateid: Long):  NetworkState<EstimateDeleteResponse> {
+        val response = retrofitService.deleteEstimate(estimateid)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {

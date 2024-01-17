@@ -70,7 +70,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeViewModel.getAppConfig();
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
-        homeViewModel.getEstimateByBusinessIdUserId();
         homeViewModel.getSubForBusiness();
     }
 
@@ -88,6 +87,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
                 ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
                 ConfigDataProvider.INSTANCE.createClientIdMap(clientListResponse.getData());
+                homeViewModel.getEstimateByBusinessIdUserId();
             }
         });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {

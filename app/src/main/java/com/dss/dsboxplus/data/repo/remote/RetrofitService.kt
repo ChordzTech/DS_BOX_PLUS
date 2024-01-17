@@ -14,6 +14,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.DeleteClientResponse
 import com.dss.dsboxplus.data.repo.response.DeleteSubUserResponse
+import com.dss.dsboxplus.data.repo.response.EstimateDeleteResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetClientByClientIdResponse
 import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
@@ -143,6 +144,10 @@ interface RetrofitService {
     suspend fun getSubForBusiness(
         @Path(value = "businessid") businessId: Long,
     ): Response<GetSubscriptionForBusiness>
+    @DELETE("EstimateDetails/{estimateid}/")
+    suspend fun deleteEstimate(
+        @Path(value = "estimateid") deleteEstimate: Long,
+    ): Response<EstimateDeleteResponse>
 
 
     companion object {
