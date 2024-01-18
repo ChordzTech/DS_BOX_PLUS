@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
@@ -33,8 +34,10 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 //        get()=field
     var subForBusinessLiveData = MutableLiveData<GetSubscriptionForBusiness>()
         get() = field
+    var businessDetailsLiveData = MutableLiveData<BusinessDetailsResponse>()
+        get() = field
 
-//    fun getEstimateList() {
+    //    fun getEstimateList() {
 //        viewModelScope.launch {
 //            when (val response = repository.getEstimateList()) {
 //                is NetworkState.Success -> {
@@ -59,6 +62,26 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
             when (val response = repository.getClientList(businessId)) {
                 is NetworkState.Success -> {
                     clientListLiveData.postValue(response.data!!)
+                }
+
+                is NetworkState.Error -> {
+                    if (response.response.code() == 401) {
+//                        estimateList.postValue(NetworkState.Error())
+                    } else {
+//                        estimateList.postValue(NetworkState.Error)
+                    }
+                }
+
+            }
+        }
+    }
+    fun getBusinessDetails() {
+        val businessId =
+            AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
+        viewModelScope.launch {
+            when (val response = repository.getBusinessDetailsByBusinessID(businessId)) {
+                is NetworkState.Success -> {
+                    businessDetailsLiveData.postValue(response.data!!)
                 }
 
                 is NetworkState.Error -> {

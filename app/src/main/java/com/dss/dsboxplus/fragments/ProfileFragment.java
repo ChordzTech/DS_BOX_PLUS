@@ -18,6 +18,7 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness;
 import com.dss.dsboxplus.data.repo.response.UserData;
@@ -57,6 +58,8 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
 
     private ArrayList<SubscriptionForBusiness> subscription = new ArrayList<>();
+
+    private BusinessDetails businessDetails;
     private String mParam1;
     private String mParam2;
     private TextView name, contact, role;
@@ -276,5 +279,9 @@ public class ProfileFragment extends Fragment {
 
     public void setSubscription(ArrayList<SubscriptionForBusiness> subscription) {
         this.subscription = subscription;
+    }
+
+    public void setBusinessdetails(BusinessDetails businessDetails) {
+        this.businessDetails=businessDetails;
     }
 }

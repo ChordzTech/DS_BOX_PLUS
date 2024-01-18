@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvUserDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvUserName"
+                    android:id="@+id/tietUserName"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -157,12 +157,14 @@
 
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btUpdateInUSerDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btCloseInUSerDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

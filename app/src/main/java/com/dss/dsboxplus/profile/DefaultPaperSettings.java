@@ -86,9 +86,7 @@ public class DefaultPaperSettings extends BaseActivity {
                     float fluteFactor = Float.parseFloat(defaultPaperSettingsBinding.tietFluteFactor.getText().toString());
 
                     viewModel.updatebusinessDetails(
-                            String.valueOf(cuttingMargin),
-                            String.valueOf(decalMargin),
-                            String.valueOf(fluteFactor)
+                            cuttingMargin,decalMargin,fluteFactor
                     );
             }
         });

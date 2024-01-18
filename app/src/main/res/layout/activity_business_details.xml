@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvBusinessDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvBusinessName"
+                    android:id="@+id/tietBusinessName"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
-                    android:id="@+id/tvBusinessContact"
+                    android:id="@+id/tietBusinessContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_contact"
@@ -84,7 +84,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
-                    android:id="@+id/tvBusinessAddress"
+                    android:id="@+id/tietBusinessAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_address"
@@ -104,7 +104,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
-                    android:id="@+id/tvBusinessPincode"
+                    android:id="@+id/tietBusinessPincode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_pinCode"
@@ -124,7 +124,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
-                    android:id="@+id/tvBusinessMail"
+                    android:id="@+id/tietBusinessMail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_email"

@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.recyclerview;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.data.repo.response.SubUser;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.SubUserViewHolder> {
     private ArrayList<SubUser> userList = new ArrayList<>();
@@ -46,7 +48,13 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         holder.tvSubUserContact.setText(userData.getMobileno());
         String initials = getInitials(userData.getUsername());
         holder.tvClientPhoto.setText(initials);
+        int randomColor = getRandomColor();
+        holder.tvClientPhoto.setBackgroundColor(randomColor);
+    }
 
+    private int getRandomColor() {
+        Random rand = new Random();
+        return Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
     }
 
     private String getInitials(String clientName) {

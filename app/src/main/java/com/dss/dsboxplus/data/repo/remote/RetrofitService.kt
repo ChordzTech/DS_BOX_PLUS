@@ -38,6 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -57,7 +58,7 @@ interface RetrofitService {
         @Body request: UpdateClientRequest
     ): Response<UpdateClientResponse>
 
-    @PUT("UserDetails/{userid}")
+    @PATCH("UserDetails/{userid}/")
     suspend fun updateSubUser(
         @Path(value = "userid") userId: Long,
         @Body request: UpdateSubUserRequest
@@ -68,11 +69,11 @@ interface RetrofitService {
         @Path(value = "clientid") clientid: Long
     ): Response<DeleteClientResponse>
 
-    @DELETE("UserDetails/{userid}")
+    @DELETE("UserDetails/{userid}/")
     suspend fun deleteSubUser(@Path(value = "userid") userId: Long): Response<DeleteSubUserResponse>
 
     //client list APIs
-    @GET("GetClientByB/{businessid}")
+    @GET("GetClientByB/{businessid}/")
     suspend fun getClientList(@Path(value = "businessid") businessId: Long): Response<ClientListResponse>
 
     @POST("ClientsDetails/")
@@ -82,13 +83,12 @@ interface RetrofitService {
     @GET("BusinessDetails/")
     suspend fun getBusinessDetails(): Response<BusinessDetailsResponse>
 
-    @GET("BusinessDetails/{businessid}")
+    @GET("BusinessDetails/{businessid}/")
     suspend fun getBusinessDetailsByBusinessID(
         @Path(value = "businessid") businessId: Long
-    ):
-            Response<BusinessDetailsResponse>
+    ): Response<BusinessDetailsResponse>
 
-    @PUT("BusinessDetails/{businessid}")
+    @PATCH("BusinessDetails/{businessid}/")
     suspend fun updateBusinessDetails(
         @Path(value = "businessid") businessId: Long,
         @Body request: UpdateBusinessDetailsRequest
@@ -113,11 +113,11 @@ interface RetrofitService {
         @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long
     ): Response<EstimateListResponse>
 
-    @GET("ClientsDetails/{clientid}")
+    @GET("ClientsDetails/{clientid}/")
     suspend fun getClientByClientId(@Path(value = "clientid") clientid: Long): Response<GetClientByClientIdResponse>
 
 
-    @GET("GetEstimatesByClient/{clientid}")
+    @GET("GetEstimatesByClient/{clientid}/")
     suspend fun getEstimateByClientId(
         @Path(value = "clientid") clientId: Long,
     ): Response<EstimateListResponse>
@@ -128,7 +128,7 @@ interface RetrofitService {
         @Path(value = "mobileno") mobileno: String, @Path(value = "androidid") deviceinfo: String
     ): Response<UserDetailsResponse>
 
-    @GET("GetSubUserList/{businessid}")
+    @GET("GetSubUserList/{businessid}/")
     suspend fun getUsersByBusinessId(
         @Path(value = "businessid") businessId: Long,
     ): Response<SubUserDetailsResponse>
@@ -140,10 +140,11 @@ interface RetrofitService {
     @POST("EstimateDetails/")
     suspend fun addEstimate(@Body request: AddEstimateRequest): Response<AddEstimateResponse>
 
-    @GET("SubscriptionforBusiness/{businessid}")
+    @GET("SubscriptionforBusiness/{businessid}/")
     suspend fun getSubForBusiness(
         @Path(value = "businessid") businessId: Long,
     ): Response<GetSubscriptionForBusiness>
+
     @DELETE("EstimateDetails/{estimateid}/")
     suspend fun deleteEstimate(
         @Path(value = "estimateid") deleteEstimate: Long,

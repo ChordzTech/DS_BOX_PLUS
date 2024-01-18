@@ -20,6 +20,8 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 
@@ -31,6 +33,7 @@ import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -71,6 +74,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
         homeViewModel.getSubForBusiness();
+        homeViewModel.getBusinessDetails();
     }
 
     private void initObservables() {
@@ -114,6 +118,13 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if(!getSubForBusinessResponse.getData().isEmpty()){
                 subscription=(ArrayList<SubscriptionForBusiness>) getSubForBusinessResponse.getData();
                 profileFragment.setSubscription(subscription);
+            }
+        });
+
+        homeViewModel.getBusinessDetailsLiveData().observe(this,businessDetailsResponse -> {
+            if (businessDetailsResponse.getData()!=null){
+                BusinessDetails businessDetails=businessDetailsResponse.getData();
+                profileFragment.setBusinessdetails(businessDetails);
             }
         });
     }

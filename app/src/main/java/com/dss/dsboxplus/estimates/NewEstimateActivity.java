@@ -55,14 +55,27 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         initView();
         dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
-        if(dataItem!=null)
-        {
+        if (dataItem != null) {
             updateUI();
         }
     }
 
     private void updateUI() {
         newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
+        newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthMmField().doubleValue()));
+        newEstimateBinding.tietWidth.setText(String.valueOf((int) dataItem.getWidthMmField().doubleValue()));
+        newEstimateBinding.tietHeight.setText(String.valueOf((int) dataItem.getHeightMmField().doubleValue()));
+//        newEstimateBinding.tietLength.setText(dataItem.getLengthCmField());
+//        newEstimateBinding.tietWidth.setText(dataItem.getWidthCmField());
+//        newEstimateBinding.tietHeight.setText(dataItem.getHeightCmField());
+//        newEstimateBinding.tietLength.setText(dataItem.getLengthInchField());
+//        newEstimateBinding.tietWidth.setText(dataItem.getWidthInchField());
+//        newEstimateBinding.tietHeight.setText(dataItem.getHeightInchField());
+        newEstimateBinding.tietNumberOfBox.setText(String.valueOf((int) dataItem.getUps().doubleValue()));
+        newEstimateBinding.tietCuttingLength.setText(dataItem.getCuttinglength().toString());
+        newEstimateBinding.tietDecalSize.setText(dataItem.getDecalsize().toString());
+        newEstimateBinding.tvCuttingLengthSize.setText(dataItem.getCuttinglengthmargin().toString());
+        newEstimateBinding.tvDecalSizeValue.setText(dataItem.getDecalsizemargin().toString());
     }
 
 

@@ -26,16 +26,9 @@ public class AddSubUserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         addSubUserBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_sub_user);
         initView();
-        initViewModel();
-        addOververs();
+
     }
 
-    private void addOververs() {
-        viewModel.getAddSubUserLiveData().observe(this,addUserResponse -> {
-            Toast.makeText(this, "User added Successfully", Toast.LENGTH_SHORT);
-            finish();
-        });
-    }
 
     private void initViewModel() {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
@@ -44,7 +37,7 @@ public class AddSubUserActivity extends BaseActivity {
     }
 
     private void initView() {
-
+        initViewModel();
         addSubUserBinding.btSubmitInAddSubUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +49,14 @@ public class AddSubUserActivity extends BaseActivity {
                     viewModel.addSubUSer(username,contact);
 
                 }
+
             }
+
+        });
+        viewModel.getAddSubUserLiveData().observe(this,addUserResponse -> {
+            Toast.makeText(this, "User added Successfully", Toast.LENGTH_SHORT);
+            finishAffinity();
+            startActivity(new Intent(this, SuperUserSetting.class));
         });
     }
 

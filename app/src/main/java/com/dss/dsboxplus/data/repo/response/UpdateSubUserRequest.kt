@@ -17,7 +17,7 @@ data class UpdateSubUserRequest(
 	val mobileno: String? = null,
 
 	@field:SerializedName("useraccess")
-	val useraccess: Int? = null,
+    var useraccess: Int? = null,
 
 	@field:SerializedName("userid")
 	var userid: Int? = null,

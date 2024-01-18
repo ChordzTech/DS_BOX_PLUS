@@ -84,12 +84,14 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             public void onClick(View v) {
                 viewModel.updateSubUser(userData.getUserid(),
                         binding.tietSubUserName.getText().toString()
+//                        binding.userAccessSpinnerInUserDetails.getSelectedItem().toString()
                 );
             }
         });
         viewModel.getUpdateSubUserLiveData().observe(this, updateSubUserResponse -> {
             Toast.makeText(this, "User Details Updated Successfully", Toast.LENGTH_SHORT).show();
-            finishAffinity();
+            finish();
+            startActivity(new Intent(this, SuperUserSetting.class));
         });
     }
 
@@ -101,7 +103,21 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String selectedAccess = access[position];
 
+        switch (selectedAccess) {
+            case "Full Access":
+                // Handle Full Access
+                break;
+            case "No Access":
+                // Handle No Access
+                break;
+            case "Read Only":
+                // Handle Read Only Access
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

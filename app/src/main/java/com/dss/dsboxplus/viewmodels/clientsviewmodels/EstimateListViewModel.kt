@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
-import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import kotlinx.coroutines.launch

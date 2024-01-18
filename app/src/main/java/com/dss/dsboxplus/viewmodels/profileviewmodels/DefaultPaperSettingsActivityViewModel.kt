@@ -19,16 +19,16 @@ class DefaultPaperSettingsActivityViewModel(val repository: MainRepository) : Ba
 
     fun updatebusinessDetails(
 
-        cuttingMargin: String,
-        decalMargin: String,
-        fluteFactor: String
+        cuttingMargin: Int,
+        decalMargin: Int,
+        fluteFactor: Float
     ) {
         showLoader()
         val request=UpdateBusinessDetailsRequest()
         request.businessid =AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID).toInt()
 
-        request.marginlength=cuttingMargin.toInt()
-        request.marginwidth=decalMargin.toInt()
+        request.marginlength=cuttingMargin
+        request.marginwidth=decalMargin
         request.flutefactor=fluteFactor.toInt()
 
        viewModelScope.launch {

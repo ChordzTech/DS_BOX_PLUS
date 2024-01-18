@@ -11,11 +11,13 @@ import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.EnterBusinessDetailsAct
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.AddSubUserViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.BusinessSettingsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultPaperSettingsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultRateSettingsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.SubUserDetailsViewModel
 import com.dss.dsboxplus.viewmodels.profileviewmodels.SuperUserViewModel
+import com.dss.dsboxplus.viewmodels.profileviewmodels.UserDetailsInProfileViewModel
 import com.example.mvvmretrofit.data.repo.MainRepository
 
 class AppViewModelFactory constructor(private val repository: MainRepository) :
@@ -32,24 +34,28 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
             EnterBusinessDetailsActivityViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(ClientViewModel::class.java)) {
             ClientViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(BoxSpecificationAndCostActivityViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(BoxSpecificationAndCostActivityViewModel::class.java)) {
             BoxSpecificationAndCostActivityViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(EstimateListViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(EstimateListViewModel::class.java)) {
             EstimateListViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(AddSubUserViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(AddSubUserViewModel::class.java)) {
             AddSubUserViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(DefaultPaperSettingsActivityViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(DefaultPaperSettingsActivityViewModel::class.java)) {
             DefaultPaperSettingsActivityViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(DefaultRateSettingsActivityViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(DefaultRateSettingsActivityViewModel::class.java)) {
             DefaultRateSettingsActivityViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(QuotationTermsActivityViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(QuotationTermsActivityViewModel::class.java)) {
             QuotationTermsActivityViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(BusinessSettingsActivityViewModel::class.java)) {
+            BusinessSettingsActivityViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(SuperUserViewModel::class.java)) {
             SuperUserViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(BoxEstimatesDetailsActivityViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(BoxEstimatesDetailsActivityViewModel::class.java)) {
             BoxEstimatesDetailsActivityViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(SubUserDetailsViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(SubUserDetailsViewModel::class.java)) {
             SubUserDetailsViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(UserDetailsInProfileViewModel::class.java)) {
+            UserDetailsInProfileViewModel(repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }

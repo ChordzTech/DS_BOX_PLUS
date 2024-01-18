@@ -35,7 +35,7 @@ public class QuotationTerms extends BaseActivity {
 
     private void addOververs() {
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {
-            Toast.makeText(this, updateBusinessDetailsResponse.getMessage(), Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Updated Successfully", Toast.LENGTH_SHORT);
             finish();
         });
     }

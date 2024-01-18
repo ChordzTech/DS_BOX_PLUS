@@ -57,6 +57,7 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
                     businessDetailsResponse.getData().getBusinessid());
             addUserForBusiness(businessDetailsResponse);
             addClientForBusiness(businessDetailsResponse);
+
         });
 
         viewModel.getAddUserResponseLiveData().observe(this, addUserResponse -> {

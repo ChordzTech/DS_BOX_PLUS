@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdapter.EstimatesViewHolder> {
     boolean isSelectMode = false;
@@ -56,6 +57,9 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         holder.tvEstimateDate.setText(formattedDate);
         holder.cvDummyView.setVisibility(View.GONE);
         holder.tvClientName.setText(getClientName(dataItem.getClientid()));
+
+        int randomColor = getRandomColor();
+        holder.tvEstimateDate.setBackgroundColor(randomColor);
         //long click
         if (!estimateSelection) {
             holder.root.setBackgroundColor(Color.WHITE);
@@ -63,6 +67,11 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         if (position == getItemCount() - 1) {
             holder.cvDummyView.setVisibility(View.VISIBLE);
         }
+
+    }
+    private int getRandomColor() {
+        Random rand = new Random();
+        return Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
     }
 
     private String getClientName(Long clientid) {
@@ -113,7 +122,6 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
         public EstimatesViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvClientPhoto = itemView.findViewById(R.id.ivClientPhoto);
             tvBoxName = itemView.findViewById(R.id.tvBoxName);
             tvBoxDimension = itemView.findViewById(R.id.tvBoxDimension);
             tvCost = itemView.findViewById(R.id.tvCost);

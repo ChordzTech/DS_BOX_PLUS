@@ -3,7 +3,6 @@ package com.dss.dsboxplus.recyclerview;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import java.util.Random;
 public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.ClientsViewHolder> {
     private ArrayList<Client> clientsList;
     private OnClientSelectedI onClientSelectedListner;
+    private int clientPhotoBackgroundColor = getRandomColor();
 
     @NonNull
     @Override
@@ -49,12 +49,20 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         String initials = getInitials(client.getClientname());
         holder.ivClientPhoto.setText(initials);
 
+        int backgroundColor = getRandomColor();
+        holder.ivClientPhoto.setBackgroundColor(backgroundColor);
+
+
 //        if (position == getItemCount() - 1) {
 //            holder.cvDummyView.setVisibility(View.VISIBLE);
 //        }
-        
 
 
+    }
+
+    private int getRandomColor() {
+        Random rand = new Random();
+        return Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
     }
 
     @Override
@@ -74,6 +82,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
     public void setOnClientSelectedListner(OnClientSelectedI onClientSelectedListner) {
         this.onClientSelectedListner = onClientSelectedListner;
     }
+
     private String getInitials(String clientName) {
         String[] nameParts = clientName.split(" ");
         StringBuilder initials = new StringBuilder();
@@ -97,7 +106,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
     }
 
     class ClientsViewHolder extends RecyclerView.ViewHolder {
-        private ImageView  ivEstimates;
+        private ImageView ivEstimates;
         private TextView tvClientsName, tvPhoneNumber;
         private ConstraintLayout cvDummyView;
         private TextView ivClientPhoto;
