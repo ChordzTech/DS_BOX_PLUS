@@ -4,6 +4,7 @@ import static com.dss.dsboxplus.estimates.Formulas.getInstance;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -50,6 +51,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private String sizeMeasure = "";
 
     private DataItem dataItem;
+    private Client selectedClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         Intent intent = getIntent();
         if (intent != null) {
             // Retrieve the selected client data from the intent
-            Client selectedClient = intent.getParcelableExtra("selectedClient");
+             selectedClient = intent.getParcelableExtra("selectedClient");
 
             newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
             // Now you have the selected client data in the 'selectedClient' object
@@ -141,13 +143,13 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                     String noOfPly = newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
                     String updatedCuttingLength = newEstimateBinding.tietCuttingLength.getText().toString();
                     String updatedDecalSize = newEstimateBinding.tietDecalSize.getText().toString();
-                    Intent intent = new Intent(getApplicationContext(), PaperSpecificationActivity.class);
+                    Intent intent = new Intent(NewEstimateActivity.this, PaperSpecificationActivity.class);
                     intent.putExtra("cuttingLength", updatedCuttingLength);
                     intent.putExtra("decalSize", updatedDecalSize);
                     intent.putExtra("noOfBox", newEstimateBinding.tietNumberOfBox.getText().toString());
                     intent.putExtra("noOfPly", noOfPly);
                     intent.putExtra("EDIT_ESTIMATE", dataItem);
-                    intent.putExtra("clientName",clientName);
+                    intent.putExtra("selectedClient",selectedClient);
                     startActivity(intent);
                 }
 

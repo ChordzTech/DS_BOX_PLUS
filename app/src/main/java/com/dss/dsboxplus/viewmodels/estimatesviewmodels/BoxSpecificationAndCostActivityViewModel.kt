@@ -7,6 +7,7 @@ import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.CreateEstimateDataHolder
 import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
+import com.dss.dsboxplus.data.repo.response.Client
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
@@ -19,6 +20,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
 
 
     fun createEstimate(
+        selectedClient: Client,
         boxName: String,
         lengthMm: Int,
         widthMm: Int,
@@ -56,10 +58,10 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         totalGsm: Double,
         totalBs: Double,
         totalWeight: Double,
-        netPaperCost: Double,
 //        wasteCost: Double,
 //        grossPaperCost: Double,
 //        convCost: Double,
+        netPaperCost: Double,
         boxMfg: Double,
         boxPrice: Double,
         boxPriceTax: Double,
@@ -71,8 +73,8 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         showLoader()
         var createEstimateRequest = AddEstimateRequest()
 
-        createEstimateRequest.businessid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID).toInt()
-        createEstimateRequest.clientid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.CLIENT_ID).toInt()
+        createEstimateRequest.businessid=selectedClient.businessid
+        createEstimateRequest.clientid=selectedClient.clientid!!
         createEstimateRequest.userid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID).toInt()
         createEstimateRequest.boxname = boxName
         createEstimateRequest.lengthMmField = lengthMm

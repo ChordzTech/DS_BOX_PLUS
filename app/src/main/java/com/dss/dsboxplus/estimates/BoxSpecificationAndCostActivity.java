@@ -16,6 +16,7 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -40,6 +41,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     private String tax = "0";
     private String overhead = "0";
     private DataItem dataItem;
+    private Client selectedClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +72,14 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
     private void initView() {
 
-        String clientName=getIntent().getStringExtra("clientName");
+        selectedClient = getIntent().getParcelableExtra("selectedClient");
+
         String boxName=getIntent().getStringExtra("boxName");
         String boxDimen=getIntent().getStringExtra("boxDimen");
 
 
 
-        activityBoxSpecificationAndCostBinding.tvClientNameInboxSpecification.setText(clientName);
+        activityBoxSpecificationAndCostBinding.tvClientNameInboxSpecification.setText(selectedClient.getClientname());
         activityBoxSpecificationAndCostBinding.tvBoxNameInBoxSpecification.setText(boxName);
         activityBoxSpecificationAndCostBinding.tvBoxDimensionInBoxSpecification.setText(boxDimen);
 
@@ -299,6 +303,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
     private void callCreateEstimateAPI() {
         viewModel.createEstimate(
+                selectedClient,
                 CreateEstimateDataHolder.INSTANCE.getBoxName(),
                 (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(),
                 (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(),

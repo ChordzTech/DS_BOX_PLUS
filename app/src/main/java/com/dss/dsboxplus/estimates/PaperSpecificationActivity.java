@@ -14,6 +14,7 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class PaperSpecificationActivity extends BaseActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
     String noOfPly = "";
+    private Client selectedClient;
 
     private DataItem dataItem;
 
@@ -29,11 +31,12 @@ public class PaperSpecificationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         paperSpecificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_paper_specification);
-        initView();
         dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
+        selectedClient = getIntent().getParcelableExtra("selectedClient");
         if (dataItem != null) {
             updateUI();
         }
+        initView();
     }
 
     private void updateUI() {
@@ -71,7 +74,7 @@ public class PaperSpecificationActivity extends BaseActivity {
 
     private void initView() {
 
-        String clientName = getIntent().getStringExtra("clientName");
+        String clientName = selectedClient.getClientname();
         paperSpecificationBinding.tvClientNameInEstimate.setText(clientName);
 
         paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
@@ -253,7 +256,7 @@ public class PaperSpecificationActivity extends BaseActivity {
                 String ffInFluteThreePaper = paperSpecificationBinding.ffInFluteThreePaper.getText().toString();
 
 
-                String clientName=paperSpecificationBinding.tvClientNameInEstimate.getText().toString();
+                String clientName=selectedClient.getClientname();
                 String boxName=paperSpecificationBinding.tvBoxNameInPaperSpecification.getText().toString();
                 String boxDimen=paperSpecificationBinding.tvBoxDimensionInPaperSpecification.getText().toString();
 
@@ -294,7 +297,7 @@ public class PaperSpecificationActivity extends BaseActivity {
                     intent.putExtra("noOfBox", noOfBox);
                     intent.putExtra("EDIT_ESTIMATE", dataItem);
 
-                    intent.putExtra("clientName",clientName);
+                    intent.putExtra("selectedClient",selectedClient);
                     intent.putExtra("boxName",boxName);
                     intent.putExtra("boxDimen",boxDimen);
                     startActivity(intent);

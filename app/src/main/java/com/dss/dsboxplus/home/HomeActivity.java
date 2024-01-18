@@ -83,7 +83,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
                 estimatesFragment.setEstimateList(estimateList);
-                ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
+//                ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
             }
         });
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class AddEstimateRequest(
 
 	@field:SerializedName("clientid")
-	var clientid: Int? = 0,
+	var clientid: Long? = 0,
 
 	@field:SerializedName("totalweight")
 	var totalweight: Int? = 0,
