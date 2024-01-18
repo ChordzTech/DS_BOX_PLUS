@@ -147,6 +147,7 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
             AppPreferences.INSTANCE.isCreatingEstimate(getActivity(),AppPreferences.IS_CREATING_ESTIMATE, false);
             Intent intent = new Intent(getActivity(), NewEstimateActivity.class);
             intent.putExtra("clientId",clientData.getClientid());
+            intent.putExtra("selectedClient", clientData);
             startActivity(intent) ;
         } else {
             Intent intent = new Intent(getActivity(), ClientDetailsActivity.class);

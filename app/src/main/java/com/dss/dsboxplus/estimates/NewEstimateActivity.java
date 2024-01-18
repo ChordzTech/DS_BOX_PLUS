@@ -23,6 +23,7 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel;
@@ -53,11 +54,15 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        newEstimateBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_estimate);
         initView();
         dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
         if (dataItem != null) {
             updateUI();
         }
+
+
+
     }
 
     private void updateUI() {
@@ -74,13 +79,26 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         newEstimateBinding.tietNumberOfBox.setText(String.valueOf((int) dataItem.getUps().doubleValue()));
         newEstimateBinding.tietCuttingLength.setText(dataItem.getCuttinglength().toString());
         newEstimateBinding.tietDecalSize.setText(dataItem.getDecalsize().toString());
-        newEstimateBinding.tvCuttingLengthSize.setText(dataItem.getCuttinglengthmargin().toString());
-        newEstimateBinding.tvDecalSizeValue.setText(dataItem.getDecalsizemargin().toString());
+
+        newEstimateBinding.tvMargin.setText(String.valueOf((int) dataItem.getCuttinglengthmargin().doubleValue()));
+        newEstimateBinding.tvDecalMarginSize.setText(String.valueOf((int) dataItem.getDecalsizemargin().doubleValue()));
+
+
     }
 
 
     private void initView() {
-        newEstimateBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_estimate);
+        Intent intent = getIntent();
+        if (intent != null) {
+            // Retrieve the selected client data from the intent
+            Client selectedClient = intent.getParcelableExtra("selectedClient");
+
+            newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
+            // Now you have the selected client data in the 'selectedClient' object
+            // Access clientid using selectedClient.getClientid()
+            // Access other fields as needed
+        }
+
         tietnumberOfBox = findViewById(R.id.tietNumberOfBox);
         tilHeight = findViewById(R.id.tilHeight);
         tilWidth = findViewById(R.id.tilWidth);
@@ -111,10 +129,12 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String enterBoxName = newEstimateBinding.tietEnterBoxName.getText().toString();
                 String enterLength = newEstimateBinding.tietLength.getText().toString();
                 String enterWidth = newEstimateBinding.tietWidth.getText().toString();
                 String enterHeight = newEstimateBinding.tietHeight.getText().toString();
+                String clientName=newEstimateBinding.tvClientNameInEstimate.getText().toString();
                 boolean check = validateInfo(enterBoxName, enterLength, enterWidth, enterHeight);
                 if (check) {
                     storeValuesToEstimateDataHolder();
@@ -126,6 +146,8 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                     intent.putExtra("decalSize", updatedDecalSize);
                     intent.putExtra("noOfBox", newEstimateBinding.tietNumberOfBox.getText().toString());
                     intent.putExtra("noOfPly", noOfPly);
+                    intent.putExtra("EDIT_ESTIMATE", dataItem);
+                    intent.putExtra("clientName",clientName);
                     startActivity(intent);
                 }
 

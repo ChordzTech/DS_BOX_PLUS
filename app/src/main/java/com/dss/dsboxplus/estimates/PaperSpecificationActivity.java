@@ -14,6 +14,7 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 
 import java.util.ArrayList;
@@ -22,14 +23,56 @@ public class PaperSpecificationActivity extends BaseActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
     String noOfPly = "";
 
+    private DataItem dataItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         paperSpecificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_paper_specification);
         initView();
+        dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
+        if (dataItem != null) {
+            updateUI();
+        }
+    }
+
+    private void updateUI() {
+        paperSpecificationBinding.bfInTopPaper.setText(String.valueOf((int) dataItem.getTopbf().doubleValue()));
+        paperSpecificationBinding.gsmInTopPaper.setText(String.valueOf((int) dataItem.getTopgsm().doubleValue()));
+        paperSpecificationBinding.rateKgInTopPaper.setText(dataItem.getToprate().toString());
+
+        paperSpecificationBinding.bfInFlutePaper.setText(String.valueOf((int) dataItem.getF1bf().doubleValue()));
+        paperSpecificationBinding.gsmInFlutePaper.setText(String.valueOf((int) dataItem.getF1gsm().doubleValue()));
+        paperSpecificationBinding.rateKgInFlutePaper.setText(dataItem.getF1rate().toString());
+        paperSpecificationBinding.ffInFlutePaper.setText(dataItem.getF1ff().toString());
+
+        paperSpecificationBinding.bfInMiddleOnePaper.setText(String.valueOf((int) dataItem.getM1bf().doubleValue()));
+        paperSpecificationBinding.gsmInMiddleOnePaper.setText(String.valueOf((int) dataItem.getM1gsm().doubleValue()));
+        paperSpecificationBinding.rateKgInMiddleOnePaper.setText(dataItem.getM1rate().toString());
+
+        paperSpecificationBinding.bfInFluteTwoPaper.setText(String.valueOf((int) dataItem.getF2bf().doubleValue()));
+        paperSpecificationBinding.gsmInFluteTwoPaper.setText(String.valueOf((int) dataItem.getF2gsm().doubleValue()));
+        paperSpecificationBinding.rateKgInFluteTwoPaper.setText(dataItem.getF2rate().toString());
+        paperSpecificationBinding.ffInFluteTwoPaper.setText(dataItem.getF2ff().toString());
+
+        paperSpecificationBinding.bfInMiddleTwoPaper.setText(String.valueOf((int) dataItem.getM2bf().doubleValue()));
+        paperSpecificationBinding.gsmInMiddleTwoPaper.setText(String.valueOf((int) dataItem.getM2gsm().doubleValue()));
+        paperSpecificationBinding.rateKgInMiddleTwoPaper.setText(dataItem.getM2rate().toString());
+
+        paperSpecificationBinding.bfInFluteThreePaper.setText(String.valueOf((int) dataItem.getF3bf().doubleValue()));
+        paperSpecificationBinding.gsmInFluteThreePaper.setText(String.valueOf((int) dataItem.getF3gsm().doubleValue()));
+        paperSpecificationBinding.rateKgInFluteThreePaper.setText(dataItem.getF3rate().toString());
+        paperSpecificationBinding.ffInFluteThreePaper.setText(dataItem.getF3ff().toString());
+
+        paperSpecificationBinding.bfInBottomPaper.setText(String.valueOf((int) dataItem.getBottombf().doubleValue()));
+        paperSpecificationBinding.gsmInBottomPaper.setText(String.valueOf((int) dataItem.getBottomgsm().doubleValue()));
+        paperSpecificationBinding.rateKgInBottomPaper.setText(dataItem.getBottomrate().toString());
     }
 
     private void initView() {
+
+        String clientName = getIntent().getStringExtra("clientName");
+        paperSpecificationBinding.tvClientNameInEstimate.setText(clientName);
 
         paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
         paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm() + "X" + CreateEstimateDataHolder.INSTANCE.getWidthMm() + "X" + CreateEstimateDataHolder.INSTANCE.getHeightMm());
@@ -209,6 +252,11 @@ public class PaperSpecificationActivity extends BaseActivity {
                 String ffInFluteTwoPaper = paperSpecificationBinding.ffInFluteTwoPaper.getText().toString();
                 String ffInFluteThreePaper = paperSpecificationBinding.ffInFluteThreePaper.getText().toString();
 
+
+                String clientName=paperSpecificationBinding.tvClientNameInEstimate.getText().toString();
+                String boxName=paperSpecificationBinding.tvBoxNameInPaperSpecification.getText().toString();
+                String boxDimen=paperSpecificationBinding.tvBoxDimensionInPaperSpecification.getText().toString();
+
                 boolean check = validateInfo(bfInTopPaper, bfInFlutePaper, bfInMiddleOnePaper, bfInFluteTwoPaper, bfInMiddleTwoPaper
                         , bfInFluteThreePaper, bfInBottomPaper, gsmInTop, gsmInFlutePaper, gsmInMiddleOnePaper, gsmInFluteTwoPaper, gsmInMiddleTwoPaper,
                         gsmInFluteThreePaper, gsmInBottomPaper, rateKgInTop, rateKgInFlutePaper, rateKgInMiddleOnePaper, rateKgInFluteTwoPaper
@@ -244,6 +292,11 @@ public class PaperSpecificationActivity extends BaseActivity {
                     intent.putExtra("decalSizeResult", decalM);
                     intent.putExtra("noOfPly", noOfPly);
                     intent.putExtra("noOfBox", noOfBox);
+                    intent.putExtra("EDIT_ESTIMATE", dataItem);
+
+                    intent.putExtra("clientName",clientName);
+                    intent.putExtra("boxName",boxName);
+                    intent.putExtra("boxDimen",boxDimen);
                     startActivity(intent);
                 }
 
