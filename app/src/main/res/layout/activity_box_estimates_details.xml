@@ -208,6 +208,7 @@
                             android:text="Text2" />
 
                         <TextView
+                            android:id="@+id/tvDecalSizeinInch"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="50dp"
@@ -218,6 +219,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
+                            android:id="@+id/tvCuttingLengthinch"
                             android:text="Text4"
                             android:layout_marginTop="50dp"
                             android:rotation="47"
@@ -264,8 +266,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center" />
-
+                            android:gravity="left" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -274,7 +279,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/bf" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -283,7 +291,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/gsm" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -292,7 +303,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/rate" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -319,9 +333,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/top" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvTopBf"
                             style="@style/DSTextMedium"
@@ -331,7 +348,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvTopGsm"
                             style="@style/DSTextMedium"
@@ -341,7 +361,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvTopRate"
                             style="@style/DSTextMedium"
@@ -351,7 +374,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -379,9 +405,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/flute_one" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteOnebf"
                             style="@style/DSTextMedium"
@@ -391,7 +420,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvGsmFluteOne"
                             style="@style/DSTextMedium"
@@ -401,7 +433,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvRateFluteOne"
                             style="@style/DSTextMedium"
@@ -411,7 +446,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFFFluteOne"
                             style="@style/DSTextMedium"
@@ -440,9 +478,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/middle_one" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvMiddleOneBf"
                             style="@style/DSTextMedium"
@@ -452,7 +493,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvMiddleOneGsm"
                             style="@style/DSTextMedium"
@@ -462,7 +506,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvMiddleOneRate"
                             style="@style/DSTextMedium"
@@ -472,7 +519,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -502,9 +552,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/flute_two" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteTwoBf"
                             style="@style/DSTextMedium"
@@ -514,7 +567,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteTwoGsm"
                             style="@style/DSTextMedium"
@@ -524,7 +580,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteTwoRate"
                             style="@style/DSTextMedium"
@@ -534,7 +593,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteTwoFf"
                             style="@style/DSTextMedium"
@@ -565,9 +627,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/middle_two" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvMiddleTwoBf"
                             style="@style/DSTextMedium"
@@ -577,7 +642,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvMiddleTwoGsm"
                             style="@style/DSTextMedium"
@@ -587,7 +655,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvMiddleTwoRate"
                             style="@style/DSTextMedium"
@@ -597,7 +668,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -626,9 +700,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/flute_three" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteThreeBf"
                             style="@style/DSTextMedium"
@@ -638,7 +715,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteThreeGsm"
                             style="@style/DSTextMedium"
@@ -648,7 +728,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteThreeRate"
                             style="@style/DSTextMedium"
@@ -658,7 +741,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvFluteThreeFf"
                             style="@style/DSTextMedium"
@@ -688,9 +774,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/bottom" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvBottomBf"
                             style="@style/DSTextMedium"
@@ -700,7 +789,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvBottomGsm"
                             style="@style/DSTextMedium"
@@ -710,7 +802,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             android:id="@+id/tvBottomRate"
                             style="@style/DSTextMedium"
@@ -720,7 +815,10 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
-
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -780,7 +878,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -807,7 +908,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -882,7 +986,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -908,7 +1015,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -981,7 +1091,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -1007,7 +1120,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -1081,7 +1197,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -1107,7 +1226,10 @@
                             android:text="0" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

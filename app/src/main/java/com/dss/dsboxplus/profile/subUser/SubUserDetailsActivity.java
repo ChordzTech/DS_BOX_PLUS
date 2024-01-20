@@ -83,8 +83,8 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             @Override
             public void onClick(View v) {
                 viewModel.updateSubUser(userData.getUserid(),
-                        binding.tietSubUserName.getText().toString()
-//                        binding.userAccessSpinnerInUserDetails.getSelectedItem().toString()
+                        binding.tietSubUserName.getText().toString(),
+                        binding.userAccessSpinnerInUserDetails.getSelectedItem().toString()
                 );
             }
         });

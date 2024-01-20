@@ -1,4 +1,4 @@
-package com.dss.dsboxplus.data.repo.response
+package com.dss.dsboxplus.data.repo.request
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
@@ -65,7 +65,7 @@ data class AddEstimateRequest(
 	var lengthCmField: Int? = 0,
 
 	@field:SerializedName("f1ff")
-	var f1ff: Float? = 0.0F,
+	var f1ff: Int? = 0,
 
 
 	@field:SerializedName("businessid")

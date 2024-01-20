@@ -30,7 +30,7 @@
                     style="bold"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/circular_tv"
+                    android:background="@drawable/tv_background"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="40sp"

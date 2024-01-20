@@ -20,7 +20,7 @@
 
             <TextView
                 android:textColor="@color/black"
-                android:background="@drawable/circular_tv"
+                android:background="@drawable/tv_background"
                 android:id="@+id/tvClientPhoto"
                 android:layout_width="80dp"
                 android:textSize="40sp"

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.DateUtils
 import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.CreateEstimateDataHolder
-import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
+import com.dss.dsboxplus.data.repo.request.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
 import com.dss.dsboxplus.data.repo.response.Client
 import com.dss.dsboxplus.preferences.AppPreferences
@@ -100,7 +100,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.f1bf = f1Bf
         createEstimateRequest.f1gsm = f1Gsm
         createEstimateRequest.f1rate = f1RateKg.toInt()
-        createEstimateRequest.f1ff = f1ff
+        createEstimateRequest.f1ff = f1ff.toInt()
 
         createEstimateRequest.m1bf = m1bf
         createEstimateRequest.m1gsm = m1Gsm

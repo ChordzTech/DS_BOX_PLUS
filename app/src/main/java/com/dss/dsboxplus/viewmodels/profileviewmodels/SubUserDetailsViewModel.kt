@@ -42,7 +42,7 @@ class SubUserDetailsViewModel(val repository: MainRepository) : BaseViewModel() 
     fun updateSubUser(
         userid: Long,
         userName: String,
-//        accessLevel: String
+        accessLevel: String
     ) {
         showLoader()
         val request = UpdateSubUserRequest()
@@ -50,7 +50,7 @@ class SubUserDetailsViewModel(val repository: MainRepository) : BaseViewModel() 
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID).toInt()
         request.userid=userid.toInt()
         request.username=userName
-//        request.useraccess=accessLevel.toInt()
+        request.useraccess=accessLevel.toInt()
         viewModelScope.launch {
             when (val response = repository.updateSubUser(request)) {
                 is NetworkState.Success -> {

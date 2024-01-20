@@ -62,7 +62,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
 
     private int getRandomColor() {
         Random rand = new Random();
-        return Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+        return Color.argb(155, rand.nextInt(156), rand.nextInt(156), rand.nextInt(156));
     }
 
     @Override

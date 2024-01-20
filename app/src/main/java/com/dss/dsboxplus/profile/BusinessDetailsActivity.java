@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityBusinessDetailsBinding;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -49,6 +50,16 @@ public class BusinessDetailsActivity extends BaseActivity {
     }
 
     private void initView() {
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+
+            binding.tietBusinessName.setText(businessDetails.getBusinessname());
+            binding.tietBusinessContact.setText(businessDetails.getContactno());
+            binding.tietBusinessAddress.setText(businessDetails.getAddress());
+            binding.tietBusinessPincode.setText(businessDetails.getPincode());
+        }
 
 
 

@@ -1,15 +1,7 @@
 package com.dss.dsboxplus.viewmodels.estimatesviewmodels
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
-import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
-import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
-import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
-import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.example.mvvmretrofit.data.repo.MainRepository
-import com.example.mvvmretrofit.data.repo.remote.NetworkState
-import kotlinx.coroutines.launch
 
 class NewEstimatesActivityViewModel(val repository: MainRepository) : BaseViewModel() {
 //    var addEstimateLiveData = MutableLiveData<AddEstimateResponse>()

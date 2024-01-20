@@ -14,6 +14,8 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
@@ -157,6 +159,14 @@ public class PaperSpecificationActivity extends BaseActivity {
                 }
             }
         }
+//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+//
+//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+//            BusinessDetails businessDetails = businessDetailsResponse.getData();
+//            paperSpecificationBinding.ffInFlutePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+//            paperSpecificationBinding.ffInFluteTwoPaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+//
+//        }
 
         paperSpecificationBinding.bfInTopPaper.addTextChangedListener(new TextWatcher() {
             @Override
@@ -256,9 +266,9 @@ public class PaperSpecificationActivity extends BaseActivity {
                 String ffInFluteThreePaper = paperSpecificationBinding.ffInFluteThreePaper.getText().toString();
 
 
-                String clientName=selectedClient.getClientname();
-                String boxName=paperSpecificationBinding.tvBoxNameInPaperSpecification.getText().toString();
-                String boxDimen=paperSpecificationBinding.tvBoxDimensionInPaperSpecification.getText().toString();
+                String clientName = selectedClient.getClientname();
+                String boxName = paperSpecificationBinding.tvBoxNameInPaperSpecification.getText().toString();
+                String boxDimen = paperSpecificationBinding.tvBoxDimensionInPaperSpecification.getText().toString();
 
                 boolean check = validateInfo(bfInTopPaper, bfInFlutePaper, bfInMiddleOnePaper, bfInFluteTwoPaper, bfInMiddleTwoPaper
                         , bfInFluteThreePaper, bfInBottomPaper, gsmInTop, gsmInFlutePaper, gsmInMiddleOnePaper, gsmInFluteTwoPaper, gsmInMiddleTwoPaper,
@@ -297,9 +307,9 @@ public class PaperSpecificationActivity extends BaseActivity {
                     intent.putExtra("noOfBox", noOfBox);
                     intent.putExtra("EDIT_ESTIMATE", dataItem);
 
-                    intent.putExtra("selectedClient",selectedClient);
-                    intent.putExtra("boxName",boxName);
-                    intent.putExtra("boxDimen",boxDimen);
+                    intent.putExtra("selectedClient", selectedClient);
+                    intent.putExtra("boxName", boxName);
+                    intent.putExtra("boxDimen", boxDimen);
                     startActivity(intent);
                 }
 

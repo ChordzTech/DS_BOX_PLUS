@@ -29,7 +29,7 @@
                     style="@style/DSTextMediumBold"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@color/cyan_dark"
+                    android:background="@drawable/tv_background"
                     android:gravity="center"
                     android:text="@string/_18_noct_23"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityQuotationTermsBinding;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel;
@@ -47,6 +50,18 @@ public class QuotationTerms extends BaseActivity {
     }
 
     private void initView() {
+
+
+
+
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+
+            binding.tietTermsAndConditions.setText(businessDetails.getEstimatenote());
+
+        }
         btCloseInQuotationTerms = findViewById(R.id.btCloseInQuotationTerms);
         btCloseInQuotationTerms.setOnClickListener(new View.OnClickListener() {
             @Override

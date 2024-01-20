@@ -69,7 +69,7 @@ data class BusinessDetails(
 	val multiuser: Int? = null,
 
 	@field:SerializedName("flutefactor")
-	val flutefactor: Int? = null,
+	val flutefactor: Float? = null,
 
 	@field:SerializedName("conversionrate")
 	val conversionrate: Int? = null,

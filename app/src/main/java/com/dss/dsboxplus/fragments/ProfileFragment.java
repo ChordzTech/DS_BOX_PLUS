@@ -19,6 +19,7 @@ import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness;
 import com.dss.dsboxplus.data.repo.response.UserData;
@@ -117,6 +118,24 @@ public class ProfileFragment extends Fragment {
         name.setText(userData.getUsername());
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
+
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+            int userAccess = businessDetails.getMultiuser();
+            // Hide the super user setting if userAccess is 0
+            if (userAccess == 1) {
+                cvsuperUserSettings.setVisibility(View.VISIBLE);
+                // Enable the toggle button when userAccess is 1
+                swMultiUser.setChecked(true);
+            } else  {
+                cvsuperUserSettings.setVisibility(View.GONE);
+                // Disable the toggle button when userAccess is not 1
+                swMultiUser.setChecked(false);
+            }
+        }
+
         tvTrialActive = v.findViewById(R.id.tvTrialActive);
         tvSubDays = v.findViewById(R.id.tvSubDays);
         tvSubDate = v.findViewById(R.id.tvSubDate);
@@ -282,6 +301,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public void setBusinessdetails(BusinessDetails businessDetails) {
-        this.businessDetails=businessDetails;
+        this.businessDetails = businessDetails;
     }
 }

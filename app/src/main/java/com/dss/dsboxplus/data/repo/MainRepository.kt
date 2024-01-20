@@ -6,7 +6,7 @@ import com.dss.dsboxplus.data.repo.request.UpdateBusinessDetailsRequest
 import com.dss.dsboxplus.data.repo.request.UpdateClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientRequest
 import com.dss.dsboxplus.data.repo.response.AddClientResponse
-import com.dss.dsboxplus.data.repo.response.AddEstimateRequest
+import com.dss.dsboxplus.data.repo.request.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
 import com.dss.dsboxplus.data.repo.response.AddUserResponse
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse

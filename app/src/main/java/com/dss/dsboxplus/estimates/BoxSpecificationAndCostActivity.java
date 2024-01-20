@@ -16,6 +16,8 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
@@ -74,9 +76,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
         selectedClient = getIntent().getParcelableExtra("selectedClient");
 
-        String boxName=getIntent().getStringExtra("boxName");
-        String boxDimen=getIntent().getStringExtra("boxDimen");
-
+        String boxName = getIntent().getStringExtra("boxName");
+        String boxDimen = getIntent().getStringExtra("boxDimen");
 
 
         activityBoxSpecificationAndCostBinding.tvClientNameInboxSpecification.setText(selectedClient.getClientname());
@@ -106,6 +107,17 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 }
             }
         }
+
+
+//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+//
+//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+//            BusinessDetails businessDetails = businessDetailsResponse.getData();
+//            activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(businessDetails.getWaste()));
+//            activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf((businessDetails.getConversionrate()));
+//            activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(businessDetails.getProfit()));
+//            activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(businessDetails.getTax()));
+//        }
 
         waste = activityBoxSpecificationAndCostBinding.tietWaste.getText().toString();
         activityBoxSpecificationAndCostBinding.tietWaste.addTextChangedListener(new TextWatcher() {
@@ -312,8 +324,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 CreateEstimateDataHolder.INSTANCE.getNoOfBox(),
                 CreateEstimateDataHolder.INSTANCE.getCuttingLength(),
                 CreateEstimateDataHolder.INSTANCE.getDecalSize(),
-                CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(),
-                CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
+                CreateEstimateDataHolder.INSTANCE.getCuttingLengthMm(),
+                CreateEstimateDataHolder.INSTANCE.getDecalSizeMm(),
 
                 CreateEstimateDataHolder.INSTANCE.getTopBf(),
                 CreateEstimateDataHolder.INSTANCE.getTopGsm(),

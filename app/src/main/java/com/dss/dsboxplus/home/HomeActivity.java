@@ -1,14 +1,10 @@
 package com.dss.dsboxplus.home;
 
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,11 +17,8 @@ import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
-import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
-
-
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
@@ -33,12 +26,10 @@ import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
-import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
-import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
 
@@ -48,7 +39,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     private EstimatesFragment estimatesFragment;
     private ArrayList<Client> clientsList = new ArrayList<>();
     private ArrayList<SubscriptionDataItem> subscriptionList = new ArrayList<>();
-    private ArrayList<SubscriptionForBusiness> subscription=new ArrayList<>();
+    private ArrayList<SubscriptionForBusiness> subscription = new ArrayList<>();
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private ClientFragment clientFragment;
@@ -114,17 +105,18 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 ConfigDataProvider.INSTANCE.setQrCodeBase64(base64Code);
             }
         });
-        homeViewModel.getSubForBusinessLiveData().observe(this,getSubForBusinessResponse -> {
-            if(!getSubForBusinessResponse.getData().isEmpty()){
-                subscription=(ArrayList<SubscriptionForBusiness>) getSubForBusinessResponse.getData();
+        homeViewModel.getSubForBusinessLiveData().observe(this, getSubForBusinessResponse -> {
+            if (!getSubForBusinessResponse.getData().isEmpty()) {
+                subscription = (ArrayList<SubscriptionForBusiness>) getSubForBusinessResponse.getData();
                 profileFragment.setSubscription(subscription);
             }
         });
 
-        homeViewModel.getBusinessDetailsLiveData().observe(this,businessDetailsResponse -> {
-            if (businessDetailsResponse.getData()!=null){
-                BusinessDetails businessDetails=businessDetailsResponse.getData();
+        homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
+            if (businessDetailsResponse.getData() != null) {
+                BusinessDetails businessDetails = businessDetailsResponse.getData();
                 profileFragment.setBusinessdetails(businessDetails);
+                ConfigDataProvider.INSTANCE.setBusinessDetailsResponse(businessDetailsResponse);
             }
         });
     }
@@ -174,7 +166,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 if (!base64Code.isEmpty()) {
                     profileFragment.setQrCode(base64Code);
                 }
-                if (!subscription.isEmpty()){
+                if (!subscription.isEmpty()) {
                     profileFragment.setSubscription(subscription);
                 }
             }

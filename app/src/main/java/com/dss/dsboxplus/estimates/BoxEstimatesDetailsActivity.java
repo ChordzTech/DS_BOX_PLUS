@@ -12,9 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
-import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
-import com.dss.dsboxplus.data.repo.response.BusinessDetails;
-import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
@@ -28,6 +25,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     BoxEstimatesDetailsActivityViewModel viewModel;
     private DataItem dataItem;
+    private ClientDetails clientDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             }
         });
 
-        viewModel.getDeleteEstimateLiveData().observe(this,estimateDeleteResponse -> {
+        viewModel.getDeleteEstimateLiveData().observe(this, estimateDeleteResponse -> {
             Toast.makeText(this, estimateDeleteResponse.getMessage(), Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(this, HomeActivity.class));
@@ -59,13 +57,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     }
 
 
-
     private void handleClientDetailsResponse(ClientDetails clientDetails) {
         if (clientDetails != null) {
             // Access the data from the ClientDetails object and update your UI accordingly
             String clientName = clientDetails.getClientname();
-            String address = clientDetails.getAddress();
-            // Update your UI elements with the obtained data
             boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(clientName);
         }
     }
@@ -125,7 +120,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvBottomGsm.setText(String.valueOf(dataItem.getBottomgsm()));
                     boxEstimatesDetailsBinding.tvBottomRate.setText(String.valueOf(dataItem.getBottomrate()));
 
-                    boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(String.valueOf(dataItem.getClientid()));
+//                    boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(String.valueOf(dataItem.getClientid()));
                     boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.setText(dataItem.getBoxname());
                     boxEstimatesDetailsBinding.tvnoOfBox.setText(String.valueOf(dataItem.getUps()));
                     boxEstimatesDetailsBinding.tvtotalGsm.setText(String.valueOf(dataItem.getTotalgsm()));
@@ -142,7 +137,48 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
                     boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + "Ply");
 
-
+                    double noOfPly = dataItem.getPly();
+                    if (noOfPly == 1.0) {
+                        boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llBottom.setVisibility(View.GONE);
+                    } else if (noOfPly == 2.0) {
+                        boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llBottom.setVisibility(View.GONE);
+                    } else if (noOfPly == 3.0) {
+                        boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llBottom.setVisibility(View.VISIBLE);
+                    } else if (noOfPly == 5.0) {
+                        boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteTwo.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
+                        boxEstimatesDetailsBinding.llBottom.setVisibility(View.VISIBLE);
+                    } else if (noOfPly == 7.0) {
+                        boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteTwo.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.VISIBLE);
+                        boxEstimatesDetailsBinding.llBottom.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         }
@@ -230,7 +266,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
-                intent.putExtra("EDIT_ESTIMATE",dataItem);
+                intent.putExtra("EDIT_ESTIMATE", dataItem);
                 startActivity(intent);
             }
         });
