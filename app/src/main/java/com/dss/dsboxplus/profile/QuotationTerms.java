@@ -14,6 +14,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityQuotationTermsBinding;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
@@ -25,6 +26,8 @@ public class QuotationTerms extends BaseActivity {
 
     ActivityQuotationTermsBinding binding;
     QuotationTermsActivityViewModel viewModel;
+    HomeViewModel homeViewModel  ;
+    BusinessDetails businessDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,10 @@ public class QuotationTerms extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(QuotationTermsActivityViewModel.class);
+        homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
+
+        homeViewModel.getBusinessDetails();
+
     }
 
     private void initView() {
@@ -74,7 +81,8 @@ public class QuotationTerms extends BaseActivity {
             @Override
             public void onClick(View v) {
                 viewModel.updateBusinessQuotation(
-                        binding.tietTermsAndConditions.getText().toString()
+                        binding.tietTermsAndConditions.getText().toString(),
+                        businessDetails
                 );
             }
         });

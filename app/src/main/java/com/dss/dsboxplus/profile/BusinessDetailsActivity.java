@@ -15,6 +15,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityBusinessDetailsBinding;
 import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.BusinessSettingsActivityViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -26,6 +27,8 @@ public class BusinessDetailsActivity extends BaseActivity {
     MaterialButton btCloseInBusinessDetails;
     ActivityBusinessDetailsBinding binding;
     BusinessSettingsActivityViewModel viewModel;
+    HomeViewModel homeViewModel  ;
+    BusinessDetails businessDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,9 @@ public class BusinessDetailsActivity extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BusinessSettingsActivityViewModel.class);
+        homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
+
+        homeViewModel.getBusinessDetails();
     }
 
     private void initView() {
@@ -79,7 +85,8 @@ public class BusinessDetailsActivity extends BaseActivity {
                   binding.tietBusinessContact.getText().toString(),
                   binding.tietBusinessAddress.getText().toString(),
                   binding.tietBusinessPincode.getText().toString(),
-                  binding.tietBusinessMail.getText().toString()
+                  binding.tietBusinessMail.getText().toString(),
+                        businessDetails
                 );
             }
         });

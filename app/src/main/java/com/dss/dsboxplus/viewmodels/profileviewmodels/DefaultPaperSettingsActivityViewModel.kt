@@ -31,7 +31,7 @@ class DefaultPaperSettingsActivityViewModel(val repository: MainRepository) : Ba
 
         request.waste=businessDetails.waste!!.toInt()
 
-        request.pincode= businessDetails.gsm!!.toString()
+        request.pincode= businessDetails.pincode
 
         request.burstingfactor= businessDetails.burstingfactor
 
