@@ -17,6 +17,8 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityDefaultRateSettingsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.HomeActivityViewModel;
+import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultRateSettingsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
@@ -27,6 +29,8 @@ public class DefaultRateSettings extends BaseActivity {
     ActivityDefaultRateSettingsBinding defaultRateSettingsBinding;
 
     DefaultRateSettingsActivityViewModel viewModel;
+    HomeViewModel homeViewModel  ;
+    BusinessDetails businessDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,16 @@ public class DefaultRateSettings extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(DefaultRateSettingsActivityViewModel.class);
+        homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
+
+        homeViewModel.getBusinessDetails();
+
+
+        homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
+            if (businessDetailsResponse.getData() != null) {
+                 businessDetails = businessDetailsResponse.getData();
+            }
+        });
     }
 
     private void initView() {
@@ -91,8 +105,8 @@ public class DefaultRateSettings extends BaseActivity {
                         defaultRateSettingsBinding.tietWaste.getText().toString(),
                         defaultRateSettingsBinding.tietConversionCost.getText().toString(),
                         defaultRateSettingsBinding.tietProfit.getText().toString(),
-                        defaultRateSettingsBinding.tietTax.getText().toString()
-
+                        defaultRateSettingsBinding.tietTax.getText().toString(),
+                        businessDetails
                 );
             }
         });

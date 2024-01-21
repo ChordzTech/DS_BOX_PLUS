@@ -18,6 +18,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityDefaultPaperSettingsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultPaperSettingsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
@@ -28,6 +29,9 @@ import java.util.ArrayList;
 public class DefaultPaperSettings extends BaseActivity {
     ActivityDefaultPaperSettingsBinding defaultPaperSettingsBinding;
     DefaultPaperSettingsActivityViewModel viewModel;
+    HomeViewModel homeViewModel  ;
+    BusinessDetails businessDetails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,16 @@ public class DefaultPaperSettings extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(DefaultPaperSettingsActivityViewModel.class);
+        homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
+
+        homeViewModel.getBusinessDetails();
+
+
+        homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
+            if (businessDetailsResponse.getData() != null) {
+                businessDetails = businessDetailsResponse.getData();
+            }
+        });
     }
 
     private void initView() {
@@ -92,7 +106,7 @@ public class DefaultPaperSettings extends BaseActivity {
                 float fluteFactor = Float.parseFloat(defaultPaperSettingsBinding.tietFluteFactor.getText().toString());
 
                 viewModel.updatebusinessDetails(
-                        cuttingMargin, decalMargin,fluteFactor
+                        cuttingMargin, decalMargin,fluteFactor,businessDetails
                 );
             }
         });

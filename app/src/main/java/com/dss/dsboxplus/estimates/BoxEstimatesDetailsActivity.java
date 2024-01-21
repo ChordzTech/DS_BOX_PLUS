@@ -219,6 +219,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
                 intent.putExtra("clientId",dataItem.getClientid());
+                intent.putExtra("profit",dataItem.getProfit());
+                intent.putExtra("tax",dataItem.getTax());
                 startActivity(intent);
             }
         });

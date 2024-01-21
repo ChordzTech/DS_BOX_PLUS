@@ -35,7 +35,7 @@ data class AddEstimateRequest(
 	var widthMmField: Int? = 0,
 
 	@field:SerializedName("f1rate")
-	var f1rate: Int? = 0,
+	var f1rate: Float? = 0F,
 
 
 	@field:SerializedName("bottomgsm")
@@ -48,11 +48,11 @@ data class AddEstimateRequest(
 	var bottombf: Int? = 0,
 
 	@field:SerializedName("waste")
-	var waste: Int? = 0,
+	var waste: Float? = 0F,
 
 
 	@field:SerializedName("f3ff")
-	var f3ff: Int? = 0,
+	var f3ff: Float? = 0F,
 
 
 	@field:SerializedName("width_cm_field")
@@ -65,25 +65,23 @@ data class AddEstimateRequest(
 	var lengthCmField: Int? = 0,
 
 	@field:SerializedName("f1ff")
-	var f1ff: Int? = 0,
+	var f1ff: Float? = 0.0F,
 
 
 	@field:SerializedName("businessid")
 	var businessid: Int? = 0,
 
 	@field:SerializedName("toprate")
-	var toprate: Int? = 0,
-
+	var toprate: Float? = 0F,
 
 	@field:SerializedName("totalpapercost")
-	var totalpapercost: Int? = 0,
+	var totalpapercost: Float? = 0F,
 
 	@field:SerializedName("tax")
-	var tax: Int? = 0,
-
+	var tax: Float? = 0F,
 
 	@field:SerializedName("m1rate")
-	var m1rate: Int? = 0,
+	var m1rate: Float? = 0F,
 
 	@field:SerializedName("estimatedate")
 	var estimatedate: String? = "",
@@ -95,7 +93,7 @@ data class AddEstimateRequest(
 	var heightInchField: Int? = 0,
 
 	@field:SerializedName("m2rate")
-	var m2rate: Int? = 0,
+	var m2rate: Float? = 0F,
 
 	@field:SerializedName("netweight")
 	var netweight: Int? = 0,
@@ -116,19 +114,19 @@ data class AddEstimateRequest(
 	var f2gsm: Int? = 0,
 
 	@field:SerializedName("bottomrate")
-	var bottomrate: Int? = 0,
+	var bottomrate: Float? = 0F,
 
 	@field:SerializedName("topgsm")
 	var topgsm: Int? = 0,
 
 	@field:SerializedName("boxcost")
-	var boxcost: Int? = 0,
+	var boxcost: Float? = 0F,
 
 	@field:SerializedName("topbf")
 	var topbf: Int? = 0,
 
 	@field:SerializedName("boxpricewithtax")
-	var boxpricewithtax: Int? = 0,
+	var boxpricewithtax: Float? = 0F,
 
 
 	@field:SerializedName("cuttinglength")
@@ -146,13 +144,13 @@ data class AddEstimateRequest(
 	var m2bf: Int? = 0,
 
 	@field:SerializedName("profit")
-	var profit: Int? = 0,
+	var profit: Float? = 0F,
 
 	@field:SerializedName("f3gsm")
 	var f3gsm: Int? = 0,
 
 	@field:SerializedName("f2ff")
-	var f2ff: Int? = 0,
+	var f2ff: Float? = 0F,
 
 
 	@field:SerializedName("m2gsm")
@@ -163,7 +161,7 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("f2rate")
-	var f2rate: Int? = 0,
+	var f2rate: Float? = 0F,
 
 
 	@field:SerializedName("totalgsm")
@@ -174,7 +172,7 @@ data class AddEstimateRequest(
 	var heightMmField: Int? = 0,
 
 	@field:SerializedName("boxprice")
-	var boxprice: Int? = 0,
+	var boxprice: Float? = 0F,
 
 
 	@field:SerializedName("overheadcharges")
@@ -191,14 +189,14 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("conversionrate")
-	var conversionrate: Int? = 0,
+	var conversionrate: Float? = 0F,
 
 	@field:SerializedName("netpapercost")
-	var netpapercost: Int? = 0,
+	var netpapercost: Float? = 0F,
 
 	@field:SerializedName("f2bf")
 	var f2bf: Int? = 0,
 
 	@field:SerializedName("f3rate")
-	var f3rate: Int? = 0
+	var f3rate: Float? = 0F
 ) : Parcelable

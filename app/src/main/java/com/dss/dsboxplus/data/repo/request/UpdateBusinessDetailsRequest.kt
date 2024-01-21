@@ -34,7 +34,7 @@ data class UpdateBusinessDetailsRequest(
     var businessid: Int? = 0,
 
     @field:SerializedName("tax")
-    var tax: Int? = 0,
+    var tax: Float? = 0F,
 
     @field:SerializedName("marginlength")
     var marginlength: Int? = 0,
@@ -43,7 +43,7 @@ data class UpdateBusinessDetailsRequest(
     var marginwidth: Int? = 0,
 
     @field:SerializedName("rate")
-    var rate: Int? = 0,
+    var rate: Float? = 0F,
 
     @field:SerializedName("businessname")
     var businessname: String? = null,
@@ -52,13 +52,13 @@ data class UpdateBusinessDetailsRequest(
     var multiuser: Int? = 0,
 
     @field:SerializedName("flutefactor")
-    var flutefactor: Int? = 0,
+    var flutefactor: Float? = 0F,
 
     @field:SerializedName("conversionrate")
-    var conversionrate: Int? = 0,
+    var conversionrate: Float? = 0F,
 
     @field:SerializedName("profit")
-    var profit: Int? = 0,
+    var profit: Float? = 0F,
 
     @field:SerializedName("email")
     var email: String? = null,

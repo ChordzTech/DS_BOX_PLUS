@@ -70,7 +70,10 @@ object CreateEstimateDataHolder {
     var convRate: Float = 0.0F
     var overHead: Float = 0.0F
     var tax: Float = 0.0F
+    var profit: Float = 0.0F
+    var isEmptyBoxDim = false
     fun resetValues() {
+        isEmptyBoxDim = false
         clientName = ""
         boxName = ""
         boxDimension = ""
@@ -139,5 +142,6 @@ object CreateEstimateDataHolder {
         convRate = 0.0F
         overHead = 0.0F
         tax = 0.0F
+        profit = 0.0F
     }
 }

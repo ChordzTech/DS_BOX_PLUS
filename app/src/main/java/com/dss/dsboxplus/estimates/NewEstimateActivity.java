@@ -145,6 +145,9 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                     intent.putExtra("noOfPly", noOfPly);
                     intent.putExtra("EDIT_ESTIMATE", dataItem);
                     intent.putExtra("selectedClient", selectedClient);
+                    if (length == 0.0 && width == 0.0 && height == 0.0) {
+                        CreateEstimateDataHolder.INSTANCE.setEmptyBoxDim(true);
+                    }
                     startActivity(intent);
                 }
 
@@ -321,11 +324,6 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
                 String noOfBox = s.toString();
                 if (noOfBox.isEmpty()) {
                     noOfBox = "1";
@@ -342,6 +340,11 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 } catch (NumberFormatException e) {
 
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         newEstimateBinding.tietCuttingLength.setOnTouchListener(new View.OnTouchListener() {

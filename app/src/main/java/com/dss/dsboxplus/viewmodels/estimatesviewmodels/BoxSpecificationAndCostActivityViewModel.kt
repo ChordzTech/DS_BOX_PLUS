@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) : BaseViewModel() {
 
-     var createEstimateLiveData = MutableLiveData<AddEstimateResponse>()
+    var createEstimateLiveData = MutableLiveData<AddEstimateResponse>()
         get() = field
 
 
@@ -61,21 +61,23 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
 //        wasteCost: Double,
 //        grossPaperCost: Double,
 //        convCost: Double,
-        netPaperCost: Double,
-        boxMfg: Double,
-        boxPrice: Double,
+        netPaperCost: Float,
+        boxMfg: Float,
+        boxPrice: Float,
         boxPriceTax: Double,
         wasteInput: Float,
         convRate: Float,
         overHead: Float,
-        tax: Float
+        tax: Float,
+        profit: Float
     ) {
         showLoader()
         var createEstimateRequest = AddEstimateRequest()
 
-        createEstimateRequest.businessid=selectedClient.businessid
-        createEstimateRequest.clientid=selectedClient.clientid!!
-        createEstimateRequest.userid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID).toInt()
+        createEstimateRequest.businessid = selectedClient.businessid
+        createEstimateRequest.clientid = selectedClient.clientid!!
+        createEstimateRequest.userid =
+            AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID).toInt()
         createEstimateRequest.boxname = boxName
         createEstimateRequest.lengthMmField = lengthMm
         createEstimateRequest.widthMmField = widthMm
@@ -95,55 +97,57 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
 
         createEstimateRequest.topbf = topBf
         createEstimateRequest.topgsm = topGsm
-        createEstimateRequest.toprate = topRate.toInt()
+        createEstimateRequest.toprate = topRate
 
         createEstimateRequest.f1bf = f1Bf
         createEstimateRequest.f1gsm = f1Gsm
-        createEstimateRequest.f1rate = f1RateKg.toInt()
-        createEstimateRequest.f1ff = f1ff.toInt()
+        createEstimateRequest.f1rate = f1RateKg
+        createEstimateRequest.f1ff = f1ff
 
         createEstimateRequest.m1bf = m1bf
         createEstimateRequest.m1gsm = m1Gsm
-        createEstimateRequest.m1rate = m1RateKg.toInt()
+        createEstimateRequest.m1rate = m1RateKg
 
         createEstimateRequest.f2bf = f2Bf
         createEstimateRequest.f2gsm = f2Gsm
-        createEstimateRequest.f2rate = f2RateKg.toInt()
-        createEstimateRequest.f2ff = f2ff.toInt()
+        createEstimateRequest.f2rate = f2RateKg
+        createEstimateRequest.f2ff = f2ff
 
         createEstimateRequest.m2bf = m2bf
         createEstimateRequest.m2gsm = m2Gsm
-        createEstimateRequest.m2rate = m2RateKg.toInt()
+        createEstimateRequest.m2rate = m2RateKg
 
         createEstimateRequest.f3bf = f3Bf
         createEstimateRequest.f3gsm = f3Gsm
-        createEstimateRequest.f3rate = f3RateKg.toInt()
-        createEstimateRequest.f3ff = f3ff.toInt()
+        createEstimateRequest.f3rate = f3RateKg
+        createEstimateRequest.f3ff = f3ff
 
         createEstimateRequest.bottombf = bottomBF
         createEstimateRequest.bottomgsm = bottomGsm
-        createEstimateRequest.bottomrate = bottomRateKg.toInt()
+        createEstimateRequest.bottomrate = bottomRateKg
 
         createEstimateRequest.totalgsm = totalGsm.toInt()
         createEstimateRequest.totalbs = totalBs.toInt()
         createEstimateRequest.totalweight = totalWeight.toInt()
-        createEstimateRequest.netpapercost = netPaperCost.toInt()
-        createEstimateRequest.boxcost = boxMfg.toInt()
-        createEstimateRequest.boxprice = boxPrice.toInt()
-        createEstimateRequest.boxpricewithtax = boxPriceTax.toInt()
-        createEstimateRequest.waste=wasteInput.toInt()
-        createEstimateRequest.conversionrate=convRate.toInt()
-        createEstimateRequest.overheadcharges=overHead.toInt()
+        createEstimateRequest.netpapercost = netPaperCost
+        createEstimateRequest.boxcost = boxMfg
+        createEstimateRequest.boxprice = boxPrice
+        createEstimateRequest.boxpricewithtax = boxPriceTax.toFloat()
+        createEstimateRequest.waste = wasteInput
+        createEstimateRequest.conversionrate = convRate
+        createEstimateRequest.overheadcharges = overHead.toInt()
 
-        createEstimateRequest.tax=tax.toInt()
-        createEstimateRequest.estimatedate= DateUtils.getDateInYYYYMMDDFormat()
+        createEstimateRequest.tax = tax
+        createEstimateRequest.profit = profit
+        createEstimateRequest.estimatedate = DateUtils.getDateInYYYYMMDDFormat()
 
         viewModelScope.launch {
-            when(val response=repository.addEstimate(createEstimateRequest)){
-                is NetworkState.Success->{
+            when (val response = repository.addEstimate(createEstimateRequest)) {
+                is NetworkState.Success -> {
                     hideLoader()
                     createEstimateLiveData.postValue(response.data!!)
                 }
+
                 is NetworkState.Error -> {
                     hideLoader()
                     if (response.response.code() == 401) {

@@ -18,7 +18,6 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
-import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
 import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
@@ -49,7 +48,6 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
     ActivityQuotationInBoxEstimateDetailsBinding activityQuotationInBoxEstimateDetailsBinding;
     private boolean isPaperSpecification = false;
     private boolean isTaxEnable = false;
-    private DataItem dataItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +58,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
     }
 
     private void initView() {
-//        if (getIntent().getExtras().getParcelable("EstimateDetails_Bundle") != null) {
-//            estimatesDataModel = getIntent().getExtras().getBundle("EstimateDetails_Bundle").getParcelable("EstimateDetails");
-//        }
-        // Retrieve data from the Intent
-
-
+//
         activityQuotationInBoxEstimateDetailsBinding.swEnablePaperSpecification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -135,7 +128,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String rateA = intent.getStringExtra("rate");
         String ply = intent.getStringExtra("ply");
         Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
-
+        Double tax = intent.getDoubleExtra("tax", 0);
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
@@ -252,8 +245,8 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         if (isTaxEnable) {
 
             rate = "Rs " + rateA + "\n" +
-                    "Tax@ 18.0%-2.74Rs\n" +
-                    "Total:17.96Rs";
+                    "Tax@ 18.0% - " + tax + " Rs\n" +
+                    "Total: " + rateA + tax + " Rs";
 
         } else {
             rate = "Rs " + rateA + "\n";
@@ -286,7 +279,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(new Paragraph("Terms & Conditions:"));
         document.add(new Paragraph(businessDetailsResponse.getData().getEstimatenote()));
         document.add(new Paragraph("\n\n"));
-        document.add(new Paragraph("Auto generated copy,no signature requried").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
+        document.add(new Paragraph("Auto generated copy,no signature required").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
         document.add(image3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
