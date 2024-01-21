@@ -15,7 +15,9 @@ import androidx.databinding.DataBindingUtil;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
 import com.google.android.material.button.MaterialButton;
@@ -131,9 +133,14 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String gsmInBottom = intent.getStringExtra("gsmInBottom");
 
         String rateA = intent.getStringExtra("rate");
-        String ply=intent.getStringExtra("ply");
+        String ply = intent.getStringExtra("ply");
+        Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
 
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+        }
 
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "Quotation.pdf");
@@ -160,20 +167,20 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         //table 1-01
         table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Pankaj Kashid")
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname())
                 .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-02
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Uruli Kanchan,Pune Pincode-412202").setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + "," + businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-03
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Contact-7972546880").setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getContactno()).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-04
@@ -208,29 +215,48 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         table1.addCell(new Cell().add(new Paragraph("1")));
         String paperSpecification = "";
         if (isPaperSpecification) {
-            paperSpecification =  ply +"Ply Box," +boxName+"\n"+
-                    "Paper Specification as below\n" +
-                    "1.Top Paper"+ bfInTop+"/"+gsmInTop+"\n"+
-                    "2.Flute Paper"+bfInF1+"/"+gsmInF1+"\n"+
-                    "3.Middle One Paper"+bfInM1+"/"+gsmInM1+"\n"+
-                    "4.Flute Two Paper"+bfInF2+"/"+gsmInF1+"\n"+
-                    "5.Middle Two Paper"+bfInM2+"/"+gsmInM2+"\n"+
-                    "6.Flute Three Paper"+bfInF3+"/"+gsmInF3+"\n"+
-                    "7.Bottom Paper"+bfInBottom+"/"+gsmInBottom+"\n";
+            paperSpecification = ply + "Ply Box," + boxName + "\n" +
+                    "Paper Specification as below\n";
+
+            switch (ply != null ? ply : "") {
+                case "1.0Ply" ->
+                        paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n";
+                case "2.0Ply", "2.0Ply(KG)" ->
+                        paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
+                                "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n";
+                case "3.0Ply" ->
+                        paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
+                                "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
+                                "7.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
+                case "5.0Ply" ->
+                        paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
+                                "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
+                                "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +
+                                "4.Flute Two Paper" + bfInF2 + "/" + gsmInF1 + "\n" +
+                                "7.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
+                case "7.0Ply" ->
+                        paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
+                                "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
+                                "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +
+                                "4.Flute Two Paper" + bfInF2 + "/" + gsmInF1 + "\n" +
+                                "5.Middle Two Paper" + bfInM2 + "/" + gsmInM2 + "\n" +
+                                "6.Flute Three Paper" + bfInF3 + "/" + gsmInF3 + "\n" +
+                                "7.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
+            }
         } else {
-            paperSpecification = ply +"Ply Box," +boxName;
+            paperSpecification = ply + " Box," + boxName;
         }
         table1.addCell(new Cell().add(new Paragraph(paperSpecification)));
 
         String rate = "";
         if (isTaxEnable) {
 
-            rate = "Rs" +rateA+"\n"+
+            rate = "Rs " + rateA + "\n" +
                     "Tax@ 18.0%-2.74Rs\n" +
                     "Total:17.96Rs";
 
         } else {
-            rate = "Rs" +rateA+"\n";
+            rate = "Rs " + rateA + "\n";
 
         }
         table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
@@ -249,18 +275,16 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
 
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("To,\n" +
-                "Manasi Snacks\n" +
-                "Pune Maharashtra-412202\n" +
-                "Ref.Contact-7972546880"));
+                clientDetails.getClientname() + "\n" +
+                clientDetails.getAddress() + "\n" +
+                clientDetails.getMobileno()));
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n"));
-        document.add(new Paragraph("for " + "Pankaj Kashid").setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("for " + businessDetailsResponse.getData().getBusinessname()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("Terms & Conditions:"));
-        document.add(new Paragraph("1.Valid : for 15 days only.\n" +
-                "2.Taxes extra as applicable,if not mentioned in quoation.\n" +
-                "3.Minimum order quantity 1000.If less than 1000,then transport charges extra."));
+        document.add(new Paragraph(businessDetailsResponse.getData().getEstimatenote()));
         document.add(new Paragraph("\n\n"));
         document.add(new Paragraph("Auto generated copy,no signature requried").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
         document.add(image3);

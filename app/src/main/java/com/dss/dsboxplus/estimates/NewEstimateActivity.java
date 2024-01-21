@@ -332,15 +332,13 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 }
                 try {
                     int numberOfBoxes = Integer.parseInt(noOfBox);
-                    double newDecalSize = calculateNewDecalSize(numberOfBoxes);
-                    double newDecalSizeInTiet = getInstance().decalSizeInTiet(newDecalSize);
-                    String newResOfDecalTiet = String.format("%.2f", newDecalSizeInTiet);
+                    int newDecalSize = (int) calculateNewDecalSize(numberOfBoxes);
 
-                    int newDecalSizea = Integer.parseInt(newResOfDecalTiet);
-                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(newDecalSizea));
+                    newEstimateBinding.tvDecalSizeValue.setText(String.valueOf(newDecalSize));
 
-                    newEstimateBinding.tietDecalSize.setText(newResOfDecalTiet);
-
+                    double tietDecalSize = newDecalSize / 25.4;
+                    String tiet = String.format("%.2f", tietDecalSize);
+                    newEstimateBinding.tietDecalSize.setText(tiet);
                 } catch (NumberFormatException e) {
 
                 }

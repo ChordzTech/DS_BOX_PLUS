@@ -16,8 +16,6 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
-import com.dss.dsboxplus.data.repo.response.BusinessDetails;
-import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
@@ -306,7 +304,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 break;
             }
             case "2Ply(KG)": {
-//                formulaForTwoPlyKg()
+                formulaForTwoPlyKg(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
                 break;
             }
         }
@@ -373,7 +371,32 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         );
     }
 
-    private void formulaForTwoPlyKg() {
+    private void formulaForTwoPlyKg(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
+        //TotalBS Formula
+
+        //value for TopPaper
+        double bsOfTop = Double.parseDouble(bfInTopPaper);
+        double gsmOfTop = Double.parseDouble(gsmInTop);
+
+        double val1 = (bsOfTop * gsmOfTop * 1) / divide;
+        //Value for FlutePaper
+        double bsOfFlute = Double.parseDouble(bfInFlutePaper);
+        double gsmOfFlute = Double.parseDouble(gsmInFlutePaper);
+
+        double val2 = ((bsOfFlute * gsmOfFlute * 0.5) / divide);
+        //Total BS
+        double totalBS = (val1 + val2);
+        String resOfTotalBs = String.format("%.2f", totalBS);
+        activityBoxSpecificationAndCostBinding.tvTotalBs.setText(resOfTotalBs);
+        //Total GSM
+        //Value for Top
+        double val1ofGsm = (gsmOfTop * 1);
+        //Value for flute
+        double ffOfFluteOnePaper = Double.parseDouble(ffInFluteOnePaper);
+        double val2ofGsm = (gsmOfFlute * ffOfFluteOnePaper);
+        //Total Gsm
+        double totalGsm = (val1ofGsm + val2ofGsm);
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
     }
 
     private void formulaForSevenPly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String bfInMiddleOnePaper, String gsmInMiddleOnePaper, String rateKgInMiddleOnePaper, String bfInFluteTwoPaper, String gsmInFluteTwoPaper, String rateKgInFluteTwoPaper, String ffInFluteTwoPaper, String bfInMiddleTwoPaper, String gsmInMiddleTwoPaper, String rateKgInMiddleTwoPaper, String bfInFluteThreePaper, String gsmInFluteThreePaper, String rateKgInFluteThreePaper, String ffInFluteThreePaper, String bfInBottomPaper, String gsmInBottomPaper, String rateKgInBottomPaper, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
@@ -543,6 +566,13 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double boxPriceWithTax = ((boxPrice * taxFromTiet / 100) + boxPrice);
         String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
+        //Profit Price For Estimate Details Activity
+        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
+        String resultOfProfitForED = String.format("%.2f", profitForED);
+
+        //Tax Price For Estimate Details Activity
+        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
+        String resultOfTaxForED = String.format("%.2f", taxForED);
     }
 
     private void formulaForFivePly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String bfInMiddleOnePaper, String gsmInMiddleOnePaper, String rateKgInMiddleOnePaper, String bfInFluteTwoPaper, String gsmInFluteTwoPaper, String rateKgInFluteTwoPaper, String ffInFluteTwoPaper, String bfInBottomPaper, String gsmInBottomPaper, String rateKgInBottomPaper, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
@@ -687,6 +717,13 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double boxPriceWithTax = ((boxPrice * taxFromTiet / 100) + boxPrice);
         String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
+        //Profit Price For Estimate Details Activity
+        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
+        String resultOfProfitForED = String.format("%.2f", profitForED);
+
+        //Tax Price For Estimate Details Activity
+        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
+        String resultOfTaxForED = String.format("%.2f", taxForED);
     }
 
     private void formulaForTwoPly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
@@ -788,6 +825,13 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double boxPriceWithTax = ((boxPrice * taxFromTiet / 100) + boxPrice);
         String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
+        //Profit Price For Estimate Details Activity
+        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
+        String resultOfProfitForED = String.format("%.2f", profitForED);
+
+        //Tax Price For Estimate Details Activity
+        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
+        String resultOfTaxForED = String.format("%.2f", taxForED);
 
 
     }
@@ -912,6 +956,13 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double boxPriceWithTax = ((boxPrice * taxFromTiet / 100) + boxPrice);
         String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
+        //Profit Price For Estimate Details Activity
+        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
+        String resultOfProfitForED = String.format("%.2f", profitForED);
+
+        //Tax Price For Estimate Details Activity
+        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
+        String resultOfTaxForED = String.format("%.2f", taxForED);
     }
 
     private void formulaForOnePly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
@@ -989,6 +1040,14 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double boxPriceWithTax = ((boxPrice * taxFromTiet / 100.0) + boxPrice);
         String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
         activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
+
+        //Profit Price For Estimate Details Activity
+        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
+        String resultOfProfitForED = String.format("%.2f", profitForED);
+
+        //Tax Price For Estimate Details Activity
+        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
+        String resultOfTaxForED = String.format("%.2f", taxForED);
     }
 
     @Override

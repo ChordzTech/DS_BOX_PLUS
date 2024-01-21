@@ -13,6 +13,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityProductionInBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.model.EstimatesDataModel;
@@ -111,6 +114,12 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String weight = intent.getStringExtra("weight");
         String ups = intent.getStringExtra("ups");
 
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+        }
+
+
 
 
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
@@ -135,20 +144,20 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Client Name")
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname())
                 .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-02
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Uruli Kanchan,Pune Pincode-412202").setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress()+businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-03
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Contact-7972546880").setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getContactno()).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-04
@@ -236,7 +245,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         document.add(table);
         document.add(table1);
         document.add(table2);
-        document.add(new Paragraph("For Pankaj").setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.RIGHT));
         document.add(table3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();

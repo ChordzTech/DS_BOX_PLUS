@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
@@ -21,11 +22,14 @@ import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActiv
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
+import java.util.ArrayList;
+
 public class BoxEstimatesDetailsActivity extends BaseActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     BoxEstimatesDetailsActivityViewModel viewModel;
     private DataItem dataItem;
     private ClientDetails clientDetails;
+    private ArrayList<Client> clientsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,9 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
+
+
+
 
         Intent intent = getIntent();
         if (intent.hasExtra("ESTIMATES_BUNDLE")) {
@@ -211,7 +218,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
                 intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
-
+                intent.putExtra("clientId",dataItem.getClientid());
                 startActivity(intent);
             }
         });
