@@ -16,6 +16,8 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
@@ -84,40 +86,40 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvBoxNameInBoxSpecification.setText(boxName);
         activityBoxSpecificationAndCostBinding.tvBoxDimensionInBoxSpecification.setText(boxDimen);
 
-
-        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-        if (appConfigResponse.getData() != null) {
-            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-                // Access individual properties of AppConfigDataItems
-                int configId = appConfigDataItem.getConfigid();
-                String configValue = appConfigDataItem.getConfigvalue();
-                if (configId == 29) {
-                    double tietWaste = Double.parseDouble(configValue);
-                    activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(tietWaste));
-                } else if (configId == 3) {
-                    double tietConversionCost = Double.parseDouble(configValue);
-                    activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf(tietConversionCost));
-                } else if (configId == 19) {
-                    double tietProfit = Double.parseDouble(configValue);
-                    activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(tietProfit));
-                } else if (configId == 24) {
-                    double tietTax = Double.parseDouble(configValue);
-                    activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(tietTax));
-                }
-            }
-        }
-
-
-//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 //
-//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
-//            BusinessDetails businessDetails = businessDetailsResponse.getData();
-//            activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(businessDetails.getWaste()));
-//            activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf((businessDetails.getConversionrate()));
-//            activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(businessDetails.getProfit()));
-//            activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(businessDetails.getTax()));
+//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+//        if (appConfigResponse.getData() != null) {
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                // Access individual properties of AppConfigDataItems
+//                int configId = appConfigDataItem.getConfigid();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId == 29) {
+//                    double tietWaste = Double.parseDouble(configValue);
+//                    activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(tietWaste));
+//                } else if (configId == 3) {
+//                    double tietConversionCost = Double.parseDouble(configValue);
+//                    activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf(tietConversionCost));
+//                } else if (configId == 19) {
+//                    double tietProfit = Double.parseDouble(configValue);
+//                    activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(tietProfit));
+//                } else if (configId == 24) {
+//                    double tietTax = Double.parseDouble(configValue);
+//                    activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(tietTax));
+//                }
+//            }
 //        }
+
+
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+            activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(businessDetails.getWaste()));
+            activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf((businessDetails.getConversionrate())));
+            activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(businessDetails.getProfit()));
+            activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(businessDetails.getTax()));
+        }
 
         waste = activityBoxSpecificationAndCostBinding.tietWaste.getText().toString();
         activityBoxSpecificationAndCostBinding.tietWaste.addTextChangedListener(new TextWatcher() {
@@ -326,8 +328,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 CreateEstimateDataHolder.INSTANCE.getNoOfBox(),
                 CreateEstimateDataHolder.INSTANCE.getCuttingLength(),
                 CreateEstimateDataHolder.INSTANCE.getDecalSize(),
-                CreateEstimateDataHolder.INSTANCE.getCuttingLengthMm(),
-                CreateEstimateDataHolder.INSTANCE.getDecalSizeMm(),
+                CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(),
+                CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
 
                 CreateEstimateDataHolder.INSTANCE.getTopBf(),
                 CreateEstimateDataHolder.INSTANCE.getTopGsm(),

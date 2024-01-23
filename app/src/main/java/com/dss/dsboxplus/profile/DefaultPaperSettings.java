@@ -111,7 +111,7 @@ public class DefaultPaperSettings extends BaseActivity {
             }
         });
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {
-            Toast.makeText(this, "Updates Successfully", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Updates Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(this, HomeActivity.class));
         });

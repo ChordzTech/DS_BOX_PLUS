@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityBusinessDetailsBinding;
+import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
@@ -35,16 +37,10 @@ public class BusinessDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_business_details);
         initView();
-        initViewModel();
-        addOververs();
+
+
     }
 
-    private void addOververs() {
-        viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {
-            Toast.makeText(this, "Updated Successfully", Toast.LENGTH_SHORT);
-            finish();
-        });
-    }
 
     private void initViewModel() {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
@@ -53,9 +49,15 @@ public class BusinessDetailsActivity extends BaseActivity {
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
 
         homeViewModel.getBusinessDetails();
+        homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
+            if (businessDetailsResponse.getData() != null) {
+                businessDetails = businessDetailsResponse.getData();
+            }
+        });
     }
 
     private void initView() {
+        initViewModel();
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
@@ -89,6 +91,11 @@ public class BusinessDetailsActivity extends BaseActivity {
                         businessDetails
                 );
             }
+        });
+        viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {
+            Toast.makeText(this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+            finishAffinity();
+            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 }

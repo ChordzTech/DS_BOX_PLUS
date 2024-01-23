@@ -20,8 +20,7 @@ object CreateEstimateDataHolder {
     var DecalSize: Double = 0.0
     var cuttingMarginMm: Int = 0
     var decalMarginMm: Int = 0
-    var cuttingLengthMm: Int = 0
-    var decalSizeMm: Int = 0
+
 
     //Values From Second Activity
     var topBf: Int = 0
@@ -92,8 +91,7 @@ object CreateEstimateDataHolder {
         DecalSize = 0.0
         cuttingMarginMm = 0
         decalMarginMm = 0
-        cuttingLengthMm = 0
-        decalSizeMm = 0
+
 
         //Values From Second Activity
         topBf = 0

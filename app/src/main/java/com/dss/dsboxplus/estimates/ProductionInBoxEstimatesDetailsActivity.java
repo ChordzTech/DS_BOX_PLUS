@@ -16,6 +16,7 @@ import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
+import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityProductionInBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.model.EstimatesDataModel;
@@ -39,10 +40,13 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
     EstimatesDataModel estimatesDataModel;
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;
+    double mm = 25.4;
+    double divide = 1000.0;
     private DataItem dataItem;
 
     @Override
@@ -99,6 +103,16 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String bfInF3 = intent.getStringExtra("bfInF3");
         String bfInBottom = intent.getStringExtra("bfInBottom");
 
+        HashMap<String, String> bfMap = new HashMap();
+        bfMap.put(bfInTop, "bfInTop");
+        bfMap.put(bfInF1, "bfInF1");
+        bfMap.put(bfInM1, "bfInM1");
+        bfMap.put(bfInF2, "bfInF2");
+        bfMap.put(bfInM2, "bfInM2");
+        bfMap.put(bfInF3, "bfInF3");
+        bfMap.put(bfInBottom, "bfInBottom");
+
+
         String gsmInTop = intent.getStringExtra("gsmInTop");
         String gsmInF1 = intent.getStringExtra("gsmInF1");
         String gsmInM1 = intent.getStringExtra("gsmInM1");
@@ -107,19 +121,34 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String gsmInF3 = intent.getStringExtra("gsmInF3");
         String gsmInBottom = intent.getStringExtra("gsmInBottom");
 
+        HashMap<String, String> gsmMap = new HashMap();
+        gsmMap.put(gsmInTop, "gsmInTop");
+        gsmMap.put(gsmInF1, "gsmInF1");
+        gsmMap.put(gsmInM1, "gsmInM1");
+        gsmMap.put(gsmInF2, "gsmInF2");
+        gsmMap.put(gsmInM2, "gsmInM2");
+        gsmMap.put(gsmInF3, "gsmInF3");
+        gsmMap.put(gsmInBottom, "gsmInBottom");
+
+
         String rate = intent.getStringExtra("rate");
         String ply = intent.getStringExtra("ply");
-        String cuttingLength = intent.getStringExtra("cuttingLength");
-        String decalSize = intent.getStringExtra("decalSize"); // assuming this is the correct field name
         String weight = intent.getStringExtra("weight");
         String ups = intent.getStringExtra("ups");
+        String decalLength = intent.getStringExtra("decalLength");
+        String cuttingLength = intent.getStringExtra("cuttingLength");
+        String decalSizemm = intent.getStringExtra("decalSizemm");
+        String cuttingLengthmm = intent.getStringExtra("cuttingLengthmm");
+
+        Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
+
+
+//        formulaForWeightPreBox(bfInTop, gsmInTop, cuttingLength, decalLength);
 
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
         }
-
-
 
 
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
@@ -151,7 +180,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         //table 1-02
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress()+businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + ", " + businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-03
@@ -180,31 +209,31 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Client Name:Pankaj")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Client Name:" + clientDetails.getClientname())).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Box Name:"+boxName)).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Box Name:" + boxName)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Box Outer Dimension:"+length+"X"+width+"X"+height)).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Box Outer Dimension:" + length + "X" + width + "X" + height)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Cutting Length:"+cuttingLength)).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Cutting Length:" + cuttingLength + "-" + cuttingLengthmm)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Decal Size:"+decalSize)).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Decal Size:" + decalLength + "-" + decalSizemm)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Ups:")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Ups:" + ups)).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Production Quantity:")).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Production Quantity:" + productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString())).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
 
@@ -216,15 +245,116 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         table2.addCell(new Cell().add(new Paragraph("Weight Per Box")).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(gray));
         table2.addCell(new Cell().add(new Paragraph("Total Weight")).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(gray));
 
-        table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("12/12")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("56gm")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("112gm")).setTextAlignment(TextAlignment.CENTER));
 
-        table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("15/12")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("12gm")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("24gm")).setTextAlignment(TextAlignment.CENTER));
+        if ("1.0Ply".equals(ply)) {
+            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        } else if ("2.0Ply".equals(ply)) {
+            // If noofPly is 2, set the values for 2-ply scenario
+            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        } else if ("3.0Ply".equals(ply)) {
+            // If noofPly is 2, set the values for 2-ply scenario
+            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInBottom) + "/" + gsmMap.get(gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+        } else if ("5.0Ply".equals(ply)) {
+            // If noofPly is 2, set the values for 2-ply scenario
+            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInM1) + "/" + gsmMap.get(gsmInM1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF2) + "/" + gsmMap.get(gsmInF2))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("5")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInBottom) + "/" + gsmMap.get(gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        } else if ("7.0Ply".equals(ply)) {
+            // If noofPly is 2, set the values for 2-ply scenario
+            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInM1) + "/" + gsmMap.get(gsmInM1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+
+            table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF2) + "/" + gsmMap.get(gsmInF2))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInM2) + "/" + gsmMap.get(gsmInM2))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+
+            table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF3) + "/" + gsmMap.get(gsmInF3))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+            table2.addCell(new Cell().add(new Paragraph("5")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInBottom) + "/" + gsmMap.get(gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        }
+
+//
+//        table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+//        table2.addCell(new Cell().add(new Paragraph("12/12")).setTextAlignment(TextAlignment.CENTER));
+//        table2.addCell(new Cell().add(new Paragraph("56gm")).setTextAlignment(TextAlignment.CENTER));
+//        table2.addCell(new Cell().add(new Paragraph("112gm")).setTextAlignment(TextAlignment.CENTER));
+//
+//        table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+//        table2.addCell(new Cell().add(new Paragraph("15/12")).setTextAlignment(TextAlignment.CENTER));
+//        table2.addCell(new Cell().add(new Paragraph("12gm")).setTextAlignment(TextAlignment.CENTER));
+//        table2.addCell(new Cell().add(new Paragraph("24gm")).setTextAlignment(TextAlignment.CENTER));
 
         table2.addCell(new Cell().add(new Paragraph("\n")).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("\n")).setTextAlignment(TextAlignment.CENTER));
@@ -233,8 +363,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("Total")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("66gm")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("136gm")).setTextAlignment(TextAlignment.CENTER));
+        table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
 
         float columnWidth3[] = {482};
@@ -245,9 +375,16 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         document.add(table);
         document.add(table1);
         document.add(table2);
-        document.add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("For " + businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.RIGHT));
         document.add(table3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
+    }
+
+    private void formulaForWeightPreBox(String bfInTop, String gsmInTop, String cuttingLength, String decalLength) {
+        double decal = Double.parseDouble(decalLength);
+        double cutting = Double.parseDouble(cuttingLength);
+        double gsmTop = Double.parseDouble(gsmInTop);
+        double valueFirstOFTotalWeight = (decal * cutting * gsmTop * mm * mm / divide / divide / divide);
     }
 }

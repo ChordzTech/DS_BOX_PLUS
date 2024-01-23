@@ -1,7 +1,11 @@
 package com.dss.dsboxplus.loginandverification;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
@@ -35,14 +39,42 @@ public class SplashActivity extends BaseActivity {
         initView();
     }
 
-    private void initView() {
-        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
-        MainRepository mainRepository = new MainRepository(retrofitService);
-        splashViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(SplashViewModel.class);
 
-        initObservers();
-        fetchData();
+    private void initView() {
+        if (isConnectedToInternet()) {
+            RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+            MainRepository mainRepository = new MainRepository(retrofitService);
+            splashViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(SplashViewModel.class);
+
+
+            initObservers();
+            fetchData();
+        } else {
+            showNoInternetDialog();
+        }
     }
+
+    private void showNoInternetDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No Internet Connection")
+                .setMessage("Please check your internet connection and try again.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
+
+    private boolean isConnectedToInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
 
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
@@ -93,4 +125,6 @@ public class SplashActivity extends BaseActivity {
 //        splashViewModel.getUserDetails(
 //                "9421013332", "Xiaomi Redmi Note 8 Pro");
     }
+
+
 }

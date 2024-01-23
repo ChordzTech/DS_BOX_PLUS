@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.profile.subUser;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -39,8 +40,17 @@ public class SuperUserSetting extends BaseActivity implements SubUserViewAdapter
             if (!userDetailsResponse.getData().isEmpty()) {
                 userList = (ArrayList<SubUser>) userDetailsResponse.getData();
                 adapter.updateUserList(userList);
+
+                if (adapter.getItemCount() >= 5) {
+                    superUserSettingBinding.fabAddSubUser.setVisibility(View.GONE);
+                    showMaxLimitReachedDialog();
+                }else {
+                    superUserSettingBinding.fabAddSubUser.setVisibility(View.VISIBLE);
+                }
             }
         });
+
+
         userList = new ArrayList<>();
         adapter = new SubUserViewAdapter(userList);
         adapter.setOnItemClickListener(this);
@@ -76,6 +86,15 @@ public class SuperUserSetting extends BaseActivity implements SubUserViewAdapter
         bundle.putParcelable("USERS", subUser);
         intent.putExtra("USERS_BUNDLE", bundle);
         startActivity(intent);
+    }
+    private void showMaxLimitReachedDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Maximum Limit Reached")
+                .setMessage("You have reached the maximum limit of users.")
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .setCancelable(false)
+                .create()
+                .show();
     }
 
 }

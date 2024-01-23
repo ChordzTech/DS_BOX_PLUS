@@ -54,7 +54,7 @@ public class AddSubUserActivity extends BaseActivity {
 
         });
         viewModel.getAddSubUserLiveData().observe(this,addUserResponse -> {
-            Toast.makeText(this, "User added Successfully", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "User added Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(this, SuperUserSetting.class));
         });

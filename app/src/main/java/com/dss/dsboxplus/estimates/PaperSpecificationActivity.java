@@ -146,27 +146,28 @@ public class PaperSpecificationActivity extends BaseActivity {
                 paperSpecificationBinding.cvBottomPaper.setVisibility(View.GONE);
                 break;
         }
-        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-        if (appConfigResponse.getData() != null) {
-            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-                int configId = appConfigDataItem.getConfigid();
-                String configValue = appConfigDataItem.getConfigvalue();
-                if (configId == 4) {
-                    paperSpecificationBinding.ffInFlutePaper.setText(configValue);
-                    paperSpecificationBinding.ffInFluteTwoPaper.setText(configValue);
-                    paperSpecificationBinding.ffInFluteThreePaper.setText(configValue);
-                }
-            }
-        }
-//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
-//
-//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
-//            BusinessDetails businessDetails = businessDetailsResponse.getData();
-//            paperSpecificationBinding.ffInFlutePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
-//            paperSpecificationBinding.ffInFluteTwoPaper.setText(String.valueOf(businessDetails.getFlutefactor()));
-//
+//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+//        if (appConfigResponse.getData() != null) {
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                int configId = appConfigDataItem.getConfigid();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId == 4) {
+//                    paperSpecificationBinding.ffInFlutePaper.setText(configValue);
+//                    paperSpecificationBinding.ffInFluteTwoPaper.setText(configValue);
+//                    paperSpecificationBinding.ffInFluteThreePaper.setText(configValue);
+//                }
+//            }
 //        }
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+            paperSpecificationBinding.ffInFlutePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+            paperSpecificationBinding.ffInFluteTwoPaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+            paperSpecificationBinding.ffInFluteThreePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+
+        }
 
         paperSpecificationBinding.bfInTopPaper.addTextChangedListener(new TextWatcher() {
             @Override

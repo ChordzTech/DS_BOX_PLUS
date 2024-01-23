@@ -220,13 +220,13 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
                 case "3.0Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
-                                "7.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
+                                "3.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
                 case "5.0Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +
                                 "4.Flute Two Paper" + bfInF2 + "/" + gsmInF1 + "\n" +
-                                "7.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
+                                "5.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
                 case "7.0Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +

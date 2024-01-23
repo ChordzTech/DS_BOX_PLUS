@@ -23,6 +23,8 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
+import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
@@ -444,33 +446,33 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         CreateEstimateDataHolder.INSTANCE.setNoOfBox(Integer.parseInt(newEstimateBinding.tietNumberOfBox.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setCuttingLength(Double.parseDouble(newEstimateBinding.tietCuttingLength.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setDecalSize(Double.parseDouble(newEstimateBinding.tietDecalSize.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setCuttingLengthMm(Integer.parseInt(newEstimateBinding.tvCuttingLengthSize.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setDecalSizeMm(Integer.parseInt(newEstimateBinding.tvDecalSizeValue.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setCuttingMarginMm(Integer.parseInt(newEstimateBinding.tvMargin.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setDecalMarginMm(Integer.parseInt(newEstimateBinding.tvDecalMarginSize.getText().toString()));
     }
 
     private void setDefaultSheetSizes() {
-        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-        if (appConfigResponse.getData() != null) {
-            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-                int configId = appConfigDataItem.getConfigid();
-                String configValue = appConfigDataItem.getConfigvalue();
-                if (configId == 10) {
-                    this.configMargin = configValue;
-                    newEstimateBinding.tvMargin.setText(configValue);
-                } else if (configId == 11) {
-                    this.configDecal = configValue;
-                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
-                }
-            }
-        }
-//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
-//
-//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
-//            BusinessDetails businessDetails = businessDetailsResponse.getData();
-//            newEstimateBinding.tvMargin.setText(String.valueOf(businessDetails.getMarginlength()));
-//            newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(businessDetails.getMarginwidth()));
+//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+//        if (appConfigResponse.getData() != null) {
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                int configId = appConfigDataItem.getConfigid();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId == 10) {
+//                    this.configMargin = configValue;
+//                    newEstimateBinding.tvMargin.setText(configValue);
+//                } else if (configId == 11) {
+//                    this.configDecal = configValue;
+//                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
+//                }
+//            }
 //        }
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+            newEstimateBinding.tvMargin.setText(String.valueOf(businessDetails.getMarginlength()));
+            newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(businessDetails.getMarginwidth()));
+        }
     }
 
     private double calculateNewDecalSize(int numberOfBoxes) {

@@ -65,13 +65,13 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvEstimates"
+                android:id="@+id/tvuserRole"
                 style="@style/DSTextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:gravity="end"
-                android:text="User"
+                android:text=""
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

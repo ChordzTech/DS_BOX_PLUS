@@ -46,6 +46,7 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         SubUser userData = userList.get(position);
         holder.tvSubUserName.setText(userData.getUsername());
         holder.tvSubUserContact.setText(userData.getMobileno());
+        holder.tvuserRole.setText(userData.getUserrole());
         String initials = getInitials(userData.getUsername());
         holder.tvClientPhoto.setText(initials);
         int randomColor = getRandomColor();
@@ -80,13 +81,14 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
     }
 
     class SubUserViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSubUserName, tvSubUserContact, tvClientPhoto;
+        TextView tvSubUserName, tvSubUserContact, tvClientPhoto,tvuserRole;
 
         public SubUserViewHolder(@NonNull View itemView) {
             super(itemView);
             tvSubUserName = itemView.findViewById(R.id.tvSubUserName);
             tvSubUserContact = itemView.findViewById(R.id.tvSubUserContact);
             tvClientPhoto = itemView.findViewById(R.id.tvClientPhoto);
+            tvuserRole=itemView.findViewById(R.id.tvuserRole);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

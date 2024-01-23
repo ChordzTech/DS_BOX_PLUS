@@ -80,8 +80,6 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
 
 
-
-
         Intent intent = getIntent();
         if (intent.hasExtra("ESTIMATES_BUNDLE")) {
             // Retrieve the bundle from the intent
@@ -100,7 +98,15 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     //Dimension For ImageTwo
                     boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize() + "inch"));
                     boxEstimatesDetailsBinding.tvCuttingForBox.setText(String.valueOf(dataItem.getCuttinglength() + "inch"));
+                    double decalSizeInInches = (double) dataItem.getDecalsize();
+                    int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
 
+                    boxEstimatesDetailsBinding.tvDecalSizeinInch.setText(String.valueOf(decalSizeInMillimeters+"mm"));
+
+
+                    double cuttingSizeInInch = (double) dataItem.getCuttinglength();
+                    int cuttingSizeinMm = (int) Math.round(cuttingSizeInInch * 25.4);
+                    boxEstimatesDetailsBinding.tvCuttingLengthinch.setText(String.valueOf(cuttingSizeinMm + "mm"));
                     //Dimensions for ply
                     boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf(dataItem.getTopbf()));
                     boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf(dataItem.getTopgsm()));
@@ -127,7 +133,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvBottomGsm.setText(String.valueOf(dataItem.getBottomgsm()));
                     boxEstimatesDetailsBinding.tvBottomRate.setText(String.valueOf(dataItem.getBottomrate()));
 
-//                    boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(String.valueOf(dataItem.getClientid()));
+
+                    boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(String.valueOf(dataItem.getClientid()));
+
+
                     boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.setText(dataItem.getBoxname());
                     boxEstimatesDetailsBinding.tvnoOfBox.setText(String.valueOf(dataItem.getUps()));
                     boxEstimatesDetailsBinding.tvtotalGsm.setText(String.valueOf(dataItem.getTotalgsm()));
@@ -218,9 +227,9 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
                 intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
-                intent.putExtra("clientId",dataItem.getClientid());
-                intent.putExtra("profit",dataItem.getProfit());
-                intent.putExtra("tax",dataItem.getTax());
+                intent.putExtra("clientId", dataItem.getClientid());
+                intent.putExtra("profit", dataItem.getProfit());
+                intent.putExtra("tax", dataItem.getTax());
                 startActivity(intent);
             }
         });
@@ -250,10 +259,12 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
                 intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
-//                intent.putExtra("cuttingLength", dataItem.getCuttinglengthmargin());
-//                intent.putExtra("cuttingLength", dataItem.getDecalsizemargin());
-//                intent.putExtra("weight", dataItem.getTotalweight());
-//                intent.putExtra("ups", dataItem.getUps());
+                intent.putExtra("decalLength",boxEstimatesDetailsBinding.tvDecalSizeForBox.getText().toString());
+                intent.putExtra("cuttingLength",boxEstimatesDetailsBinding.tvCuttingForBox.getText().toString());
+                intent.putExtra("decalSizemm",boxEstimatesDetailsBinding.tvDecalSizeinInch.getText().toString());
+                intent.putExtra("cuttingLengthmm",boxEstimatesDetailsBinding.tvCuttingLengthinch.getText().toString());
+                intent.putExtra("ups", dataItem.getUps());
+                intent.putExtra("clientId", dataItem.getClientid());
                 startActivity(intent);
 
             }

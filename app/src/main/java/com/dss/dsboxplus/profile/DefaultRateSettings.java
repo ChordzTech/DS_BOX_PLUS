@@ -111,7 +111,7 @@ public class DefaultRateSettings extends BaseActivity {
             }
         });
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {
-            Toast.makeText(this, "Updated Successfully", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Updated Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(this, HomeActivity.class));
         });
