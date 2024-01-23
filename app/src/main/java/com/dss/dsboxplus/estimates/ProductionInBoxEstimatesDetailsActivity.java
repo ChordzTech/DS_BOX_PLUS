@@ -102,15 +102,15 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String bfInM2 = intent.getStringExtra("bfInM2");
         String bfInF3 = intent.getStringExtra("bfInF3");
         String bfInBottom = intent.getStringExtra("bfInBottom");
-
-        HashMap<String, String> bfMap = new HashMap();
-        bfMap.put(bfInTop, "bfInTop");
-        bfMap.put(bfInF1, "bfInF1");
-        bfMap.put(bfInM1, "bfInM1");
-        bfMap.put(bfInF2, "bfInF2");
-        bfMap.put(bfInM2, "bfInM2");
-        bfMap.put(bfInF3, "bfInF3");
-        bfMap.put(bfInBottom, "bfInBottom");
+//
+//        HashMap<String, String> bfMap = new HashMap();
+//        bfMap.put(bfInTop, "bfInTop");
+//        bfMap.put(bfInF1, "bfInF1");
+//        bfMap.put(bfInM1, "bfInM1");
+//        bfMap.put(bfInF2, "bfInF2");
+//        bfMap.put(bfInM2, "bfInM2");
+//        bfMap.put(bfInF3, "bfInF3");
+//        bfMap.put(bfInBottom, "bfInBottom");
 
 
         String gsmInTop = intent.getStringExtra("gsmInTop");
@@ -121,14 +121,14 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String gsmInF3 = intent.getStringExtra("gsmInF3");
         String gsmInBottom = intent.getStringExtra("gsmInBottom");
 
-        HashMap<String, String> gsmMap = new HashMap();
-        gsmMap.put(gsmInTop, "gsmInTop");
-        gsmMap.put(gsmInF1, "gsmInF1");
-        gsmMap.put(gsmInM1, "gsmInM1");
-        gsmMap.put(gsmInF2, "gsmInF2");
-        gsmMap.put(gsmInM2, "gsmInM2");
-        gsmMap.put(gsmInF3, "gsmInF3");
-        gsmMap.put(gsmInBottom, "gsmInBottom");
+//        HashMap<String, String> gsmMap = new HashMap();
+//        gsmMap.put(gsmInTop, "gsmInTop");
+//        gsmMap.put(gsmInF1, "gsmInF1");
+//        gsmMap.put(gsmInM1, "gsmInM1");
+//        gsmMap.put(gsmInF2, "gsmInF2");
+//        gsmMap.put(gsmInM2, "gsmInM2");
+//        gsmMap.put(gsmInF3, "gsmInF3");
+//        gsmMap.put(gsmInBottom, "gsmInBottom");
 
 
         String rate = intent.getStringExtra("rate");
@@ -248,99 +248,115 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         if ("1.0Ply".equals(ply)) {
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         } else if ("2.0Ply".equals(ply)) {
             // If noofPly is 2, set the values for 2-ply scenario
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         } else if ("3.0Ply".equals(ply)) {
             // If noofPly is 2, set the values for 2-ply scenario
+            assert bfInTop != null;
+            if (bfInTop.equalsIgnoreCase(bfInF1)) {
+                bfInF1 = "";
+            }
+            if (bfInTop.equalsIgnoreCase(bfInBottom)) {
+                bfInBottom = "";
+            }
+            assert bfInF1 != null;
+            if (!bfInF1.isEmpty() && bfInF1.equalsIgnoreCase(bfInBottom)) {
+                bfInBottom = "";
+            }
+
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
-            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInBottom) + "/" + gsmMap.get(gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
+            assert bfInF1 != null;
+            if (!bfInF1.isEmpty()) {
+                table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            }
+            assert bfInBottom != null;
+            if (!bfInBottom.isEmpty()) {
+                table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            }
         } else if ("5.0Ply".equals(ply)) {
             // If noofPly is 2, set the values for 2-ply scenario
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInM1) + "/" + gsmMap.get(gsmInM1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInM1) + "/" + (gsmInM1))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF2) + "/" + gsmMap.get(gsmInF2))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInF2) + "/" + (gsmInF2))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("5")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInBottom) + "/" + gsmMap.get(gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         } else if ("7.0Ply".equals(ply)) {
             // If noofPly is 2, set the values for 2-ply scenario
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInTop) + "/" + gsmMap.get(gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF1) + "/" + gsmMap.get(gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInM1) + "/" + gsmMap.get(gsmInM1))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInM1) + "/" + (gsmInM1))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
 
             table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF2) + "/" + gsmMap.get(gsmInF2))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInF2) + "/" + (gsmInF2))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInM2) + "/" + gsmMap.get(gsmInM2))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInM2) + "/" + (gsmInM2))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
 
             table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInF3) + "/" + gsmMap.get(gsmInF3))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInF3) + "/" + (gsmInF3))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
             table2.addCell(new Cell().add(new Paragraph("5")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph(bfMap.get(bfInBottom) + "/" + gsmMap.get(gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         }
