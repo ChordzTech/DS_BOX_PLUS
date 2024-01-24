@@ -53,6 +53,8 @@ public class AddNewClientsActivity extends BaseActivity {
         btSubmitInNewClientsDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btSubmitInNewClientsDetails.setEnabled(false);
+
                 String clientName = addNewClientsBinding.tietClientName.getText().toString();
                 String clientContactNo = addNewClientsBinding.tietContactNumber.getText().toString();
                 String clientAddress = addNewClientsBinding.tietAddress.getText().toString();

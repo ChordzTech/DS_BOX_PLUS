@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.SubUser;
 import com.dss.dsboxplus.databinding.ActivitySuperUserSettingBinding;
 import com.dss.dsboxplus.recyclerview.SubUserViewAdapter;
@@ -40,13 +43,32 @@ public class SuperUserSetting extends BaseActivity implements SubUserViewAdapter
             if (!userDetailsResponse.getData().isEmpty()) {
                 userList = (ArrayList<SubUser>) userDetailsResponse.getData();
                 adapter.updateUserList(userList);
+                //API Response
+                AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+                if (appConfigResponse.getData() != null) {
+                    ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+                    String configValue = null;
 
-                if (adapter.getItemCount() >= 5) {
-                    superUserSettingBinding.fabAddSubUser.setVisibility(View.GONE);
-                    showMaxLimitReachedDialog();
-                }else {
-                    superUserSettingBinding.fabAddSubUser.setVisibility(View.VISIBLE);
+                    for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                        int configId = appConfigDataItem.getConfigid();
+                        if (configId == 28) {
+                            // Retrieve the configValue associated with configId 28
+                            configValue = appConfigDataItem.getConfigvalue();
+                            break; // Exit the loop once the target configId is found
+                        }
+                    }
+                    if (configValue != null) {
+                        int apiLimit = Integer.parseInt(configValue);
+                        // Now you can use apiLimit in your logic
+                        if (adapter.getItemCount() >= apiLimit) {
+                            superUserSettingBinding.fabAddSubUser.setVisibility(View.GONE);
+                            showMaxLimitReachedDialog();
+                        } else {
+                            superUserSettingBinding.fabAddSubUser.setVisibility(View.VISIBLE);
+                        }
+                    }
                 }
+
             }
         });
 
@@ -87,6 +109,7 @@ public class SuperUserSetting extends BaseActivity implements SubUserViewAdapter
         intent.putExtra("USERS_BUNDLE", bundle);
         startActivity(intent);
     }
+
     private void showMaxLimitReachedDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Maximum Limit Reached")

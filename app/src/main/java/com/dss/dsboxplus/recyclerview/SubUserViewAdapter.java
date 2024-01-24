@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
@@ -49,8 +50,12 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         holder.tvuserRole.setText(userData.getUserrole());
         String initials = getInitials(userData.getUsername());
         holder.tvClientPhoto.setText(initials);
+//        holder.cvDummyViewInSubUser.setVisibility(View.GONE);
         int randomColor = getRandomColor();
         holder.tvClientPhoto.setBackgroundColor(randomColor);
+//        if (position == getItemCount() - 1) {
+//            holder.cvDummyViewInSubUser.setVisibility(View.VISIBLE);
+//        }
     }
 
     private int getRandomColor() {
@@ -81,14 +86,16 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
     }
 
     class SubUserViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSubUserName, tvSubUserContact, tvClientPhoto,tvuserRole;
+        TextView tvSubUserName, tvSubUserContact, tvClientPhoto, tvuserRole;
+        ConstraintLayout cvDummyViewInSubUser;
 
         public SubUserViewHolder(@NonNull View itemView) {
             super(itemView);
             tvSubUserName = itemView.findViewById(R.id.tvSubUserName);
             tvSubUserContact = itemView.findViewById(R.id.tvSubUserContact);
             tvClientPhoto = itemView.findViewById(R.id.tvClientPhoto);
-            tvuserRole=itemView.findViewById(R.id.tvuserRole);
+            tvuserRole = itemView.findViewById(R.id.tvuserRole);
+            cvDummyViewInSubUser = itemView.findViewById(R.id.cvDummyViewInSubUser);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -451,28 +451,29 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void setDefaultSheetSizes() {
-//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-//        if (appConfigResponse.getData() != null) {
-//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-//                int configId = appConfigDataItem.getConfigid();
-//                String configValue = appConfigDataItem.getConfigvalue();
-//                if (configId == 10) {
-//                    this.configMargin = configValue;
-//                    newEstimateBinding.tvMargin.setText(configValue);
-//                } else if (configId == 11) {
-//                    this.configDecal = configValue;
-//                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
-//                }
-//            }
-//        }
-        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
-
-        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
-            BusinessDetails businessDetails = businessDetailsResponse.getData();
-            newEstimateBinding.tvMargin.setText(String.valueOf(businessDetails.getMarginlength()));
-            newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(businessDetails.getMarginwidth()));
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 10) {
+                    this.configMargin = configValue;
+                    newEstimateBinding.tvMargin.setText(configValue);
+                } else if (configId == 11) {
+                    this.configDecal = configValue;
+                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
+                }
+            }
         }
+//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+//
+//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+//            BusinessDetails businessDetails = businessDetailsResponse.getData();
+//
+//            newEstimateBinding.tvMargin.setText(String.valueOf(businessDetails.getMarginlength()));
+//            newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(businessDetails.getMarginwidth()));
+//        }
     }
 
     private double calculateNewDecalSize(int numberOfBoxes) {

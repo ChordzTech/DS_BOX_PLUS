@@ -19,7 +19,6 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityProductionInBoxEstimatesDetailsBinding;
-import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
@@ -40,14 +39,14 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 
 public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
-    EstimatesDataModel estimatesDataModel;
+
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;
     double mm = 25.4;
     double divide = 1000.0;
     private DataItem dataItem;
+    private String boxQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +72,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                String boxQuantity = productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim();
+                boxQuantity = productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim();
                 if (!boxQuantity.isEmpty()) {
                     try {
                         createProductionDsPdf();
@@ -102,7 +101,11 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String bfInM2 = intent.getStringExtra("bfInM2");
         String bfInF3 = intent.getStringExtra("bfInF3");
         String bfInBottom = intent.getStringExtra("bfInBottom");
-//
+        String ffinf1 = intent.getStringExtra("ffinf1");
+        String ffinf2 = intent.getStringExtra("ffinf2");
+        String ffinf3 = intent.getStringExtra("ffinf3");
+
+
 //        HashMap<String, String> bfMap = new HashMap();
 //        bfMap.put(bfInTop, "bfInTop");
 //        bfMap.put(bfInF1, "bfInF1");
@@ -135,15 +138,15 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String ply = intent.getStringExtra("ply");
         String weight = intent.getStringExtra("weight");
         String ups = intent.getStringExtra("ups");
-        String decalLength = intent.getStringExtra("decalLength");
-        String cuttingLength = intent.getStringExtra("cuttingLength");
-        String decalSizemm = intent.getStringExtra("decalSizemm");
-        String cuttingLengthmm = intent.getStringExtra("cuttingLengthmm");
+
+
+        // Retrieve data from the intent
+        double decalLength = intent.getDoubleExtra("decalLength", 0.0);
+        double cuttingLength = getIntent().getDoubleExtra("cuttingLength", 0.0);
+        int decalSizemm = getIntent().getIntExtra("decalSizemm", 0);
+        int cuttingLengthmm = getIntent().getIntExtra("cuttingLengthmm", 0);
 
         Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
-
-
-//        formulaForWeightPreBox(bfInTop, gsmInTop, cuttingLength, decalLength);
 
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
@@ -221,11 +224,11 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Cutting Length:" + cuttingLength + "-" + cuttingLengthmm)).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Cutting Length:" + cuttingLength + "inch" + "-" + cuttingLengthmm + "mm")).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("Decal Size:" + decalLength + "-" + decalSizemm)).setBorder(Border.NO_BORDER));
+        table1.addCell(new Cell().add(new Paragraph("Decal Size:" + decalLength + "inch" + "-" + decalSizemm + "mm")).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
         table1.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
@@ -246,24 +249,65 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         table2.addCell(new Cell().add(new Paragraph("Total Weight")).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(gray));
 
 
+//      double result= weightPerBoxM1(gsmInM1,cuttingLength,decalLength);
+//      double result = weightPerBoxF2(gsmInF2  ,cuttingLength ,decalLength  ,ffinf2);
+//      double result=weightPerBoxM2(gsmInM2,cuttingLength,decalLength);
+//        double result=weightPerBoxF3(gsmInF3,cuttingLength,decalLength,ffinf3);
+        double totalWeight = 0.0;
         if ("1.0Ply".equals(ply)) {
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-        } else if ("2.0Ply".equals(ply)) {
-            // If noofPly is 2, set the values for 2-ply scenario
-            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+            String gm = String.valueOf(result * 1000);
+            table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
-            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-        } else if ("3.0Ply".equals(ply)) {
+
+        } else if ("2.0Ply".equals(ply)) {
             // If noofPly is 2, set the values for 2-ply scenario
+
+
+            if (bfInTop.equalsIgnoreCase(bfInF1) && gsmInTop.equalsIgnoreCase(gsmInF1)) {
+                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+                double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+                String gm = String.valueOf(result * 1000);
+                table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+                double weightTop = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+                double weightF1 = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                totalWeight = weightTop + weightF1;
+
+                String gmF = String.valueOf(totalWeight * 1000);
+                table2.addCell(new Cell().add(new Paragraph(gmF + "gm")).setTextAlignment(TextAlignment.CENTER));
+                double grossWeight = Double.parseDouble(boxQuantity) * totalWeight;
+                String grossWeightUnit = "";
+                if (grossWeight / 1000 == 0) {
+                    grossWeightUnit = "Kg";
+                } else {
+                    grossWeightUnit = "gm";
+                }
+                table2.addCell(new Cell().add(new Paragraph(String.valueOf(grossWeight))).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph(grossWeightUnit).setTextAlignment(TextAlignment.CENTER)));
+            } else {
+                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+                double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+                String gm = String.valueOf(result * 1000);
+                table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+                table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+                double resultF = weightPerBoxF1(gsmInTop, decalLength, cuttingLength, ffinf1);
+                String gmF = String.valueOf(resultF * 1000);
+                table2.addCell(new Cell().add(new Paragraph(gmF + "gm")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            }
+
+        } else if ("3.0Ply".equals(ply)) {
+            // If noofPly is 3, set the values for 3-ply scenario
             assert bfInTop != null;
             if (bfInTop.equalsIgnoreCase(bfInF1)) {
                 bfInF1 = "";
@@ -278,6 +322,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+            String gm = String.valueOf(result * 1000);
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
@@ -285,6 +331,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             if (!bfInF1.isEmpty()) {
                 table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+                double resultF = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                String gmF = String.valueOf(resultF * 1000);
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             }
@@ -292,6 +340,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             if (!bfInBottom.isEmpty()) {
                 table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
+                double resultB = weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength);
+                String gmB = String.valueOf(resultB * 1000);
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             }
@@ -361,16 +411,6 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         }
 
-//
-//        table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-//        table2.addCell(new Cell().add(new Paragraph("12/12")).setTextAlignment(TextAlignment.CENTER));
-//        table2.addCell(new Cell().add(new Paragraph("56gm")).setTextAlignment(TextAlignment.CENTER));
-//        table2.addCell(new Cell().add(new Paragraph("112gm")).setTextAlignment(TextAlignment.CENTER));
-//
-//        table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-//        table2.addCell(new Cell().add(new Paragraph("15/12")).setTextAlignment(TextAlignment.CENTER));
-//        table2.addCell(new Cell().add(new Paragraph("12gm")).setTextAlignment(TextAlignment.CENTER));
-//        table2.addCell(new Cell().add(new Paragraph("24gm")).setTextAlignment(TextAlignment.CENTER));
 
         table2.addCell(new Cell().add(new Paragraph("\n")).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("\n")).setTextAlignment(TextAlignment.CENTER));
@@ -379,7 +419,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("Total")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        table2.addCell(new Cell().add(new Paragraph(String.valueOf(totalWeight))).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
 
@@ -395,12 +435,58 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         document.add(table3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
+        viewFile(file);
     }
 
-    private void formulaForWeightPreBox(String bfInTop, String gsmInTop, String cuttingLength, String decalLength) {
-        double decal = Double.parseDouble(decalLength);
-        double cutting = Double.parseDouble(cuttingLength);
-        double gsmTop = Double.parseDouble(gsmInTop);
-        double valueFirstOFTotalWeight = (decal * cutting * gsmTop * mm * mm / divide / divide / divide);
+    private double weightPerBoxF3(String gsmInF3, double cuttingLength, double decalLength, String ffinf3) {
+        double gsmOff3 = Double.parseDouble(gsmInF3);
+        double ffOFf3 = Double.parseDouble(ffinf3);
+        double resForBoxF3 = ((cuttingLength * decalLength * gsmOff3 * ffOFf3 * mm * mm) / divide / divide / divide);
+        return resForBoxF3;
     }
+
+    private double weightPerBoxM2(String gsmInM2, double cuttingLength, double decalLength) {
+        double gsmOfM2 = Double.parseDouble(gsmInM2);
+        double resultForBoxM2 = ((cuttingLength * decalLength * gsmOfM2 * mm * mm) / divide / divide / divide);
+        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForBoxM2));
+        return resultThreeDigits;
+    }
+
+    private double weightPerBoxF2(String gsmInF2, double cuttingLength, double decalLength, String ffinf2) {
+        double gsmOff2 = Double.parseDouble(gsmInF2);
+        double fluteinF2 = Double.parseDouble(ffinf2);
+        double resultForBoxF2 = ((cuttingLength * decalLength * gsmOff2 * fluteinF2 * mm * mm) / divide / divide / divide);
+        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForBoxF2));
+        return resultThreeDigits;
+    }
+
+    private double weightPerBoxM1(String gsmInM1, double cuttingLength, double decalLength) {
+        double gsmOfM1 = Double.parseDouble(gsmInM1);
+        double resultForMBoxM1 = ((cuttingLength * decalLength * gsmOfM1 * mm * mm) / divide / divide / divide);
+        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForMBoxM1));
+        return resultThreeDigits;
+    }
+
+    private double weightPerBoxBottomPaper(String gsmInBottom, double cuttingLength, double decalLength) {
+        double gsmOfBottom = Double.parseDouble(gsmInBottom);
+        double resultForBottom = ((decalLength * cuttingLength * gsmOfBottom * mm * mm) / divide / divide / divide);
+        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForBottom));
+        return resultThreeDigits;
+    }
+
+    private double weightPerBoxF1(String gsmInF1, double decalLength, double cuttingLength, String ffinf1) {
+        double gsmOfF1 = Double.parseDouble(gsmInF1);
+        double fluteInf1 = Double.parseDouble(ffinf1);
+        double resultForF1 = ((decalLength * cuttingLength * gsmOfF1 * fluteInf1 * mm * mm) / divide / divide / divide);
+        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForF1));
+        return resultThreeDigits;
+    }
+
+    private double weightPerBoxTopPaper(String bfInTop, String gsmInTop, double decalLength, double cuttingLength) {
+        double gsmOfTop = Double.parseDouble(gsmInTop);
+        double resultForTop = ((decalLength * cuttingLength * gsmOfTop * mm * mm) / divide / divide / divide);
+        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForTop));
+        return resultThreeDigits;
+    }
+
 }

@@ -127,7 +127,9 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
 
         String rateA = intent.getStringExtra("rate");
         String ply = intent.getStringExtra("ply");
+
         Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
+
         Double tax = intent.getDoubleExtra("tax", 0);
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
@@ -283,5 +285,6 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(image3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
+        viewFile(file);
     }
 }

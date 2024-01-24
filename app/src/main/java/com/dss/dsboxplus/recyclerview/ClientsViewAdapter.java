@@ -39,6 +39,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         Client client = clientsList.get(position);
         holder.tvClientsName.setText(client.getClientname());
         holder.tvPhoneNumber.setText(client.getMobileno());
+        holder.cvDummyView.setVisibility(View.GONE);
 //        holder.tvEstimates.setText(client.getMobileno());
 //        Glide.with(holder.itemView.getContext())
 //                .load(clientsViewModel.getImageURL())
@@ -53,9 +54,9 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
         holder.ivClientPhoto.setBackgroundColor(backgroundColor);
 
 
-//        if (position == getItemCount() - 1) {
-//            holder.cvDummyView.setVisibility(View.VISIBLE);
-//        }
+        if (position == getItemCount() - 1) {
+            holder.cvDummyView.setVisibility(View.VISIBLE);
+        }
 
 
     }

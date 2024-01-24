@@ -40,7 +40,6 @@ public class SubscriptionActivity extends BaseActivity {
             for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
                 // Access individual properties of AppConfigDataItems
                 int configId = appConfigDataItem.getConfigid();
-                String configName = appConfigDataItem.getConfigname();
                 String configValue = appConfigDataItem.getConfigvalue();
                 if (configId == 7) {
                     subscriptionBinding.tvContactNumber.setText(configValue);

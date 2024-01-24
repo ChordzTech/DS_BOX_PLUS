@@ -96,12 +96,13 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf(dataItem.getTotalweight() + "gm"));
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
                     //Dimension For ImageTwo
+
                     boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize() + "inch"));
                     boxEstimatesDetailsBinding.tvCuttingForBox.setText(String.valueOf(dataItem.getCuttinglength() + "inch"));
                     double decalSizeInInches = (double) dataItem.getDecalsize();
                     int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
 
-                    boxEstimatesDetailsBinding.tvDecalSizeinInch.setText(String.valueOf(decalSizeInMillimeters+"mm"));
+                    boxEstimatesDetailsBinding.tvDecalSizeinInch.setText(String.valueOf(decalSizeInMillimeters + "mm"));
 
 
                     double cuttingSizeInInch = (double) dataItem.getCuttinglength();
@@ -238,6 +239,16 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ProductionInBoxEstimatesDetailsActivity.class);
+                double decalSize = (double) dataItem.getDecalsize();
+                double cuttingLength = (double) dataItem.getCuttinglength();
+
+                double decalSizeInInches = (double) dataItem.getDecalsize();
+                int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
+
+
+                double cuttingSizeInInch = (double) dataItem.getCuttinglength();
+                int cuttingSizeinMm = (int) Math.round(cuttingSizeInInch * 25.4);
+
                 intent.putExtra("length", boxEstimatesDetailsBinding.tvLength.getText().toString());
                 intent.putExtra("width", boxEstimatesDetailsBinding.tvWidth.getText().toString());
                 intent.putExtra("height", boxEstimatesDetailsBinding.tvHeight.getText().toString());
@@ -249,6 +260,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("bfInM2", boxEstimatesDetailsBinding.tvMiddleTwoBf.getText().toString());
                 intent.putExtra("bfInF3", boxEstimatesDetailsBinding.tvFluteThreeBf.getText().toString());
                 intent.putExtra("bfInBottom", boxEstimatesDetailsBinding.tvBottomBf.getText().toString());
+                intent.putExtra("ffinf1",boxEstimatesDetailsBinding.tvFFFluteOne.getText().toString());
+                intent.putExtra("ffinf2",boxEstimatesDetailsBinding.tvFluteTwoFf.getText().toString());
+                intent.putExtra("ffinf3",boxEstimatesDetailsBinding.tvFluteThreeFf.getText().toString());
+
 
                 intent.putExtra("gsmInTop", boxEstimatesDetailsBinding.tvTopGsm.getText().toString());
                 intent.putExtra("gsmInF1", boxEstimatesDetailsBinding.tvGsmFluteOne.getText().toString());
@@ -259,12 +274,13 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
                 intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
-                intent.putExtra("decalLength",boxEstimatesDetailsBinding.tvDecalSizeForBox.getText().toString());
-                intent.putExtra("cuttingLength",boxEstimatesDetailsBinding.tvCuttingForBox.getText().toString());
-                intent.putExtra("decalSizemm",boxEstimatesDetailsBinding.tvDecalSizeinInch.getText().toString());
-                intent.putExtra("cuttingLengthmm",boxEstimatesDetailsBinding.tvCuttingLengthinch.getText().toString());
+                intent.putExtra("decalLength", decalSize);
+                intent.putExtra("cuttingLength", cuttingLength);
+                intent.putExtra("decalSizemm", decalSizeInMillimeters);
+                intent.putExtra("cuttingLengthmm", cuttingSizeinMm);
                 intent.putExtra("ups", dataItem.getUps());
                 intent.putExtra("clientId", dataItem.getClientid());
+
                 startActivity(intent);
 
             }
