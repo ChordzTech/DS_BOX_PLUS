@@ -154,7 +154,10 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         }
 
 
-        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File dsBox = this.getBaseContext().getExternalFilesDir("ds_box");
+        if (dsBox != null && !dsBox.exists())
+            dsBox.mkdir();
+        String pdfPath = dsBox.getPath();
         File file = new File(pdfPath, "Production.pdf");
         OutputStream outputStream = new FileOutputStream(file);
         PdfWriter writer = new PdfWriter(file);
@@ -435,7 +438,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         document.add(table3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
-        viewFile(file);
+//        viewFile(file);
+        openPDF("Production.pdf");
     }
 
     private double weightPerBoxF3(String gsmInF3, double cuttingLength, double decalLength, String ffinf3) {

@@ -2,7 +2,6 @@ package com.dss.dsboxplus.baseview
 
 import android.app.Dialog
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -22,6 +21,7 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService.Companion.getIn
 import java.io.File
 import java.lang.reflect.Method
 
+
 open class BaseActivity : AppCompatActivity() {
     private lateinit var logoutDialog: AlertDialog
     private lateinit var loader: Dialog
@@ -33,39 +33,27 @@ open class BaseActivity : AppCompatActivity() {
         registerBaseViewModel()
         createAlertLoaderDialog();
     }
-    open fun viewFile(pdfFile: File) {
-        Log.e("!!pdfFile",pdfFile.absolutePath)
 
-        val path: Uri
-        val pdfIntent = Intent(Intent.ACTION_VIEW)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            try {
-                val m: Method = StrictMode::class.java.getMethod("disableDeathOnFileUriExposure")
-                m.invoke(null)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            path = FileProvider.getUriForFile(this, applicationContext.packageName+ ".provider", pdfFile)
-
-            // path = Uri.parse(pdfFile.getAbsolutePath());
-
-            // pdfIntent.setDataAndType(path, "application/pdf");
-            pdfIntent.setDataAndType(path, "application/pdf")
-            pdfIntent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
-            pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        } else {
-            path = Uri.fromFile(pdfFile)
-            pdfIntent.setDataAndType(path, "application/pdf")
-        }
-
-
-        /* Uri path = FileProvider.getUriForFile(getActivity(),
-        BuildConfig.APPLICATION_ID + ".provider",
-        pdfFile);*/
+    open fun openPDF(fileName: String) {
         try {
-            startActivity(pdfIntent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(this, getString(R.string.lblnoapplicationfound), Toast.LENGTH_SHORT).show()
+            val dsBox = this.baseContext.getExternalFilesDir("ds_box")
+
+            val file = File(
+                dsBox!!.path,
+                fileName
+            )
+            Uri.fromFile(file)
+            val pdfOpenintent = Intent(Intent.ACTION_VIEW)
+            pdfOpenintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            val apkURI = FileProvider.getUriForFile(
+                this, getApplicationContext()
+                    .getPackageName() + ".provider", file
+            )
+            pdfOpenintent.setDataAndType(apkURI, "application/pdf")
+            pdfOpenintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            startActivity(pdfOpenintent)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

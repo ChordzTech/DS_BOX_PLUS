@@ -137,7 +137,10 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
         }
 
-        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File dsBox = this.getBaseContext().getExternalFilesDir("ds_box");
+        if (!dsBox.exists())
+            dsBox.mkdir();
+        String pdfPath = dsBox.getPath();
         File file = new File(pdfPath, "Quotation.pdf");
         OutputStream outputStream = new FileOutputStream(file);
         PdfWriter writer = new PdfWriter(file);
@@ -285,6 +288,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(image3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
-        viewFile(file);
+//        viewFile(file);
+        openPDF("Quotation.pdf");
     }
 }
