@@ -156,8 +156,11 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
 
         File dsBox = this.getBaseContext().getExternalFilesDir("ds_box");
-        if (dsBox != null && !dsBox.exists())
-            dsBox.mkdir();
+        if (dsBox.exists()) {
+            dsBox.delete();
+        }
+        dsBox.mkdir();
+
         String pdfPath = dsBox.getPath();
         File file = new File(pdfPath, "Production.pdf");
         OutputStream outputStream = new FileOutputStream(file);
@@ -273,20 +276,16 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             boxFormula.setNumberOfBox(Integer.parseInt(boxQuantity));
             // If noofPly is 2, set the values for 2-ply scenario
             if (bfInTop.equalsIgnoreCase(bfInF1) && gsmInTop.equalsIgnoreCase(gsmInF1)) {
-//                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-//                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-//
-//                double weightTop = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-//                double weightF1 = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
-//                totalWeight = weightTop + weightF1;
-//                String fluteGm = String.valueOf(totalWeight * 1000);
-//                String fluteKg = "";
-//
-//                if(gmF%1000==0){
-//                    gmF
-//                }
-//                table2.addCell(new Cell().add(new Paragraph(fluteGm + "gm")).setTextAlignment(TextAlignment.CENTER));
-//                grossWeight = Double.parseDouble(boxQuantity) * totalWeight;
+                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+
+                double weightPerBoxTopPaper = boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+                double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                table2.addCell(new Cell().add(new Paragraph(weightPerBoxTopPaper + weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
+
+                totalWeight = boxFormula.getTotalWeightPerBoxTopGm() + boxFormula.getTotalWeightPerBoxFlute1Gm();
+                table2.addCell(new Cell().add(new Paragraph(totalWeight * Double.parseDouble(boxQuantity) + "gm")).setTextAlignment(TextAlignment.CENTER));
+                grossWeight = totalWeight;
 
             } else {
                 table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
@@ -309,7 +308,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                 table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
                 double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
                 table2.addCell(new Cell().add(new Paragraph(weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
-                double totalWeightF1gm =boxFormula.getTotalWeightPerBoxFlute1Gm();
+                double totalWeightF1gm = boxFormula.getTotalWeightPerBoxFlute1Gm();
                 double totalWeightF1Kg = 0.0;
                 String totalWeightF1Unit = "";
                 if (totalWeightF1gm % 1000 == 0) {
@@ -321,7 +320,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                 }
                 table2.addCell(new Cell().add(new Paragraph(totalWeightF1Kg + totalWeightF1Unit)).setTextAlignment(TextAlignment.CENTER));
 
-                totalWeight = boxFormula.getWeightPerBoxTopGm()+boxFormula.getWeightPerBoxFlute1Gm();
+                totalWeight = boxFormula.getWeightPerBoxTopGm() + boxFormula.getWeightPerBoxFlute1Gm();
 
                 grossWeight = totalWeightTopgm + totalWeightF1gm;
 

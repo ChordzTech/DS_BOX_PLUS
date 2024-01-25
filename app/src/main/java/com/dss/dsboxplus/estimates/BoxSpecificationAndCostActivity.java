@@ -14,11 +14,8 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
-import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
-import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
-import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
@@ -27,8 +24,7 @@ import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxSpecificationAndCostActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
-
-import java.util.ArrayList;
+import com.google.gson.Gson;
 
 public class BoxSpecificationAndCostActivity extends BaseActivity {
     private final double wasteFromTiet = 0.0;
@@ -65,6 +61,12 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             Toast.makeText(this, "Estimate Added Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(BoxSpecificationAndCostActivity.this, HomeActivity.class));
+            dataItem = new Gson().fromJson( new Gson().toJson(addEstimateResponse.getData()),DataItem.class);
+            Intent intent = new Intent(this, BoxEstimatesDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("ESTIMATES", dataItem);
+            intent.putExtra("ESTIMATES_BUNDLE", bundle);
+            startActivity(intent);
         });
     }
 

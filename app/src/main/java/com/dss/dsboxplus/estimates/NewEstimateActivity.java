@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
@@ -29,7 +30,11 @@ import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
+import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
+import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActivityViewModel;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -54,6 +59,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
     private DataItem dataItem;
     private ClientDetails selectedClient;
+    private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +71,9 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         if (dataItem != null && selectedClient != null) {
             updateUI();
         }
-
+        client = getIntent().getParcelableExtra("selectedClient");
         initView();
-
+        fetchData();
 
     }
 
@@ -93,8 +99,30 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
     }
 
+    private void fetchData() {
+        viewModel.getBusinessDetailsByBusinessId(client.getBusinessid());
+        viewModel.getClientByClientId(client.getClientid());
+
+        viewModel.getGetClientByClientIdLiveData().observe(this, getClientByClientIdResponse -> {
+            if (getClientByClientIdResponse != null) {
+                handleClientDetailsResponse(getClientByClientIdResponse.getData());
+            }
+        });
+    }
+
+    private void handleClientDetailsResponse(ClientDetails clientDetails) {
+        if (clientDetails != null) {
+            this.selectedClient = clientDetails;
+            newEstimateBinding.tvClientNameInEstimate.setText(clientDetails.getClientname());
+        }
+    }
 
     private void initView() {
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(NewEstimatesActivityViewModel.class);
+
+
         tietnumberOfBox = findViewById(R.id.tietNumberOfBox);
         tilHeight = findViewById(R.id.tilHeight);
         tilWidth = findViewById(R.id.tilWidth);

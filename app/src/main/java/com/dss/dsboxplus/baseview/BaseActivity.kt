@@ -61,7 +61,7 @@ open class BaseActivity : AppCompatActivity() {
                 )
                 Uri.fromFile(file)
                 val pdfOpenintent = Intent(Intent.ACTION_VIEW)
-                pdfOpenintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                pdfOpenintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 val apkURI = FileProvider.getUriForFile(
                     this, getApplicationContext()
                         .getPackageName() + ".provider", file

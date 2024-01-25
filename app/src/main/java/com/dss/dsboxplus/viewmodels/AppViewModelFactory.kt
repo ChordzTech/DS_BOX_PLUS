@@ -7,6 +7,7 @@ import com.dss.dsboxplus.viewmodels.clientsviewmodels.ClientViewModel
 import com.dss.dsboxplus.viewmodels.clientsviewmodels.EstimateListViewModel
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActivityViewModel
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxSpecificationAndCostActivityViewModel
+import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel
 import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.EnterBusinessDetailsActivityViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel
 import com.dss.dsboxplus.viewmodels.homeviewmodel.SplashViewModel
@@ -26,7 +27,9 @@ class AppViewModelFactory constructor(private val repository: MainRepository) :
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             HomeViewModel(this.repository) as T
-        } else if (modelClass.isAssignableFrom(BaseViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(NewEstimatesActivityViewModel::class.java)) {
+            NewEstimatesActivityViewModel(this.repository) as T
+        }else if (modelClass.isAssignableFrom(BaseViewModel::class.java)) {
             BaseViewModel() as T
         } else if (modelClass.isAssignableFrom(SplashViewModel::class.java)) {
             SplashViewModel(repository) as T

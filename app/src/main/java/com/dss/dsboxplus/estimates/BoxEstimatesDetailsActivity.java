@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -296,7 +297,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         boxEstimatesDetailsBinding.btClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishAffinity();
+                startActivity(new Intent(BoxEstimatesDetailsActivity.this, HomeActivity.class));
             }
         });
         boxEstimatesDetailsBinding.btEdit.setOnClickListener(new View.OnClickListener() {
@@ -307,6 +309,14 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 if (clientDetails != null)
                     intent.putExtra("CLIENT_DETAILS", clientDetails);
                 startActivity(intent);
+            }
+        });
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finishAffinity();
+                startActivity(new Intent(BoxEstimatesDetailsActivity.this, HomeActivity.class));
             }
         });
     }
