@@ -1,25 +1,22 @@
 package com.dss.dsboxplus.baseview
 
 import android.app.Dialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.os.StrictMode
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.dss.dsboxplus.R
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
+import com.dss.dsboxplus.preferences.AppPreferences
+import com.dss.dsboxplus.preferences.AppPreferences.saveLongToSharedPreferences
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService.Companion.getInstance
 import java.io.File
-import java.lang.reflect.Method
 
 
 open class BaseActivity : AppCompatActivity() {
@@ -32,6 +29,23 @@ open class BaseActivity : AppCompatActivity() {
 
         registerBaseViewModel()
         createAlertLoaderDialog();
+    }
+
+    open fun showNoInternetDialog() {
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("No Internet Connection")
+            .setMessage("Please check your internet connection and try again.")
+            .setPositiveButton(
+                "OK"
+            ) { dialog, which -> finish() }
+            .setCancelable(false)
+            .show()
+    }
+
+    open fun isConnectedToInternet(): Boolean {
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
     open fun openPDF(fileName: String) {
@@ -56,7 +70,23 @@ open class BaseActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
+    open fun addUserDataToPreferences(userDetailsResponse: UserDetailsResponse) {
+        val userId = userDetailsResponse.data!![0]!!.userid!!
+        val businessId = userDetailsResponse.data!![0]!!.businessid!!
+        val mobileno = userDetailsResponse.data!![0]!!.mobileno!!.toLong()
+        saveLongToSharedPreferences(
+            this,
+            AppPreferences.USER_ID, userId.toLong()
+        )
+        saveLongToSharedPreferences(
+            this,
+            AppPreferences.BUSINESS_ID, businessId.toLong()
+        )
+        saveLongToSharedPreferences(
+            this,
+            AppPreferences.MOBILE_NUMBER, mobileno
+        )
+    }
 
     private fun registerBaseViewModel() {
         val retrofitService = getInstance()

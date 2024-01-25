@@ -296,17 +296,30 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             } else {
                 table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-                double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-                String gm = String.valueOf(result * 1000);
+                double weightTop = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+                String gm = String.valueOf(weightTop * 1000);
                 table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
                 table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-                double resultF = weightPerBoxF1(gsmInTop, decalLength, cuttingLength, ffinf1);
-                String gmF = String.valueOf(resultF * 1000);
+                double weightF1 = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                String gmF = String.valueOf(weightF1 * 1000);
                 table2.addCell(new Cell().add(new Paragraph(gmF + "gm")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+
+
+                totalWeight = weightTop + weightF1;
+
+                double grossWeight = Double.parseDouble(boxQuantity) * totalWeight;
+                String grossWeightUnit = "";
+                if (grossWeight / 1000 == 0) {
+                    grossWeightUnit = "Kg";
+                } else {
+                    grossWeightUnit = "gm";
+                }
+                table2.addCell(new Cell().add(new Paragraph(String.valueOf(grossWeight))).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph(grossWeightUnit).setTextAlignment(TextAlignment.CENTER)));
             }
 
         } else if ("3.0Ply".equals(ply)) {

@@ -54,27 +54,6 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
-    private void showNoInternetDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("No Internet Connection")
-                .setMessage("Please check your internet connection and try again.")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
-                .setCancelable(false)
-                .show();
-    }
-
-
-    private boolean isConnectedToInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
-    }
-
 
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
@@ -98,19 +77,6 @@ public class SplashActivity extends BaseActivity {
                 hideLoader();
             }
         });
-    }
-
-    private void addUserDataToPreferences(UserDetailsResponse userDetailsResponse) {
-        int userId = userDetailsResponse.getData().get(0).getUserid();
-        int businessId = userDetailsResponse.getData().get(0).getBusinessid();
-        Long mobileno = Long.parseLong(userDetailsResponse.getData().get(0).getMobileno());
-        AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
-                AppPreferences.USER_ID, userId);
-        AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
-                AppPreferences.BUSINESS_ID, businessId);
-        AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
-                AppPreferences.MOBILE_NUMBER, mobileno);
-
     }
 
     private void fetchData() {

@@ -3,6 +3,7 @@ package com.dss.dsboxplus.loginandverification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -108,7 +109,10 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
             businessDetailsBinding.tietBusinessPinCode.requestFocus();
             businessDetailsBinding.tietBusinessPinCode.setError("Enter Six Digits Code");
             return false;
-        } else {
+        } /*else if (!String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(AppPreferences.MOBILE_NUMBER)).equals(businessContact)) {
+            Toast.makeText(this, "Please enter verified mobile number", Toast.LENGTH_SHORT).show();
+            return false;
+        }*/ else {
             return true;
         }
     }
