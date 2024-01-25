@@ -292,6 +292,7 @@
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tietWaste"
+                                    android:inputType="numberDecimal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
 
@@ -424,6 +425,7 @@
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tietConversionCost"
+                                    android:inputType="numberDecimal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
 
@@ -512,6 +514,7 @@
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tietOverHeadCharges"
                                     android:layout_width="match_parent"
+                                    android:inputType="numberDecimal"
                                     android:layout_height="wrap_content"
                                     android:text="0"/>
 
@@ -618,6 +621,7 @@
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tietProfit"
+                                    android:inputType="numberDecimal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
 
@@ -689,6 +693,7 @@
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tietTax"
+                                    android:inputType="numberDecimal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
 

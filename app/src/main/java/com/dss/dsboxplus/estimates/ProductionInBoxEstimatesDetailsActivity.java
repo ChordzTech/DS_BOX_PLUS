@@ -255,7 +255,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 //      double result= weightPerBoxM1(gsmInM1,cuttingLength,decalLength);
 //      double result = weightPerBoxF2(gsmInF2  ,cuttingLength ,decalLength  ,ffinf2);
 //      double result=weightPerBoxM2(gsmInM2,cuttingLength,decalLength);
-//        double result=weightPerBoxF3(gsmInF3,cuttingLength,decalLength,ffinf3);
+//      double result=weightPerBoxF3(gsmInF3,cuttingLength,decalLength,ffinf3);
         double totalWeight = 0.0;
         if ("1.0Ply".equals(ply)) {
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
