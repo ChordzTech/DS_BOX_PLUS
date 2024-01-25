@@ -29,6 +29,7 @@ public class PaperSpecificationActivity extends BaseActivity {
 
     private DataItem dataItem;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

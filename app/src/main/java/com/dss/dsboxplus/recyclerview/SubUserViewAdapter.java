@@ -50,12 +50,12 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         holder.tvuserRole.setText(userData.getUserrole());
         String initials = getInitials(userData.getUsername());
         holder.tvClientPhoto.setText(initials);
-//        holder.cvDummyViewInSubUser.setVisibility(View.GONE);
+        holder.cvDummyViewInSubUser.setVisibility(View.GONE);
         int randomColor = getRandomColor();
         holder.tvClientPhoto.setBackgroundColor(randomColor);
-//        if (position == getItemCount() - 1) {
-//            holder.cvDummyViewInSubUser.setVisibility(View.VISIBLE);
-//        }
+        if (position == getItemCount() - 1) {
+            holder.cvDummyViewInSubUser.setVisibility(View.VISIBLE);
+        }
     }
 
     private int getRandomColor() {
@@ -86,8 +86,8 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
     }
 
     class SubUserViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSubUserName, tvSubUserContact, tvClientPhoto, tvuserRole;
-        ConstraintLayout cvDummyViewInSubUser;
+        private TextView tvSubUserName, tvSubUserContact, tvClientPhoto, tvuserRole;
+        private ConstraintLayout cvDummyViewInSubUser;
 
         public SubUserViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -118,7 +118,7 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
             tvClientsName = itemView.findViewById(R.id.tvClientsName);
             tvPhoneNumber = itemView.findViewById(R.id.tvPhoneNumber);
             ivEstimates = itemView.findViewById(R.id.ivEstimates);
-//            cvDummyView = itemView.findViewById(R.id.cvDummyViewInClients);
+            cvDummyView = itemView.findViewById(R.id.cvDummyViewInClients);
             ivEstimates.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

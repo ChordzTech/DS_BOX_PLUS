@@ -139,6 +139,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 //        loadData();
     }
 
+
     private void prepareData() {
         Collections.sort(estimateList, new Comparator<DataItem>() {
             @Override
