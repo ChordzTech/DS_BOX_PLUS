@@ -82,7 +82,7 @@ data class DataItem(
     val lengthCmField: @RawValue Any? = null,
 
     @field:SerializedName("businessid")
-    val businessid: Double? = null,
+    val businessid: Long? = null,
 
     @field:SerializedName("toprate")
     val toprate: @RawValue Any? = null,

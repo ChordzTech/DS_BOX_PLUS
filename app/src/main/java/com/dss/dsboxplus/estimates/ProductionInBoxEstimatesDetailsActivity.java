@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 
+import com.dss.dsboxplus.BoxFormula;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
@@ -43,10 +44,10 @@ import java.time.format.DateTimeFormatter;
 public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;
-    double mm = 25.4;
-    double divide = 1000.0;
+
     private DataItem dataItem;
     private String boxQuantity;
+    private String grossWeightUnit = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -257,69 +258,73 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 //      double result=weightPerBoxM2(gsmInM2,cuttingLength,decalLength);
 //      double result=weightPerBoxF3(gsmInF3,cuttingLength,decalLength,ffinf3);
         double totalWeight = 0.0;
+        double grossWeight = 0.0;
         if ("1.0Ply".equals(ply)) {
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-            String gm = String.valueOf(result * 1000);
-            table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
+//            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+//            String gm = String.valueOf(result * 1000);
+//            table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
 
         } else if ("2.0Ply".equals(ply)) {
+            BoxFormula boxFormula = new BoxFormula();
+            boxFormula.setNumberOfBox(Integer.parseInt(boxQuantity));
             // If noofPly is 2, set the values for 2-ply scenario
-
-
             if (bfInTop.equalsIgnoreCase(bfInF1) && gsmInTop.equalsIgnoreCase(gsmInF1)) {
-                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-                double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-                String gm = String.valueOf(result * 1000);
-                table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+//                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+//                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+//
+//                double weightTop = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+//                double weightF1 = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
+//                totalWeight = weightTop + weightF1;
+//                String fluteGm = String.valueOf(totalWeight * 1000);
+//                String fluteKg = "";
+//
+//                if(gmF%1000==0){
+//                    gmF
+//                }
+//                table2.addCell(new Cell().add(new Paragraph(fluteGm + "gm")).setTextAlignment(TextAlignment.CENTER));
+//                grossWeight = Double.parseDouble(boxQuantity) * totalWeight;
 
-                double weightTop = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-                double weightF1 = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                totalWeight = weightTop + weightF1;
-
-                String gmF = String.valueOf(totalWeight * 1000);
-                table2.addCell(new Cell().add(new Paragraph(gmF + "gm")).setTextAlignment(TextAlignment.CENTER));
-                double grossWeight = Double.parseDouble(boxQuantity) * totalWeight;
-                String grossWeightUnit = "";
-                if (grossWeight / 1000 == 0) {
-                    grossWeightUnit = "Kg";
-                } else {
-                    grossWeightUnit = "gm";
-                }
-                table2.addCell(new Cell().add(new Paragraph(String.valueOf(grossWeight))).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph(grossWeightUnit).setTextAlignment(TextAlignment.CENTER)));
             } else {
                 table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-                double weightTop = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-                String gm = String.valueOf(weightTop * 1000);
-                table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength) + "gm")).setTextAlignment(TextAlignment.CENTER));
+                double totalWeightTopgm = boxFormula.getTotalWeightPerBoxTopGm();
+                double totalWeightTopKG = 0.0;
+                String totalWeightTopUnit = "";
+                if (totalWeightTopgm % 1000 == 0) {
+                    totalWeightTopKG = totalWeightTopgm / 1000;
+                    totalWeightTopUnit = "Kg";
+                } else {
+                    totalWeightTopKG = totalWeightTopgm;
+
+                    totalWeightTopUnit = "gm";
+                }
+                table2.addCell(new Cell().add(new Paragraph(totalWeightTopKG + totalWeightTopUnit)).setTextAlignment(TextAlignment.CENTER));
 
                 table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-                double weightF1 = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                String gmF = String.valueOf(weightF1 * 1000);
-                table2.addCell(new Cell().add(new Paragraph(gmF + "gm")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-
-                totalWeight = weightTop + weightF1;
-
-                double grossWeight = Double.parseDouble(boxQuantity) * totalWeight;
-                String grossWeightUnit = "";
-                if (grossWeight / 1000 == 0) {
-                    grossWeightUnit = "Kg";
+                double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                table2.addCell(new Cell().add(new Paragraph(weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
+                double totalWeightF1gm =boxFormula.getTotalWeightPerBoxFlute1Gm();
+                double totalWeightF1Kg = 0.0;
+                String totalWeightF1Unit = "";
+                if (totalWeightF1gm % 1000 == 0) {
+                    totalWeightF1Kg = totalWeightF1gm / 1000;
+                    totalWeightF1Unit = "Kg";
                 } else {
-                    grossWeightUnit = "gm";
+                    totalWeightF1Kg = totalWeightF1gm;
+                    totalWeightF1Unit = "gm";
                 }
-                table2.addCell(new Cell().add(new Paragraph(String.valueOf(grossWeight))).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph(grossWeightUnit).setTextAlignment(TextAlignment.CENTER)));
+                table2.addCell(new Cell().add(new Paragraph(totalWeightF1Kg + totalWeightF1Unit)).setTextAlignment(TextAlignment.CENTER));
+
+                totalWeight = boxFormula.getWeightPerBoxTopGm()+boxFormula.getWeightPerBoxFlute1Gm();
+
+                grossWeight = totalWeightTopgm + totalWeightF1gm;
+
             }
 
         } else if ("3.0Ply".equals(ply)) {
@@ -338,8 +343,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
             table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-            String gm = String.valueOf(result * 1000);
+//            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+//            String gm = String.valueOf(result * 1000);
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
 
@@ -347,8 +352,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             if (!bfInF1.isEmpty()) {
                 table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-                double resultF = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                String gmF = String.valueOf(resultF * 1000);
+//                double resultF = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
+//                String gmF = String.valueOf(resultF * 1000);
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             }
@@ -356,8 +361,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             if (!bfInBottom.isEmpty()) {
                 table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
-                double resultB = weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength);
-                String gmB = String.valueOf(resultB * 1000);
+//                double resultB = weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength);
+//                String gmB = String.valueOf(resultB * 1000);
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             }
@@ -435,8 +440,21 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("Total")).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph(String.valueOf(totalWeight))).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+        String totalWeightUnit = "";
+        if (totalWeight % 1000 == 0) {
+            totalWeight = totalWeight / 1000;
+            totalWeightUnit = "Kg";
+        } else {
+            totalWeightUnit = "gm";
+        }
+        table2.addCell(new Cell().add(new Paragraph(totalWeight + totalWeightUnit)).setTextAlignment(TextAlignment.CENTER));
+        if (grossWeight % 1000 == 0) {
+            grossWeight = grossWeight / 1000;
+            grossWeightUnit = "Kg";
+        } else {
+            grossWeightUnit = "gm";
+        }
+        table2.addCell(new Cell().add(new Paragraph(grossWeight + grossWeightUnit)).setTextAlignment(TextAlignment.CENTER));
 
 
         float columnWidth3[] = {482};
@@ -454,56 +472,4 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 //        viewFile(file);
         openPDF("Production.pdf");
     }
-
-    private double weightPerBoxF3(String gsmInF3, double cuttingLength, double decalLength, String ffinf3) {
-        double gsmOff3 = Double.parseDouble(gsmInF3);
-        double ffOFf3 = Double.parseDouble(ffinf3);
-        double resForBoxF3 = ((cuttingLength * decalLength * gsmOff3 * ffOFf3 * mm * mm) / divide / divide / divide);
-        return resForBoxF3;
-    }
-
-    private double weightPerBoxM2(String gsmInM2, double cuttingLength, double decalLength) {
-        double gsmOfM2 = Double.parseDouble(gsmInM2);
-        double resultForBoxM2 = ((cuttingLength * decalLength * gsmOfM2 * mm * mm) / divide / divide / divide);
-        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForBoxM2));
-        return resultThreeDigits;
-    }
-
-    private double weightPerBoxF2(String gsmInF2, double cuttingLength, double decalLength, String ffinf2) {
-        double gsmOff2 = Double.parseDouble(gsmInF2);
-        double fluteinF2 = Double.parseDouble(ffinf2);
-        double resultForBoxF2 = ((cuttingLength * decalLength * gsmOff2 * fluteinF2 * mm * mm) / divide / divide / divide);
-        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForBoxF2));
-        return resultThreeDigits;
-    }
-
-    private double weightPerBoxM1(String gsmInM1, double cuttingLength, double decalLength) {
-        double gsmOfM1 = Double.parseDouble(gsmInM1);
-        double resultForMBoxM1 = ((cuttingLength * decalLength * gsmOfM1 * mm * mm) / divide / divide / divide);
-        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForMBoxM1));
-        return resultThreeDigits;
-    }
-
-    private double weightPerBoxBottomPaper(String gsmInBottom, double cuttingLength, double decalLength) {
-        double gsmOfBottom = Double.parseDouble(gsmInBottom);
-        double resultForBottom = ((decalLength * cuttingLength * gsmOfBottom * mm * mm) / divide / divide / divide);
-        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForBottom));
-        return resultThreeDigits;
-    }
-
-    private double weightPerBoxF1(String gsmInF1, double decalLength, double cuttingLength, String ffinf1) {
-        double gsmOfF1 = Double.parseDouble(gsmInF1);
-        double fluteInf1 = Double.parseDouble(ffinf1);
-        double resultForF1 = ((decalLength * cuttingLength * gsmOfF1 * fluteInf1 * mm * mm) / divide / divide / divide);
-        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForF1));
-        return resultThreeDigits;
-    }
-
-    private double weightPerBoxTopPaper(String bfInTop, String gsmInTop, double decalLength, double cuttingLength) {
-        double gsmOfTop = Double.parseDouble(gsmInTop);
-        double resultForTop = ((decalLength * cuttingLength * gsmOfTop * mm * mm) / divide / divide / divide);
-        double resultThreeDigits = Double.valueOf(String.format("%.3f", resultForTop));
-        return resultThreeDigits;
-    }
-
 }

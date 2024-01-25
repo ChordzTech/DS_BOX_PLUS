@@ -20,11 +20,9 @@ class BoxEstimatesDetailsActivityViewModel(val repository: MainRepository) : Bas
     var deleteEstimateLiveData = MutableLiveData<EstimateDeleteResponse>()
         get() = field
 
-    fun getBusinessDetailsByBusinessId() {
-        val businessId =
-            AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
+    fun getBusinessDetailsByBusinessId(businessid: Long) {
         viewModelScope.launch {
-            when (val response = repository.getBusinessDetailsByBusinessID(businessId)) {
+            when (val response = repository.getBusinessDetailsByBusinessID(businessid)) {
                 is NetworkState.Success -> {
                     getBusinessLiveData.postValue(response.data!!)
                 }
@@ -41,10 +39,9 @@ class BoxEstimatesDetailsActivityViewModel(val repository: MainRepository) : Bas
         }
     }
 
-    fun getClientByClientId() {
-        val clientId = AppPreferences.getLongValueFromSharedPreferences(AppPreferences.CLIENT_ID)
+    fun getClientByClientId(clientid: Long) {
         viewModelScope.launch {
-            when (val response = repository.getClientByClintId(clientId)) {
+            when (val response = repository.getClientByClintId(clientId = clientid)) {
                 is NetworkState.Success -> {
                     getClientByClientIdLiveData.postValue(response.data!!)
                 }

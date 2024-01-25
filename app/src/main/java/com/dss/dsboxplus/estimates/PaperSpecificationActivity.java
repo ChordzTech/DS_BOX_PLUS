@@ -17,6 +17,7 @@ import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class PaperSpecificationActivity extends BaseActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
     String noOfPly = "";
-    private Client selectedClient;
+    private ClientDetails selectedClient;
 
     private DataItem dataItem;
 

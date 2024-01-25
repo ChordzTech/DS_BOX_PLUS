@@ -19,6 +19,7 @@ import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityBoxSpecificationAndCostBinding;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -43,7 +44,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     private String tax = "0";
     private String overhead = "0";
     private DataItem dataItem;
-    private Client selectedClient;
+    private ClientDetails selectedClient;
     private String resultOfProfitForED;
     private String resultOfTaxForED;
 

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -49,27 +51,30 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     open fun openPDF(fileName: String) {
-        try {
-            val dsBox = this.baseContext.getExternalFilesDir("ds_box")
+        Handler(Looper.myLooper()!!).postDelayed({
+            try {
+                val dsBox = this.baseContext.getExternalFilesDir("ds_box")
 
-            val file = File(
-                dsBox!!.path,
-                fileName
-            )
-            Uri.fromFile(file)
-            val pdfOpenintent = Intent(Intent.ACTION_VIEW)
-            pdfOpenintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            val apkURI = FileProvider.getUriForFile(
-                this, getApplicationContext()
-                    .getPackageName() + ".provider", file
-            )
-            pdfOpenintent.setDataAndType(apkURI, "application/pdf")
-            pdfOpenintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            startActivity(pdfOpenintent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+                val file = File(
+                    dsBox!!.path,
+                    fileName
+                )
+                Uri.fromFile(file)
+                val pdfOpenintent = Intent(Intent.ACTION_VIEW)
+                pdfOpenintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                val apkURI = FileProvider.getUriForFile(
+                    this, getApplicationContext()
+                        .getPackageName() + ".provider", file
+                )
+                pdfOpenintent.setDataAndType(apkURI, "application/pdf")
+                pdfOpenintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                startActivity(pdfOpenintent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }, 1000)
     }
+
     open fun addUserDataToPreferences(userDetailsResponse: UserDetailsResponse) {
         val userId = userDetailsResponse.data!![0]!!.userid!!
         val businessId = userDetailsResponse.data!![0]!!.businessid!!

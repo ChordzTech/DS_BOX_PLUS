@@ -7,7 +7,7 @@ import com.dss.dsboxplus.baseview.BaseViewModel
 import com.dss.dsboxplus.data.CreateEstimateDataHolder
 import com.dss.dsboxplus.data.repo.request.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
-import com.dss.dsboxplus.data.repo.response.Client
+import com.dss.dsboxplus.data.repo.response.ClientDetails
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
@@ -20,7 +20,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
 
 
     fun createEstimate(
-        selectedClient: Client,
+        selectedClient: ClientDetails,
         boxName: String,
         lengthMm: Int,
         widthMm: Int,

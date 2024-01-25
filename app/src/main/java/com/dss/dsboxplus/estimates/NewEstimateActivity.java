@@ -26,6 +26,7 @@ import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel;
@@ -52,22 +53,26 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private String sizeMeasure = "";
 
     private DataItem dataItem;
-    private Client selectedClient;
+    private ClientDetails selectedClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         newEstimateBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_estimate);
-        initView();
+
         dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
+        selectedClient = getIntent().getParcelableExtra("CLIENT_DETAILS");
         if (dataItem != null && selectedClient != null) {
             updateUI();
         }
+
+        initView();
 
 
     }
 
     private void updateUI() {
+        newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
         newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
         newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthMmField().doubleValue()));
         newEstimateBinding.tietWidth.setText(String.valueOf((int) dataItem.getWidthMmField().doubleValue()));
@@ -90,14 +95,6 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
 
     private void initView() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            // Retrieve the selected client data from the intent
-            selectedClient = intent.getParcelableExtra("selectedClient");
-
-            newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
-        }
-
         tietnumberOfBox = findViewById(R.id.tietNumberOfBox);
         tilHeight = findViewById(R.id.tilHeight);
         tilWidth = findViewById(R.id.tilWidth);

@@ -63,6 +63,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
     private void handleClientDetailsResponse(ClientDetails clientDetails) {
         if (clientDetails != null) {
+            this.clientDetails = clientDetails;
             // Access the data from the ClientDetails object and update your UI accordingly
             String clientName = clientDetails.getClientname();
             boxEstimatesDetailsBinding.tvClientNameInBoxEstimateDetails.setText(clientName);
@@ -70,8 +71,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     }
 
     private void fetchData() {
-        viewModel.getBusinessDetailsByBusinessId();
-        viewModel.getClientByClientId();
+        viewModel.getBusinessDetailsByBusinessId(dataItem.getBusinessid());
+        viewModel.getClientByClientId(dataItem.getClientid());
     }
 
     private void initView() {
@@ -260,9 +261,9 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("bfInM2", boxEstimatesDetailsBinding.tvMiddleTwoBf.getText().toString());
                 intent.putExtra("bfInF3", boxEstimatesDetailsBinding.tvFluteThreeBf.getText().toString());
                 intent.putExtra("bfInBottom", boxEstimatesDetailsBinding.tvBottomBf.getText().toString());
-                intent.putExtra("ffinf1",boxEstimatesDetailsBinding.tvFFFluteOne.getText().toString());
-                intent.putExtra("ffinf2",boxEstimatesDetailsBinding.tvFluteTwoFf.getText().toString());
-                intent.putExtra("ffinf3",boxEstimatesDetailsBinding.tvFluteThreeFf.getText().toString());
+                intent.putExtra("ffinf1", boxEstimatesDetailsBinding.tvFFFluteOne.getText().toString());
+                intent.putExtra("ffinf2", boxEstimatesDetailsBinding.tvFluteTwoFf.getText().toString());
+                intent.putExtra("ffinf3", boxEstimatesDetailsBinding.tvFluteThreeFf.getText().toString());
 
 
                 intent.putExtra("gsmInTop", boxEstimatesDetailsBinding.tvTopGsm.getText().toString());
@@ -303,6 +304,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
                 intent.putExtra("EDIT_ESTIMATE", dataItem);
+                if (clientDetails != null)
+                    intent.putExtra("CLIENT_DETAILS", clientDetails);
                 startActivity(intent);
             }
         });
