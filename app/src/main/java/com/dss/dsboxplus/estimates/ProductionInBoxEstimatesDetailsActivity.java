@@ -40,13 +40,15 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
     ActivityProductionInBoxEstimatesDetailsBinding productionInBoxEstimatesDetailsBinding;
 
     private DataItem dataItem;
-    private String boxQuantity;
+    private int boxQuantity = 0;
     private String grossWeightUnit = "";
 
     @Override
@@ -73,8 +75,8 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                boxQuantity = productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim();
-                if (!boxQuantity.isEmpty()) {
+                boxQuantity = Integer.parseInt(productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim());
+                if (boxQuantity != 0) {
                     try {
                         createProductionDsPdf();
                     } catch (FileNotFoundException exception) {
@@ -183,8 +185,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname())
-                .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-02
@@ -262,173 +263,131 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 //      double result=weightPerBoxF3(gsmInF3,cuttingLength,decalLength,ffinf3);
         double totalWeight = 0.0;
         double grossWeight = 0.0;
-        if ("1.0Ply".equals(ply)) {
-            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+        BoxFormula boxFormula = new BoxFormula();
+        boxFormula.setNumberOfBox(boxQuantity);
+        switch (ply) {
+            case "1.0Ply" -> {
+                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
 //            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
 //            String gm = String.valueOf(result * 1000);
 //            table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+            }
+            case "2.0Ply" -> {
+                // If noofPly is 2, set the values for 2-ply scenario
+                if (bfInTop.equalsIgnoreCase(bfInF1) && gsmInTop.equalsIgnoreCase(gsmInF1)) {
+                    table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
 
+                    double weightPerBoxTopPaper = boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
+                    double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxTopPaper + weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
 
-        } else if ("2.0Ply".equals(ply)) {
-            BoxFormula boxFormula = new BoxFormula();
-            boxFormula.setNumberOfBox(Integer.parseInt(boxQuantity));
-            // If noofPly is 2, set the values for 2-ply scenario
-            if (bfInTop.equalsIgnoreCase(bfInF1) && gsmInTop.equalsIgnoreCase(gsmInF1)) {
-                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = boxFormula.getTotalWeightPerBoxTopGm() + boxFormula.getTotalWeightPerBoxFlute1Gm();
+                    table2.addCell(new Cell().add(new Paragraph(totalWeight * boxQuantity + "gm")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = totalWeight;
 
-                double weightPerBoxTopPaper = boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-                double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                table2.addCell(new Cell().add(new Paragraph(weightPerBoxTopPaper + weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
-
-                totalWeight = boxFormula.getTotalWeightPerBoxTopGm() + boxFormula.getTotalWeightPerBoxFlute1Gm();
-                table2.addCell(new Cell().add(new Paragraph(totalWeight * Double.parseDouble(boxQuantity) + "gm")).setTextAlignment(TextAlignment.CENTER));
-                grossWeight = totalWeight;
-
-            } else {
-                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength) + "gm")).setTextAlignment(TextAlignment.CENTER));
-                double totalWeightTopgm = boxFormula.getTotalWeightPerBoxTopGm();
-                double totalWeightTopKG = 0.0;
-                String totalWeightTopUnit = "";
-                if (totalWeightTopgm % 1000 == 0) {
-                    totalWeightTopKG = totalWeightTopgm / 1000;
-                    totalWeightTopUnit = "Kg";
                 } else {
-                    totalWeightTopKG = totalWeightTopgm;
+                    table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength) + "gm")).setTextAlignment(TextAlignment.CENTER));
+                    double totalWeightTopgm = boxFormula.getTotalWeightPerBoxTopGm();
+                    double totalWeightTopKG = 0.0;
+                    String totalWeightTopUnit = "";
+                    if (totalWeightTopgm % 1000 == 0) {
+                        totalWeightTopKG = totalWeightTopgm / 1000;
+                        totalWeightTopUnit = "Kg";
+                    } else {
+                        totalWeightTopKG = totalWeightTopgm;
 
-                    totalWeightTopUnit = "gm";
+                        totalWeightTopUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(totalWeightTopKG + totalWeightTopUnit)).setTextAlignment(TextAlignment.CENTER));
+
+                    table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
+                    double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
+                    double totalWeightF1gm = boxFormula.getTotalWeightPerBoxFlute1Gm();
+                    double totalWeightF1Kg = 0.0;
+                    String totalWeightF1Unit = "";
+                    if (totalWeightF1gm % 1000 == 0) {
+                        totalWeightF1Kg = totalWeightF1gm / 1000;
+                        totalWeightF1Unit = "Kg";
+                    } else {
+                        totalWeightF1Kg = totalWeightF1gm;
+                        totalWeightF1Unit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(totalWeightF1Kg + totalWeightF1Unit)).setTextAlignment(TextAlignment.CENTER));
+
+                    totalWeight = boxFormula.getWeightPerBoxTopGm() + boxFormula.getWeightPerBoxFlute1Gm();
+
+                    grossWeight = totalWeightTopgm + totalWeightF1gm;
+
                 }
-                table2.addCell(new Cell().add(new Paragraph(totalWeightTopKG + totalWeightTopUnit)).setTextAlignment(TextAlignment.CENTER));
 
-                table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-                double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                table2.addCell(new Cell().add(new Paragraph(weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
-                double totalWeightF1gm = boxFormula.getTotalWeightPerBoxFlute1Gm();
-                double totalWeightF1Kg = 0.0;
-                String totalWeightF1Unit = "";
-                if (totalWeightF1gm % 1000 == 0) {
-                    totalWeightF1Kg = totalWeightF1gm / 1000;
-                    totalWeightF1Unit = "Kg";
+            }
+            case "3.0Ply" -> {
+
+            }
+            case "5.0Ply" -> {
+                String topRatio, flute1Ratio, middle1Ratio, flute2Ratio, bottomRatio;
+                topRatio = bfInTop + "/" + gsmInTop;
+                flute1Ratio = bfInF1 + "/" + gsmInF1;
+                middle1Ratio = bfInM1 + "/" + gsmInM1;
+                flute2Ratio = bfInF2 + "/" + gsmInF2;
+                bottomRatio = bfInBottom + "/" + gsmInBottom;
+
+                ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute1List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxMiddle1List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute2List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxBottomList = new ArrayList<>();
+
+                HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
+                //top
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightMap.put(topRatio, weightPerBoxTopList);
+                //flute1
+                if (weightMap.containsKey(flute1Ratio)) {
+                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
                 } else {
-                    totalWeightF1Kg = totalWeightF1gm;
-                    totalWeightF1Unit = "gm";
+                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightMap.put(flute1Ratio, weightPerBoxFlute1List);
                 }
-                table2.addCell(new Cell().add(new Paragraph(totalWeightF1Kg + totalWeightF1Unit)).setTextAlignment(TextAlignment.CENTER));
+                //middle1
+                if (weightMap.containsKey(middle1Ratio)) {
+                    weightMap.get(middle1Ratio).add(boxFormula.weightPerBoxMiddle1(gsmInM1, cuttingLength, decalLength));
+                } else {
+                    weightPerBoxMiddle1List.add(boxFormula.weightPerBoxMiddle1(gsmInM1, cuttingLength, decalLength));
+                    weightMap.put(middle1Ratio, weightPerBoxMiddle1List);
+                }
+                //flute2
+                if (weightMap.containsKey(flute2Ratio)) {
+                    weightMap.get(flute2Ratio).add(boxFormula.weightPerBoxFlute2(gsmInF2, cuttingLength, decalLength, ffinf2));
+                } else {
+                    weightPerBoxFlute2List.add(boxFormula.weightPerBoxFlute2(gsmInF2, cuttingLength, decalLength, ffinf2));
+                    weightMap.put(flute2Ratio, weightPerBoxFlute2List);
+                }
+                //bottom
+                if (weightMap.containsKey(bottomRatio)) {
+                    weightMap.get(bottomRatio).add(boxFormula.weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength));
+                } else {
+                    weightPerBoxBottomList.add(boxFormula.weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength));
+                    weightMap.put(bottomRatio, weightPerBoxBottomList);
+                }
 
-                totalWeight = boxFormula.getWeightPerBoxTopGm() + boxFormula.getWeightPerBoxFlute1Gm();
-
-                grossWeight = totalWeightTopgm + totalWeightF1gm;
+                //hash map iterate
+                //set key as ratio
+                //set value as wight per box
+            }
+            case "7.0Ply" -> {
 
             }
+            case "2.0Ply(KG)" -> {
 
-        } else if ("3.0Ply".equals(ply)) {
-            // If noofPly is 3, set the values for 3-ply scenario
-            assert bfInTop != null;
-            if (bfInTop.equalsIgnoreCase(bfInF1)) {
-                bfInF1 = "";
             }
-            if (bfInTop.equalsIgnoreCase(bfInBottom)) {
-                bfInBottom = "";
-            }
-            assert bfInF1 != null;
-            if (!bfInF1.isEmpty() && bfInF1.equalsIgnoreCase(bfInBottom)) {
-                bfInBottom = "";
-            }
-
-            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-//            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-//            String gm = String.valueOf(result * 1000);
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            assert bfInF1 != null;
-            if (!bfInF1.isEmpty()) {
-                table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-//                double resultF = weightPerBoxF1(gsmInF1, decalLength, cuttingLength, ffinf1);
-//                String gmF = String.valueOf(resultF * 1000);
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            }
-            assert bfInBottom != null;
-            if (!bfInBottom.isEmpty()) {
-                table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
-//                double resultB = weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength);
-//                String gmB = String.valueOf(resultB * 1000);
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            }
-        } else if ("5.0Ply".equals(ply)) {
-            // If noofPly is 2, set the values for 2-ply scenario
-            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInM1) + "/" + (gsmInM1))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInF2) + "/" + (gsmInF2))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("5")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-        } else if ("7.0Ply".equals(ply)) {
-            // If noofPly is 2, set the values for 2-ply scenario
-            table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInM1) + "/" + (gsmInM1))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-
-            table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInF2) + "/" + (gsmInF2))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("3")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInM2) + "/" + (gsmInM2))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-
-            table2.addCell(new Cell().add(new Paragraph("4")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInF3) + "/" + (gsmInF3))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-
-            table2.addCell(new Cell().add(new Paragraph("5")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph((bfInBottom) + "/" + (gsmInBottom))).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
-            table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         }
 
 

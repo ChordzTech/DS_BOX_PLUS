@@ -82,7 +82,7 @@ public class PaperSpecificationActivity extends BaseActivity {
         paperSpecificationBinding.tvClientNameInEstimate.setText(clientName);
 
         paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
-        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm() + "X" + CreateEstimateDataHolder.INSTANCE.getWidthMm() + "X" + CreateEstimateDataHolder.INSTANCE.getHeightMm());
+        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm() + "x" + CreateEstimateDataHolder.INSTANCE.getWidthMm() + "x" + CreateEstimateDataHolder.INSTANCE.getHeightMm());
 
 
         noOfPly = this.getIntent().getStringExtra("noOfPly");
