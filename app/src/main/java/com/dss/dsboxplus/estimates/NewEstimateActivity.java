@@ -56,10 +56,13 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private String configDecal = "0";
     private boolean isSheetDetailsTouched = false;
     private String sizeMeasure = "";
-
     private DataItem dataItem;
     private ClientDetails selectedClient;
     private Client client;
+    private Long businessId = 0L;
+    private Long clientId = 0L;
+
+    private boolean isNewEstimate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +72,17 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
         selectedClient = getIntent().getParcelableExtra("CLIENT_DETAILS");
         if (dataItem != null && selectedClient != null) {
+            isNewEstimate = false;
             updateUI();
+            businessId = dataItem.getBusinessid();
+            clientId = dataItem.getClientid();
+        } else {
+            isNewEstimate = true;
+            client = getIntent().getParcelableExtra("selectedClient");
+            businessId = Long.valueOf(client.getBusinessid());
+            clientId = client.getClientid();
         }
-        client = getIntent().getParcelableExtra("selectedClient");
+
         initView();
         fetchData();
 
@@ -100,8 +111,8 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void fetchData() {
-        viewModel.getBusinessDetailsByBusinessId(client.getBusinessid());
-        viewModel.getClientByClientId(client.getClientid());
+        viewModel.getBusinessDetailsByBusinessId(businessId);
+        viewModel.getClientByClientId(clientId);
 
         viewModel.getGetClientByClientIdLiveData().observe(this, getClientByClientIdResponse -> {
             if (getClientByClientIdResponse != null) {
