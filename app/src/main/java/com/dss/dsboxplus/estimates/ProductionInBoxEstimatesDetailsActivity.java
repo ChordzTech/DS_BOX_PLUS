@@ -38,6 +38,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -275,61 +276,85 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                 table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
             }
             case "2.0Ply" -> {
-                // If noofPly is 2, set the values for 2-ply scenario
-                if (bfInTop.equalsIgnoreCase(bfInF1) && gsmInTop.equalsIgnoreCase(gsmInF1)) {
-                    table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
+                String topRatio, flute1Ratio;
+                topRatio = bfInTop + "/" + gsmInTop;
+                flute1Ratio = bfInF1 + "/" + gsmInF1;
 
-                    double weightPerBoxTopPaper = boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-                    double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxTopPaper + weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
+                ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute1List = new ArrayList<>();
 
-                    totalWeight = boxFormula.getTotalWeightPerBoxTopGm() + boxFormula.getTotalWeightPerBoxFlute1Gm();
-                    table2.addCell(new Cell().add(new Paragraph(totalWeight * boxQuantity + "gm")).setTextAlignment(TextAlignment.CENTER));
-                    grossWeight = totalWeight;
-
+                HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
+                //top
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightMap.put(topRatio, weightPerBoxTopList);
+                //flute1
+                if (weightMap.containsKey(flute1Ratio)) {
+                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
                 } else {
-                    table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength) + "gm")).setTextAlignment(TextAlignment.CENTER));
-                    double totalWeightTopgm = boxFormula.getTotalWeightPerBoxTopGm();
-                    double totalWeightTopKG = 0.0;
-                    String totalWeightTopUnit = "";
-                    if (totalWeightTopgm % 1000 == 0) {
-                        totalWeightTopKG = totalWeightTopgm / 1000;
-                        totalWeightTopUnit = "Kg";
-                    } else {
-                        totalWeightTopKG = totalWeightTopgm;
-
-                        totalWeightTopUnit = "gm";
-                    }
-                    table2.addCell(new Cell().add(new Paragraph(totalWeightTopKG + totalWeightTopUnit)).setTextAlignment(TextAlignment.CENTER));
-
-                    table2.addCell(new Cell().add(new Paragraph("2")).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph((bfInF1) + "/" + (gsmInF1))).setTextAlignment(TextAlignment.CENTER));
-                    double weightPerBoxFlute1 = boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1);
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxFlute1 + "gm")).setTextAlignment(TextAlignment.CENTER));
-                    double totalWeightF1gm = boxFormula.getTotalWeightPerBoxFlute1Gm();
-                    double totalWeightF1Kg = 0.0;
-                    String totalWeightF1Unit = "";
-                    if (totalWeightF1gm % 1000 == 0) {
-                        totalWeightF1Kg = totalWeightF1gm / 1000;
-                        totalWeightF1Unit = "Kg";
-                    } else {
-                        totalWeightF1Kg = totalWeightF1gm;
-                        totalWeightF1Unit = "gm";
-                    }
-                    table2.addCell(new Cell().add(new Paragraph(totalWeightF1Kg + totalWeightF1Unit)).setTextAlignment(TextAlignment.CENTER));
-
-                    totalWeight = boxFormula.getWeightPerBoxTopGm() + boxFormula.getWeightPerBoxFlute1Gm();
-
-                    grossWeight = totalWeightTopgm + totalWeightF1gm;
-
+                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightMap.put(flute1Ratio, weightPerBoxFlute1List);
                 }
 
+                ArrayList<String> keyList = new ArrayList<>(weightMap.keySet());
+                for (int i = 0; i < keyList.size(); i++) {
+                    String ratio = keyList.get(i);
+                    Double weightPerBox = 0.0;
+                    ArrayList<Double> weightPerBoxList = weightMap.get(ratio);
+                    for (int j = 0; j < weightPerBoxList.size(); j++) {
+                        weightPerBox = weightPerBox + weightPerBoxList.get(j);
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = totalWeight + weightPerBox;
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = grossWeight + (weightPerBox * boxQuantity);
+                }
             }
             case "3.0Ply" -> {
+                String topRatio, flute1Ratio, bottomRatio;
+                topRatio = bfInTop + "/" + gsmInTop;
+                flute1Ratio = bfInF1 + "/" + gsmInF1;
+                bottomRatio = bfInBottom + "/" + gsmInBottom;
 
+                ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute1List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxBottomList = new ArrayList<>();
+
+                HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
+                //top
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightMap.put(topRatio, weightPerBoxTopList);
+                //flute1
+                if (weightMap.containsKey(flute1Ratio)) {
+                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
+                } else {
+                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightMap.put(flute1Ratio, weightPerBoxFlute1List);
+                }
+                //bottom
+                if (weightMap.containsKey(bottomRatio)) {
+                    weightMap.get(bottomRatio).add(boxFormula.weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength));
+                } else {
+                    weightPerBoxBottomList.add(boxFormula.weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength));
+                    weightMap.put(bottomRatio, weightPerBoxBottomList);
+                }
+
+                ArrayList<String> keyList = new ArrayList<>(weightMap.keySet());
+                for (int i = 0; i < keyList.size(); i++) {
+                    String ratio = keyList.get(i);
+                    Double weightPerBox = 0.0;
+                    ArrayList<Double> weightPerBoxList = weightMap.get(ratio);
+                    for (int j = 0; j < weightPerBoxList.size(); j++) {
+                        weightPerBox = weightPerBox + weightPerBoxList.get(j);
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = totalWeight + weightPerBox;
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = grossWeight + (weightPerBox * boxQuantity);
+                }
             }
             case "5.0Ply" -> {
                 String topRatio, flute1Ratio, middle1Ratio, flute2Ratio, bottomRatio;
@@ -378,15 +403,138 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     weightMap.put(bottomRatio, weightPerBoxBottomList);
                 }
 
-                //hash map iterate
-                //set key as ratio
-                //set value as wight per box
+                ArrayList<String> keyList = new ArrayList<>(weightMap.keySet());
+                for (int i = 0; i < keyList.size(); i++) {
+                    String ratio = keyList.get(i);
+                    Double weightPerBox = 0.0;
+                    ArrayList<Double> weightPerBoxList = weightMap.get(ratio);
+                    for (int j = 0; j < weightPerBoxList.size(); j++) {
+                        weightPerBox = weightPerBox + weightPerBoxList.get(j);
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = totalWeight + weightPerBox;
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = grossWeight + (weightPerBox * boxQuantity);
+                }
             }
             case "7.0Ply" -> {
+                String topRatio, flute1Ratio, middle1Ratio, flute2Ratio, bottomRatio, middle2Ratio, flute3Ratio;
+                topRatio = bfInTop + "/" + gsmInTop;
+                flute1Ratio = bfInF1 + "/" + gsmInF1;
+                middle1Ratio = bfInM1 + "/" + gsmInM1;
+                flute2Ratio = bfInF2 + "/" + gsmInF2;
+                middle2Ratio = bfInM2 + "/" + gsmInM2;
+                flute3Ratio = bfInF3 + "/" + gsmInF3;
+                bottomRatio = bfInBottom + "/" + gsmInBottom;
 
+                ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute1List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxMiddle1List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute2List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxMiddle2List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute3List = new ArrayList<>();
+                ArrayList<Double> weightPerBoxBottomList = new ArrayList<>();
+
+                HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
+
+                //top
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightMap.put(topRatio, weightPerBoxTopList);
+                //flute1
+                if (weightMap.containsKey(flute1Ratio)) {
+                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
+                } else {
+                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightMap.put(flute1Ratio, weightPerBoxFlute1List);
+                }
+                //middle1
+                if (weightMap.containsKey(middle1Ratio)) {
+                    weightMap.get(middle1Ratio).add(boxFormula.weightPerBoxMiddle1(gsmInM1, cuttingLength, decalLength));
+                } else {
+                    weightPerBoxMiddle1List.add(boxFormula.weightPerBoxMiddle1(gsmInM1, cuttingLength, decalLength));
+                    weightMap.put(middle1Ratio, weightPerBoxMiddle1List);
+                }
+                //flute2
+                if (weightMap.containsKey(flute2Ratio)) {
+                    weightMap.get(flute2Ratio).add(boxFormula.weightPerBoxFlute2(gsmInF2, cuttingLength, decalLength, ffinf2));
+                } else {
+                    weightPerBoxFlute2List.add(boxFormula.weightPerBoxFlute2(gsmInF2, cuttingLength, decalLength, ffinf2));
+                    weightMap.put(flute2Ratio, weightPerBoxFlute2List);
+                }
+                //middle2
+                if (weightMap.containsKey(middle2Ratio)) {
+                    weightMap.get(middle2Ratio).add(boxFormula.weightPerBoxMiddle2(gsmInM2, cuttingLength, decalLength));
+                } else {
+                    weightPerBoxMiddle2List.add(boxFormula.weightPerBoxMiddle2(gsmInM2, cuttingLength, decalLength));
+                    weightMap.put(middle2Ratio, weightPerBoxFlute2List);
+                }
+                //flute3
+                if (weightMap.containsKey(flute3Ratio)) {
+                    weightMap.get(flute3Ratio).add(boxFormula.weightPerBoxFlute3(gsmInF3, cuttingLength, decalLength, ffinf3));
+                } else {
+                    weightPerBoxFlute3List.add(boxFormula.weightPerBoxFlute3(gsmInF3, cuttingLength, decalLength, ffinf3));
+                    weightMap.put(flute3Ratio, weightPerBoxFlute3List);
+                }
+                //bottom
+                if (weightMap.containsKey(bottomRatio)) {
+                    weightMap.get(bottomRatio).add(boxFormula.weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength));
+                } else {
+                    weightPerBoxBottomList.add(boxFormula.weightPerBoxBottomPaper(gsmInBottom, cuttingLength, decalLength));
+                    weightMap.put(bottomRatio, weightPerBoxBottomList);
+                }
+                ArrayList<String> keyList = new ArrayList<>(weightMap.keySet());
+                for (int i = 0; i < keyList.size(); i++) {
+                    String ratio = keyList.get(i);
+                    Double weightPerBox = 0.0;
+                    ArrayList<Double> weightPerBoxList = weightMap.get(ratio);
+                    for (int j = 0; j < weightPerBoxList.size(); j++) {
+                        weightPerBox = weightPerBox + weightPerBoxList.get(j);
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = totalWeight + weightPerBox;
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = grossWeight + (weightPerBox * boxQuantity);
+                }
             }
             case "2.0Ply(KG)" -> {
+                String topRatio, flute1Ratio;
+                topRatio = bfInTop + "/" + gsmInTop;
+                flute1Ratio = bfInF1 + "/" + gsmInF1;
 
+                ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
+                ArrayList<Double> weightPerBoxFlute1List = new ArrayList<>();
+
+                HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
+                //top
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaperKg(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightMap.put(topRatio, weightPerBoxTopList);
+                //flute1
+                if (weightMap.containsKey(flute1Ratio)) {
+                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1Kg(gsmInF1, decalLength, cuttingLength, ffinf1));
+                } else {
+                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1Kg(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightMap.put(flute1Ratio, weightPerBoxFlute1List);
+                }
+
+                ArrayList<String> keyList = new ArrayList<>(weightMap.keySet());
+                for (int i = 0; i < keyList.size(); i++) {
+                    String ratio = keyList.get(i);
+                    Double weightPerBox = 0.0;
+                    ArrayList<Double> weightPerBoxList = weightMap.get(ratio);
+                    for (int j = 0; j < weightPerBoxList.size(); j++) {
+                        weightPerBox = weightPerBox + weightPerBoxList.get(j);
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = totalWeight + weightPerBox;
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = grossWeight + (weightPerBox * boxQuantity);
+                }
             }
         }
 

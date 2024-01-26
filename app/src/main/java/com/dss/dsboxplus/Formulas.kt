@@ -4,6 +4,10 @@ import java.lang.Double
 import kotlin.String
 
 class BoxFormula {
+    private var totalWeightPerBoxTopInKg: kotlin.Double = 0.0
+    private var weightPerBoxTopInKg: kotlin.Double = 0.0
+    private var weightPerBoxFlute1InKg: kotlin.Double = 0.0
+    private var totalWeightPerBoxFlute1Kg: kotlin.Double = 0.0
     var plyType: String = ""
     var mm = 25.4
     var divid = 1000.0
@@ -104,5 +108,47 @@ class BoxFormula {
 
         totalWeightPerBoxBottomGm = weightPerBoxBottomGm * numberOfBox
         return weightPerBoxBottomGm
+    }
+
+    fun weightPerBoxTopPaperKg(
+        bfInTop: String,
+        gsmInTop: String,
+        decalLength: kotlin.Double,
+        cuttingLength: kotlin.Double
+    ): kotlin.Double {
+        val gsmOfTop = gsmInTop.toDouble()
+        do {
+            var cuttingLengthX = cuttingLength;
+            val resultForTop: kotlin.Double =
+                decalLength * cuttingLengthX * gsmOfTop * mm * mm / divid / divid / divid
+            weightPerBoxTopInKg = resultForTop * 1000
+            weightPerBoxTopInKg = Double.valueOf(String.format("%.3f", weightPerBoxTopInKg))
+            cuttingLengthX += 100;
+        } while ((weightPerBoxTopInKg % 1000).toInt() == 0)
+
+        totalWeightPerBoxTopInKg = weightPerBoxTopInKg * numberOfBox
+        return weightPerBoxTopInKg
+    }
+
+    fun weightPerBoxFlute1Kg(
+        gsmInF1: String,
+        decalLength: kotlin.Double,
+        cuttingLength: kotlin.Double,
+        ffinf1: String
+    ): kotlin.Double {
+        val gsmOfF1 = gsmInF1.toDouble()
+        val fluteInf1 = ffinf1.toDouble()
+        var cuttingLengthX = cuttingLength;
+        do {
+            val resultForF1: kotlin.Double =
+                decalLength * cuttingLengthX * gsmOfF1 * fluteInf1 * mm * mm / divid / divid / divid
+            weightPerBoxFlute1InKg = resultForF1 * 1000
+            weightPerBoxFlute1InKg = Double.valueOf(String.format("%.3f", weightPerBoxFlute1InKg))
+            cuttingLengthX += 100
+        } while ((weightPerBoxFlute1InKg % 1000).toInt() == 0)
+
+
+        totalWeightPerBoxFlute1Kg = weightPerBoxFlute1InKg * numberOfBox
+        return weightPerBoxFlute1InKg
     }
 }
