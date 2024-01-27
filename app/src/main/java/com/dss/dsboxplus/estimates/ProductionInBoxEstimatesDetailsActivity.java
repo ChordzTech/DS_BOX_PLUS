@@ -268,12 +268,29 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         boxFormula.setNumberOfBox(boxQuantity);
         switch (ply) {
             case "1.0Ply" -> {
-                table2.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph((bfInTop) + "/" + (gsmInTop))).setTextAlignment(TextAlignment.CENTER));
-//            double result = weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength);
-//            String gm = String.valueOf(result * 1000);
-//            table2.addCell(new Cell().add(new Paragraph(gm + "gm")).setTextAlignment(TextAlignment.CENTER));
-                table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
+                String topRatio;
+                topRatio = bfInTop + "/" + gsmInTop;
+                ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
+                HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
+                //top
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaper(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightMap.put(topRatio, weightPerBoxTopList);
+
+                ArrayList<String> keyList = new ArrayList<>(weightMap.keySet());
+                for (int i = 0; i < keyList.size(); i++) {
+                    String ratio = keyList.get(i);
+                    Double weightPerBox = 0.0;
+                    ArrayList<Double> weightPerBoxList = weightMap.get(ratio);
+                    for (int j = 0; j < weightPerBoxList.size(); j++) {
+                        weightPerBox = weightPerBox + weightPerBoxList.get(j);
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    totalWeight = totalWeight + weightPerBox;
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    grossWeight = grossWeight + (weightPerBox * boxQuantity);
+                }
             }
             case "2.0Ply" -> {
                 String topRatio, flute1Ratio;

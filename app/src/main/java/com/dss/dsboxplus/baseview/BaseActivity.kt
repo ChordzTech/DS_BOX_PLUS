@@ -72,7 +72,7 @@ open class BaseActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }, 1000)
+        }, 2000)
     }
 
     open fun addUserDataToPreferences(userDetailsResponse: UserDetailsResponse) {

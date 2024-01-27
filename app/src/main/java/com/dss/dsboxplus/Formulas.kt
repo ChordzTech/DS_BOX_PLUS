@@ -117,8 +117,8 @@ class BoxFormula {
         cuttingLength: kotlin.Double
     ): kotlin.Double {
         val gsmOfTop = gsmInTop.toDouble()
+        var cuttingLengthX = cuttingLength;
         do {
-            var cuttingLengthX = cuttingLength;
             val resultForTop: kotlin.Double =
                 decalLength * cuttingLengthX * gsmOfTop * mm * mm / divid / divid / divid
             weightPerBoxTopInKg = resultForTop * 1000

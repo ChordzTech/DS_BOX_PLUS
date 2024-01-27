@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.dss.dsboxplus.BoxFormula;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.CreateEstimateDataHolder;
@@ -27,7 +28,7 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.gson.Gson;
 
 public class BoxSpecificationAndCostActivity extends BaseActivity {
-    private final double wasteFromTiet = 0.0;
+    private final double wasteFromTiet = 0;
     private final double wastePercentage = 0.0;
     ActivityBoxSpecificationAndCostBinding activityBoxSpecificationAndCostBinding;
     double mm = 25.4;
@@ -342,67 +343,32 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     }
 
     private void callCreateEstimateAPI() {
-        viewModel.createEstimate(
-                selectedClient,
-                CreateEstimateDataHolder.INSTANCE.getBoxName(),
-                (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(),
-                (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(),
-                (int) CreateEstimateDataHolder.INSTANCE.getHeightMm(),
-                CreateEstimateDataHolder.INSTANCE.getNoOfPly(),
-                CreateEstimateDataHolder.INSTANCE.getNoOfBox(),
-                CreateEstimateDataHolder.INSTANCE.getCuttingLength(),
-                CreateEstimateDataHolder.INSTANCE.getDecalSize(),
-                CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(),
-                CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
+        viewModel.createEstimate(selectedClient, CreateEstimateDataHolder.INSTANCE.getBoxName(), (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(), (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(), (int) CreateEstimateDataHolder.INSTANCE.getHeightMm(), CreateEstimateDataHolder.INSTANCE.getNoOfPly(), CreateEstimateDataHolder.INSTANCE.getNoOfBox(), CreateEstimateDataHolder.INSTANCE.getCuttingLength(), CreateEstimateDataHolder.INSTANCE.getDecalSize(), CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(), CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
 
-                CreateEstimateDataHolder.INSTANCE.getTopBf(),
-                CreateEstimateDataHolder.INSTANCE.getTopGsm(),
-                CreateEstimateDataHolder.INSTANCE.getTopRate(),
+                CreateEstimateDataHolder.INSTANCE.getTopBf(), CreateEstimateDataHolder.INSTANCE.getTopGsm(), CreateEstimateDataHolder.INSTANCE.getTopRate(),
 
-                CreateEstimateDataHolder.INSTANCE.getF1Bf(),
-                CreateEstimateDataHolder.INSTANCE.getF1Gsm(),
-                CreateEstimateDataHolder.INSTANCE.getF1RateKg(),
-                CreateEstimateDataHolder.INSTANCE.getF1ff(),
+                CreateEstimateDataHolder.INSTANCE.getF1Bf(), CreateEstimateDataHolder.INSTANCE.getF1Gsm(), CreateEstimateDataHolder.INSTANCE.getF1RateKg(), CreateEstimateDataHolder.INSTANCE.getF1ff(),
 
-                CreateEstimateDataHolder.INSTANCE.getM1bf(),
-                CreateEstimateDataHolder.INSTANCE.getM1Gsm(),
-                CreateEstimateDataHolder.INSTANCE.getM1RateKg(),
+                CreateEstimateDataHolder.INSTANCE.getM1bf(), CreateEstimateDataHolder.INSTANCE.getM1Gsm(), CreateEstimateDataHolder.INSTANCE.getM1RateKg(),
 
-                CreateEstimateDataHolder.INSTANCE.getF2Bf(),
-                CreateEstimateDataHolder.INSTANCE.getF2Gsm(),
-                CreateEstimateDataHolder.INSTANCE.getF2RateKg(),
-                CreateEstimateDataHolder.INSTANCE.getF2ff(),
+                CreateEstimateDataHolder.INSTANCE.getF2Bf(), CreateEstimateDataHolder.INSTANCE.getF2Gsm(), CreateEstimateDataHolder.INSTANCE.getF2RateKg(), CreateEstimateDataHolder.INSTANCE.getF2ff(),
 
-                CreateEstimateDataHolder.INSTANCE.getM2bf(),
-                CreateEstimateDataHolder.INSTANCE.getM2Gsm(),
-                CreateEstimateDataHolder.INSTANCE.getM2RateKg(),
+                CreateEstimateDataHolder.INSTANCE.getM2bf(), CreateEstimateDataHolder.INSTANCE.getM2Gsm(), CreateEstimateDataHolder.INSTANCE.getM2RateKg(),
 
-                CreateEstimateDataHolder.INSTANCE.getF3Bf(),
-                CreateEstimateDataHolder.INSTANCE.getF3Gsm(),
-                CreateEstimateDataHolder.INSTANCE.getF3RateKg(),
-                CreateEstimateDataHolder.INSTANCE.getF3ff(),
+                CreateEstimateDataHolder.INSTANCE.getF3Bf(), CreateEstimateDataHolder.INSTANCE.getF3Gsm(), CreateEstimateDataHolder.INSTANCE.getF3RateKg(), CreateEstimateDataHolder.INSTANCE.getF3ff(),
 
-                CreateEstimateDataHolder.INSTANCE.getBottomBF(),
-                CreateEstimateDataHolder.INSTANCE.getBottomGsm(),
-                CreateEstimateDataHolder.INSTANCE.getBottomRateKg(),
+                CreateEstimateDataHolder.INSTANCE.getBottomBF(), CreateEstimateDataHolder.INSTANCE.getBottomGsm(), CreateEstimateDataHolder.INSTANCE.getBottomRateKg(),
 
-                CreateEstimateDataHolder.INSTANCE.getTotalGsm(),
-                CreateEstimateDataHolder.INSTANCE.getTotalBs(),
-                CreateEstimateDataHolder.INSTANCE.getTotalWeight(),
-                (float) CreateEstimateDataHolder.INSTANCE.getNetPaperCost(),
-                (float) CreateEstimateDataHolder.INSTANCE.getBoxMfg(),
-                (float) CreateEstimateDataHolder.INSTANCE.getBoxPrice(),
-                CreateEstimateDataHolder.INSTANCE.getBoxPriceTax(),
+                CreateEstimateDataHolder.INSTANCE.getTotalGsm(), CreateEstimateDataHolder.INSTANCE.getTotalBs(), CreateEstimateDataHolder.INSTANCE.getTotalWeight(), (float) CreateEstimateDataHolder.INSTANCE.getNetPaperCost(), (float) CreateEstimateDataHolder.INSTANCE.getBoxMfg(), (float) CreateEstimateDataHolder.INSTANCE.getBoxPrice(), CreateEstimateDataHolder.INSTANCE.getBoxPriceTax(),
 
-                CreateEstimateDataHolder.INSTANCE.getWasteInput(),
-                CreateEstimateDataHolder.INSTANCE.getConvRate(),
-                CreateEstimateDataHolder.INSTANCE.getOverHead(),
-                CreateEstimateDataHolder.INSTANCE.getTax(),
-                CreateEstimateDataHolder.INSTANCE.getProfit()
-        );
+                CreateEstimateDataHolder.INSTANCE.getWasteInput(), CreateEstimateDataHolder.INSTANCE.getConvRate(), CreateEstimateDataHolder.INSTANCE.getOverHead(), CreateEstimateDataHolder.INSTANCE.getTax(), CreateEstimateDataHolder.INSTANCE.getProfit());
     }
 
-    private void formulaForTwoPlyKg(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
+    private void formulaForTwoPlyKg(String bfInTopPaper, String gsmInTop, String rateKgInTop,
+                                    String bfInFlutePaper, String gsmInFlutePaper,
+                                    String rateKgInFlutePaper, String ffInFluteOnePaper,
+                                    String decalM, String cuttingL, String waste,
+                                    String convCostKg, String profit, String tax, String overhead, String noOfBox) {
         //TotalBS Formula
 
         //value for TopPaper
@@ -428,14 +394,95 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Total Gsm
         double totalGsm = (val1ofGsm + val2ofGsm);
         activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
-
-//        //Profit Price For Estimate Details Activity
-//        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
-//        resultOfProfitForED = String.format("%.2f", profitForED);
 //
-//        //Tax Price For Estimate Details Activity
-//        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
-//        resultOfTaxForED = String.format("%.2f", taxForED);
+        //Total Weight
+        //Value 1
+        double decal = Double.parseDouble(decalM);
+        double cutting = Double.parseDouble(cuttingL);
+        int weightInInt = 0;
+        double totalWeightThreeDigits = 0.0;
+        double valueFirstOFTotalWeightThreeDigits = 0.0;
+        double valueSecondOFTotalWeightThreeDigits = 0.0;
+        int noOFBoxUps = 0;
+        do {
+            double valueFirstOFTotalWeight = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
+            valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
+
+            //Value 2
+            double valueSecondOfTotalWeight = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+            valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOfTotalWeight));
+            //Total
+            double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits);
+            double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
+            //Waste value
+            double wasteFromTiet = Double.parseDouble(waste);
+            double wastePercentage = ((totalThreeDigits * wasteFromTiet) / 100.0);
+//            double wastePercentageThreeDigits = Double.valueOf(String.format("%.3f", wastePercentage));
+            //Total weight
+            noOFBoxUps = Integer.parseInt(noOfBox);
+            double totalWeight = (totalThreeDigits + wastePercentage) / noOFBoxUps;
+            totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
+            weightInInt = (int) (totalWeightThreeDigits * 1000);
+            String gm = weightInInt + " gm";
+            if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
+                gm = weightInInt + " Kg";
+            }
+            activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
+            cutting += 10;
+        } while (weightInInt < 1000);
+        //ConversionCostPerKG
+        double convCostTiet = Double.parseDouble(convCostKg);
+        double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
+        String resultOfConvCostString = String.format("%.3f", resultOfConvCost);
+        activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
+        //Costs
+        //NetPaperCost
+        // 1stValue
+        double rateOfTop = Double.parseDouble(rateKgInTop);
+        double valueFirstNPC = (valueFirstOFTotalWeightThreeDigits * rateOfTop);
+
+        //2ndValue
+        double rateOfFlute = Double.parseDouble(rateKgInFlutePaper);
+        double valueSecondNPC = (valueSecondOFTotalWeightThreeDigits * rateOfFlute);
+        //NPC
+        double resultOfNPC = ((valueFirstNPC + valueSecondNPC) / noOFBoxUps);
+        double resultOfNPCThreeDigits = Double.valueOf(String.format("%.3f", resultOfNPC));
+        activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
+
+        //WasteCost
+        double resultWasteCost = ((resultOfNPC * wasteFromTiet) / 100);
+        double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
+        activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
+        //GrossPaperCost
+        double grossPaperCost = (resultOfNPCThreeDigits + resultWasteCostTwoDigits);
+        double grossPaperCostTwoDigits = Double.valueOf(String.format("%.2f", grossPaperCost));
+        activityBoxSpecificationAndCostBinding.tvgrossPaperCost.setText(String.valueOf(grossPaperCostTwoDigits));
+
+        //BoxMFGCost
+//        float overheadChargesTiet=Double.parseDouble(overhead);
+        double overheadValue = overhead.isEmpty() ? 0.0 : Double.parseDouble(overhead);
+        double resultOfBoxMFG = grossPaperCost + resultOfConvCost + overheadValue;
+
+        double resultOfBoxMFGTwoDigits = Double.valueOf(String.format("%.3f", resultOfBoxMFG));
+        activityBoxSpecificationAndCostBinding.tvBoxMFGCost.setText(String.valueOf(resultOfBoxMFGTwoDigits));
+//
+//        //Box Price
+        double profitFromTiet = Double.parseDouble(profit);
+        double boxPrice = ((resultOfBoxMFGTwoDigits * profitFromTiet / 100) + resultOfBoxMFGTwoDigits);
+        activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(String.valueOf(boxPrice));
+//
+//        //Box Price with Tax
+        double taxFromTiet = Double.parseDouble(tax);
+        double boxPriceWithTax = ((boxPrice * taxFromTiet / 100) + boxPrice);
+        String resultOfboxPriceWithTax = String.format("%.2f", boxPriceWithTax);
+        activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.setText(resultOfboxPriceWithTax);
+        //Profit Price For Estimate Details Activity
+        double profitForED = resultOfBoxMFGTwoDigits * (profitFromTiet / 100);
+        resultOfProfitForED = String.format("%.2f", profitForED);
+
+        //Tax Price For Estimate Details Activity
+        double taxForED = boxPriceWithTax * (taxFromTiet / 100);
+        resultOfTaxForED = String.format("%.2f", taxForED);
     }
 
     private void formulaForSevenPly(String bfInTopPaper, String gsmInTop, String rateKgInTop, String bfInFlutePaper, String gsmInFlutePaper, String rateKgInFlutePaper, String ffInFluteOnePaper, String bfInMiddleOnePaper, String gsmInMiddleOnePaper, String rateKgInMiddleOnePaper, String bfInFluteTwoPaper, String gsmInFluteTwoPaper, String rateKgInFluteTwoPaper, String ffInFluteTwoPaper, String bfInMiddleTwoPaper, String gsmInMiddleTwoPaper, String rateKgInMiddleTwoPaper, String bfInFluteThreePaper, String gsmInFluteThreePaper, String rateKgInFluteThreePaper, String ffInFluteThreePaper, String bfInBottomPaper, String gsmInBottomPaper, String rateKgInBottomPaper, String decalM, String cuttingL, String waste, String convCostKg, String profit, String tax, String overhead, String noOfBox) {
@@ -447,7 +494,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value for FluteOnePaper
         double bfOfFlute = Double.parseDouble(bfInFlutePaper);
         double gsmOfFlute = Double.parseDouble(gsmInFlutePaper);
-        double valTwo = (double) ((bfOfFlute * gsmOfFlute * 0.5) / divide);
+        double valTwo = (bfOfFlute * gsmOfFlute * 0.5) / divide;
         //Value for Middle One paper
         double bfOfMiddle = Double.parseDouble(bfInMiddleOnePaper);
         double gsmOfMiddle = Double.parseDouble(gsmInMiddleOnePaper);
@@ -455,15 +502,15 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value for FluteTwoPaper
         double bfOfFluteTwo = Double.parseDouble(bfInFluteTwoPaper);
         double gsmOfFluteTwo = Double.parseDouble(gsmInFluteTwoPaper);
-        double valFour = (double) ((bfOfFluteTwo * gsmOfFluteTwo * 0.5) / divide);
+        double valFour = (bfOfFluteTwo * gsmOfFluteTwo * 0.5) / divide;
         //value for Middle Two Paper
         double bfOfMiddleTwo = Double.parseDouble(bfInMiddleTwoPaper);
         double gsmOfMiddleTwo = Double.parseDouble(gsmInMiddleTwoPaper);
-        double valFive = (double) ((bfOfMiddleTwo * gsmOfMiddleTwo * 1) / divide);
+        double valFive = (bfOfMiddleTwo * gsmOfMiddleTwo * 1) / divide;
         //Value for Flute Three Paper
         double bfOfFluteThree = Double.parseDouble(bfInFluteThreePaper);
         double gsmOfFluteThree = Double.parseDouble(gsmInFluteThreePaper);
-        double valSix = (double) ((bfOfFluteThree * gsmOfFluteThree * 0.5) / divide);
+        double valSix = (bfOfFluteThree * gsmOfFluteThree * 0.5) / divide;
         //Value for Bottom
         double bfOFBottomPaper = Double.parseDouble(bfInBottomPaper);
         double gsmOfBottomPaper = Double.parseDouble(gsmInBottomPaper);
@@ -527,9 +574,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueSeventhOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSeventhOFTotalWeight));
 
         //Total
-        double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits +
-                valueThirdOFTotalWeightThreeDigits + valueFourthOFTotalWeightThreeDigits + valueFifthOFTotalWeightThreeDigits +
-                valueSixthOFTotalWeightThreeDigits + valueSeventhOFTotalWeightThreeDigits);
+        double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits + valueThirdOFTotalWeightThreeDigits + valueFourthOFTotalWeightThreeDigits + valueFifthOFTotalWeightThreeDigits + valueSixthOFTotalWeightThreeDigits + valueSeventhOFTotalWeightThreeDigits);
         double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
@@ -627,7 +672,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value for FluteOnePaper
         double bfOfFlute = Double.parseDouble(bfInFlutePaper);
         double gsmOfFlute = Double.parseDouble(gsmInFlutePaper);
-        double valTwo = (double) ((bfOfFlute * gsmOfFlute * 0.5) / divide);
+        double valTwo = (bfOfFlute * gsmOfFlute * 0.5) / divide;
         //Value for Middle paper
         double bfOfMiddle = Double.parseDouble(bfInMiddleOnePaper);
         double gsmOfMiddle = Double.parseDouble(gsmInMiddleOnePaper);
@@ -635,7 +680,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value for FluteTwoPaper
         double bfOfFluteTwo = Double.parseDouble(bfInFluteTwoPaper);
         double gsmOfFluteTwo = Double.parseDouble(gsmInFluteTwoPaper);
-        double valFour = (double) ((bfOfFluteTwo * gsmOfFluteTwo * 0.5) / divide);
+        double valFour = (bfOfFluteTwo * gsmOfFluteTwo * 0.5) / divide;
         //Value for Bottom
         double bfOFBottomPaper = Double.parseDouble(bfInBottomPaper);
         double gsmOfBottomPaper = Double.parseDouble(gsmInBottomPaper);
@@ -686,8 +731,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
 
         //Total
-        double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits
-                + valueThirdOFTotalWeightThreeDigits + valueFourthOFTotalWeightThreeDigits + valueFifthOFTotalWeightThreeDigits);
+        double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits + valueThirdOFTotalWeightThreeDigits + valueFourthOFTotalWeightThreeDigits + valueFifthOFTotalWeightThreeDigits);
         double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
