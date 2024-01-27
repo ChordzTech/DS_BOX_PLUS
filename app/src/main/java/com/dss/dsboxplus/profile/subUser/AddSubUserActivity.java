@@ -46,17 +46,20 @@ public class AddSubUserActivity extends BaseActivity {
 
                 boolean check = validateInfo(username, contact);
                 if (check) {
-                    viewModel.addSubUSer(username,contact);
+                    viewModel.addSubUSer(username, contact);
 
                 }
 
             }
 
         });
-        viewModel.getAddSubUserLiveData().observe(this,addUserResponse -> {
-            Toast.makeText(this, "User added Successfully", Toast.LENGTH_SHORT).show();
-            finishAffinity();
-            startActivity(new Intent(this, SuperUserSetting.class));
+        viewModel.getAddSubUserLiveData().observe(this, addUserResponse -> {
+            if (addUserResponse != null && addUserResponse.getStatus().equalsIgnoreCase("success")) {
+                finishAffinity();
+                startActivity(new Intent(this, SuperUserSetting.class));
+                Toast.makeText(this, addUserResponse.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+            Toast.makeText(this, "User already exists or please try again later", Toast.LENGTH_SHORT).show();
         });
     }
 

@@ -1,7 +1,9 @@
 package com.dss.dsboxplus.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -25,7 +27,9 @@ import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
+import com.dss.dsboxplus.loginandverification.EnterBusinessDetailsActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -69,12 +73,22 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     }
 
     private void initObservables() {
-
+        String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
+                AppPreferences.DEVICE_INFO, deviceInfo);
+        homeViewModel.getUserDetails(
+                String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                        AppPreferences.MOBILE_NUMBER)), deviceInfo);
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
                 estimatesFragment.setEstimateList(estimateList);
 //                ConfigDataProvider.INSTANCE.setEstimateListResponse(estimateListResponse);
+            }
+        });
+        homeViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
+            if (userDetailsResponse.getStatus().equalsIgnoreCase("success")) {
+                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
             }
         });
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {

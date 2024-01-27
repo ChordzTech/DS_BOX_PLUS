@@ -10,6 +10,7 @@ import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
@@ -17,8 +18,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 
-    //    var estimateListLiveData = MutableLiveData<EstimateListResponse>()
-//        get() = field
+    var userDetailsResponse = MutableLiveData<UserDetailsResponse>()
+        get() = field
     var clientListLiveData = MutableLiveData<ClientListResponse>()
         get() = field
     var appConfigLiveData = MutableLiveData<AppConfigResponse>()
@@ -55,6 +56,43 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 //        }
 //    }
 
+
+    fun getUserDetails(
+        mobileno: String,
+        deviceinfo: String
+    ) {
+        showLoader()
+
+        viewModelScope.launch {
+            when (val response =
+                repository.getUserDetails(mobileno = mobileno, deviceinfo = deviceinfo)) {
+                is NetworkState.Success -> {
+                    userDetailsResponse.postValue(response.data!!)
+                    hideLoader()
+                }
+
+                is NetworkState.Error -> {
+                    hideLoader()
+                    if (response.response.code() == 404) {
+
+                        userDetailsResponse.postValue(
+                            UserDetailsResponse(
+                                response.response.code(), arrayListOf(),
+                                response.response.message(), ""
+                            )
+                        )
+                    } else {
+                        userDetailsResponse.postValue(
+                            UserDetailsResponse(
+                                response.response.code(), arrayListOf(),
+                                response.response.message(), ""
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
     fun getClientList() {
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)

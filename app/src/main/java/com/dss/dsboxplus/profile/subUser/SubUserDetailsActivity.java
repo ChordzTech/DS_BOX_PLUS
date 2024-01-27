@@ -25,6 +25,7 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
     String[] access = {"Full Access", "No Access", "Read Only"};
     SubUserDetailsViewModel viewModel;
     private SubUser userData;
+    private String selectedAccessType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +70,13 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             }
         });
         viewModel.getDeleteSubUserLiveData().observe(this, deleteSubUserResponse -> {
-            Toast.makeText(this, "User Deleted Successfully", Toast.LENGTH_SHORT).show();
-            finishAffinity();
-            startActivity(new Intent(this, SuperUserSetting.class));
+            if (deleteSubUserResponse.getStatus().equalsIgnoreCase("success")) {
+                Toast.makeText(this, "User Deleted Successfully", Toast.LENGTH_SHORT).show();
+                finishAffinity();
+                startActivity(new Intent(this, SuperUserSetting.class));
+            } else {
+                Toast.makeText(this, deleteSubUserResponse.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
         binding.btCloseInSubUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,14 +89,18 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             public void onClick(View v) {
                 viewModel.updateSubUser(userData.getUserid(),
                         binding.tietSubUserName.getText().toString(),
-                        binding.userAccessSpinnerInUserDetails.getSelectedItem().toString()
+                        selectedAccessType
                 );
             }
         });
         viewModel.getUpdateSubUserLiveData().observe(this, updateSubUserResponse -> {
-            Toast.makeText(this, "User Details Updated Successfully", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, SuperUserSetting.class));
+            if (updateSubUserResponse.getStatus().equalsIgnoreCase("success")) {
+                Toast.makeText(this, "User Details Updated Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(this, SuperUserSetting.class));
+            } else {
+                Toast.makeText(this, updateSubUserResponse.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -108,12 +117,17 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
         switch (selectedAccess) {
             case "Full Access":
                 // Handle Full Access
+                selectedAccessType = "2";
                 break;
             case "No Access":
                 // Handle No Access
+                selectedAccessType = "3";
+
                 break;
             case "Read Only":
                 // Handle Read Only Access
+                selectedAccessType = "1";
+
                 break;
             default:
                 break;

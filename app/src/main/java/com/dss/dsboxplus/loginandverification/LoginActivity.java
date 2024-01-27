@@ -101,38 +101,7 @@ public class LoginActivity extends BaseActivity {
                         btNext.setVisibility(View.INVISIBLE);
                         AppPreferences.INSTANCE.saveLongToSharedPreferences(LoginActivity.this,
                                 AppPreferences.MOBILE_NUMBER, Long.parseLong(etPhoneNumber.getText().toString()));
-
-                        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + etPhoneNumber.getText().toString(),
-                                60, TimeUnit.SECONDS, LoginActivity.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                                    @Override
-                                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                        pbSendingOtp.setVisibility(View.GONE);
-                                        AppPreferences.INSTANCE.saveLongToSharedPreferences(LoginActivity.this,
-                                                AppPreferences.MOBILE_NUMBER, Long.parseLong(etPhoneNumber.getText().toString()));
-                                        btNext.setVisibility(View.VISIBLE);
-                                    }
-
-                                    @Override
-                                    public void onVerificationFailed(@NonNull FirebaseException e) {
-                                        pbSendingOtp.setVisibility(View.GONE);
-                                        btNext.setVisibility(View.VISIBLE);
-                                        Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                                        fetchData();
-                                    }
-
-                                    @Override
-                                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                        super.onCodeSent(s, forceResendingToken);
-                                        pbSendingOtp.setVisibility(View.GONE);
-                                        btNext.setVisibility(View.VISIBLE);
-                                        Intent intent = new Intent(getApplicationContext(), VerifyOtpActivity.class);
-                                        intent.putExtra("mobile", etPhoneNumber.getText().toString());
-                                        intent.putExtra("backendotp", s);
-                                        startActivity(intent);
-
-                                    }
-                                }
-                        );
+                        validateNumber();
 
                     } else {
                         Toast.makeText(LoginActivity.this, "Please Enter Correct Number", Toast.LENGTH_SHORT).show();
@@ -142,6 +111,40 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void validateNumber() {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + etPhoneNumber.getText().toString(),
+                60, TimeUnit.SECONDS, LoginActivity.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        pbSendingOtp.setVisibility(View.GONE);
+                        AppPreferences.INSTANCE.saveLongToSharedPreferences(LoginActivity.this,
+                                AppPreferences.MOBILE_NUMBER, Long.parseLong(etPhoneNumber.getText().toString()));
+                        btNext.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        pbSendingOtp.setVisibility(View.GONE);
+                        btNext.setVisibility(View.VISIBLE);
+                        Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        fetchData();
+                    }
+
+                    @Override
+                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(s, forceResendingToken);
+                        pbSendingOtp.setVisibility(View.GONE);
+                        btNext.setVisibility(View.VISIBLE);
+                        Intent intent = new Intent(getApplicationContext(), VerifyOtpActivity.class);
+                        intent.putExtra("mobile", etPhoneNumber.getText().toString());
+                        intent.putExtra("backendotp", s);
+                        startActivity(intent);
+
+                    }
+                }
+        );
     }
 
     private void initObservers() {
