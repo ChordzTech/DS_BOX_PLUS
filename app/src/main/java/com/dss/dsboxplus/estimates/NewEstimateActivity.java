@@ -22,8 +22,6 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
-import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
-import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
@@ -31,14 +29,11 @@ import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityNewEstimateBinding;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
-import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActivityViewModel;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.NewEstimatesActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.ArrayList;
 
 public class NewEstimateActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     ActivityNewEstimateBinding newEstimateBinding;
@@ -89,21 +84,30 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void updateUI() {
+
+
         newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
         newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
         newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthMmField().doubleValue()));
         newEstimateBinding.tietWidth.setText(String.valueOf((int) dataItem.getWidthMmField().doubleValue()));
         newEstimateBinding.tietHeight.setText(String.valueOf((int) dataItem.getHeightMmField().doubleValue()));
-//        newEstimateBinding.tietLength.setText(dataItem.getLengthCmField());
-//        newEstimateBinding.tietWidth.setText(dataItem.getWidthCmField());
-//        newEstimateBinding.tietHeight.setText(dataItem.getHeightCmField());
-//        newEstimateBinding.tietLength.setText(dataItem.getLengthInchField());
-//        newEstimateBinding.tietWidth.setText(dataItem.getWidthInchField());
-//        newEstimateBinding.tietHeight.setText(dataItem.getHeightInchField());
+
+        switch (sizeMeasure) {
+            case "cm":
+                newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthCmField()));
+                newEstimateBinding.tietWidth.setText(String.valueOf((int) dataItem.getWidthCmField()));
+                newEstimateBinding.tietHeight.setText(String.valueOf((int) dataItem.getHeightCmField()));
+                break;
+            case "inch":
+                newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthInchField()));
+                newEstimateBinding.tietWidth.setText(String.valueOf((int) dataItem.getWidthInchField()));
+                newEstimateBinding.tietHeight.setText(String.valueOf((int) dataItem.getHeightInchField()));
+                break;
+        }
+
         newEstimateBinding.tietNumberOfBox.setText(String.valueOf((int) dataItem.getUps().doubleValue()));
         newEstimateBinding.tietCuttingLength.setText(dataItem.getCuttinglength().toString());
         newEstimateBinding.tietDecalSize.setText(dataItem.getDecalsize().toString());
-
         newEstimateBinding.tvMargin.setText(String.valueOf((int) dataItem.getCuttinglengthmargin().doubleValue()));
         newEstimateBinding.tvDecalMarginSize.setText(String.valueOf((int) dataItem.getDecalsizemargin().doubleValue()));
 
@@ -144,15 +148,13 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         //Dimensions
         spinner.setOnItemSelectedListener(this);
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dimensions);
-        adapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         //Number of Ply
         plySpinner.setOnItemSelectedListener(this);
         ArrayAdapter adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, noOfPly);
-        adapter1.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         plySpinner.setAdapter(adapter1);
         int defaultPlyPosition = 2; // Index of "3Ply" in the noOfPly array
         plySpinner.setSelection(defaultPlyPosition);
@@ -487,29 +489,33 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void setDefaultSheetSizes() {
-        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-        if (appConfigResponse.getData() != null) {
-            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-                int configId = appConfigDataItem.getConfigid();
-                String configValue = appConfigDataItem.getConfigvalue();
-                if (configId == 10) {
-                    this.configMargin = configValue;
-                    newEstimateBinding.tvMargin.setText(configValue);
-                } else if (configId == 11) {
-                    this.configDecal = configValue;
-                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
-                }
-            }
-        }
-//        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
-//
-//        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
-//            BusinessDetails businessDetails = businessDetailsResponse.getData();
-//
-//            newEstimateBinding.tvMargin.setText(String.valueOf(businessDetails.getMarginlength()));
-//            newEstimateBinding.tvDecalMarginSize.setText(String.valueOf(businessDetails.getMarginwidth()));
+//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+//        if (appConfigResponse.getData() != null) {
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                int configId = appConfigDataItem.getConfigid();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId == 10) {
+//                    this.configMargin = configValue;
+//                    newEstimateBinding.tvMargin.setText(configValue);
+//                } else if (configId == 11) {
+//                    this.configDecal = configValue;
+//                    newEstimateBinding.tvDecalMarginSize.setText(configValue);
+//                }
+//            }
 //        }
+        BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+        if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+            BusinessDetails businessDetails = businessDetailsResponse.getData();
+            // Set this.configMargin to the margin length
+            this.configMargin = String.valueOf(businessDetails.getMarginlength());
+
+            newEstimateBinding.tvMargin.setText(configMargin);
+
+            this.configDecal = String.valueOf(businessDetails.getMarginwidth());
+            newEstimateBinding.tvDecalMarginSize.setText(configDecal);
+        }
     }
 
     private double calculateNewDecalSize(int numberOfBoxes) {

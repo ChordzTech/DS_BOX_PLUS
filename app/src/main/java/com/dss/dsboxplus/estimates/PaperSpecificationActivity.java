@@ -44,6 +44,8 @@ public class PaperSpecificationActivity extends BaseActivity {
     }
 
     private void updateUI() {
+
+
         paperSpecificationBinding.bfInTopPaper.setText(String.valueOf((int) dataItem.getTopbf().doubleValue()));
         paperSpecificationBinding.gsmInTopPaper.setText(String.valueOf((int) dataItem.getTopgsm().doubleValue()));
         paperSpecificationBinding.rateKgInTopPaper.setText(dataItem.getToprate().toString());

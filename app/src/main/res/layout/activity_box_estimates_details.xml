@@ -180,7 +180,7 @@
                             android:layout_width="200dp"
                             android:layout_height="200dp"
                             android:background="@color/transparent"
-                            android:src="@drawable/roll_paper"
+                            android:src="@drawable/roll_image_final"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
@@ -188,8 +188,8 @@
                         <TextView
                             android:id="@+id/tvDecalSizeForBox"
                             android:layout_marginTop="@dimen/margin_large"
-                            android:rotation="47"
-                            android:layout_marginStart="@dimen/margin_small"
+                            android:rotation="15"
+                            android:layout_marginStart="@dimen/margin_large"
                             android:layout_gravity="center"
                             android:text="Text1"
                             style="@style/DSTextMedium"
@@ -202,9 +202,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/margin_large"
                             android:layout_marginBottom="55dp"
-                            android:layout_marginEnd="@dimen/margin_small"
-                            android:rotation="345"
+                            android:rotation="330"
                             android:text="Text2" />
 
                         <TextView
@@ -212,8 +212,9 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="50dp"
+                            android:layout_marginStart="@dimen/margin_small"
                             android:layout_marginEnd="@dimen/margin_small"
-                            android:rotation="345"
+                            android:rotation="330"
                             android:text="Text3"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
@@ -221,10 +222,10 @@
                         <TextView
                             android:id="@+id/tvCuttingLengthinch"
                             android:text="Text4"
-                            android:layout_marginTop="50dp"
-                            android:rotation="47"
+                            android:layout_marginTop="65dp"
+                            android:rotation="15"
                             android:layout_marginEnd="@dimen/margin_large"
-                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginStart="40dp"
                             android:layout_gravity="center"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
