@@ -527,13 +527,13 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
                 HashMap<String, ArrayList<Double>> weightMap = new HashMap<>();
                 //top
-                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaperKg(bfInTop, gsmInTop, decalLength, cuttingLength));
+                weightPerBoxTopList.add(boxFormula.weightPerBoxTopPaperKG(bfInTop, gsmInTop, decalLength, cuttingLength));
                 weightMap.put(topRatio, weightPerBoxTopList);
                 //flute1
                 if (weightMap.containsKey(flute1Ratio)) {
-                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1Kg(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightMap.get(flute1Ratio).add(boxFormula.weightPerBoxFlute1(gsmInF1, decalLength, cuttingLength, ffinf1));
                 } else {
-                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1Kg(gsmInF1, decalLength, cuttingLength, ffinf1));
+                    weightPerBoxFlute1List.add(boxFormula.weightPerBoxFlute1KG(gsmInF1, decalLength, cuttingLength, ffinf1));
                     weightMap.put(flute1Ratio, weightPerBoxFlute1List);
                 }
 

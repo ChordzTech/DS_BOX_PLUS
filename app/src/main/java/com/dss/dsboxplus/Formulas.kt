@@ -39,6 +39,23 @@ class BoxFormula {
         return weightPerBoxTopGm
     }
 
+    fun weightPerBoxTopPaperKG(
+        bfInTop: String, gsmInTop: String, decalLength: kotlin.Double, cuttingLength: kotlin.Double
+    ): kotlin.Double {
+        val gsmOfTop = gsmInTop.toDouble()
+        var cuttingLengthX = cuttingLength
+        do {
+            val resultForTop: kotlin.Double =
+                decalLength * cuttingLengthX * gsmOfTop * mm * mm / divid / divid / divid
+            weightPerBoxTopGm = resultForTop * 1000
+            weightPerBoxTopGm = Double.valueOf(String.format("%.3f", weightPerBoxTopGm))
+            totalWeightPerBoxTopGm = weightPerBoxTopGm * numberOfBox
+            cuttingLengthX += 50.0
+        } while (weightPerBoxTopGm < 1000);
+
+        return weightPerBoxTopGm
+    }
+
     fun weightPerBoxFlute1(
         gsmInF1: String, decalLength: kotlin.Double, cuttingLength: kotlin.Double, ffinf1: String
     ): kotlin.Double {
@@ -49,6 +66,23 @@ class BoxFormula {
         weightPerBoxFlute1Gm = resultForF1 * 1000
         weightPerBoxFlute1Gm = Double.valueOf(String.format("%.3f", weightPerBoxFlute1Gm))
         totalWeightPerBoxFlute1Gm = weightPerBoxFlute1Gm * numberOfBox
+        return weightPerBoxFlute1Gm
+    }
+
+    fun weightPerBoxFlute1KG(
+        gsmInF1: String, decalLength: kotlin.Double, cuttingLength: kotlin.Double, ffinf1: String
+    ): kotlin.Double {
+        val gsmOfF1 = gsmInF1.toDouble()
+        val fluteInf1 = ffinf1.toDouble()
+        var cuttingLengthX = cuttingLength
+        do {
+            val resultForF1: kotlin.Double =
+                decalLength * cuttingLengthX * gsmOfF1 * fluteInf1 * mm * mm / divid / divid / divid
+            weightPerBoxFlute1Gm = resultForF1 * 1000
+            weightPerBoxFlute1Gm = Double.valueOf(String.format("%.3f", weightPerBoxFlute1Gm))
+            totalWeightPerBoxFlute1Gm = weightPerBoxFlute1Gm * numberOfBox
+            cuttingLengthX += 50;
+        } while (weightPerBoxFlute1Gm < 1000)
         return weightPerBoxFlute1Gm
     }
 
@@ -108,47 +142,5 @@ class BoxFormula {
 
         totalWeightPerBoxBottomGm = weightPerBoxBottomGm * numberOfBox
         return weightPerBoxBottomGm
-    }
-
-    fun weightPerBoxTopPaperKg(
-        bfInTop: String,
-        gsmInTop: String,
-        decalLength: kotlin.Double,
-        cuttingLength: kotlin.Double
-    ): kotlin.Double {
-        val gsmOfTop = gsmInTop.toDouble()
-        var cuttingLengthX = cuttingLength;
-        do {
-            val resultForTop: kotlin.Double =
-                decalLength * cuttingLengthX * gsmOfTop * mm * mm / divid / divid / divid
-            weightPerBoxTopInKg = resultForTop * 1000
-            weightPerBoxTopInKg = Double.valueOf(String.format("%.3f", weightPerBoxTopInKg))
-            cuttingLengthX += 100;
-        } while ((weightPerBoxTopInKg % 1000).toInt() == 0)
-
-        totalWeightPerBoxTopInKg = weightPerBoxTopInKg * numberOfBox
-        return weightPerBoxTopInKg
-    }
-
-    fun weightPerBoxFlute1Kg(
-        gsmInF1: String,
-        decalLength: kotlin.Double,
-        cuttingLength: kotlin.Double,
-        ffinf1: String
-    ): kotlin.Double {
-        val gsmOfF1 = gsmInF1.toDouble()
-        val fluteInf1 = ffinf1.toDouble()
-        var cuttingLengthX = cuttingLength;
-        do {
-            val resultForF1: kotlin.Double =
-                decalLength * cuttingLengthX * gsmOfF1 * fluteInf1 * mm * mm / divid / divid / divid
-            weightPerBoxFlute1InKg = resultForF1 * 1000
-            weightPerBoxFlute1InKg = Double.valueOf(String.format("%.3f", weightPerBoxFlute1InKg))
-            cuttingLengthX += 100
-        } while ((weightPerBoxFlute1InKg % 1000).toInt() == 0)
-
-
-        totalWeightPerBoxFlute1Kg = weightPerBoxFlute1InKg * numberOfBox
-        return weightPerBoxFlute1InKg
     }
 }

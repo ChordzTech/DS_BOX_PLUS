@@ -127,11 +127,13 @@ public class ClientsViewAdapter extends RecyclerView.Adapter<ClientsViewAdapter.
                         AppPreferences.INSTANCE.isCreatingEstimate(view.getContext(), AppPreferences.IS_CREATING_ESTIMATE, false);
                         Intent intent = new Intent(view.getContext(), NewEstimateActivity.class);
                         intent.putExtra("clientId", clientsList.get(getAdapterPosition()).getClientid());
+                        intent.putExtra("selectedClient", clientsList.get(getAdapterPosition()));
                         view.getContext().startActivity(intent);
                     } else {
                         if (view.getContext() != null) {
                             Intent intent = new Intent(view.getContext(), EstimateListActivity.class);
                             intent.putExtra("clientId", clientsList.get(getAdapterPosition()).getClientid());
+                            intent.putExtra("selectedClient", clientsList.get(getAdapterPosition()));
                             view.getContext().startActivity(intent);
                         }
                     }

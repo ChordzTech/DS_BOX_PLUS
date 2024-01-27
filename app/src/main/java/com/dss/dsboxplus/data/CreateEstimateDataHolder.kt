@@ -71,6 +71,7 @@ object CreateEstimateDataHolder {
     var tax: Float = 0.0F
     var profit: Float = 0.0F
     var isEmptyBoxDim = false
+    var cuttingFor2PlyKg:Float=0.0F
     fun resetValues() {
         isEmptyBoxDim = false
         clientName = ""
@@ -141,5 +142,6 @@ object CreateEstimateDataHolder {
         overHead = 0.0F
         tax = 0.0F
         profit = 0.0F
+        cuttingFor2PlyKg=0.0F
     }
 }
