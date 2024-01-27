@@ -86,6 +86,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private void updateUI() {
 
 
+
         newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
         newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
         newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthMmField().doubleValue()));

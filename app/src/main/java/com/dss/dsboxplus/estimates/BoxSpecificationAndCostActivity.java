@@ -549,8 +549,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
         double resultOfConvCostTwoDigits = Double.valueOf(String.format("%.2f", resultOfConvCost));
-        String resultOfConvCostString = String.format("%.2f", resultOfConvCostTwoDigits);
-        activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
+//        String resultOfConvCostString = String.format("%.2f", resultOfConvCostTwoDigits);
+        activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostTwoDigits + "");
 
         //Costs
         //NetPaperCost
