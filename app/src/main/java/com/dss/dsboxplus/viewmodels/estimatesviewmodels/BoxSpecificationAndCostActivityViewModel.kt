@@ -19,7 +19,8 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         get() = field
 
 
-    fun createEstimate(
+    fun createOrUpdateEstimate(
+        isUpdate: Boolean,
         selectedClient: ClientDetails,
         boxName: String,
         lengthMm: Int,
@@ -140,20 +141,39 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.tax = tax
         createEstimateRequest.profit = profit
         createEstimateRequest.estimatedate = DateUtils.getDateInYYYYMMDDFormat()
+        if (isUpdate) {
+            viewModelScope.launch {
+                when (val response = repository.updateEstimate(createEstimateRequest)) {
+                    is NetworkState.Success -> {
+                        hideLoader()
+                        createEstimateLiveData.postValue(response.data!!)
+                    }
 
-        viewModelScope.launch {
-            when (val response = repository.addEstimate(createEstimateRequest)) {
-                is NetworkState.Success -> {
-                    hideLoader()
-                    createEstimateLiveData.postValue(response.data!!)
-                }
-
-                is NetworkState.Error -> {
-                    hideLoader()
-                    if (response.response.code() == 401) {
+                    is NetworkState.Error -> {
+                        hideLoader()
+                        if (response.response.code() == 401) {
 //                        estimateList.postValue(NetworkState.Error())
-                    } else {
+                        } else {
 //                        estimateList.postValue(NetworkState.Error)
+                        }
+                    }
+                }
+            }
+        } else {
+            viewModelScope.launch {
+                when (val response = repository.addEstimate(createEstimateRequest)) {
+                    is NetworkState.Success -> {
+                        hideLoader()
+                        createEstimateLiveData.postValue(response.data!!)
+                    }
+
+                    is NetworkState.Error -> {
+                        hideLoader()
+                        if (response.response.code() == 401) {
+//                        estimateList.postValue(NetworkState.Error())
+                        } else {
+//                        estimateList.postValue(NetworkState.Error)
+                        }
                     }
                 }
             }

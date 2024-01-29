@@ -140,6 +140,9 @@ interface RetrofitService {
     @POST("EstimateDetails/")
     suspend fun addEstimate(@Body request: AddEstimateRequest): Response<AddEstimateResponse>
 
+    @PUT("EstimateDetails/")
+    suspend fun updateEstimate(@Body request: AddEstimateRequest): Response<AddEstimateResponse>
+
     @GET("SubscriptionforBusiness/{businessid}/")
     suspend fun getSubForBusiness(
         @Path(value = "businessid") businessId: Long,

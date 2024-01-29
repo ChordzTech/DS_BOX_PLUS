@@ -35,6 +35,10 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class NewEstimateActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     ActivityNewEstimateBinding newEstimateBinding;
     Spinner spinner, plySpinner;
@@ -86,12 +90,18 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private void updateUI() {
 
 
-
         newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
         newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
         newEstimateBinding.tietLength.setText(String.valueOf((int) dataItem.getLengthMmField().doubleValue()));
         newEstimateBinding.tietWidth.setText(String.valueOf((int) dataItem.getWidthMmField().doubleValue()));
         newEstimateBinding.tietHeight.setText(String.valueOf((int) dataItem.getHeightMmField().doubleValue()));
+        List<String> asList = Arrays.asList(noOfPly);
+        for (int i = 0; i < asList.size(); i++) {
+            String s = asList.get(i);
+            if (s.contains(dataItem.getPly().toString())) {
+                newEstimateBinding.spinnerNoOfPly.setSelection(i);
+            }
+        }
 
         switch (sizeMeasure) {
             case "cm":
