@@ -105,10 +105,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvProfitPercentage.setText(String.valueOf("Profit  " + profit + " %"));
                     boxEstimatesDetailsBinding.tvTaxPercentage.setText(String.valueOf("Tax  " + tax + " %"));
 
-                    double priceWithTax = (double) dataItem.getBoxpricewithtax();
+                    double boxPrice = (double) dataItem.getBoxprice();
                     double resultForProfit = boxMfg * (profit / 100);
                     String resultForProfitThreeDigits = String.format("%.2f", resultForProfit);
-                    double resultForTax = priceWithTax * (tax / 100);
+                    double resultForTax = boxPrice * (tax / 100);
                     String resultForTaxThreeDigits = String.format("%.2f", resultForTax);
 
                     //Dimension For ImageOne
