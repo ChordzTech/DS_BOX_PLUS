@@ -59,10 +59,11 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         totalGsm: Double,
         totalBs: Double,
         totalWeight: Double,
+        netPaperCost:Double,
 //        wasteCost: Double,
 //        grossPaperCost: Double,
 //        convCost: Double,
-        netPaperCost: Float,
+        totalPaperCost: Float,
         boxMfg: Float,
         boxPrice: Float,
         boxPriceTax: Double,
@@ -130,7 +131,8 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.totalgsm = totalGsm.toInt()
         createEstimateRequest.totalbs = totalBs.toInt()
         createEstimateRequest.totalweight = totalWeight.toInt()
-        createEstimateRequest.netpapercost = netPaperCost
+        createEstimateRequest.netpapercost = netPaperCost.toFloat()
+        createEstimateRequest.totalpapercost=totalPaperCost
         createEstimateRequest.boxcost = boxMfg
         createEstimateRequest.boxprice = boxPrice
         createEstimateRequest.boxpricewithtax = boxPriceTax.toFloat()

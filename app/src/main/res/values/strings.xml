@@ -47,8 +47,8 @@
     <string name="flute_factor">Flute Factor (FF)</string>
     <string name="waste">Waste %</string>
     <string name="conversion_cost">Conversion Cost/KG</string>
-    <string name="profit">Profit %</string>
-    <string name="tax">Tax %</string>
+    <string name="profit">Profit % </string>
+    <string name="tax">Tax % </string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="quotation_new_line_text">For New line use | Vertical slash character also called as pipe,
          piping symbol to view New Line in Quotation PDF</string>

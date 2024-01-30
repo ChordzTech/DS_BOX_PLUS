@@ -90,21 +90,28 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 // Retrieve the DataItem object from the bundle
                 dataItem = bundle.getParcelable("ESTIMATES");
                 if (dataItem != null) {
-                    double profit = intent.getDoubleExtra("Profit", 0.0);
-                    double tax = intent.getDoubleExtra("Tax", 0.0);
 
                     //ConvCost
-                    double totalwt=dataItem.getTotalweight();
-                    double convrate=dataItem.getConversionrate();
-                    double result=((totalwt/1000)*convrate);
-                    boxEstimatesDetailsBinding.tvConvCost.setText(String.valueOf(result));
-//                    //Profit
-//                    boxEstimatesDetailsBinding.tvProfitPercent.setText("Profit % "+profit);
-//
-//                    //Tax
-//                    boxEstimatesDetailsBinding.tvTaxPercent.setText("Tax % "+tax);
-                    //Dimension For ImageOne
+                    double totalwt = dataItem.getTotalweight();
+                    double convrate = dataItem.getConversionrate();
+                    double result = ((totalwt / 1000) * convrate);
+                    String resultThreeDigits = String.format("%.2f", result);
+                    boxEstimatesDetailsBinding.tvConvCost.setText((resultThreeDigits));
+                    //Profit & Tax
+                    double boxMfg = (double) dataItem.getBoxcost();
+                    double profit = dataItem.getProfit();
+                    double tax = dataItem.getTax();
 
+                    boxEstimatesDetailsBinding.tvProfitPercentage.setText(String.valueOf("Profit  " + profit + " %"));
+                    boxEstimatesDetailsBinding.tvTaxPercentage.setText(String.valueOf("Tax  " + tax + " %"));
+
+                    double priceWithTax = (double) dataItem.getBoxpricewithtax();
+                    double resultForProfit = boxMfg * (profit / 100);
+                    String resultForProfitThreeDigits = String.format("%.2f", resultForProfit);
+                    double resultForTax = priceWithTax * (tax / 100);
+                    String resultForTaxThreeDigits = String.format("%.2f", resultForTax);
+
+                    //Dimension For ImageOne
                     boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField() + "mm"));
                     boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthMmField() + "mm"));
                     boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightMmField() + "mm"));
@@ -159,12 +166,12 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvWaste.setText(String.valueOf(dataItem.getWaste()));
                     boxEstimatesDetailsBinding.tvConvKg.setText(String.valueOf(dataItem.getConversionrate()));
 //                    boxEstimatesDetailsBinding.tvConvCost.setText(String.valueOf(dataItem.getConversionrate()));
-                    boxEstimatesDetailsBinding.tvPaperCost.setText(String.valueOf(dataItem.getTotalpapercost()));
+                    boxEstimatesDetailsBinding.tvPaperCost.setText(dataItem.getTotalpapercost().toString());
                     boxEstimatesDetailsBinding.tvOverhead.setText(String.valueOf(dataItem.getOverheadcharges()));
                     boxEstimatesDetailsBinding.tvBoxMfg.setText(String.valueOf(dataItem.getBoxcost()));
-                    boxEstimatesDetailsBinding.tvProfit.setText(String.valueOf(dataItem.getProfit()));
+                    boxEstimatesDetailsBinding.tvProfit.setText(String.valueOf(resultForProfitThreeDigits));
                     boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.setText(String.valueOf(dataItem.getBoxprice()));
-                    boxEstimatesDetailsBinding.tvTax.setText(String.valueOf(dataItem.getTax()));
+                    boxEstimatesDetailsBinding.tvTax.setText(String.valueOf(resultForTaxThreeDigits));
                     boxEstimatesDetailsBinding.tvPriceWithtax.setText(String.valueOf(dataItem.getBoxpricewithtax()));
 
                     boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + "Ply");

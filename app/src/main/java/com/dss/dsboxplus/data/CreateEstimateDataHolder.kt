@@ -60,11 +60,11 @@ object CreateEstimateDataHolder {
     var totalWeight: Double = 0.0
     var netPaperCost: Double = 0.0
     var wasteCost: Double = 0.0
-    var grossPaperCost: Double = 0.0
+    var totalPaperCost: Float = 0.0F
     var convCost: Double = 0.0
     var boxMfg: Double = 0.0
     var boxPrice: Double = 0.0
-    var boxPriceTax: Double = 0.0
+    var boxPriceTax: Float = 0.0F
     var wasteInput: Float = 0.0F
     var convRate: Float = 0.0F
     var overHead: Float = 0.0F
@@ -132,11 +132,11 @@ object CreateEstimateDataHolder {
         totalWeight = 0.0
         netPaperCost = 0.0
         wasteCost = 0.0
-        grossPaperCost = 0.0
+        totalPaperCost = 0.0F
         convCost = 0.0
         boxMfg = 0.0
         boxPrice = 0.0
-        boxPriceTax = 0.0
+        boxPriceTax = 0.0F
         wasteInput = 0.0F
         convRate = 0.0F
         overHead = 0.0F

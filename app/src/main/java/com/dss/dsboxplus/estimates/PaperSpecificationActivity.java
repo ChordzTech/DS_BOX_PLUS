@@ -12,16 +12,11 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.CreateEstimateDataHolder;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
-import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
-import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
-import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
-
-import java.util.ArrayList;
 
 public class PaperSpecificationActivity extends BaseActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
@@ -44,34 +39,64 @@ public class PaperSpecificationActivity extends BaseActivity {
     }
 
     private void updateUI() {
-
+        CreateEstimateDataHolder.INSTANCE.setTopBf((int) Double.parseDouble(dataItem.getTopbf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTopGsm((int) Double.parseDouble(dataItem.getTopgsm().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTopRate((float) Float.parseFloat(dataItem.getToprate().toString()));
 
         paperSpecificationBinding.bfInTopPaper.setText(String.valueOf((int) dataItem.getTopbf().doubleValue()));
         paperSpecificationBinding.gsmInTopPaper.setText(String.valueOf((int) dataItem.getTopgsm().doubleValue()));
         paperSpecificationBinding.rateKgInTopPaper.setText(dataItem.getToprate().toString());
+
+        CreateEstimateDataHolder.INSTANCE.setF1Bf((int) Double.parseDouble(dataItem.getF1bf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF1Gsm((int) Double.parseDouble(dataItem.getF1gsm().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF1RateKg(Float.parseFloat(dataItem.getF1rate().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF1ff((Float.parseFloat(dataItem.getF1ff().toString())));
 
         paperSpecificationBinding.bfInFlutePaper.setText(String.valueOf((int) dataItem.getF1bf().doubleValue()));
         paperSpecificationBinding.gsmInFlutePaper.setText(String.valueOf((int) dataItem.getF1gsm().doubleValue()));
         paperSpecificationBinding.rateKgInFlutePaper.setText(dataItem.getF1rate().toString());
         paperSpecificationBinding.ffInFlutePaper.setText(dataItem.getF1ff().toString());
 
+        CreateEstimateDataHolder.INSTANCE.setM1bf((int) Double.parseDouble(dataItem.getM1bf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM1Gsm((int) Double.parseDouble(dataItem.getM1bf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM1RateKg((float) Float.parseFloat(dataItem.getM1bf().toString()));
+
         paperSpecificationBinding.bfInMiddleOnePaper.setText(String.valueOf((int) dataItem.getM1bf().doubleValue()));
         paperSpecificationBinding.gsmInMiddleOnePaper.setText(String.valueOf((int) dataItem.getM1gsm().doubleValue()));
         paperSpecificationBinding.rateKgInMiddleOnePaper.setText(dataItem.getM1rate().toString());
+
+        CreateEstimateDataHolder.INSTANCE.setF2Bf((int) Double.parseDouble(dataItem.getF2bf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2Gsm((int) Double.parseDouble(dataItem.getF2gsm().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2RateKg((float) Float.parseFloat(dataItem.getF2rate().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2ff((float) Float.parseFloat(dataItem.getF2ff().toString()));
 
         paperSpecificationBinding.bfInFluteTwoPaper.setText(String.valueOf((int) dataItem.getF2bf().doubleValue()));
         paperSpecificationBinding.gsmInFluteTwoPaper.setText(String.valueOf((int) dataItem.getF2gsm().doubleValue()));
         paperSpecificationBinding.rateKgInFluteTwoPaper.setText(dataItem.getF2rate().toString());
         paperSpecificationBinding.ffInFluteTwoPaper.setText(dataItem.getF2ff().toString());
 
+        CreateEstimateDataHolder.INSTANCE.setM2bf((int) Double.parseDouble(dataItem.getM2bf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM2Gsm((int) Double.parseDouble(dataItem.getM2gsm().toString()));
+        CreateEstimateDataHolder.INSTANCE.setM2RateKg((float) Float.parseFloat(dataItem.getM2rate().toString()));
+
         paperSpecificationBinding.bfInMiddleTwoPaper.setText(String.valueOf((int) dataItem.getM2bf().doubleValue()));
         paperSpecificationBinding.gsmInMiddleTwoPaper.setText(String.valueOf((int) dataItem.getM2gsm().doubleValue()));
         paperSpecificationBinding.rateKgInMiddleTwoPaper.setText(dataItem.getM2rate().toString());
+
+
+        CreateEstimateDataHolder.INSTANCE.setF3Bf((int) Double.parseDouble(dataItem.getF3bf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF2Gsm((int) Double.parseDouble(dataItem.getF3gsm().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF3RateKg((float) Float.parseFloat(dataItem.getF3rate().toString()));
+        CreateEstimateDataHolder.INSTANCE.setF3ff((float) Float.parseFloat(dataItem.getF3ff().toString()));
 
         paperSpecificationBinding.bfInFluteThreePaper.setText(String.valueOf((int) dataItem.getF3bf().doubleValue()));
         paperSpecificationBinding.gsmInFluteThreePaper.setText(String.valueOf((int) dataItem.getF3gsm().doubleValue()));
         paperSpecificationBinding.rateKgInFluteThreePaper.setText(dataItem.getF3rate().toString());
         paperSpecificationBinding.ffInFluteThreePaper.setText(dataItem.getF3ff().toString());
+
+        CreateEstimateDataHolder.INSTANCE.setBottomBF((int) Double.parseDouble(dataItem.getBottombf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBottomGsm((int) Double.parseDouble(dataItem.getBottombf().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBottomRateKg((float) Float.parseFloat(dataItem.getBottombf().toString()));
 
         paperSpecificationBinding.bfInBottomPaper.setText(String.valueOf((int) dataItem.getBottombf().doubleValue()));
         paperSpecificationBinding.gsmInBottomPaper.setText(String.valueOf((int) dataItem.getBottomgsm().doubleValue()));
@@ -281,6 +306,7 @@ public class PaperSpecificationActivity extends BaseActivity {
                         , rateKgInMiddleTwoPaper, rateKgInBottomPaper, ffInFluteOnePaper, ffInFluteTwoPaper, ffInFluteThreePaper, rateKgInFluteThreePaper);
                 if (check) {
                     storeValuesToEstimateDataHolder();
+//                    updateUI();
                     Intent intent = new Intent(getApplicationContext(), BoxSpecificationAndCostActivity.class);
                     intent.putExtra("bfInTopPaper", bfInTopPaper);
                     intent.putExtra("bfInFlutePaper", bfInFlutePaper);
