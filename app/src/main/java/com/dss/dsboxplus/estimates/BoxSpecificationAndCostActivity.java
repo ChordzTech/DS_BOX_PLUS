@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dss.dsboxplus.BoxFormula;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.CreateEstimateDataHolder;
@@ -47,7 +46,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
     private Double cutting = 0.0;
     private boolean isUpdate = false;
-
+    private int weightInInt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +95,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             bundle.putParcelable("ESTIMATES", dataItem);
             intent.putExtra("ESTIMATES_BUNDLE", bundle);
             intent.putExtra("CuttingLength", cutting);
+            intent.putExtra("Profit", profit);
+            intent.putExtra("Tax", tax);
             startActivity(intent);
         });
     }
@@ -274,7 +275,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     private void storeValuesInEstimateDataHolder() {
         CreateEstimateDataHolder.INSTANCE.setTotalGsm(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setTotalBs(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().toString()));
-//        CreateEstimateDataHolder.INSTANCE.setTotalWeight(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalWeight.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTotalWeight(Double.parseDouble(String.valueOf(weightInInt)));
         CreateEstimateDataHolder.INSTANCE.setNetPaperCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setGrossPaperCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setConvCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().toString()));
@@ -408,7 +409,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value 1
         double decal = Double.parseDouble(decalM);
         cutting = Double.parseDouble(cuttingL);
-        int weightInInt = 0;
+
         double totalWeightThreeDigits = 0.0;
         double valueFirstOFTotalWeightThreeDigits = 0.0;
         double valueSecondOFTotalWeightThreeDigits = 0.0;
@@ -594,7 +595,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+         weightInInt = (int) (totalWeightThreeDigits * 1000);
         String gm = weightInInt + " gm";
         if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
             gm = weightInInt + " Kg";
@@ -751,7 +752,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+         weightInInt = (int) (totalWeightThreeDigits * 1000);
         String gm = weightInInt + " gm";
         if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
             gm = weightInInt + " Kg";
@@ -876,7 +877,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+         weightInInt = (int) (totalWeightThreeDigits * 1000);
         String gm = weightInInt + " gm";
         if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
             gm = weightInInt + " Kg";
@@ -997,7 +998,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalThreeDigits + wastePercentageThreeDigits) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+         weightInInt = (int) (totalWeightThreeDigits * 1000);
         String gm = weightInInt + " gm";
         if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
             gm = weightInInt + " Kg";
@@ -1098,7 +1099,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         int noOFBoxUps = Integer.parseInt(noOfBox);
         double totalWeight = (totalWeightInTopPaperThreeDigits + wastePercentage) / noOFBoxUps;
         double totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        int weightInInt = (int) (totalWeightThreeDigits * 1000);
+         weightInInt = (int) (totalWeightThreeDigits * 1000);
         String gm = weightInInt + " gm";
         if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
             gm = weightInInt + " Kg";

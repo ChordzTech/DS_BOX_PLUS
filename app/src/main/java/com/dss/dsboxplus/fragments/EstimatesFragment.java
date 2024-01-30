@@ -3,6 +3,7 @@ package com.dss.dsboxplus.fragments;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -122,7 +126,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
             @Override
             public void onClick(View view) {
                 onFloatingActionClickLiveData.postValue(true);
-                AppPreferences.INSTANCE.isCreatingEstimate(getActivity(),AppPreferences.IS_CREATING_ESTIMATE, true);
+                AppPreferences.INSTANCE.isCreatingEstimate(getActivity(), AppPreferences.IS_CREATING_ESTIMATE, true);
 //                if(true){
 //                    iHomeActivityCallBack.loadClientFragmentOnEmptyEstimates();
 //                    Toast.makeText(getContext(), "Select Client", Toast.LENGTH_SHORT).show();
@@ -131,12 +135,16 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
 
         });
+
+
 //        createAddNewEstiPopUp();
 //        createSubPopUp();
         initView(view);
 //        prepareData();
 
 //        loadData();
+
+
     }
 
 
@@ -218,7 +226,51 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 //                }
 //            }
 //        });
+
+//        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+//        if (appConfigResponse.getData() != null) {
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                int configId = appConfigDataItem.getConfigid();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId==27){
+//                    int estimateLimit = Integer.parseInt(configValue);
+//                    if (estimateList.size() > estimateLimit) {
+//                        // Hide the button
+//                        fabEstimates.setVisibility(View.GONE);
+//                    } else {
+//                        // Show the button
+//                        fabEstimates.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            }
+//        }
+
+//        ConfigDataProvider configDataProvider = ConfigDataProvider.INSTANCE;
+//        AppConfigResponse appConfigResponse = configDataProvider.getAppConfigResponse();
+//        if (appConfigResponse != null) {
+//            // ... Your existing code ...
+//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+//                int configId = appConfigDataItem.getConfigid();
+//                String configValue = appConfigDataItem.getConfigvalue();
+//                if (configId == 27) {
+//                    int estimateLimit = Integer.parseInt(configValue);
+//                    if (estimateList.size() > estimateLimit) {
+////                        // Hide the button
+//                        fabEstimates.setVisibility(View.GONE);
+//                    } else {
+////                        // Show the button
+//                        fabEstimates.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            }
+//
+//        } else {
+//            Log.e("EstimatesFragment", "AppConfigResponse is null");
+//        }
     }
+
 
     private void loadData() {
         if (!estimateList.isEmpty()) {

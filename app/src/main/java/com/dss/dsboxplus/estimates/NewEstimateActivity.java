@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -88,7 +89,17 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void updateUI() {
-
+//        CreateEstimateDataHolder.INSTANCE.setClientName(selectedClient.getClientname());
+//        CreateEstimateDataHolder.INSTANCE.setBoxName(dataItem.getBoxname());
+//        CreateEstimateDataHolder.INSTANCE.setLengthMm((int)dataItem.getLengthMmField().doubleValue());
+//        CreateEstimateDataHolder.INSTANCE.setWidthMm((int)dataItem.getWidthMmField().doubleValue());
+//        CreateEstimateDataHolder.INSTANCE.setHeightMm((int)dataItem.getHeightMmField().doubleValue());
+//        CreateEstimateDataHolder.INSTANCE.setBoxDimension(newEstimateBinding.spinner.getSelectedItem().toString());
+//
+//
+//        CreateEstimateDataHolder.INSTANCE.setNoOfBox((int)dataItem.getUps().doubleValue());
+//        CreateEstimateDataHolder.INSTANCE.setCuttingLength((Double) dataItem.getCuttinglength());
+//        CreateEstimateDataHolder.INSTANCE.setDecalSize((Double) dataItem.getDecalsize());
 
         newEstimateBinding.tvClientNameInEstimate.setText(selectedClient.getClientname());
         newEstimateBinding.tietEnterBoxName.setText(dataItem.getBoxname());
@@ -183,12 +194,15 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 String enterWidth = newEstimateBinding.tietWidth.getText().toString();
                 String enterHeight = newEstimateBinding.tietHeight.getText().toString();
                 String clientName = newEstimateBinding.tvClientNameInEstimate.getText().toString();
+
                 boolean check = validateInfo(enterBoxName, enterLength, enterWidth, enterHeight);
                 if (check) {
                     storeValuesToEstimateDataHolder();
                     String noOfPly = newEstimateBinding.spinnerNoOfPly.getSelectedItem().toString();
                     String updatedCuttingLength = newEstimateBinding.tietCuttingLength.getText().toString();
                     String updatedDecalSize = newEstimateBinding.tietDecalSize.getText().toString();
+
+
                     Intent intent = new Intent(NewEstimateActivity.this, PaperSpecificationActivity.class);
                     intent.putExtra("cuttingLength", updatedCuttingLength);
                     intent.putExtra("decalSize", updatedDecalSize);

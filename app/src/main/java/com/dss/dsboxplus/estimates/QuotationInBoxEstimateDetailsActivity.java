@@ -55,6 +55,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         activityQuotationInBoxEstimateDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_quotation_in_box_estimate_details);
         initView();
 
+
     }
 
     private void initView() {
@@ -250,7 +251,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         if (isTaxEnable) {
 
             rate = "Rs " + rateA + "\n" +
-                    "Tax@ 18.0% - " + tax + " Rs\n" +
+                    "Tax - " + tax + " Rs\n" +
                     "Total: " + rateA + tax + " Rs";
 
         } else {
@@ -258,7 +259,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
 
         }
         table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
-        table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
+//        table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
 
         Drawable d3 = getDrawable(R.drawable.thanks);
         Bitmap bitmap3 = ((BitmapDrawable) d3).getBitmap();
@@ -282,7 +283,20 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(new Paragraph("for " + businessDetailsResponse.getData().getBusinessname()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("Terms & Conditions:"));
-        document.add(new Paragraph(businessDetailsResponse.getData().getEstimatenote()));
+
+        //Get the estimation note from business details
+        String estimateNote = businessDetailsResponse.getData().getEstimatenote();
+
+        // Replace any occurrence of '-' followed by a number with a newline character
+        estimateNote = estimateNote.replaceAll("-", "\n");
+//        // Set the text in the EditText
+//        String[] lines = estimateNote.split("\n");
+
+
+//        for (String line : lines) {
+//            document.add(new Paragraph(line));
+//        }
+        document.add(new Paragraph(estimateNote));
         document.add(new Paragraph("\n\n"));
         document.add(new Paragraph("Auto generated copy,no signature required").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
         document.add(image3);

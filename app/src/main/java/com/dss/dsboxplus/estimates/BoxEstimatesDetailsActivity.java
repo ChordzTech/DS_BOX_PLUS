@@ -90,6 +90,19 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 // Retrieve the DataItem object from the bundle
                 dataItem = bundle.getParcelable("ESTIMATES");
                 if (dataItem != null) {
+                    double profit = intent.getDoubleExtra("Profit", 0.0);
+                    double tax = intent.getDoubleExtra("Tax", 0.0);
+
+                    //ConvCost
+                    double totalwt=dataItem.getTotalweight();
+                    double convrate=dataItem.getConversionrate();
+                    double result=((totalwt/1000)*convrate);
+                    boxEstimatesDetailsBinding.tvConvCost.setText(String.valueOf(result));
+//                    //Profit
+//                    boxEstimatesDetailsBinding.tvProfitPercent.setText("Profit % "+profit);
+//
+//                    //Tax
+//                    boxEstimatesDetailsBinding.tvTaxPercent.setText("Tax % "+tax);
                     //Dimension For ImageOne
 
                     boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField() + "mm"));
@@ -100,7 +113,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     //Dimension For ImageTwo
 
                     boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize() + "inch"));
-                    boxEstimatesDetailsBinding.tvCuttingForBox.setText(String.valueOf(dataItem.getCuttinglength() + "inch"));
+                    boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(dataItem.getCuttinglength() + "inch"));
                     double decalSizeInInches = (double) dataItem.getDecalsize();
                     int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
 
@@ -145,7 +158,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvtotalGsm.setText(String.valueOf(dataItem.getTotalgsm()));
                     boxEstimatesDetailsBinding.tvWaste.setText(String.valueOf(dataItem.getWaste()));
                     boxEstimatesDetailsBinding.tvConvKg.setText(String.valueOf(dataItem.getConversionrate()));
-                    boxEstimatesDetailsBinding.tvConvCost.setText(String.valueOf(dataItem.getConversionrate()));
+//                    boxEstimatesDetailsBinding.tvConvCost.setText(String.valueOf(dataItem.getConversionrate()));
                     boxEstimatesDetailsBinding.tvPaperCost.setText(String.valueOf(dataItem.getTotalpapercost()));
                     boxEstimatesDetailsBinding.tvOverhead.setText(String.valueOf(dataItem.getOverheadcharges()));
                     boxEstimatesDetailsBinding.tvBoxMfg.setText(String.valueOf(dataItem.getBoxcost()));
