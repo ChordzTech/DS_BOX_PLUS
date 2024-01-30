@@ -184,6 +184,7 @@
     <string name="title_profile">Profile</string>
     <string name="subscription_till">Subscription till</string>
     <string name="lblnoapplicationfound">There is no app installed on device to open this PDF file.</string>
+    <string name="bt_update">Update</string>
     <string-array name="noOfPly">
         <item>1Ply</item>
         <item>2Ply</item>

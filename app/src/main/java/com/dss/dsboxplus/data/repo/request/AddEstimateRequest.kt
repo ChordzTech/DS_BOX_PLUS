@@ -179,7 +179,7 @@ data class AddEstimateRequest(
 	var overheadcharges: Int? = 0,
 
 	@field:SerializedName("estimateid")
-	var estimateid: Int? = 0,
+	var estimateid:  Long? = 0,
 
 	@field:SerializedName("comment")
 	var comment: String? = "",

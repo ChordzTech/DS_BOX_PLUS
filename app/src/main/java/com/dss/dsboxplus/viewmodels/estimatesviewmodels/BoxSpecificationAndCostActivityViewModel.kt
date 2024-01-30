@@ -8,6 +8,7 @@ import com.dss.dsboxplus.data.CreateEstimateDataHolder
 import com.dss.dsboxplus.data.repo.request.AddEstimateRequest
 import com.dss.dsboxplus.data.repo.response.AddEstimateResponse
 import com.dss.dsboxplus.data.repo.response.ClientDetails
+import com.dss.dsboxplus.data.repo.response.DataItem
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
@@ -21,6 +22,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
 
     fun createOrUpdateEstimate(
         isUpdate: Boolean,
+        dataItem: DataItem,
         selectedClient: ClientDetails,
         boxName: String,
         lengthMm: Int,
@@ -59,10 +61,10 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         totalGsm: Double,
         totalBs: Double,
         totalWeight: Double,
-        netPaperCost:Double,
 //        wasteCost: Double,
 //        grossPaperCost: Double,
 //        convCost: Double,
+        netPaperCost: Double,
         totalPaperCost: Float,
         boxMfg: Float,
         boxPrice: Float,
@@ -75,7 +77,8 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
     ) {
         showLoader()
         var createEstimateRequest = AddEstimateRequest()
-
+        if (isUpdate)
+            createEstimateRequest.estimateid = dataItem.estimateid
         createEstimateRequest.businessid = selectedClient.businessid
         createEstimateRequest.clientid = selectedClient.clientid!!
         createEstimateRequest.userid =
@@ -132,7 +135,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.totalbs = totalBs.toInt()
         createEstimateRequest.totalweight = totalWeight.toInt()
         createEstimateRequest.netpapercost = netPaperCost.toFloat()
-        createEstimateRequest.totalpapercost=totalPaperCost
+        createEstimateRequest.totalpapercost = totalPaperCost
         createEstimateRequest.boxcost = boxMfg
         createEstimateRequest.boxprice = boxPrice
         createEstimateRequest.boxpricewithtax = boxPriceTax.toFloat()

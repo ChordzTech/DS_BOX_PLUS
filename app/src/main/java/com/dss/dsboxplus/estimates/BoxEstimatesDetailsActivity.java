@@ -332,13 +332,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
             }
         });
 
-        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                finishAffinity();
-                startActivity(new Intent(BoxEstimatesDetailsActivity.this, HomeActivity.class));
-            }
-        });
+
     }
 
     private void dialog(View view) {

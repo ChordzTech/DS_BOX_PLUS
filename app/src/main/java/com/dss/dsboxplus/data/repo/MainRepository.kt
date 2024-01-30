@@ -238,7 +238,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
     suspend fun updateEstimate(request: AddEstimateRequest): NetworkState<AddEstimateResponse> {
-        val response = retrofitService.addEstimate(request)
+        val response = retrofitService.updateEstimate(request,request.estimateid!!)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {

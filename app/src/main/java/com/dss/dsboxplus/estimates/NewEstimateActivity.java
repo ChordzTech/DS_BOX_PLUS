@@ -69,6 +69,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
         dataItem = getIntent().getParcelableExtra("EDIT_ESTIMATE");
         selectedClient = getIntent().getParcelableExtra("CLIENT_DETAILS");
+        initView();
         if (dataItem != null && selectedClient != null) {
             isNewEstimate = false;
             updateUI();
@@ -80,8 +81,6 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             businessId = Long.valueOf(client.getBusinessid());
             clientId = client.getClientid();
         }
-
-        initView();
         fetchData();
 
     }
@@ -107,7 +106,9 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         List<String> asList = Arrays.asList(noOfPly);
         for (int i = 0; i < asList.size(); i++) {
             String s = asList.get(i);
-            if (s.contains(dataItem.getPly().toString())) {
+            s = s.replace("Ply", "");
+            s = s.replace("(KG)", "");
+            if (Integer.parseInt(s) == dataItem.getPly()) {
                 newEstimateBinding.spinnerNoOfPly.setSelection(i);
             }
         }

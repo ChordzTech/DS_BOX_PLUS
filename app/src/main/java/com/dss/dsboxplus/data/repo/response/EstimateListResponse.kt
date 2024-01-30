@@ -190,7 +190,7 @@ data class DataItem(
     val comment: String? = null,
 
     @field:SerializedName("ply")
-    val ply: Double? = null,
+    val ply: Int = 1,
 
     @field:SerializedName("conversionrate")
     val conversionrate: Double? = null,

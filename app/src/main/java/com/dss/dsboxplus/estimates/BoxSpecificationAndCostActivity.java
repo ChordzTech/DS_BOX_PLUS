@@ -126,8 +126,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
         String boxName = getIntent().getStringExtra("boxName");
         String boxDimen = getIntent().getStringExtra("boxDimen");
-
-
+        if (isUpdate)
+            activityBoxSpecificationAndCostBinding.btNextInBoxSpecification.setText(R.string.bt_update);
         activityBoxSpecificationAndCostBinding.tvClientNameInboxSpecification.setText(selectedClient.getClientname());
         activityBoxSpecificationAndCostBinding.tvBoxNameInBoxSpecification.setText(boxName);
         activityBoxSpecificationAndCostBinding.tvBoxDimensionInBoxSpecification.setText(boxDimen);
@@ -279,8 +279,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 storeValuesInEstimateDataHolder();
-//                updateUI();
-                callCreateEstimateAPI();
+                updateUI();
+                callCreateOrUpdateEstimateAPI();
             }
         });
     }
@@ -366,8 +366,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
     }
 
-    private void callCreateEstimateAPI() {
-        viewModel.createOrUpdateEstimate(isUpdate, selectedClient, CreateEstimateDataHolder.INSTANCE.getBoxName(), (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(), (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(), (int) CreateEstimateDataHolder.INSTANCE.getHeightMm(), CreateEstimateDataHolder.INSTANCE.getNoOfPly(), CreateEstimateDataHolder.INSTANCE.getNoOfBox(), CreateEstimateDataHolder.INSTANCE.getCuttingLength(), CreateEstimateDataHolder.INSTANCE.getDecalSize(), CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(), CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
+    private void callCreateOrUpdateEstimateAPI() {
+        viewModel.createOrUpdateEstimate(isUpdate,dataItem, selectedClient, CreateEstimateDataHolder.INSTANCE.getBoxName(), (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(), (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(), (int) CreateEstimateDataHolder.INSTANCE.getHeightMm(), CreateEstimateDataHolder.INSTANCE.getNoOfPly(), CreateEstimateDataHolder.INSTANCE.getNoOfBox(), CreateEstimateDataHolder.INSTANCE.getCuttingLength(), CreateEstimateDataHolder.INSTANCE.getDecalSize(), CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(), CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
 
                 CreateEstimateDataHolder.INSTANCE.getTopBf(), CreateEstimateDataHolder.INSTANCE.getTopGsm(), CreateEstimateDataHolder.INSTANCE.getTopRate(),
 
