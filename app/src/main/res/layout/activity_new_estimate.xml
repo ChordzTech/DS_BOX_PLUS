@@ -117,19 +117,22 @@
                         <TextView
                             android:id="@+id/tvEnterBoxOuterDimension"
                             style="@style/DSTextMediumBold"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/enter_box_outer_dimensions"
+                            app:layout_constraintEnd_toStartOf="@+id/spinner"
+                            app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <Spinner
                             android:id="@+id/spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:tag="dimensionsp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/tvEnterBoxOuterDimension"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/tvEnterBoxOuterDimension"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
@@ -588,6 +591,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btNextInNewFragment"
                     style="@style/DSTextMedium"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_medium"

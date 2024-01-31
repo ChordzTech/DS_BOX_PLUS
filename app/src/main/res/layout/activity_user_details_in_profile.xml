@@ -69,23 +69,23 @@
                 app:layout_constraintTop_toBottomOf="@id/tilUserName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextMedium"
-                    android:focusable="false"
-                    android:clickable="false"
                     android:id="@+id/tvContactNo"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.cardview.widget.CardView
-                android:focusable="false"
-                android:clickable="false"
                 android:id="@+id/cvUserAccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
+                android:clickable="false"
                 android:elevation="20dp"
+                android:focusable="false"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,11 +93,11 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:focusable="false"
-                    android:clickable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_small"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:padding="@dimen/padding_medium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tilContact">
@@ -115,8 +115,8 @@
                         android:id="@+id/userAccessSpinnerInUserDetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
                         android:clickable="false"
+                        android:focusable="false"
                         android:gravity="end"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -135,12 +135,12 @@
                 app:layout_constraintTop_toBottomOf="@id/cvUserAccess">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextMedium"
                     android:id="@+id/tvdeviceInfo"
-                    android:focusable="false"
-                    android:clickable="false"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,13 +158,16 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btUpdateInUSerDetails"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
+                    android:backgroundTint="@color/green"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCloseInUSerDetails"
+                    style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

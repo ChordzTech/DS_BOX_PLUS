@@ -753,6 +753,7 @@
                         android:id="@+id/btNextInBoxSpecification"
                         style="@style/DSTextMedium"
                         android:layout_width="wrap_content"
+                        android:backgroundTint="@color/green"
                         android:layout_height="wrap_content"
                         android:text="@string/create" />
                 </LinearLayout>

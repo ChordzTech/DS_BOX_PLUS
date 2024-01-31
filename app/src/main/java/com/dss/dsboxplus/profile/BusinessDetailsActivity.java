@@ -67,6 +67,7 @@ public class BusinessDetailsActivity extends BaseActivity {
             binding.tietBusinessContact.setText(businessDetails.getContactno());
             binding.tietBusinessAddress.setText(businessDetails.getAddress());
             binding.tietBusinessPincode.setText(businessDetails.getPincode());
+            binding.tietBusinessMail.setText(businessDetails.getEmail());
         }
 
 

@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity {
     EditText etPhoneNumber;
     Button btNext;
     ProgressBar pbSendingOtp;
-    String url = "https://dsbox.dishaswaraj.in/Terms.aspx";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, TermsAndPrivacyPolicyActivity.class);
-                intent.putExtra("termsandprivacylink", url);
+//                intent.putExtra("termsandprivacylink", url);
                 startActivity(intent);
             }
         });

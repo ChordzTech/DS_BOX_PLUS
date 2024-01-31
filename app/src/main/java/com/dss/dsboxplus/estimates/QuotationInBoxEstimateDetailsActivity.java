@@ -134,6 +134,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         float resTaxForAddition=Float.parseFloat(resultForTaxThreeDigits);
 
         float addition=rateAF+resTaxForAddition;
+        String formattedResult = String.format("%.2f", addition);
 
         Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
 
@@ -227,7 +228,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
             switch (ply != null ? ply : "") {
                 case "1Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n";
-                case "2Ply", "2.0Ply(KG)" ->
+                case "2Ply", "2Ply(KG)" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n";
                 case "3Ply" ->
@@ -259,7 +260,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
 
             rate = "Rs " + rateA + "\n" +
                     "Tax @ "+tax +"-"+ resultForTaxThreeDigits + " Rs\n" +
-                    "Total: " + addition + " Rs";
+                    "Total: " + formattedResult + " Rs";
 
         } else {
             rate = "Rs " + rateA + "\n";
@@ -268,15 +269,15 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
 //        table1.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.RIGHT));
 
-        Drawable d3 = getDrawable(R.drawable.thanks);
-        Bitmap bitmap3 = ((BitmapDrawable) d3).getBitmap();
-        ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
-        bitmap3.compress(Bitmap.CompressFormat.PNG, 100, stream3);
-        byte[] bitmapData3 = stream3.toByteArray();
-        ImageData imageData3 = ImageDataFactory.create(bitmapData3);
-        Image image3 = new Image(imageData3);
-        image3.setHeight(80);
-        image3.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+//        Drawable d3 = getDrawable(R.drawable.thanks);
+//        Bitmap bitmap3 = ((BitmapDrawable) d3).getBitmap();
+//        ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
+//        bitmap3.compress(Bitmap.CompressFormat.PNG, 100, stream3);
+//        byte[] bitmapData3 = stream3.toByteArray();
+//        ImageData imageData3 = ImageDataFactory.create(bitmapData3);
+//        Image image3 = new Image(imageData3);
+//        image3.setHeight(80);
+//        image3.setHorizontalAlignment(HorizontalAlignment.RIGHT);
         document.add(table);
 
         document.add(new Paragraph("\n"));
@@ -306,7 +307,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(new Paragraph(estimateNote));
         document.add(new Paragraph("\n\n"));
         document.add(new Paragraph("Auto generated copy,no signature required").setHorizontalAlignment(HorizontalAlignment.CENTER).setVerticalAlignment(VerticalAlignment.BOTTOM).setFontSize(10f));
-        document.add(image3);
+//        document.add(image3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
 //        viewFile(file);

@@ -1277,6 +1277,7 @@
                     style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/darkBlue"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:text="@string/quotation" />
 
@@ -1284,6 +1285,7 @@
                     android:id="@+id/btProduction"
                     style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
+                    android:backgroundTint="@color/yellow"
                     android:layout_height="wrap_content"
                     android:text="@string/production" />
             </LinearLayout>
@@ -1303,6 +1305,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btEdit"
                     style="@style/DSTextMedium"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
@@ -1311,6 +1314,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDelete"
                     style="@style/DSTextMedium"
+                    android:backgroundTint="@color/red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/delete" />

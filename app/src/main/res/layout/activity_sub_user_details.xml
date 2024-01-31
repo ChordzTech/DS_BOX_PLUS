@@ -147,6 +147,8 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btUpdateInSubUser"
+                    style="@style/DSTextMedium"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -155,6 +157,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDeleteInSubUSer"
                     android:layout_width="wrap_content"
+                    android:backgroundTint="@color/red"
+                    style="@style/DSTextMedium"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/delete" />
@@ -163,6 +167,7 @@
                     android:id="@+id/btCloseInSubUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/DSTextMedium"
                     android:text="@string/close" />
             </LinearLayout>
 

@@ -579,9 +579,9 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
                 heightMm = height * 10;
                 break;
             case "inch":
-                lengthMm = length * 2.54 * 10;
-                widthMm = width * 2.54 * 10;
-                heightMm = height * 2.54 * 10;
+                lengthMm = (double) Math.round(length * 2.54 * 10);
+                widthMm = (double) Math.round(width * 2.54 * 10);
+                heightMm = (double) Math.round(height * 2.54 * 10);
                 break;
         }
     }

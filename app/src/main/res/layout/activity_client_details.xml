@@ -114,6 +114,7 @@
                     android:id="@+id/btUpdateInClientDetails"
                     android:layout_width="wrap_content"
                     style="@style/DSTextMedium"
+                    android:backgroundTint="@color/green"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/update" />
@@ -121,6 +122,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDeleteInClientDetails"
                     style="@style/DSTextMedium"
+                    android:backgroundTint="@color/red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/delete" />

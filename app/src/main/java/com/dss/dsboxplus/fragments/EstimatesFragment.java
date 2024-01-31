@@ -245,30 +245,6 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 //                }
 //            }
 //        }
-
-//        ConfigDataProvider configDataProvider = ConfigDataProvider.INSTANCE;
-//        AppConfigResponse appConfigResponse = configDataProvider.getAppConfigResponse();
-//        if (appConfigResponse != null) {
-//            // ... Your existing code ...
-//            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-//            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-//                int configId = appConfigDataItem.getConfigid();
-//                String configValue = appConfigDataItem.getConfigvalue();
-//                if (configId == 27) {
-//                    int estimateLimit = Integer.parseInt(configValue);
-//                    if (estimateList.size() > estimateLimit) {
-////                        // Hide the button
-//                        fabEstimates.setVisibility(View.GONE);
-//                    } else {
-////                        // Show the button
-//                        fabEstimates.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//            }
-//
-//        } else {
-//            Log.e("EstimatesFragment", "AppConfigResponse is null");
-//        }
     }
 
 
