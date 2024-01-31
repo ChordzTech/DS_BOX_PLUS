@@ -279,7 +279,6 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 storeValuesInEstimateDataHolder();
-                updateUI();
                 callCreateOrUpdateEstimateAPI();
             }
         });

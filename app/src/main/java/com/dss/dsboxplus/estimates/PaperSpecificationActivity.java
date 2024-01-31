@@ -24,7 +24,7 @@ public class PaperSpecificationActivity extends BaseActivity {
     private ClientDetails selectedClient;
 
     private DataItem dataItem;
-
+    boolean isProgrammaticChange = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +198,7 @@ public class PaperSpecificationActivity extends BaseActivity {
 
         }
 
+
         paperSpecificationBinding.bfInTopPaper.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -353,6 +354,8 @@ public class PaperSpecificationActivity extends BaseActivity {
             }
         });
     }
+
+
 
     private void storeValuesToEstimateDataHolder() {
         CreateEstimateDataHolder.INSTANCE.setTopBf(Integer.parseInt(paperSpecificationBinding.bfInTopPaper.getText().toString()));

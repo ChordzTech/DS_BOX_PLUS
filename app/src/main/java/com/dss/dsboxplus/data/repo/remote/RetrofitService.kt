@@ -146,7 +146,7 @@ interface RetrofitService {
         @Path(value = "estimateid") deleteEstimate: Long
     ): Response<AddEstimateResponse>
 
-    @GET("SubscriptionforBusiness/{businessid}/")
+    @GET("SubscriptionforBusiness/{businessid}")
     suspend fun getSubForBusiness(
         @Path(value = "businessid") businessId: Long,
     ): Response<GetSubscriptionForBusiness>

@@ -150,9 +150,11 @@ public class ProfileFragment extends Fragment {
             // Assuming SubForBusiness has properties like subscriptionDays and subscriptionDate
             double remainingDaysDouble = (double) subForBusiness.getRemainingDays();
             int remainingDays = (int) remainingDaysDouble;
+
             String subscriptionDays = String.valueOf(remainingDays);
 
             String subscriptionDate = subForBusiness.getEndDate();
+            String subStatus=subForBusiness.getStatus();
             // Trim the string to remove potential whitespaces
             subscriptionDate = subscriptionDate.trim();
 
@@ -166,6 +168,7 @@ public class ProfileFragment extends Fragment {
 
             tvSubDays.setText(subscriptionMessageForDays);
             tvSubDate.setText(subscriptionMessage);
+            tvTrialActive.setText("Subscription Status: "+subStatus);
         } else {
             tvSubDays.setText("No subscription data available");
             tvSubDate.setText("No subscription data available"); // You can set a default value or an empty string
