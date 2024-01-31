@@ -21,10 +21,9 @@ import com.dss.dsboxplus.databinding.ActivityPaperSpecificationBinding;
 public class PaperSpecificationActivity extends BaseActivity {
     ActivityPaperSpecificationBinding paperSpecificationBinding;
     String noOfPly = "";
-    private ClientDetails selectedClient;
-
-    private DataItem dataItem;
     boolean isProgrammaticChange = false;
+    private ClientDetails selectedClient;
+    private DataItem dataItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,12 +212,26 @@ public class PaperSpecificationActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String enteredText = s.toString();
-                paperSpecificationBinding.bfInFlutePaper.setText(enteredText);
-                paperSpecificationBinding.bfInMiddleOnePaper.setText(enteredText);
-                paperSpecificationBinding.bfInFluteTwoPaper.setText(enteredText);
-                paperSpecificationBinding.bfInMiddleTwoPaper.setText(enteredText);
-                paperSpecificationBinding.bfInFluteThreePaper.setText(enteredText);
-                paperSpecificationBinding.bfInBottomPaper.setText(enteredText);
+                if (
+                        (!paperSpecificationBinding.bfInFlutePaper.hasFocus() && paperSpecificationBinding.bfInFlutePaper.getText().toString().isEmpty() && paperSpecificationBinding.bfInFlutePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.bfInMiddleOnePaper.hasFocus() && paperSpecificationBinding.bfInMiddleOnePaper.getText().toString().isEmpty() && paperSpecificationBinding.bfInMiddleOnePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.bfInFluteTwoPaper.hasFocus() && paperSpecificationBinding.bfInFluteTwoPaper.getText().toString().isEmpty() && paperSpecificationBinding.bfInFluteTwoPaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.bfInMiddleTwoPaper.hasFocus() && paperSpecificationBinding.bfInMiddleTwoPaper.getText().toString().isEmpty() && paperSpecificationBinding.bfInMiddleTwoPaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.bfInFluteThreePaper.hasFocus() && paperSpecificationBinding.bfInFluteThreePaper.getText().toString().isEmpty() && paperSpecificationBinding.bfInFluteThreePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.bfInBottomPaper.hasFocus() && paperSpecificationBinding.bfInBottomPaper.getText().toString().isEmpty() && paperSpecificationBinding.bfInBottomPaper.getVisibility() == View.VISIBLE)) {
+                    paperSpecificationBinding.bfInFlutePaper.setText(enteredText);
+                    paperSpecificationBinding.bfInMiddleOnePaper.setText(enteredText);
+                    paperSpecificationBinding.bfInFluteTwoPaper.setText(enteredText);
+                    paperSpecificationBinding.bfInMiddleTwoPaper.setText(enteredText);
+                    paperSpecificationBinding.bfInFluteThreePaper.setText(enteredText);
+                    paperSpecificationBinding.bfInBottomPaper.setText(enteredText);
+                }
+
             }
         });
         paperSpecificationBinding.gsmInTopPaper.addTextChangedListener(new TextWatcher() {
@@ -235,12 +248,25 @@ public class PaperSpecificationActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String enteredText = s.toString();
-                paperSpecificationBinding.gsmInFlutePaper.setText(enteredText);
-                paperSpecificationBinding.gsmInMiddleOnePaper.setText(enteredText);
-                paperSpecificationBinding.gsmInFluteTwoPaper.setText(enteredText);
-                paperSpecificationBinding.gsmInMiddleTwoPaper.setText(enteredText);
-                paperSpecificationBinding.gsmInFluteThreePaper.setText(enteredText);
-                paperSpecificationBinding.gsmInBottomPaper.setText(enteredText);
+                if (
+                        (!paperSpecificationBinding.gsmInFlutePaper.hasFocus() && paperSpecificationBinding.gsmInFlutePaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInFlutePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.gsmInMiddleOnePaper.hasFocus() && paperSpecificationBinding.gsmInMiddleOnePaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInMiddleOnePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.gsmInFluteTwoPaper.hasFocus() && paperSpecificationBinding.gsmInFluteTwoPaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInFluteTwoPaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.gsmInMiddleTwoPaper.hasFocus() && paperSpecificationBinding.gsmInMiddleTwoPaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInMiddleTwoPaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.gsmInFluteThreePaper.hasFocus() && paperSpecificationBinding.gsmInFluteThreePaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInFluteThreePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.gsmInBottomPaper.hasFocus() && paperSpecificationBinding.gsmInBottomPaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInBottomPaper.getVisibility() == View.VISIBLE)) {
+                    paperSpecificationBinding.gsmInFlutePaper.setText(enteredText);
+                    paperSpecificationBinding.gsmInMiddleOnePaper.setText(enteredText);
+                    paperSpecificationBinding.gsmInFluteTwoPaper.setText(enteredText);
+                    paperSpecificationBinding.gsmInMiddleTwoPaper.setText(enteredText);
+                    paperSpecificationBinding.gsmInFluteThreePaper.setText(enteredText);
+                    paperSpecificationBinding.gsmInBottomPaper.setText(enteredText);
+                }
             }
         });
         paperSpecificationBinding.rateKgInTopPaper.addTextChangedListener(new TextWatcher() {
@@ -257,12 +283,26 @@ public class PaperSpecificationActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String enteredText = s.toString();
-                paperSpecificationBinding.rateKgInFlutePaper.setText(enteredText);
-                paperSpecificationBinding.rateKgInMiddleOnePaper.setText(enteredText);
-                paperSpecificationBinding.rateKgInFluteTwoPaper.setText(enteredText);
-                paperSpecificationBinding.rateKgInMiddleTwoPaper.setText(enteredText);
-                paperSpecificationBinding.rateKgInFluteThreePaper.setText(enteredText);
-                paperSpecificationBinding.rateKgInBottomPaper.setText(enteredText);
+                if (
+                        (!paperSpecificationBinding.rateKgInFlutePaper.hasFocus() && paperSpecificationBinding.rateKgInFlutePaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInFlutePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.rateKgInMiddleOnePaper.hasFocus() && paperSpecificationBinding.rateKgInMiddleOnePaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInMiddleOnePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.rateKgInFluteTwoPaper.hasFocus() && paperSpecificationBinding.rateKgInFluteTwoPaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInFluteTwoPaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.rateKgInMiddleTwoPaper.hasFocus() && paperSpecificationBinding.rateKgInMiddleTwoPaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInMiddleTwoPaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.rateKgInFluteThreePaper.hasFocus() && paperSpecificationBinding.rateKgInFluteThreePaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInFluteThreePaper.getVisibility() == View.VISIBLE)
+                                &&
+                                (!paperSpecificationBinding.rateKgInBottomPaper.hasFocus() && paperSpecificationBinding.rateKgInBottomPaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInBottomPaper.getVisibility() == View.VISIBLE))
+                {
+                    paperSpecificationBinding.rateKgInFlutePaper.setText(enteredText);
+                    paperSpecificationBinding.rateKgInMiddleOnePaper.setText(enteredText);
+                    paperSpecificationBinding.rateKgInFluteTwoPaper.setText(enteredText);
+                    paperSpecificationBinding.rateKgInMiddleTwoPaper.setText(enteredText);
+                    paperSpecificationBinding.rateKgInFluteThreePaper.setText(enteredText);
+                    paperSpecificationBinding.rateKgInBottomPaper.setText(enteredText);
+                }
             }
         });
 
@@ -354,7 +394,6 @@ public class PaperSpecificationActivity extends BaseActivity {
             }
         });
     }
-
 
 
     private void storeValuesToEstimateDataHolder() {

@@ -127,11 +127,17 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String gsmInBottom = intent.getStringExtra("gsmInBottom");
 
         String rateA = intent.getStringExtra("rate");
+        float rateAF=Float.parseFloat(rateA);
         String ply = intent.getStringExtra("ply");
+        Double tax = intent.getDoubleExtra("tax", 0);
+        String resultForTaxThreeDigits=intent.getStringExtra("resultForTaxThreeDigits");
+        float resTaxForAddition=Float.parseFloat(resultForTaxThreeDigits);
+
+        float addition=rateAF+resTaxForAddition;
 
         Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
 
-        Double tax = intent.getDoubleExtra("tax", 0);
+
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
@@ -214,30 +220,31 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         table1.addCell(new Cell().add(new Paragraph("1")));
         String paperSpecification = "";
         if (isPaperSpecification) {
-            paperSpecification = ply + "Ply Box," + boxName + "\n" +
+            paperSpecification = ply + "Box," + boxName + "\n" +
+                    "Box Outer Dimensions- "+lengthValue+"X"+width+"X"+height+"\n"+
                     "Paper Specification as below\n";
 
             switch (ply != null ? ply : "") {
-                case "1.0Ply" ->
+                case "1Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n";
-                case "2.0Ply", "2.0Ply(KG)" ->
+                case "2Ply", "2.0Ply(KG)" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n";
-                case "3.0Ply" ->
+                case "3Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
-                case "5.0Ply" ->
+                case "5Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +
-                                "4.Flute Two Paper" + bfInF2 + "/" + gsmInF1 + "\n" +
+                                "4.Flute Two Paper" + bfInF2 + "/" + gsmInF2 + "\n" +
                                 "5.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
-                case "7.0Ply" ->
+                case "7Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +
-                                "4.Flute Two Paper" + bfInF2 + "/" + gsmInF1 + "\n" +
+                                "4.Flute Two Paper" + bfInF2 + "/" + gsmInF2 + "\n" +
                                 "5.Middle Two Paper" + bfInM2 + "/" + gsmInM2 + "\n" +
                                 "6.Flute Three Paper" + bfInF3 + "/" + gsmInF3 + "\n" +
                                 "7.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
@@ -251,8 +258,8 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         if (isTaxEnable) {
 
             rate = "Rs " + rateA + "\n" +
-                    "Tax - " + tax + " Rs\n" +
-                    "Total: " + rateA + tax + " Rs";
+                    "Tax @ "+tax +"-"+ resultForTaxThreeDigits + " Rs\n" +
+                    "Total: " + addition + " Rs";
 
         } else {
             rate = "Rs " + rateA + "\n";

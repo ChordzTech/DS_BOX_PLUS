@@ -31,7 +31,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     private DataItem dataItem;
     private ClientDetails clientDetails;
     private ArrayList<Client> clientsList;
-
+   String resultForProfitThreeDigits="";
+   String resultForTaxThreeDigits="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,9 +108,9 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
                     double boxPrice = (double) dataItem.getBoxprice();
                     double resultForProfit = boxMfg * (profit / 100);
-                    String resultForProfitThreeDigits = String.format("%.2f", resultForProfit);
+                    resultForProfitThreeDigits = String.format("%.2f", resultForProfit);
                     double resultForTax = boxPrice * (tax / 100);
-                    String resultForTaxThreeDigits = String.format("%.2f", resultForTax);
+                    resultForTaxThreeDigits = String.format("%.2f", resultForTax);
 
                     //Dimension For ImageOne
                     boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField() + "mm"));
@@ -248,10 +249,12 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInM2", boxEstimatesDetailsBinding.tvMiddleTwoGsm.getText().toString());
                 intent.putExtra("gsmInF3", boxEstimatesDetailsBinding.tvFluteThreeGsm.getText().toString());
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
-                intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
+                intent.putExtra("rate", boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
                 intent.putExtra("clientId", dataItem.getClientid());
                 intent.putExtra("profit", dataItem.getProfit());
+                intent.putExtra("resultForProfitThreeDigits",resultForProfitThreeDigits);
+                intent.putExtra("resultForTaxThreeDigits",resultForTaxThreeDigits);
                 intent.putExtra("tax", dataItem.getTax());
                 startActivity(intent);
             }
@@ -294,7 +297,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("gsmInM2", boxEstimatesDetailsBinding.tvMiddleTwoGsm.getText().toString());
                 intent.putExtra("gsmInF3", boxEstimatesDetailsBinding.tvFluteThreeGsm.getText().toString());
                 intent.putExtra("gsmInBottom", boxEstimatesDetailsBinding.tvBottomGsm.getText().toString());
-                intent.putExtra("rate", boxEstimatesDetailsBinding.tvPriceWithtax.getText().toString());
+                intent.putExtra("rate", boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.getText().toString());
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
                 intent.putExtra("decalLength", decalSize);
                 intent.putExtra("cuttingLength", cuttingLength);

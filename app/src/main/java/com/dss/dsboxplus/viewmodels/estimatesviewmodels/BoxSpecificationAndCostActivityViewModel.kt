@@ -95,8 +95,8 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.heightInchField = CreateEstimateDataHolder.heightInch.toInt()
         createEstimateRequest.ply = noOfPly.toInt()
         createEstimateRequest.ups = noOfBox
-        createEstimateRequest.cuttinglength = cuttingLength.toInt()
-        createEstimateRequest.decalsize = decalSize.toInt()
+        createEstimateRequest.cuttinglength = cuttingLength.toFloat()
+        createEstimateRequest.decalsize = decalSize.toFloat()
         createEstimateRequest.cuttinglengthmargin = cuttingMarginMm
         createEstimateRequest.decalsizemargin = decalMarginMm
 
@@ -131,8 +131,8 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.bottomgsm = bottomGsm
         createEstimateRequest.bottomrate = bottomRateKg
 
-        createEstimateRequest.totalgsm = totalGsm.toInt()
-        createEstimateRequest.totalbs = totalBs.toInt()
+        createEstimateRequest.totalgsm = totalGsm.toFloat()
+        createEstimateRequest.totalbs = totalBs.toFloat()
         createEstimateRequest.totalweight = totalWeight.toInt()
         createEstimateRequest.netpapercost = netPaperCost.toFloat()
         createEstimateRequest.totalpapercost = totalPaperCost

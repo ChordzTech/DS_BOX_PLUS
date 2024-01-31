@@ -130,14 +130,14 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("cuttinglength")
-	var cuttinglength: Int? = 0,
+	var cuttinglength: Float? = 0.0F,
 
 
 	@field:SerializedName("length_mm_field")
 	var lengthMmField: Int? = 0,
 
 	@field:SerializedName("totalbs")
-	var totalbs: Int? = 0,
+	var totalbs: Float? = 0.0F,
 
 
 	@field:SerializedName("m2bf")
@@ -157,7 +157,7 @@ data class AddEstimateRequest(
 	var m2gsm: Int? = 0,
 
 	@field:SerializedName("decalsize")
-	var decalsize: Int? = 0,
+	var decalsize: Float? = 0.0F,
 
 
 	@field:SerializedName("f2rate")
@@ -165,7 +165,7 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("totalgsm")
-	var totalgsm: Int? = 0,
+	var totalgsm: Float? = 0.0F,
 
 
 	@field:SerializedName("height_mm_field")
