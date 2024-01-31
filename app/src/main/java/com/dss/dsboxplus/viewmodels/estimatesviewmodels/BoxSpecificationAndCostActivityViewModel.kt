@@ -22,7 +22,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
 
     fun createOrUpdateEstimate(
         isUpdate: Boolean,
-        dataItem: DataItem,
+        dataItem: DataItem?,
         selectedClient: ClientDetails,
         boxName: String,
         lengthMm: Int,
@@ -78,7 +78,7 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         showLoader()
         var createEstimateRequest = AddEstimateRequest()
         if (isUpdate)
-            createEstimateRequest.estimateid = dataItem.estimateid
+            createEstimateRequest.estimateid = dataItem!!.estimateid
         createEstimateRequest.businessid = selectedClient.businessid
         createEstimateRequest.clientid = selectedClient.clientid!!
         createEstimateRequest.userid =
