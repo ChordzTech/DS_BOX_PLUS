@@ -84,6 +84,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:src="@drawable/dummy_box"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ivProfileInBoxSpecification" />
 
@@ -94,6 +95,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
                             android:text="@string/box_name"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@id/ivDummyBoxInBoxSpecification"
                             app:layout_constraintTop_toBottomOf="@id/tvClientNameInboxSpecification" />
 
@@ -104,6 +106,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
                             android:text="@string/box_dimensions"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvBoxNameInBoxSpecification"
                             app:layout_constraintTop_toBottomOf="@id/tvClientNameInboxSpecification" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -178,7 +181,7 @@
                                 android:layout_height="0dp"
                                 android:layout_gravity="center"
                                 android:layout_weight="0.5"
-                                android:text="0.0" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
 

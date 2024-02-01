@@ -9,7 +9,7 @@ object DateUtils {
         var date = "1990-01-01"
         try {
             val simpleDateFormat: SimpleDateFormat =
-                SimpleDateFormat("YYYY-MM-DD", Locale.getDefault())
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
             val time = Calendar.getInstance().getTime()
             date = simpleDateFormat.format(time)

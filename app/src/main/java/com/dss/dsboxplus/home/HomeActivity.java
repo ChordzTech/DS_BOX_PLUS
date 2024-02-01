@@ -103,6 +103,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (!appConfigResponse.getData().isEmpty()) {
                 appConfigList = (ArrayList<AppConfigDataItems>) appConfigResponse.getData();
                 profileFragment.setAppConfigList(appConfigList);
+                estimatesFragment.setAppConfigList(appConfigList);
                 ConfigDataProvider.INSTANCE.setAppConfigResponse(appConfigResponse);
             }
         });
@@ -159,6 +160,9 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 homeViewModel.getEstimateByBusinessIdUserId();
                 if (!estimateList.isEmpty()) {
                     estimatesFragment.setEstimateList(estimateList);
+                }
+                if (!appConfigList.isEmpty()){
+                    estimatesFragment.setAppConfigList(appConfigList);
                 }
             } else if (item.getItemId() == R.id.users) {
                 homeScreenBinding.tvPageTitle.setText(R.string.title_clients);

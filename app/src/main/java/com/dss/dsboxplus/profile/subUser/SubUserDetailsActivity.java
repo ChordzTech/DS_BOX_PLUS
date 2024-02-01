@@ -19,6 +19,8 @@ import com.dss.dsboxplus.viewmodels.profileviewmodels.SubUserDetailsViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
+import java.util.Objects;
+
 public class SubUserDetailsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     ActivitySubUserDetailsBinding binding;
@@ -26,6 +28,7 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
     SubUserDetailsViewModel viewModel;
     private SubUser userData;
     private String selectedAccessType = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +63,14 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             binding.tietSubUserName.setText(userData.getUsername());
             binding.tietSubUserContact.setText(userData.getMobileno());
             binding.tietSubUserDeviceInfo.setText(userData.getDeviceinfo());
+            if (Objects.equals(userData.getUserrole(), "Admin")) {
+                binding.btDeleteInSubUSer.setVisibility(View.GONE);
+            }else {
+                binding.btDeleteInSubUSer.setVisibility(View.VISIBLE);
 
+            }
         }
+
 
         binding.btDeleteInSubUSer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +112,7 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             }
         });
     }
+
 
     private void initViewModel() {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();

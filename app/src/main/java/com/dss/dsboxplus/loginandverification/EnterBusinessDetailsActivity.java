@@ -97,10 +97,10 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
             businessDetailsBinding.tietBusinessName.requestFocus();
             businessDetailsBinding.tietBusinessName.setError("Please Enter Business Name");
             return false;
-        } else if (businessContact.length() <= 9) {
-            businessDetailsBinding.tietBusinessContact.requestFocus();
-            businessDetailsBinding.tietBusinessContact.setError("Please Enter Business Contact");
-            return false;
+//        } else if (businessContact.length() <= 9) {
+//            businessDetailsBinding.tietBusinessContact.requestFocus();
+//            businessDetailsBinding.tietBusinessContact.setError("Please Enter Business Contact");
+//            return false;
         } else if (businessAddress.length() == 0) {
             businessDetailsBinding.tietBusinessAddress.requestFocus();
             businessDetailsBinding.tietBusinessAddress.setError("Please Enter Business Address");

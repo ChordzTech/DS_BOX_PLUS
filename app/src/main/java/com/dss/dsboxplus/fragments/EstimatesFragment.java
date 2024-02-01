@@ -3,7 +3,6 @@ package com.dss.dsboxplus.fragments;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +58,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private EstimatesViewAdapter.OnEstimatesSelectedI onEstimatesSelectedListner;
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private BottomNavigationView bottomNavigationView;
+    private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private HomeActivity homeActivity;
     private MutableLiveData<Boolean> onFloatingActionClickLiveData = new MutableLiveData<Boolean>();
 
@@ -93,6 +93,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         btUpgradeSub = view.findViewById(R.id.btUpgradeSub);
         btContinue = view.findViewById(R.id.btContinue);
         bottomNavigationView = view.findViewById(R.id.bottomNavigation);
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -138,13 +139,50 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
 
 //        createAddNewEstiPopUp();
-//        createSubPopUp();
+        createSubPopUp();
         initView(view);
 //        prepareData();
-
 //        loadData();
+//        checkSubscriptionEndingNotification();
+//        checkPremiumSubEndingNoti();
 
+    }
 
+    private void checkPremiumSubEndingNoti() {
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 30) { // Assuming configid 30 is for Premium subscription ending notification
+                    int daysBeforeNotification = Integer.parseInt(configValue);
+                    if (daysBeforeNotification >= 0) {
+                        createSubPopUp();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void checkSubscriptionEndingNotification() {
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                // Access individual properties of AppConfigDataItems
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 31) { // Assuming configid 31 is for subscription ending notification
+                    int daysBeforeNotification = Integer.parseInt(configValue);
+                    if (daysBeforeNotification >= 0) {
+                        createSubPopUp();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
 
@@ -215,6 +253,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         if (!estimateList.isEmpty()) {
             loadData();
         }
+
 //        rvEstimatesRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //            @Override
 //            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -347,5 +386,9 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
     public void setOnFloatingActionClickLiveData(MutableLiveData<Boolean> onFloatingActionClickLiveData) {
         this.onFloatingActionClickLiveData = onFloatingActionClickLiveData;
+    }
+
+    public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {
+        this.appConfigList = appConfigList;
     }
 }

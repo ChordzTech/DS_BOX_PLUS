@@ -26,6 +26,7 @@ object ConfigDataProvider{
     var businessDetailsResponse: BusinessDetailsResponse?=null
 
     //Profile Pic
-     var profilePictureBitmap: Bitmap? = null
+     var profilePicture: Bitmap? = null
+
 
 }

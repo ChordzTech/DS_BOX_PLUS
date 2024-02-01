@@ -56,6 +56,7 @@ public class SubUserViewAdapter extends RecyclerView.Adapter<SubUserViewAdapter.
         if (position == getItemCount() - 1) {
             holder.cvDummyViewInSubUser.setVisibility(View.VISIBLE);
         }
+
     }
 
     private int getRandomColor() {

@@ -3,15 +3,15 @@ package com.dss.dsboxplus.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
@@ -22,6 +22,7 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
@@ -39,9 +40,12 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -124,6 +128,16 @@ public class ProfileFragment extends Fragment {
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
 
+
+        //Profile Pic
+        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
+        if (savedProfilePicture != null) {
+            ivProfile.setImageBitmap(savedProfilePicture);
+        }
+
+
+
+
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
@@ -134,7 +148,7 @@ public class ProfileFragment extends Fragment {
                 cvsuperUserSettings.setVisibility(View.VISIBLE);
                 // Enable the toggle button when userAccess is 1
                 swMultiUser.setChecked(true);
-            } else  {
+            } else {
                 cvsuperUserSettings.setVisibility(View.GONE);
                 // Disable the toggle button when userAccess is not 1
                 swMultiUser.setChecked(false);
@@ -154,7 +168,7 @@ public class ProfileFragment extends Fragment {
             String subscriptionDays = String.valueOf(remainingDays);
 
             String subscriptionDate = subForBusiness.getEndDate();
-            String subStatus=subForBusiness.getStatus();
+            String subStatus = subForBusiness.getStatus();
             // Trim the string to remove potential whitespaces
             subscriptionDate = subscriptionDate.trim();
 
@@ -168,10 +182,43 @@ public class ProfileFragment extends Fragment {
 
             tvSubDays.setText(subscriptionMessageForDays);
             tvSubDate.setText(subscriptionMessage);
-            tvTrialActive.setText("Subscription Status: "+subStatus);
+            tvTrialActive.setText("Subscription Status: " + subStatus);
         } else {
             tvSubDays.setText("No subscription data available");
             tvSubDate.setText("No subscription data available"); // You can set a default value or an empty string
+        }
+
+        //Subscription Status For New Business
+        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+        if (appConfigResponse.getData() != null) {
+            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                int configId = appConfigDataItem.getConfigid();
+                String configValue = appConfigDataItem.getConfigvalue();
+                if (configId == 26) {
+                    int trialDays = Integer.parseInt(configValue);
+
+                    // Get today's date
+                    LocalDate currentDate = LocalDate.now();
+
+                    // Calculate trial end date
+                    LocalDate trialEndDate = currentDate.plusDays(trialDays);
+
+                    // Print trial end date
+                    String suDate = "Subscription Till " + trialEndDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                    // Calculate remaining days
+                    int remainingDays = trialDays; // Subtract 1 to exclude the current day
+
+                    // Print remaining days
+                    String remainingDaysForSub = remainingDays + " Days Remaining for Renewal.";
+
+
+                    tvSubDays.setText(remainingDaysForSub);
+                    tvSubDate.setText(suDate);
+
+                }
+            }
         }
 
 
@@ -286,9 +333,30 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Uri uri = data.getData();
-        ivProfile.setImageURI(uri);
+//        Uri uri = data.getData();
+//        ivProfile.setImageURI(uri);
 
+        if (requestCode == ImagePicker.REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                Uri uri = data.getData();
+                ivProfile.setImageURI(uri);
+                Bitmap selectedImageBitmap = bitmapConversionMethod(uri);
+                ConfigDataProvider.INSTANCE.setProfilePicture(selectedImageBitmap);
+            }else if (resultCode == ImagePicker.RESULT_ERROR) {
+                // Handle the error if needed
+                Toast.makeText(getContext(), ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+    private Bitmap bitmapConversionMethod(Uri uri) {
+        try {
+            InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
+            return BitmapFactory.decodeStream(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
