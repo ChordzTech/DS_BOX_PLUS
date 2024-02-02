@@ -2,10 +2,10 @@ package com.dss.dsboxplus.estimates;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -19,6 +19,7 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
+import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -127,13 +128,13 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String gsmInBottom = intent.getStringExtra("gsmInBottom");
 
         String rateA = intent.getStringExtra("rate");
-        float rateAF=Float.parseFloat(rateA);
+        float rateAF = Float.parseFloat(rateA);
         String ply = intent.getStringExtra("ply");
         Double tax = intent.getDoubleExtra("tax", 0);
-        String resultForTaxThreeDigits=intent.getStringExtra("resultForTaxThreeDigits");
-        float resTaxForAddition=Float.parseFloat(resultForTaxThreeDigits);
+        String resultForTaxThreeDigits = intent.getStringExtra("resultForTaxThreeDigits");
+        float resTaxForAddition = Float.parseFloat(resultForTaxThreeDigits);
 
-        float addition=rateAF+resTaxForAddition;
+        float addition = rateAF + resTaxForAddition;
         String formattedResult = String.format("%.2f", addition);
 
         Client clientDetails = ConfigDataProvider.INSTANCE.getClientIdMap().get(intent.getLongExtra("clientId", 0));
@@ -168,6 +169,16 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         ImageData imageData1 = ImageDataFactory.create(bitmapData1);
         Image image1 = new Image(imageData1);
         image1.setWidth(80f);
+
+//        ProfileFragment fragment = new ProfileFragment();
+//        String profilePictureFilePath = fragment.getProfilePictureFilePath();
+//        Bitmap bitmap = BitmapFactory.decodeFile(profilePictureFilePath);
+//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//        byte[] bitmapData = stream.toByteArray();
+//        ImageData imageData = ImageDataFactory.create(bitmapData);
+//        Image image = new Image(imageData);
+//        image.setWidth(80f);
 
 
         //table 1-01
@@ -222,7 +233,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String paperSpecification = "";
         if (isPaperSpecification) {
             paperSpecification = ply + "Box," + boxName + "\n" +
-                    "Box Outer Dimensions- "+lengthValue+"X"+width+"X"+height+"\n"+
+                    "Box Outer Dimensions- " + lengthValue + "X" + width + "X" + height + "\n" +
                     "Paper Specification as below\n";
 
             switch (ply != null ? ply : "") {
@@ -259,7 +270,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         if (isTaxEnable) {
 
             rate = "Rs " + rateA + "\n" +
-                    "Tax @ "+tax +"-"+ resultForTaxThreeDigits + " Rs\n" +
+                    "Tax @ " + tax + "-" + resultForTaxThreeDigits + " Rs\n" +
                     "Total: " + formattedResult + " Rs";
 
         } else {

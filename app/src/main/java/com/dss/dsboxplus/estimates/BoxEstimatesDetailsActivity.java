@@ -13,9 +13,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.ClientDetails;
 import com.dss.dsboxplus.data.repo.response.DataItem;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
@@ -81,6 +84,11 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
+
+
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null &&  hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+            boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
+        }
 
 
         Intent intent = getIntent();
@@ -336,6 +344,14 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         });
 
 
+    }
+
+    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
+        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+            UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
+            return userData.getUseraccess() != null && userData.getUseraccess() == i;
+        }
+        return false;
     }
 
     private void dialog(View view) {

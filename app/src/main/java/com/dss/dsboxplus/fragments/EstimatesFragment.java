@@ -13,14 +13,18 @@ import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
+import com.dss.dsboxplus.alertdialog.SharedViewModel;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.DataItem;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
@@ -61,6 +65,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private HomeActivity homeActivity;
     private MutableLiveData<Boolean> onFloatingActionClickLiveData = new MutableLiveData<Boolean>();
+    private SharedViewModel sharedViewModel;
 
     public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
         // Required empty public constructor
@@ -95,6 +100,8 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         bottomNavigationView = view.findViewById(R.id.bottomNavigation);
 
 
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -123,6 +130,20 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
                 fabCancel.setVisibility(View.INVISIBLE);
             }
         });
+
+
+        //if SubDays==0
+//        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+//        // Check if remaining days are zero
+//        if (sharedViewModel.getRemainingDays() == 0) {
+//            fabEstimates.setVisibility(View.GONE);
+//        }
+
+        // User Access
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null &&  hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+            fabEstimates.setVisibility(View.GONE);
+        }
+
         fabEstimates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,18 +155,25 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 //                }
             }
 
-
         });
 
 
 //        createAddNewEstiPopUp();
-        createSubPopUp();
+//        createSubPopUp();
         initView(view);
 //        prepareData();
 //        loadData();
 //        checkSubscriptionEndingNotification();
 //        checkPremiumSubEndingNoti();
 
+    }
+
+    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
+        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+            UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
+            return userData.getUseraccess() != null && userData.getUseraccess() == i;
+        }
+        return false;
     }
 
     private void checkPremiumSubEndingNoti() {

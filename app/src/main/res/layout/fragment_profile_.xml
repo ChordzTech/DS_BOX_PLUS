@@ -42,15 +42,16 @@
                         app:shapeAppearanceOverlay="@style/circular"
                         app:strokeColor="@color/black" />
 
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/fabAddImage"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:backgroundTint="@color/transparent"
                         android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="@+id/ivProfileInProfileFragment"
                         app:layout_constraintEnd_toEndOf="@+id/ivProfileInProfileFragment"
-                        app:srcCompat="@drawable/baseline_linked_camera_24" />
+                        app:srcCompat="@drawable/pencil"
+                        app:shapeAppearanceOverlay="@style/circular"/>
 
                     <LinearLayout
                         android:id="@+id/llProfile"

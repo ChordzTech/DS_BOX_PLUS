@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
+import com.dss.dsboxplus.alertdialog.SharedViewModel;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -37,10 +38,12 @@ import com.dss.dsboxplus.profile.SubscriptionActivity;
 import com.dss.dsboxplus.profile.UserDetailsInProfile;
 import com.dss.dsboxplus.profile.subUser.SuperUserSetting;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,7 +62,8 @@ public class ProfileFragment extends Fragment {
     ShapeableImageView ivProfile;
     SwitchCompat swMultiUser;
     TextView tvTrialActive, tvSubDays, tvSubDate;
-    FloatingActionButton fabAddImage;
+    //    FloatingActionButton fabAddImage;
+    ShapeableImageView fabAddImage;
     CardView cvBusiness, cvDefaultPaper, cvDefaultRate, cvQuotationTerms, cvHelp, cvProfileName, cvSubscription, cvsuperUserSettings;
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private String base64Code;
@@ -73,6 +77,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private TextView name, contact, role;
+    private SharedViewModel sharedViewModel;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -91,6 +96,57 @@ public class ProfileFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+    private void saveProfilePictureToFile(Bitmap bitmap) {
+        // Get the directory for the app's private files
+        File filesDir = getActivity().getFilesDir();
+
+        // Create a new file to save the profile picture
+        File profilePictureFile = new File(filesDir, "profile_picture.jpg");
+
+        try {
+            // Create a FileOutputStream to write the bitmap to the file
+            FileOutputStream fos = new FileOutputStream(profilePictureFile);
+
+            // Compress the bitmap to JPEG format with 100% quality
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+
+            // Close the FileOutputStream
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to load the profile picture from a file
+    private Bitmap loadProfilePictureFromFile() {
+        // Get the directory for the app's private files
+        File filesDir = getActivity().getFilesDir();
+
+        // Create a file object for the profile picture
+        File profilePictureFile = new File(filesDir, "profile_picture.jpg");
+
+        // Check if the file exists
+        if (profilePictureFile.exists()) {
+            // If the file exists, load the bitmap from the file
+            return BitmapFactory.decodeFile(profilePictureFile.getAbsolutePath());
+        } else {
+            // If the file does not exist, return null
+            return null;
+        }
+    }
+
+    public String getProfilePictureFilePath() {
+        // Get the directory for the app's private files
+        File filesDir = getActivity().getFilesDir();
+
+        // Create a file object for the profile picture
+        File profilePictureFile = new File(filesDir, "profile_picture.jpg");
+
+        // Return the absolute path of the file
+        return profilePictureFile.getAbsolutePath();
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,12 +186,17 @@ public class ProfileFragment extends Fragment {
 
 
         //Profile Pic
-        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
+//        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
+//        if (savedProfilePicture != null) {
+//            ivProfile.setImageBitmap(savedProfilePicture);
+//        }
+
+
+        //new code
+        Bitmap savedProfilePicture = loadProfilePictureFromFile();
         if (savedProfilePicture != null) {
             ivProfile.setImageBitmap(savedProfilePicture);
         }
-
-
 
 
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
@@ -208,7 +269,7 @@ public class ProfileFragment extends Fragment {
                     String suDate = "Subscription Till " + trialEndDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
                     // Calculate remaining days
-                    int remainingDays = trialDays; // Subtract 1 to exclude the current day
+                    int remainingDays = trialDays;
 
                     // Print remaining days
                     String remainingDaysForSub = remainingDays + " Days Remaining for Renewal.";
@@ -216,7 +277,7 @@ public class ProfileFragment extends Fragment {
 
                     tvSubDays.setText(remainingDaysForSub);
                     tvSubDate.setText(suDate);
-
+//                    sharedViewModel.setRemainingDays(trialDays);
                 }
             }
         }
@@ -232,7 +293,6 @@ public class ProfileFragment extends Fragment {
                         .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
                 // After user selects an image, update the profilePictureBitmap
-
             }
         });
         swMultiUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -341,14 +401,18 @@ public class ProfileFragment extends Fragment {
                 Uri uri = data.getData();
                 ivProfile.setImageURI(uri);
                 Bitmap selectedImageBitmap = bitmapConversionMethod(uri);
-                ConfigDataProvider.INSTANCE.setProfilePicture(selectedImageBitmap);
-            }else if (resultCode == ImagePicker.RESULT_ERROR) {
-                // Handle the error if needed
-                Toast.makeText(getContext(), ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+
+                // Save the profile picture to the file
+                saveProfilePictureToFile(selectedImageBitmap);
             }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            // Handle the error if needed
+            Toast.makeText(getContext(), ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
         }
 
     }
+
+
     private Bitmap bitmapConversionMethod(Uri uri) {
         try {
             InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);

@@ -15,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.clients.AddNewClientsActivity;
 import com.dss.dsboxplus.clients.ClientDetailsActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.estimates.NewEstimateActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -97,7 +100,10 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
                 return true;
             }
         });
-
+        // User Access
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null &&  hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+            add.setVisibility(View.GONE);
+        }
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +117,14 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 //        prepareData();
         loadData();
 
+    }
+
+    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
+        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+            UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
+            return userData.getUseraccess() != null && userData.getUseraccess() == i;
+        }
+        return false;
     }
 
     private void filterClientList(String newText) {

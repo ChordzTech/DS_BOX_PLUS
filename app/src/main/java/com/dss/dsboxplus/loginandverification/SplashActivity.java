@@ -1,11 +1,8 @@
 package com.dss.dsboxplus.loginandverification;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
@@ -16,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivitySplashBinding;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -52,8 +50,8 @@ public class SplashActivity extends BaseActivity {
         } else {
             showNoInternetDialog();
         }
-    }
 
+    }
 
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {

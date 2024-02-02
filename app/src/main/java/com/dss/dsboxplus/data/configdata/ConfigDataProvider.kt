@@ -6,7 +6,9 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.Client
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
+import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.SubscriptionDetailsResponse
+import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 
 object ConfigDataProvider{

@@ -1,6 +1,8 @@
 package com.dss.dsboxplus.home;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -23,6 +25,8 @@ import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
 import com.dss.dsboxplus.data.repo.response.SubscriptionForBusiness;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
@@ -141,6 +145,12 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         MainRepository mainRepository = new MainRepository(retrofitService);
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
 
+        //UserAccess
+
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 3)) {
+            showNoAccessPopup();
+        }
+
         estimatesFragment = new EstimatesFragment(this);
         onFloatingActionClickLiveData = estimatesFragment.getOnFloatingActionClickLiveData();
         onFloatingActionClickLiveData.observe(this, onClicked -> {
@@ -197,6 +207,29 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 showLogoutPopUp();
             }
         });
+    }
+
+    private void showNoAccessPopup() {
+        // Use AlertDialog or any other popup method to display a message
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No Access");
+        builder.setMessage("You do not have access to this application.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish(); // Close the app or handle as needed
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
+        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+            UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
+            return userData.getUseraccess() != null && userData.getUseraccess() == i;
+        }
+        return false;
     }
 
     private void replaceFragment(Fragment fragment) {

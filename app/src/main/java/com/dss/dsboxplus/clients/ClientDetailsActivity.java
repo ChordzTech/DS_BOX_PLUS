@@ -91,7 +91,6 @@ public class ClientDetailsActivity extends BaseActivity {
                         clientDetailsBinding.tietClientAddressInClientdetails.getText().toString()
                 );
             }
-
         });
         viewModel.getUpdateClientRequestLiveData().observe(this, updateClientResponse -> {
             Toast.makeText(this, "Client Details Updated Successfully", Toast.LENGTH_SHORT).show();
