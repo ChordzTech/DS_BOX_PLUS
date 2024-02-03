@@ -147,6 +147,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btSaveinBusinessDetails"
                     style="@style/DSTextMedium"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"

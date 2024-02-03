@@ -109,6 +109,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 profileFragment.setAppConfigList(appConfigList);
                 estimatesFragment.setAppConfigList(appConfigList);
                 ConfigDataProvider.INSTANCE.setAppConfigResponse(appConfigResponse);
+
             }
         });
         homeViewModel.getSubscriptionLiveData().observe(this, subscriptionDetailsResponse -> {

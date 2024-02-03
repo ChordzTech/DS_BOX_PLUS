@@ -2,10 +2,12 @@ package com.dss.dsboxplus.estimates;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -90,7 +92,22 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             }
         });
     }
+    public Bitmap loadProfilePictureFromFile() {
+        // Get the directory for the app's private files
+        File filesDir =getFilesDir();
 
+        // Create a file object for the profile picture
+        File profilePictureFile = new File(filesDir, "profile_picture.jpg");
+
+        // Check if the file exists
+        if (profilePictureFile.exists()) {
+            // If the file exists, load the bitmap from the file
+            return BitmapFactory.decodeFile(profilePictureFile.getAbsolutePath());
+        } else {
+            // If the file does not exist, return null
+            return null;
+        }
+    }
     private void createProductionDsPdf() throws FileNotFoundException {
 
         Intent intent = getIntent();
@@ -175,16 +192,32 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         float columnWidth[] = {62, 140, 140, 140};
         Table table = new Table(columnWidth);
 
-        Drawable d1 = getDrawable(R.drawable.companylogo);
-        Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
-        ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
-        bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
-        byte[] bitmapData1 = stream1.toByteArray();
-        ImageData imageData1 = ImageDataFactory.create(bitmapData1);
-        Image image1 = new Image(imageData1);
-        image1.setWidth(80f);
+//        Drawable d1 = getDrawable(R.drawable.companylogo);
+//        Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
+//        ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+//        bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
+//        byte[] bitmapData1 = stream1.toByteArray();
+//        ImageData imageData1 = ImageDataFactory.create(bitmapData1);
+//        Image image1 = new Image(imageData1);
+//        image1.setWidth(80f);
+        Bitmap profileBitmap = loadProfilePictureFromFile();
 
-        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
+        if (profileBitmap != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            profileBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] bitmapData = stream.toByteArray();
+            ImageData imageData = ImageDataFactory.create(bitmapData);
+            com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(imageData);
+            image.setWidth(80f);
+            table.addCell(new Cell(4, 1).add(image).setBorder(Border.NO_BORDER));
+            // Now you can use the 'image' object as needed
+            // For example, you can add it to a table cell or directly to the document
+        } else {
+            // Handle the case when the profile picture Bitmap is null
+            Log.e("ProfileFragment", "Profile picture Bitmap is null");
+        }
+
+//        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));

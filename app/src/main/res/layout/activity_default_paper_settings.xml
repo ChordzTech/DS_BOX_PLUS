@@ -106,6 +106,7 @@
                 <com.google.android.material.button.MaterialButton
                     style="@style/DSTextMedium"
                     android:id="@+id/btSaveInDefaultPaperSettings"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"

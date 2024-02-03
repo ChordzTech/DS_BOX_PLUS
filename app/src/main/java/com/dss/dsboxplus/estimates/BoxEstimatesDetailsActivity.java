@@ -311,7 +311,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("cuttingLength", cuttingLength);
                 intent.putExtra("decalSizemm", decalSizeInMillimeters);
                 intent.putExtra("cuttingLengthmm", cuttingSizeinMm);
-                intent.putExtra("ups", dataItem.getUps());
+                intent.putExtra("ups", boxEstimatesDetailsBinding.tvnoOfBox.getText().toString());
                 intent.putExtra("clientId", dataItem.getClientid());
 
                 startActivity(intent);

@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,7 +120,7 @@ public class ProfileFragment extends Fragment {
     }
 
     // Method to load the profile picture from a file
-    private Bitmap loadProfilePictureFromFile() {
+    public Bitmap loadProfilePictureFromFile() {
         // Get the directory for the app's private files
         File filesDir = getActivity().getFilesDir();
 
@@ -136,15 +137,35 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    public String getProfilePictureFilePath() {
-        // Get the directory for the app's private files
-        File filesDir = getActivity().getFilesDir();
+    public Bitmap getProfilePictureBitmap() {
+        if (isAdded()) {
+            // Get the directory for the app's private files
+            File filesDir = getActivity().getFilesDir();
 
-        // Create a file object for the profile picture
-        File profilePictureFile = new File(filesDir, "profile_picture.jpg");
+            // Create a file object for the profile picture
+            File profilePictureFile = new File(filesDir, "profile_picture.jpg");
 
-        // Return the absolute path of the file
-        return profilePictureFile.getAbsolutePath();
+            // Check if the file exists before decoding into a Bitmap
+            if (profilePictureFile.exists()) {
+                // Obtain a Bitmap from the profile picture file
+                Bitmap profileBitmap = BitmapFactory.decodeFile(profilePictureFile.getAbsolutePath());
+
+                // Handle the case when the decoding fails
+                if (profileBitmap == null) {
+                    Log.e("ProfileFragment", "Failed to decode profile picture file");
+                }
+
+                return profileBitmap;
+            } else {
+                // Handle the case when the profile picture file does not exist
+                Log.e("ProfileFragment", "Profile picture file does not exist");
+                return null;
+            }
+        } else {
+            // Handle the case when the fragment is not attached
+            Log.e("ProfileFragment", "Fragment is not added");
+            return null;
+        }
     }
 
 
@@ -198,7 +219,6 @@ public class ProfileFragment extends Fragment {
             ivProfile.setImageBitmap(savedProfilePicture);
         }
 
-
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
@@ -247,42 +267,42 @@ public class ProfileFragment extends Fragment {
         } else {
             tvSubDays.setText("No subscription data available");
             tvSubDate.setText("No subscription data available"); // You can set a default value or an empty string
-        }
-
-        //Subscription Status For New Business
-        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
-        if (appConfigResponse.getData() != null) {
-            ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
-            for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
-                int configId = appConfigDataItem.getConfigid();
-                String configValue = appConfigDataItem.getConfigvalue();
-                if (configId == 26) {
-                    int trialDays = Integer.parseInt(configValue);
-
-                    // Get today's date
-                    LocalDate currentDate = LocalDate.now();
-
-                    // Calculate trial end date
-                    LocalDate trialEndDate = currentDate.plusDays(trialDays);
-
-                    // Print trial end date
-                    String suDate = "Subscription Till " + trialEndDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-                    // Calculate remaining days
-                    int remainingDays = trialDays;
-
-                    // Print remaining days
-                    String remainingDaysForSub = remainingDays + " Days Remaining for Renewal.";
 
 
-                    tvSubDays.setText(remainingDaysForSub);
-                    tvSubDate.setText(suDate);
-//                    sharedViewModel.setRemainingDays(trialDays);
+            //Subscription Status For New Business
+            AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+            if (appConfigResponse.getData() != null) {
+                ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+                for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                    int configId = appConfigDataItem.getConfigid();
+                    String configValue = appConfigDataItem.getConfigvalue();
+                    if (configId == 26) {
+                        int trialDays = Integer.parseInt(configValue);
+
+                        // Get today's date
+                        LocalDate currentDate = LocalDate.now();
+
+                        // Calculate trial end date
+                        LocalDate trialEndDate = currentDate.plusDays(trialDays);
+
+                        // Print trial end date
+                        String suDate = "Subscription Till " + trialEndDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                        // Calculate remaining days
+                        int remainingDays = trialDays;
+
+                        // Print remaining days
+                        String remainingDaysForSub = remainingDays + " Days Remaining for Renewal.";
+
+
+                        tvSubDays.setText(remainingDaysForSub);
+                        tvSubDate.setText(suDate);
+//                        sharedViewModel.setRemainingDays(trialDays);
+                    }
                 }
             }
+
         }
-
-
         fabAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

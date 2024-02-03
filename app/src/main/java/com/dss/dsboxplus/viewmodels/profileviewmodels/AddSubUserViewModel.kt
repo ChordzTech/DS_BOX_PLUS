@@ -23,8 +23,8 @@ class AddSubUserViewModel(val repository: MainRepository) : BaseViewModel() {
         val request=AddUserRequest()
         request.username=username
         request.mobileno=contact
-        request.deviceinfo="New User"
-        request.androidid="New User"
+        request.deviceinfo="NewUser"
+        request.androidid="NewUser"
         request.businessid=AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID).toInt()
 
         viewModelScope.launch {
