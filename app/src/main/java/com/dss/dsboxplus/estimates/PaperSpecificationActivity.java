@@ -304,6 +304,7 @@ public class PaperSpecificationActivity extends BaseActivity {
 
             }
 
+
             @Override
             public void afterTextChanged(Editable s) {
 
