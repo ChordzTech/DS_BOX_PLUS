@@ -48,7 +48,10 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
         DataItem dataItem = estimatesList.get(position);
         holder.tvBoxName.setText(dataItem.getBoxname());
-        holder.tvBoxDimension.setText(dataItem.getLengthMmField() + "x" + dataItem.getWidthMmField() + "x" + dataItem.getHeightMmField());
+        int length = (int) Math.round(dataItem.getLengthMmField());
+        int width = (int) Math.round(dataItem.getWidthMmField());
+        int height = (int) Math.round(dataItem.getHeightMmField());
+        holder.tvBoxDimension.setText(length + "x" + width + "x" + height);
         String boxCost = String.format("%.2f", dataItem.getBoxprice());
         String finalBox = "₹ " + boxCost;
         holder.tvCost.setText(finalBox);

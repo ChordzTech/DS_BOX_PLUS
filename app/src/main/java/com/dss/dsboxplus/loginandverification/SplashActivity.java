@@ -1,7 +1,5 @@
 package com.dss.dsboxplus.loginandverification;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -13,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
-import com.dss.dsboxplus.data.repo.response.UserData;
-import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivitySplashBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -62,11 +58,15 @@ public class SplashActivity extends BaseActivity {
             } else {
                 addUserDataToPreferences(userDetailsResponse);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+
+                String phoneNumber = userDetailsResponse.getData().get(0).getMobileno();
+                mainBinding.tvDeviceNumber.setText("+91 "+phoneNumber);
                 Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
 
         splashViewModel.getLoaderLiveData().observe(this, aBoolean -> {
             if (aBoolean) {

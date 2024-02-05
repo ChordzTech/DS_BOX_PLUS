@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,15 +26,19 @@ import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BoxEstimatesDetailsActivity extends BaseActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
     BoxEstimatesDetailsActivityViewModel viewModel;
+    String resultForProfitThreeDigits = "";
+    String resultForTaxThreeDigits = "";
+    String[] noOfPly = {"1Ply", "2Ply", "3Ply", "5Ply", "7Ply", "2Ply(KG)"};
     private DataItem dataItem;
     private ClientDetails clientDetails;
     private ArrayList<Client> clientsList;
-   String resultForProfitThreeDigits="";
-   String resultForTaxThreeDigits="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +89,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
 
 
-        if (ConfigDataProvider.INSTANCE.getUserDetails() != null &&  hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
             boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
         }
 
@@ -121,10 +124,20 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     resultForTaxThreeDigits = String.format("%.2f", resultForTax);
 
                     //Dimension For ImageOne
-                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthMmField() + "mm"));
-                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthMmField() + "mm"));
-                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightMmField() + "mm"));
-                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf(dataItem.getTotalweight() + "gm"));
+
+                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf((int) Math.round(dataItem.getLengthMmField()) + "mm"));
+                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf((int) Math.round(dataItem.getWidthMmField()) + "mm"));
+                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf((int) Math.round(dataItem.getHeightMmField()) + "mm"));
+
+//                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthCmField() + "cm"));
+//                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthCmField() + "cm"));
+//                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightCmField()+ "cm"));
+//
+//                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthInchField() + "inch"));
+//                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthInchField() + "inch"));
+//                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightInchField()+ "inch"));
+
+                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf((int)Math.round(dataItem.getTotalweight())+"gm"));
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
                     //Dimension For ImageTwo
 
@@ -140,29 +153,29 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     int cuttingSizeinMm = (int) Math.round(cuttingSizeInInch * 25.4);
                     boxEstimatesDetailsBinding.tvCuttingLengthinch.setText(String.valueOf(cuttingSizeinMm + "mm"));
                     //Dimensions for ply
-                    boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf(dataItem.getTopbf()));
-                    boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf(dataItem.getTopgsm()));
+                    boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf((int)Math.round(dataItem.getTopbf())));
+                    boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf((int)Math.round(dataItem.getTopgsm())));
                     boxEstimatesDetailsBinding.tvTopRate.setText(String.valueOf(dataItem.getToprate()));
-                    boxEstimatesDetailsBinding.tvFluteOnebf.setText(String.valueOf(dataItem.getF1bf()));
-                    boxEstimatesDetailsBinding.tvGsmFluteOne.setText(String.valueOf(dataItem.getF1gsm()));
+                    boxEstimatesDetailsBinding.tvFluteOnebf.setText(String.valueOf((int)Math.round(dataItem.getF1bf())));
+                    boxEstimatesDetailsBinding.tvGsmFluteOne.setText(String.valueOf((int)Math.round(dataItem.getF1gsm())));
                     boxEstimatesDetailsBinding.tvRateFluteOne.setText(String.valueOf(dataItem.getF1rate()));
                     boxEstimatesDetailsBinding.tvFFFluteOne.setText(String.valueOf(dataItem.getF1ff()));
-                    boxEstimatesDetailsBinding.tvMiddleOneBf.setText(String.valueOf(dataItem.getM1bf()));
-                    boxEstimatesDetailsBinding.tvMiddleOneGsm.setText(String.valueOf(dataItem.getM1gsm()));
+                    boxEstimatesDetailsBinding.tvMiddleOneBf.setText(String.valueOf((int)Math.round(dataItem.getM1bf())));
+                    boxEstimatesDetailsBinding.tvMiddleOneGsm.setText(String.valueOf((int)Math.round(dataItem.getM1gsm())));
                     boxEstimatesDetailsBinding.tvMiddleOneRate.setText(String.valueOf(dataItem.getM1rate()));
-                    boxEstimatesDetailsBinding.tvFluteTwoBf.setText(String.valueOf(dataItem.getF2bf()));
-                    boxEstimatesDetailsBinding.tvFluteTwoGsm.setText(String.valueOf(dataItem.getF2gsm()));
+                    boxEstimatesDetailsBinding.tvFluteTwoBf.setText(String.valueOf((int)Math.round(dataItem.getF2bf())));
+                    boxEstimatesDetailsBinding.tvFluteTwoGsm.setText(String.valueOf((int)Math.round(dataItem.getF2gsm())));
                     boxEstimatesDetailsBinding.tvFluteTwoRate.setText(String.valueOf(dataItem.getF2rate()));
                     boxEstimatesDetailsBinding.tvFluteTwoFf.setText(String.valueOf(dataItem.getF2ff()));
-                    boxEstimatesDetailsBinding.tvMiddleTwoBf.setText(String.valueOf(dataItem.getM2bf()));
-                    boxEstimatesDetailsBinding.tvMiddleTwoGsm.setText(String.valueOf(dataItem.getM2gsm()));
+                    boxEstimatesDetailsBinding.tvMiddleTwoBf.setText(String.valueOf((int)Math.round(dataItem.getM2bf())));
+                    boxEstimatesDetailsBinding.tvMiddleTwoGsm.setText(String.valueOf((int)Math.round(dataItem.getM2gsm())));
                     boxEstimatesDetailsBinding.tvMiddleTwoRate.setText(String.valueOf(dataItem.getM2rate()));
-                    boxEstimatesDetailsBinding.tvFluteThreeBf.setText(String.valueOf(dataItem.getF3bf()));
-                    boxEstimatesDetailsBinding.tvFluteThreeGsm.setText(String.valueOf(dataItem.getF3gsm()));
+                    boxEstimatesDetailsBinding.tvFluteThreeBf.setText(String.valueOf((int)Math.round(dataItem.getF3bf())));
+                    boxEstimatesDetailsBinding.tvFluteThreeGsm.setText(String.valueOf((int)Math.round(dataItem.getF3gsm())));
                     boxEstimatesDetailsBinding.tvFluteThreeRate.setText(String.valueOf(dataItem.getF3rate()));
                     boxEstimatesDetailsBinding.tvFluteThreeFf.setText(String.valueOf(dataItem.getF3ff()));
-                    boxEstimatesDetailsBinding.tvBottomBf.setText(String.valueOf(dataItem.getBottombf()));
-                    boxEstimatesDetailsBinding.tvBottomGsm.setText(String.valueOf(dataItem.getBottomgsm()));
+                    boxEstimatesDetailsBinding.tvBottomBf.setText(String.valueOf((int)Math.round(dataItem.getBottombf())));
+                    boxEstimatesDetailsBinding.tvBottomGsm.setText(String.valueOf((int)Math.round(dataItem.getBottomgsm())));
                     boxEstimatesDetailsBinding.tvBottomRate.setText(String.valueOf(dataItem.getBottomrate()));
 
 
@@ -182,11 +195,10 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.setText(String.valueOf(dataItem.getBoxprice()));
                     boxEstimatesDetailsBinding.tvTax.setText(String.valueOf(resultForTaxThreeDigits));
                     boxEstimatesDetailsBinding.tvPriceWithtax.setText(String.valueOf(dataItem.getBoxpricewithtax()));
+                    boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + " Ply");
 
-                    boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + "Ply");
-
-                    double noOfPly = dataItem.getPly();
-                    if (noOfPly == 1.0) {
+                    int noOfPly = dataItem.getPly();
+                    if (noOfPly == 1) {
                         boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.GONE);
@@ -194,7 +206,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                         boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llBottom.setVisibility(View.GONE);
-                    } else if (noOfPly == 2.0) {
+                    } else if (noOfPly == 2) {
                         boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.GONE);
@@ -202,7 +214,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                         boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llBottom.setVisibility(View.GONE);
-                    } else if (noOfPly == 3.0) {
+                    } else if (noOfPly == 3) {
                         boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.GONE);
@@ -210,7 +222,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                         boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llBottom.setVisibility(View.VISIBLE);
-                    } else if (noOfPly == 5.0) {
+                    } else if (noOfPly == 5) {
                         boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.VISIBLE);
@@ -218,7 +230,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                         boxEstimatesDetailsBinding.llMiddleTwo.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llFluteThree.setVisibility(View.GONE);
                         boxEstimatesDetailsBinding.llBottom.setVisibility(View.VISIBLE);
-                    } else if (noOfPly == 7.0) {
+                    } else if (noOfPly == 7) {
                         boxEstimatesDetailsBinding.llTop.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llFluteOne.setVisibility(View.VISIBLE);
                         boxEstimatesDetailsBinding.llMiddleOne.setVisibility(View.VISIBLE);
@@ -261,8 +273,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 intent.putExtra("ply", boxEstimatesDetailsBinding.tvPly.getText().toString());
                 intent.putExtra("clientId", dataItem.getClientid());
                 intent.putExtra("profit", dataItem.getProfit());
-                intent.putExtra("resultForProfitThreeDigits",resultForProfitThreeDigits);
-                intent.putExtra("resultForTaxThreeDigits",resultForTaxThreeDigits);
+                intent.putExtra("resultForProfitThreeDigits", resultForProfitThreeDigits);
+                intent.putExtra("resultForTaxThreeDigits", resultForTaxThreeDigits);
                 intent.putExtra("tax", dataItem.getTax());
                 startActivity(intent);
             }
@@ -347,7 +359,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     }
 
     private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
-        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+        if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
             UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
             return userData.getUseraccess() != null && userData.getUseraccess() == i;
         }

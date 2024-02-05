@@ -63,6 +63,8 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             binding.tietSubUserName.setText(userData.getUsername());
             binding.tietSubUserContact.setText(userData.getMobileno());
             binding.tietSubUserDeviceInfo.setText(userData.getDeviceinfo());
+            int spinnerValue = userData.getUseraccess();
+            binding.userAccessSpinnerInUserDetails.setSelection(spinnerValue);
             if (Objects.equals(userData.getUserrole(), "Admin")) {
                 binding.btDeleteInSubUSer.setVisibility(View.GONE);
             }else {

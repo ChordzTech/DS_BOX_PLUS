@@ -86,13 +86,15 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         CreateEstimateDataHolder.INSTANCE.setTotalBs(Double.parseDouble(dataItem.getTotalbs().toString()));
         CreateEstimateDataHolder.INSTANCE.setTotalWeight(dataItem.getTotalweight());
         CreateEstimateDataHolder.INSTANCE.setNetPaperCost(Double.parseDouble(dataItem.getNetpapercost().toString()));
-//        CreateEstimateDataHolder.INSTANCE.setWasteInput(Float.parseFloat(dataItem.getWaste().toString()));
+        CreateEstimateDataHolder.INSTANCE.setWasteInput(Float.parseFloat(dataItem.getWaste().toString()));
         CreateEstimateDataHolder.INSTANCE.setConvRate(Float.parseFloat(dataItem.getConversionrate().toString()));
         CreateEstimateDataHolder.INSTANCE.setOverHead(Float.parseFloat(dataItem.getOverheadcharges().toString()));
         CreateEstimateDataHolder.INSTANCE.setBoxMfg(Double.parseDouble(dataItem.getBoxcost().toString()));
         CreateEstimateDataHolder.INSTANCE.setBoxPrice(Double.parseDouble(dataItem.getBoxprice().toString()));
+        CreateEstimateDataHolder.INSTANCE.setProfit((float) Double.parseDouble(dataItem.getProfit().toString()));
         CreateEstimateDataHolder.INSTANCE.setTax(Float.parseFloat(dataItem.getTax().toString()));
         CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(Float.parseFloat(dataItem.getBoxpricewithtax().toString()));
+
     }
 
 
@@ -130,6 +132,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             activityBoxSpecificationAndCostBinding.btNextInBoxSpecification.setText(R.string.bt_update);
         activityBoxSpecificationAndCostBinding.tvClientNameInboxSpecification.setText(selectedClient.getClientname());
         activityBoxSpecificationAndCostBinding.tvBoxNameInBoxSpecification.setText(boxName);
+
         activityBoxSpecificationAndCostBinding.tvBoxDimensionInBoxSpecification.setText(boxDimen);
 
 //        AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
@@ -433,11 +436,11 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueSecondOFTotalWeightThreeDigits = 0.0;
         int noOFBoxUps = 0;
         do {
-            double valueFirstOFTotalWeight = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
+            double valueFirstOFTotalWeight = ((((decal * cutting * gsmOfTop * mm * mm) / divide) / divide) / divide);
             valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
 
             //Value 2
-            double valueSecondOfTotalWeight = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+            double valueSecondOfTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm) / divide) / divide) / divide);
             valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOfTotalWeight));
             //Total
             double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits);
@@ -456,7 +459,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
                 gm = weightInInt + " Kg";
             }
             activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
-            cutting += 50;
+            cutting += 10;
         } while (weightInInt < 1000);
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
@@ -575,31 +578,31 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value for topPaper
         double decal = Double.parseDouble(decalM);
         double cutting = Double.parseDouble(cuttingL);
-        double valueFirstOFTotalWeight = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
+        double valueFirstOFTotalWeight = ((((decal * cutting * gsmOfTop * mm * mm) / divide) / divide) / divide);
         double valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
 
         //Value for flute one
-        double valueSecondOFTotalWeight = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+        double valueSecondOFTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm) / divide) / divide) / divide);
         double valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOFTotalWeight));
 
         //Value for middle Paper
-        double valueThirdOFTotalWeight = (decal * cutting * gsmOfMiddle * mm * mm / divide / divide / divide);
+        double valueThirdOFTotalWeight = ((((decal * cutting * gsmOfMiddle * mm * mm )/ divide) / divide) / divide);
         double valueThirdOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueThirdOFTotalWeight));
 
         //Value for FluteTwoPaper
-        double valueFourthOFTotalWeight = (decal * cutting * gsmOfFluteTwo * ffOfFluteTwoPaper * mm * mm / divide / divide / divide);
+        double valueFourthOFTotalWeight = ((((decal * cutting * gsmOfFluteTwo * ffOfFluteTwoPaper * mm * mm) / divide) / divide) / divide);
         double valueFourthOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFourthOFTotalWeight));
 
         //Value for MiddleTwoPaper
-        double valueFifthOFTotalWeight = (decal * cutting * gsmOfMiddleTwo * mm * mm / divide / divide / divide);
+        double valueFifthOFTotalWeight = ((((decal * cutting * gsmOfMiddleTwo * mm * mm) / divide) / divide) / divide);
         double valueFifthOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFifthOFTotalWeight));
 
         //Value for FluteThreePaper
-        double valueSixthOFTotalWeight = (decal * cutting * gsmOfFluteThree * ffOfFluteThreePaper * mm * mm / divide / divide / divide);
+        double valueSixthOFTotalWeight = ((((decal * cutting * gsmOfFluteThree * ffOfFluteThreePaper * mm * mm) / divide) / divide) / divide);
         double valueSixthOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSixthOFTotalWeight));
 
         //Value for BottomPaper
-        double valueSeventhOFTotalWeight = (decal * cutting * gsmOfBottomPaper * mm * mm / divide / divide / divide);
+        double valueSeventhOFTotalWeight = ((((decal * cutting * gsmOfBottomPaper * mm * mm) / divide) / divide) / divide);
         double valueSeventhOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSeventhOFTotalWeight));
 
         //Total
@@ -740,22 +743,22 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value for topPaper
         double decal = Double.parseDouble(decalM);
         double cutting = Double.parseDouble(cuttingL);
-        double valueFirstOFTotalWeight = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
+        double valueFirstOFTotalWeight = ((((decal * cutting * gsmOfTop * mm * mm) / divide) / divide) / divide);
         double valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
 
         //Value for flute one
-        double valueSecondOFTotalWeight = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+        double valueSecondOFTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm) / divide) / divide) / divide);
         double valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOFTotalWeight));
         //Value for middle Paper
-        double valueThirdOFTotalWeight = (decal * cutting * gsmOfMiddle * mm * mm / divide / divide / divide);
+        double valueThirdOFTotalWeight = ((((decal * cutting * gsmOfMiddle * mm * mm) / divide) / divide) / divide);
         double valueThirdOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueThirdOFTotalWeight));
 
         //Value for FluteTwoPaper
-        double valueFourthOFTotalWeight = (decal * cutting * gsmOfFlute * ffOfFluteTwoPaper * mm * mm / divide / divide / divide);
+        double valueFourthOFTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteTwoPaper * mm * mm) / divide) / divide) / divide);
         double valueFourthOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFourthOFTotalWeight));
 
         //Value for BottomPaper
-        double valueFifthOFTotalWeight = (decal * cutting * gsmOfBottomPaper * mm * mm / divide / divide / divide);
+        double valueFifthOFTotalWeight = ((((decal * cutting * gsmOfBottomPaper * mm * mm) / divide) / divide) / divide);
         double valueFifthOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFifthOFTotalWeight));
 
 
@@ -878,11 +881,11 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //Value 1
         double decal = Double.parseDouble(decalM);
         double cutting = Double.parseDouble(cuttingL);
-        double valueFirstOFTotalWeight = (decal * cutting * gsmOfTop * mm * mm / divide / divide / divide);
+        double valueFirstOFTotalWeight = ((((decal * cutting * gsmOfTop * mm * mm) / divide) / divide) / divide);
         double valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
 
         //Value 2
-        double valueSecondOfTotalWeight = (decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm / divide / divide / divide);
+        double valueSecondOfTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm) / divide) / divide) / divide);
         double valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOfTotalWeight));
         //Total
         double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits);
@@ -1105,7 +1108,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         //wtInTopPaper
         double decalValue = Double.parseDouble(decalM);
         double cuttingValue = Double.parseDouble(cuttingL);
-        double totalWeightInTopPaper = (decalValue * cuttingValue * gsmForOnePly * mm * mm / divide / divide / divide);
+        double totalWeightInTopPaper = ((((decalValue * cuttingValue * gsmForOnePly * mm * mm) / divide) / divide) / divide);
         double totalWeightInTopPaperThreeDigits = Double.valueOf(String.format("%.3f", totalWeightInTopPaper));
 
 

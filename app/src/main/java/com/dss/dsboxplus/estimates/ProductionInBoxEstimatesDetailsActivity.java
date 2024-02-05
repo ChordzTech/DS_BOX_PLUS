@@ -300,7 +300,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         BoxFormula boxFormula = new BoxFormula();
         boxFormula.setNumberOfBox(boxQuantity);
         switch (ply) {
-            case "1Ply" -> {
+            case "1 Ply" -> {
                 String topRatio;
                 topRatio = bfInTop + "/" + gsmInTop;
                 ArrayList<Double> weightPerBoxTopList = new ArrayList<>();
@@ -325,7 +325,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
-            case "2Ply" -> {
+            case "2 Ply" -> {
                 String topRatio, flute1Ratio;
                 topRatio = bfInTop + "/" + gsmInTop;
                 flute1Ratio = bfInF1 + "/" + gsmInF1;
@@ -361,7 +361,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
-            case "3Ply" -> {
+            case "3 Ply" -> {
                 String topRatio, flute1Ratio, bottomRatio;
                 topRatio = bfInTop + "/" + gsmInTop;
                 flute1Ratio = bfInF1 + "/" + gsmInF1;
@@ -406,7 +406,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
-            case "5Ply" -> {
+            case "5 Ply" -> {
                 String topRatio, flute1Ratio, middle1Ratio, flute2Ratio, bottomRatio;
                 topRatio = bfInTop + "/" + gsmInTop;
                 flute1Ratio = bfInF1 + "/" + gsmInF1;
@@ -469,7 +469,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
-            case "7Ply" -> {
+            case "7 Ply" -> {
                 String topRatio, flute1Ratio, middle1Ratio, flute2Ratio, bottomRatio, middle2Ratio, flute3Ratio;
                 topRatio = bfInTop + "/" + gsmInTop;
                 flute1Ratio = bfInF1 + "/" + gsmInF1;
@@ -550,7 +550,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
-            case "2Ply(KG)" -> {
+            case "2 Ply(KG)" -> {
                 String topRatio, flute1Ratio;
                 topRatio = bfInTop + "/" + gsmInTop;
                 flute1Ratio = bfInF1 + "/" + gsmInF1;

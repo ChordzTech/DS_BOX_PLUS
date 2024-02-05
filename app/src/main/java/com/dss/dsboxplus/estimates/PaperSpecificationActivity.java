@@ -108,7 +108,10 @@ public class PaperSpecificationActivity extends BaseActivity {
         paperSpecificationBinding.tvClientNameInEstimate.setText(clientName);
 
         paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
-        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getLengthMm() + "x" + CreateEstimateDataHolder.INSTANCE.getWidthMm() + "x" + CreateEstimateDataHolder.INSTANCE.getHeightMm());
+        int length = (int) CreateEstimateDataHolder.INSTANCE.getLengthMm();
+        int width = (int) CreateEstimateDataHolder.INSTANCE.getWidthMm();
+        int height = (int) CreateEstimateDataHolder.INSTANCE.getHeightMm();
+        paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(length + " X " + width + " X " + height);
 
 
         noOfPly = this.getIntent().getStringExtra("noOfPly");
@@ -243,7 +246,7 @@ public class PaperSpecificationActivity extends BaseActivity {
         paperSpecificationBinding.gsmInTopPaper.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String enteredText =  paperSpecificationBinding.gsmInTopPaper.getText().toString();
+                String enteredText = paperSpecificationBinding.gsmInTopPaper.getText().toString();
                 if (
                         (!paperSpecificationBinding.gsmInFlutePaper.hasFocus() && paperSpecificationBinding.gsmInFlutePaper.getText().toString().isEmpty() && paperSpecificationBinding.gsmInFlutePaper.getVisibility() == View.VISIBLE)
                                 &&
@@ -268,7 +271,7 @@ public class PaperSpecificationActivity extends BaseActivity {
         paperSpecificationBinding.rateKgInTopPaper.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String enteredText =  paperSpecificationBinding.rateKgInTopPaper.getText().toString();
+                String enteredText = paperSpecificationBinding.rateKgInTopPaper.getText().toString();
                 if (
                         (!paperSpecificationBinding.rateKgInFlutePaper.hasFocus() && paperSpecificationBinding.rateKgInFlutePaper.getText().toString().isEmpty() && paperSpecificationBinding.rateKgInFlutePaper.getVisibility() == View.VISIBLE)
                                 &&
@@ -439,27 +442,27 @@ public class PaperSpecificationActivity extends BaseActivity {
             paperSpecificationBinding.bfInTopPaper.requestFocus();
             paperSpecificationBinding.bfInTopPaper.setError("Enter Value");
             return false;
-        } else if (bfInFlutePaper.isEmpty()) {
+        } else if (bfInFlutePaper != null && bfInFlutePaper.isEmpty()) {
             paperSpecificationBinding.bfInFlutePaper.requestFocus();
             paperSpecificationBinding.bfInFlutePaper.setError("Enter Value");
             return false;
-        } else if (bfInMiddleOnePaper.isEmpty()) {
+        } else if (bfInMiddleOnePaper != null && bfInMiddleOnePaper.isEmpty()) {
             paperSpecificationBinding.bfInMiddleOnePaper.requestFocus();
             paperSpecificationBinding.bfInMiddleOnePaper.setError("Enter Value");
             return false;
-        } else if (bfInFluteTwoPaper.isEmpty()) {
+        } else if (bfInFluteTwoPaper != null && bfInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.bfInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.bfInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (bfInMiddleTwoPaper.isEmpty()) {
+        } else if (bfInMiddleTwoPaper != null && bfInMiddleTwoPaper.isEmpty()) {
             paperSpecificationBinding.bfInMiddleTwoPaper.requestFocus();
             paperSpecificationBinding.bfInMiddleTwoPaper.setError("Enter Value");
             return false;
-        } else if (bfInFluteThreePaper.isEmpty()) {
+        } else if (bfInFluteThreePaper != null && bfInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.bfInFluteThreePaper.requestFocus();
             paperSpecificationBinding.bfInFluteThreePaper.setError("Enter Value");
             return false;
-        } else if (bfInBottomPaper.isEmpty()) {
+        } else if (bfInBottomPaper != null && bfInBottomPaper.isEmpty()) {
             paperSpecificationBinding.bfInBottomPaper.requestFocus();
             paperSpecificationBinding.bfInBottomPaper.setError("Enter Value");
             return false;
@@ -467,27 +470,27 @@ public class PaperSpecificationActivity extends BaseActivity {
             paperSpecificationBinding.gsmInTopPaper.requestFocus();
             paperSpecificationBinding.gsmInTopPaper.setError("Enter Value");
             return false;
-        } else if (gsmInFlutePaper.isEmpty()) {
+        } else if (gsmInFlutePaper != null && gsmInFlutePaper.isEmpty()) {
             paperSpecificationBinding.gsmInFlutePaper.requestFocus();
             paperSpecificationBinding.gsmInFlutePaper.setError("Enter Value");
             return false;
-        } else if (gsmInMiddleOnePaper.isEmpty()) {
+        } else if (gsmInMiddleOnePaper != null && gsmInMiddleOnePaper.isEmpty()) {
             paperSpecificationBinding.gsmInMiddleOnePaper.requestFocus();
             paperSpecificationBinding.gsmInMiddleOnePaper.setError("Enter Value");
             return false;
-        } else if (gsmInFluteTwoPaper.isEmpty()) {
+        } else if (gsmInFluteTwoPaper != null && gsmInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.gsmInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.gsmInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (gsmInMiddleTwoPaper.isEmpty()) {
+        } else if (gsmInMiddleTwoPaper != null && gsmInMiddleTwoPaper.isEmpty()) {
             paperSpecificationBinding.gsmInMiddleTwoPaper.requestFocus();
             paperSpecificationBinding.gsmInMiddleTwoPaper.setError("Enter Value");
             return false;
-        } else if (gsmInFluteThreePaper.isEmpty()) {
+        } else if (gsmInFluteThreePaper != null && gsmInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.gsmInFluteThreePaper.requestFocus();
             paperSpecificationBinding.gsmInFluteThreePaper.setError("Enter Value");
             return false;
-        } else if (gsmInBottomPaper.isEmpty()) {
+        } else if (gsmInBottomPaper != null && gsmInBottomPaper.isEmpty()) {
             paperSpecificationBinding.gsmInBottomPaper.requestFocus();
             paperSpecificationBinding.gsmInBottomPaper.setError("Enter Value");
             return false;
@@ -495,23 +498,23 @@ public class PaperSpecificationActivity extends BaseActivity {
             paperSpecificationBinding.rateKgInTopPaper.requestFocus();
             paperSpecificationBinding.rateKgInTopPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInFlutePaper.isEmpty()) {
+        } else if (rateKgInFlutePaper != null && rateKgInFlutePaper.isEmpty()) {
             paperSpecificationBinding.rateKgInFlutePaper.requestFocus();
             paperSpecificationBinding.rateKgInFlutePaper.setError("Enter Value");
             return false;
-        } else if (rateKgInMiddleOnePaper.isEmpty()) {
+        } else if (rateKgInMiddleOnePaper != null && rateKgInMiddleOnePaper.isEmpty()) {
             paperSpecificationBinding.rateKgInMiddleOnePaper.requestFocus();
             paperSpecificationBinding.rateKgInMiddleOnePaper.setError("Enter Value");
             return false;
-        } else if (rateKgInFluteTwoPaper.isEmpty()) {
+        } else if (rateKgInFluteTwoPaper != null && rateKgInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.rateKgInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.rateKgInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInMiddleTwoPaper.isEmpty()) {
+        } else if (rateKgInMiddleTwoPaper != null && rateKgInMiddleTwoPaper.isEmpty()) {
             paperSpecificationBinding.rateKgInMiddleTwoPaper.requestFocus();
             paperSpecificationBinding.rateKgInMiddleTwoPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInBottomPaper.isEmpty()) {
+        } else if (rateKgInBottomPaper != null && rateKgInBottomPaper.isEmpty()) {
             paperSpecificationBinding.rateKgInBottomPaper.requestFocus();
             paperSpecificationBinding.rateKgInBottomPaper.setError("Enter Value");
             return false;
@@ -527,7 +530,7 @@ public class PaperSpecificationActivity extends BaseActivity {
             paperSpecificationBinding.ffInFluteThreePaper.requestFocus();
             paperSpecificationBinding.ffInFluteThreePaper.setError("Enter Value");
             return false;
-        } else if (rateKgInFluteThreePaper.isEmpty()) {
+        } else if (rateKgInFluteThreePaper != null && rateKgInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.rateKgInFluteThreePaper.requestFocus();
             paperSpecificationBinding.rateKgInFluteThreePaper.setError("Enter Value");
             return false;
