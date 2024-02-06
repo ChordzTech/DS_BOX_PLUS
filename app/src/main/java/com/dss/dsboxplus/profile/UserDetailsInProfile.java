@@ -57,6 +57,9 @@ public class UserDetailsInProfile extends BaseActivity implements AdapterView.On
         binding.tvContactNo.setText(userData.getMobileno());
 //        binding.tvUserName.setText(userData.getUsername()); //User Role
         binding.tvdeviceInfo.setText(userData.getDeviceinfo());
+        binding.tvContactNo.setEnabled(false);
+        binding.tvdeviceInfo.setEnabled(false);
+        binding.userAccessSpinnerInUserDetails.setEnabled(false);
 
         binding.btUpdateInUSerDetails.setOnClickListener(new View.OnClickListener() {
             @Override

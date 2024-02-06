@@ -61,7 +61,6 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
     }
 
     private void initView() {
-//
         activityQuotationInBoxEstimateDetailsBinding.swEnablePaperSpecification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -264,22 +263,22 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
                     "Paper Specification as below\n";
 
             switch (ply != null ? ply : "") {
-                case "1Ply" ->
+                case "1 Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n";
-                case "2Ply", "2Ply(KG)" ->
+                case "2 Ply", "2 Ply(KG)" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n";
-                case "3Ply" ->
+                case "3 Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
-                case "5Ply" ->
+                case "5 Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +
                                 "4.Flute Two Paper" + bfInF2 + "/" + gsmInF2 + "\n" +
                                 "5.Bottom Paper" + bfInBottom + "/" + gsmInBottom + "\n";
-                case "7Ply" ->
+                case "7 Ply" ->
                         paperSpecification += "1.Top Paper" + bfInTop + "/" + gsmInTop + "\n" +
                                 "2.Flute Paper" + bfInF1 + "/" + gsmInF1 + "\n" +
                                 "3.Middle One Paper" + bfInM1 + "/" + gsmInM1 + "\n" +

@@ -19,6 +19,7 @@ import com.dss.dsboxplus.viewmodels.profileviewmodels.SubUserDetailsViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class SubUserDetailsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
@@ -67,12 +68,39 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
             binding.userAccessSpinnerInUserDetails.setSelection(spinnerValue);
             if (Objects.equals(userData.getUserrole(), "Admin")) {
                 binding.btDeleteInSubUSer.setVisibility(View.GONE);
-            }else {
+                binding.tietSubUserContact.setEnabled(false);
+                binding.tietSubUserDeviceInfo.setEnabled(false);
+                binding.userAccessSpinnerInUserDetails.setEnabled(false);
+                binding.userAccessSpinnerInUserDetails.setSelection(Arrays.asList(access).indexOf("Full Access"));
+            } else {
                 binding.btDeleteInSubUSer.setVisibility(View.VISIBLE);
+                binding.tietSubUserContact.setEnabled(false);
+                binding.tietSubUserDeviceInfo.setEnabled(false);
+                if (userData.getUserrole() != null && !userData.getUserrole().isEmpty()) {
+                    if (!Objects.equals(userData.getUserrole(), "Admin")) {
+                        binding.userAccessSpinnerInUserDetails.setSelection(Arrays.asList(access).indexOf("Full Access"));
+                    }
+                }
 
+                // Set selected access type for subusers
+                if (userData.getUserrole() != null && !userData.getUserrole().isEmpty()) {
+                    if (!Objects.equals(userData.getUserrole(), "Admin")) {
+                        switch (userData.getUseraccess()) {
+                            case 1:
+                                binding.userAccessSpinnerInUserDetails.setSelection(Arrays.asList(access).indexOf("Read Only"));
+                                break;
+                            case 2:
+                                binding.userAccessSpinnerInUserDetails.setSelection(Arrays.asList(access).indexOf("Full Access"));
+                                break;
+                            case 3:
+                                binding.userAccessSpinnerInUserDetails.setSelection(Arrays.asList(access).indexOf("No Access"));
+                                break;
+                        }
+                    }
+
+                }
             }
         }
-
 
         binding.btDeleteInSubUSer.setOnClickListener(new View.OnClickListener() {
             @Override

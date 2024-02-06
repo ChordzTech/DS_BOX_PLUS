@@ -79,7 +79,6 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, TermsAndPrivacyPolicyActivity.class);
-//                intent.putExtra("termsandprivacylink", url);
                 startActivity(intent);
             }
         });

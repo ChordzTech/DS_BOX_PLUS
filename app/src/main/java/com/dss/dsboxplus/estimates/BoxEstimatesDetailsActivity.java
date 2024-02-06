@@ -290,7 +290,6 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 double decalSizeInInches = (double) dataItem.getDecalsize();
                 int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
 
-
                 double cuttingSizeInInch = (double) dataItem.getCuttinglength();
                 int cuttingSizeinMm = (int) Math.round(cuttingSizeInInch * 25.4);
 
