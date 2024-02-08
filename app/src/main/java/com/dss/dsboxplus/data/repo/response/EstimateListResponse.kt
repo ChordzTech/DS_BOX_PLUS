@@ -22,7 +22,7 @@ data class EstimateListResponse(
 ) : Parcelable
 
 @Parcelize
-data class DataItem(
+data class  DataItem(
 
     @field:SerializedName("clientid")
     val clientid: Long? = null,

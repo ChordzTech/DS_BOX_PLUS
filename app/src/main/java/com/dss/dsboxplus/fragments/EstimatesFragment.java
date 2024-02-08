@@ -13,12 +13,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
-import com.dss.dsboxplus.alertdialog.SharedViewModel;
+import com.dss.dsboxplus.alertdialog.SubscriptionViewModel;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -65,7 +66,8 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private ArrayList<AppConfigDataItems> appConfigList = new ArrayList<>();
     private HomeActivity homeActivity;
     private MutableLiveData<Boolean> onFloatingActionClickLiveData = new MutableLiveData<Boolean>();
-    private SharedViewModel sharedViewModel;
+    private SubscriptionViewModel viewModel;
+
 
     public EstimatesFragment(IHomeActivityCallBack iHomeActivityCallBack) {
         // Required empty public constructor
@@ -77,6 +79,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+
     }
 
     @Override
@@ -99,9 +102,16 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         btContinue = view.findViewById(R.id.btContinue);
         bottomNavigationView = view.findViewById(R.id.bottomNavigation);
 
-
-
-
+        //if remaining days==0 then hide fabEstimate Button
+        viewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
+        MutableLiveData<Integer> remainingDaysLiveData = viewModel.getRemainingDays();
+        remainingDaysLiveData.observe(getViewLifecycleOwner(), remainingDays -> {
+            if (remainingDays != null && remainingDays == 0) {
+                fabEstimates.setVisibility(View.GONE);
+            } else {
+                fabEstimates.setVisibility(View.VISIBLE);
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

@@ -8,9 +8,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.alertdialog.SubscriptionViewModel;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.Client;
@@ -39,10 +42,12 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     private ClientDetails clientDetails;
     private ArrayList<Client> clientsList;
 
+    private SubscriptionViewModel subscriptionViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boxEstimatesDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_box_estimates_details);
+
         initView();
         fetchData();
         initObservables();
@@ -87,12 +92,25 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
-
+        subscriptionViewModel = new ViewModelProvider(this).get(SubscriptionViewModel.class);
 
         if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
             boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
         }
 
+        // Observe the remainingDays LiveData
+        subscriptionViewModel.getRemainingDays().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer remainingDays) {
+                if (remainingDays != null && remainingDays == 0) {
+                    // Hide your views when remainingDays is 0
+                    boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
+                } else {
+                    // Show your views for other cases
+                    boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         Intent intent = getIntent();
         if (intent.hasExtra("ESTIMATES_BUNDLE")) {
@@ -136,6 +154,30 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 //                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthInchField() + "inch"));
 //                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthInchField() + "inch"));
 //                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightInchField()+ "inch"));
+
+//                    if (dataItem.getLengthCmField()!=null){
+//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthCmField() + "cm"));
+//                    } else if (dataItem.getLengthInchField()!=null) {
+//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthInchField() + "inch"));
+//                    }else {
+//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf((int) Math.round(dataItem.getLengthMmField()) + "mm"));
+//                    }
+//
+//                    if(dataItem.getWidthCmField()!=null){
+//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthCmField() + "cm"));
+//                    } else if (dataItem.getWidthInchField()!=null) {
+//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthInchField() + "inch"));
+//                    }else {
+//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf((int) Math.round(dataItem.getWidthMmField())+ "mm"));
+//                    }
+//
+//                    if (dataItem.getHeightCmField()!=null){
+//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightCmField() + "cm"));
+//                    } else if (dataItem.getHeightInchField()!=null) {
+//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightInchField() + "inch"));
+//                    }else {
+//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf((int) Math.round(dataItem.getHeightMmField())+ "mm"));
+//                    }
 
                     boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf((int)Math.round(dataItem.getTotalweight())+"gm"));
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));

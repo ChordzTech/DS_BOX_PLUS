@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/circular_tv.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <corners android:radius="10dp" />
+    <solid android:color="@color/cyan_dark" />
 </shape>

@@ -83,17 +83,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/ivPDF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:paddingStart="@dimen/padding_small"
-                    android:paddingEnd="@dimen/padding_small"
-                    android:src="@drawable/pdf_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/tvCost"
-                    app:layout_constraintStart_toStartOf="@+id/tvCost"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCost" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivPDF"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:paddingStart="@dimen/padding_small"-->
+<!--                    android:paddingEnd="@dimen/padding_small"-->
+<!--                    android:src="@drawable/pdf_icon"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/tvCost"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tvCost"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tvCost" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

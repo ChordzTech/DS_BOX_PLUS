@@ -62,9 +62,16 @@ public class SplashActivity extends BaseActivity {
 
                 String phoneNumber = userDetailsResponse.getData().get(0).getMobileno();
                 mainBinding.tvDeviceNumber.setText("+91 "+phoneNumber);
-                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
+                
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                },1000);
+
             }
         });
 

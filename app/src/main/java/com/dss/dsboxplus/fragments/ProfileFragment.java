@@ -1,5 +1,7 @@
 package com.dss.dsboxplus.fragments;
 
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,14 +16,16 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.alertdialog.DialogUtils;
-import com.dss.dsboxplus.alertdialog.SharedViewModel;
+import com.dss.dsboxplus.alertdialog.SubscriptionViewModel;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
@@ -78,7 +82,8 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private TextView name, contact, role;
-    private SharedViewModel sharedViewModel;
+    private SubscriptionViewModel viewModel;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -183,8 +188,14 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_profile_, container, false);
+     return inflater.inflate(R.layout.fragment_profile_, container, false);
 
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         cvBusiness = v.findViewById(R.id.businessSettings);
         cvDefaultPaper = v.findViewById(R.id.cvDefaultPaperSettings);
         cvDefaultRate = v.findViewById(R.id.cvDefaultRateSettings);
@@ -205,7 +216,7 @@ public class ProfileFragment extends Fragment {
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
 
-
+        viewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
         //Profile Pic
 //        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
 //        if (savedProfilePicture != null) {
@@ -264,6 +275,7 @@ public class ProfileFragment extends Fragment {
             tvSubDays.setText(subscriptionMessageForDays);
             tvSubDate.setText(subscriptionMessage);
             tvTrialActive.setText("Subscription Status: " + subStatus);
+            viewModel.setRemainingDays(remainingDays);
         } else {
             tvSubDays.setText("No subscription data available");
             tvSubDate.setText("No subscription data available"); // You can set a default value or an empty string
@@ -297,7 +309,7 @@ public class ProfileFragment extends Fragment {
 
                         tvSubDays.setText(remainingDaysForSub);
                         tvSubDate.setText(suDate);
-//                        sharedViewModel.setRemainingDays(trialDays);
+                        viewModel.setRemainingDays(remainingDays);
                     }
                 }
             }
@@ -380,7 +392,6 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        return v;
     }
 
     private String formatDateFromApi(String subscriptionDate) {

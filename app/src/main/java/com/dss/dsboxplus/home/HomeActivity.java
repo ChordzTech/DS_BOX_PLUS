@@ -107,7 +107,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (!appConfigResponse.getData().isEmpty()) {
                 appConfigList = (ArrayList<AppConfigDataItems>) appConfigResponse.getData();
                 profileFragment.setAppConfigList(appConfigList);
-                estimatesFragment.setAppConfigList(appConfigList);
+//                estimatesFragment.setAppConfigList(appConfigList);
                 ConfigDataProvider.INSTANCE.setAppConfigResponse(appConfigResponse);
 
             }
