@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     private Double cutting = 0.0;
     private boolean isUpdate = false;
     private int weightInInt = 0;
+    private Double totalThreeDigits = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -435,49 +437,50 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valueFirstOFTotalWeightThreeDigits = 0.0;
         double valueSecondOFTotalWeightThreeDigits = 0.0;
         int noOFBoxUps = 0;
-        double valueFirstOFTotalWeight = ((((decal * cutting * gsmOfTop * mm * mm) / divide) / divide) / divide);
-        valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
+        cutting = 2000.0;
+        do {
+            double valueFirstOFTotalWeight = ((((decal * cutting * gsmOfTop * mm) / divide) / divide) / divide);
+            valueFirstOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueFirstOFTotalWeight));
 
-        //Value 2
-        double valueSecondOfTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm * mm) / divide) / divide) / divide);
-        valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOfTotalWeight));
-        //Total
-        double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits);
-        double totalThreeDigits = Double.valueOf(String.format("%.3f", total));
+            //Value 2
+            double valueSecondOfTotalWeight = ((((decal * cutting * gsmOfFlute * ffOfFluteOnePaper * mm) / divide) / divide) / divide);
+            valueSecondOFTotalWeightThreeDigits = Double.valueOf(String.format("%.3f", valueSecondOfTotalWeight));
+            //Total
+            double total = (valueFirstOFTotalWeightThreeDigits + valueSecondOFTotalWeightThreeDigits);
+            totalThreeDigits = Double.valueOf(String.format("%.3f", total));
+//            weightInInt= new Double(totalThreeDigits).intValue();
+            Log.e("TAG", "formulaForTwoPlyKg:weightInInt: " + weightInInt);
+            Log.e("TAG", "formulaForTwoPlyKg:cutting: " + cutting);
+
+            cutting = (cutting) + (1);
+//            cutting += (1*mm);
+            totalThreeDigits = totalThreeDigits * 1000;
+        } while (totalThreeDigits < 1000);
         //Waste value
         double wasteFromTiet = Double.parseDouble(waste);
         double wastePercentage = ((totalThreeDigits * wasteFromTiet) / 100.0);
 //            double wastePercentageThreeDigits = Double.valueOf(String.format("%.3f", wastePercentage));
         //Total weight
         //No of box should be 1 in 2 ply kg
-        double totalWeight = (totalThreeDigits + wastePercentage);
+        noOFBoxUps = Integer.parseInt(noOfBox);
+        double totalWeight = (totalThreeDigits + wastePercentage) / noOFBoxUps;
         totalWeightThreeDigits = Double.valueOf(String.format("%.3f", totalWeight));
-        weightInInt = (int) (totalWeightThreeDigits * 1000);
-
-        if (weightInInt < 1000) {
-            double lessWeight = 1000 - weightInInt;
-            double lessWeightByTwo = lessWeight / 2;
-            double lessWeightTop = lessWeightByTwo / 2;
-            double lessWeightFlute = lessWeightByTwo / 2;
-            double lessWeightTotal = lessWeightTop + lessWeightFlute;
-            double decalCutting = (lessWeightTotal) / (decal * cutting * 25.4 * 25.4 * gsmOfTop * 0.001 * 0.001 * 0.001);
-            double decalCuttingF1 = (lessWeightTotal) / (decal * cutting * 25.4 * 25.4 * gsmOfFlute * ffOfFluteOnePaper * 0.001 * 0.001 * 0.001);
-
-
-            cutting = decalCutting / decal;
-        }
-
-        String gm = weightInInt + " gm";
+//        weightInInt = (int) (totalWeightThreeDigits * 1000);
+        String gm = totalWeightThreeDigits + " gm";
         if (CreateEstimateDataHolder.INSTANCE.isEmptyBoxDim()) {
-            gm = weightInInt + " Kg";
+            if (totalWeightThreeDigits > 1000) {
+                gm = String.valueOf(new Double(totalWeightThreeDigits / 1000)) + "Kg";
+            } else {
+                gm = totalWeightThreeDigits + " gm";
+            }
         }
+
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
-        cutting += 1;
-
-
+        Log.e("TAG", "formulaForTwoPlyKg: weightInInt:" + gm);
+        Log.e("TAG", "formulaForTwoPlyKg: cutting:" + cutting);
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
-        double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
+        double resultOfConvCost = (totalWeightThreeDigits * convCostTiet)*0.001;
         String resultOfConvCostString = String.format("%.3f", resultOfConvCost);
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
         //Costs
