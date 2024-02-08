@@ -43,7 +43,9 @@ dependencies {
     def lifecycle_version = "2.6.2"
     def arch_version = "2.2.0"
 
-    implementation 'com.google.firebase:firebase-auth:22.3.0'
+    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth:22.3.1'
     implementation 'androidx.core:core-ktx:1.12.0'
 
     //lottie
