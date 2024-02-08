@@ -402,136 +402,143 @@ public class PaperSpecificationActivity extends BaseActivity {
 
 
     private void storeValuesToEstimateDataHolder() {
-        CreateEstimateDataHolder.INSTANCE.setTopBf(Integer.parseInt(paperSpecificationBinding.bfInTopPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setTopGsm(Integer.parseInt(paperSpecificationBinding.gsmInTopPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setTopRate(Float.parseFloat(paperSpecificationBinding.rateKgInTopPaper.getText().toString()));
-
-        CreateEstimateDataHolder.INSTANCE.setF1Bf(Integer.parseInt(paperSpecificationBinding.bfInFlutePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF1Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFlutePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF1RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFlutePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF1ff(Float.parseFloat(paperSpecificationBinding.ffInFlutePaper.getText().toString()));
-
-        CreateEstimateDataHolder.INSTANCE.setM1bf(Integer.parseInt(paperSpecificationBinding.bfInMiddleOnePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setM1Gsm(Integer.parseInt(paperSpecificationBinding.gsmInMiddleOnePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setM1RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInMiddleOnePaper.getText().toString()));
-
-        CreateEstimateDataHolder.INSTANCE.setF2Bf(Integer.parseInt(paperSpecificationBinding.bfInFluteTwoPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF2Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFluteTwoPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF2RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFluteTwoPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF2ff(Float.parseFloat(paperSpecificationBinding.ffInFluteTwoPaper.getText().toString()));
-
-        CreateEstimateDataHolder.INSTANCE.setM2bf(Integer.parseInt(paperSpecificationBinding.bfInMiddleTwoPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setM2Gsm(Integer.parseInt(paperSpecificationBinding.gsmInMiddleTwoPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setM2RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInMiddleTwoPaper.getText().toString()));
-
-        CreateEstimateDataHolder.INSTANCE.setF3Bf(Integer.parseInt(paperSpecificationBinding.bfInFluteThreePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF3Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFluteThreePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF3RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFluteThreePaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setF3ff(Float.parseFloat(paperSpecificationBinding.ffInFluteThreePaper.getText().toString()));
-
-        CreateEstimateDataHolder.INSTANCE.setBottomBF(Integer.parseInt(paperSpecificationBinding.bfInBottomPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setBottomGsm(Integer.parseInt(paperSpecificationBinding.gsmInBottomPaper.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setBottomRateKg(Float.parseFloat(paperSpecificationBinding.rateKgInBottomPaper.getText().toString()));
-
+        if (paperSpecificationBinding.cvTopPaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setTopBf(Integer.parseInt(paperSpecificationBinding.bfInTopPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setTopGsm(Integer.parseInt(paperSpecificationBinding.gsmInTopPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setTopRate(Float.parseFloat(paperSpecificationBinding.rateKgInTopPaper.getText().toString()));
+        }
+        if (paperSpecificationBinding.cvFluteOnePaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setF1Bf(Integer.parseInt(paperSpecificationBinding.bfInFlutePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF1Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFlutePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF1RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFlutePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF1ff(Float.parseFloat(paperSpecificationBinding.ffInFlutePaper.getText().toString()));
+        }
+        if (paperSpecificationBinding.cvMiddleOnePaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setM1bf(Integer.parseInt(paperSpecificationBinding.bfInMiddleOnePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setM1Gsm(Integer.parseInt(paperSpecificationBinding.gsmInMiddleOnePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setM1RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInMiddleOnePaper.getText().toString()));
+        }
+        if (paperSpecificationBinding.cvFluteTwoPaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setF2Bf(Integer.parseInt(paperSpecificationBinding.bfInFluteTwoPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF2Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFluteTwoPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF2RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFluteTwoPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF2ff(Float.parseFloat(paperSpecificationBinding.ffInFluteTwoPaper.getText().toString()));
+        }
+        if (paperSpecificationBinding.cvMiddleTwoPaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setM2bf(Integer.parseInt(paperSpecificationBinding.bfInMiddleTwoPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setM2Gsm(Integer.parseInt(paperSpecificationBinding.gsmInMiddleTwoPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setM2RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInMiddleTwoPaper.getText().toString()));
+        }
+        if (paperSpecificationBinding.cvFluteThreePaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setF3Bf(Integer.parseInt(paperSpecificationBinding.bfInFluteThreePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF3Gsm(Integer.parseInt(paperSpecificationBinding.gsmInFluteThreePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF3RateKg(Float.parseFloat(paperSpecificationBinding.rateKgInFluteThreePaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setF3ff(Float.parseFloat(paperSpecificationBinding.ffInFluteThreePaper.getText().toString()));
+        }
+        if (paperSpecificationBinding.cvBottomPaper.getVisibility() == View.VISIBLE) {
+            CreateEstimateDataHolder.INSTANCE.setBottomBF(Integer.parseInt(paperSpecificationBinding.bfInBottomPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setBottomGsm(Integer.parseInt(paperSpecificationBinding.gsmInBottomPaper.getText().toString()));
+            CreateEstimateDataHolder.INSTANCE.setBottomRateKg(Float.parseFloat(paperSpecificationBinding.rateKgInBottomPaper.getText().toString()));
+        }
     }
 
     private boolean validateInfo(String bfInTopPaper, String bfInFlutePaper, String bfInMiddleOnePaper, String bfInFluteTwoPaper, String bfInMiddleTwoPaper, String bfInFluteThreePaper,
                                  String bfInBottomPaper, String gsmInTop, String gsmInFlutePaper, String gsmInMiddleOnePaper, String gsmInFluteTwoPaper, String gsmInMiddleTwoPaper, String gsmInFluteThreePaper,
                                  String gsmInBottomPaper, String rateKgInTop, String rateKgInFlutePaper, String rateKgInMiddleOnePaper, String rateKgInFluteTwoPaper, String rateKgInMiddleTwoPaper,
                                  String rateKgInBottomPaper, String ffInFluteOnePaper, String ffInFluteTwoPaper, String ffInFluteThreePaper, String rateKgInFluteThreePaper) {
-        if (bfInTopPaper.isEmpty()) {
+        if (paperSpecificationBinding.cvTopPaper.getVisibility() == View.VISIBLE && bfInTopPaper.isEmpty()) {
             paperSpecificationBinding.bfInTopPaper.requestFocus();
             paperSpecificationBinding.bfInTopPaper.setError("Enter Value");
             return false;
-        } else if (bfInFlutePaper != null && bfInFlutePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteOnePaper.getVisibility() == View.VISIBLE && bfInFlutePaper != null && bfInFlutePaper.isEmpty()) {
             paperSpecificationBinding.bfInFlutePaper.requestFocus();
             paperSpecificationBinding.bfInFlutePaper.setError("Enter Value");
             return false;
-        } else if (bfInMiddleOnePaper != null && bfInMiddleOnePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvMiddleOnePaper.getVisibility() == View.VISIBLE && bfInMiddleOnePaper != null && bfInMiddleOnePaper.isEmpty()) {
             paperSpecificationBinding.bfInMiddleOnePaper.requestFocus();
             paperSpecificationBinding.bfInMiddleOnePaper.setError("Enter Value");
             return false;
-        } else if (bfInFluteTwoPaper != null && bfInFluteTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteTwoPaper.getVisibility() == View.VISIBLE && bfInFluteTwoPaper != null && bfInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.bfInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.bfInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (bfInMiddleTwoPaper != null && bfInMiddleTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvMiddleTwoPaper.getVisibility() == View.VISIBLE && bfInMiddleTwoPaper != null && bfInMiddleTwoPaper.isEmpty()) {
             paperSpecificationBinding.bfInMiddleTwoPaper.requestFocus();
             paperSpecificationBinding.bfInMiddleTwoPaper.setError("Enter Value");
             return false;
-        } else if (bfInFluteThreePaper != null && bfInFluteThreePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteThreePaper.getVisibility() == View.VISIBLE && bfInFluteThreePaper != null && bfInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.bfInFluteThreePaper.requestFocus();
             paperSpecificationBinding.bfInFluteThreePaper.setError("Enter Value");
             return false;
-        } else if (bfInBottomPaper != null && bfInBottomPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvBottomPaper.getVisibility() == View.VISIBLE && bfInBottomPaper != null && bfInBottomPaper.isEmpty()) {
             paperSpecificationBinding.bfInBottomPaper.requestFocus();
             paperSpecificationBinding.bfInBottomPaper.setError("Enter Value");
             return false;
-        } else if (gsmInTop.isEmpty()) {
+        } else if (paperSpecificationBinding.cvTopPaper.getVisibility() == View.VISIBLE && gsmInTop.isEmpty()) {
             paperSpecificationBinding.gsmInTopPaper.requestFocus();
             paperSpecificationBinding.gsmInTopPaper.setError("Enter Value");
             return false;
-        } else if (gsmInFlutePaper != null && gsmInFlutePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteOnePaper.getVisibility() == View.VISIBLE && gsmInFlutePaper != null && gsmInFlutePaper.isEmpty()) {
             paperSpecificationBinding.gsmInFlutePaper.requestFocus();
             paperSpecificationBinding.gsmInFlutePaper.setError("Enter Value");
             return false;
-        } else if (gsmInMiddleOnePaper != null && gsmInMiddleOnePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvMiddleOnePaper.getVisibility() == View.VISIBLE && gsmInMiddleOnePaper != null && gsmInMiddleOnePaper.isEmpty()) {
             paperSpecificationBinding.gsmInMiddleOnePaper.requestFocus();
             paperSpecificationBinding.gsmInMiddleOnePaper.setError("Enter Value");
             return false;
-        } else if (gsmInFluteTwoPaper != null && gsmInFluteTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteTwoPaper.getVisibility() == View.VISIBLE && gsmInFluteTwoPaper != null && gsmInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.gsmInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.gsmInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (gsmInMiddleTwoPaper != null && gsmInMiddleTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvMiddleTwoPaper.getVisibility() == View.VISIBLE && gsmInMiddleTwoPaper != null && gsmInMiddleTwoPaper.isEmpty()) {
             paperSpecificationBinding.gsmInMiddleTwoPaper.requestFocus();
             paperSpecificationBinding.gsmInMiddleTwoPaper.setError("Enter Value");
             return false;
-        } else if (gsmInFluteThreePaper != null && gsmInFluteThreePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteThreePaper.getVisibility() == View.VISIBLE && gsmInFluteThreePaper != null && gsmInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.gsmInFluteThreePaper.requestFocus();
             paperSpecificationBinding.gsmInFluteThreePaper.setError("Enter Value");
             return false;
-        } else if (gsmInBottomPaper != null && gsmInBottomPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvBottomPaper.getVisibility() == View.VISIBLE && gsmInBottomPaper != null && gsmInBottomPaper.isEmpty()) {
             paperSpecificationBinding.gsmInBottomPaper.requestFocus();
             paperSpecificationBinding.gsmInBottomPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInTop.isEmpty()) {
+        } else if (paperSpecificationBinding.cvTopPaper.getVisibility() == View.VISIBLE && rateKgInTop.isEmpty()) {
             paperSpecificationBinding.rateKgInTopPaper.requestFocus();
             paperSpecificationBinding.rateKgInTopPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInFlutePaper != null && rateKgInFlutePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteOnePaper.getVisibility() == View.VISIBLE && rateKgInFlutePaper != null && rateKgInFlutePaper.isEmpty()) {
             paperSpecificationBinding.rateKgInFlutePaper.requestFocus();
             paperSpecificationBinding.rateKgInFlutePaper.setError("Enter Value");
             return false;
-        } else if (rateKgInMiddleOnePaper != null && rateKgInMiddleOnePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvMiddleOnePaper.getVisibility() == View.VISIBLE && rateKgInMiddleOnePaper != null && rateKgInMiddleOnePaper.isEmpty()) {
             paperSpecificationBinding.rateKgInMiddleOnePaper.requestFocus();
             paperSpecificationBinding.rateKgInMiddleOnePaper.setError("Enter Value");
             return false;
-        } else if (rateKgInFluteTwoPaper != null && rateKgInFluteTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteTwoPaper.getVisibility() == View.VISIBLE && rateKgInFluteTwoPaper != null && rateKgInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.rateKgInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.rateKgInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInMiddleTwoPaper != null && rateKgInMiddleTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvMiddleTwoPaper.getVisibility() == View.VISIBLE && rateKgInMiddleTwoPaper != null && rateKgInMiddleTwoPaper.isEmpty()) {
             paperSpecificationBinding.rateKgInMiddleTwoPaper.requestFocus();
             paperSpecificationBinding.rateKgInMiddleTwoPaper.setError("Enter Value");
             return false;
-        } else if (rateKgInBottomPaper != null && rateKgInBottomPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvBottomPaper.getVisibility() == View.VISIBLE && rateKgInBottomPaper != null && rateKgInBottomPaper.isEmpty()) {
             paperSpecificationBinding.rateKgInBottomPaper.requestFocus();
             paperSpecificationBinding.rateKgInBottomPaper.setError("Enter Value");
             return false;
-        } else if (ffInFluteOnePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteOnePaper.getVisibility() == View.VISIBLE && ffInFluteOnePaper.isEmpty()) {
             paperSpecificationBinding.ffInFlutePaper.requestFocus();
             paperSpecificationBinding.ffInFlutePaper.setError("Enter Value");
             return false;
-        } else if (ffInFluteTwoPaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteTwoPaper.getVisibility() == View.VISIBLE && ffInFluteTwoPaper.isEmpty()) {
             paperSpecificationBinding.ffInFluteTwoPaper.requestFocus();
             paperSpecificationBinding.ffInFluteTwoPaper.setError("Enter Value");
             return false;
-        } else if (ffInFluteThreePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteThreePaper.getVisibility() == View.VISIBLE && ffInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.ffInFluteThreePaper.requestFocus();
             paperSpecificationBinding.ffInFluteThreePaper.setError("Enter Value");
             return false;
-        } else if (rateKgInFluteThreePaper != null && rateKgInFluteThreePaper.isEmpty()) {
+        } else if (paperSpecificationBinding.cvFluteThreePaper.getVisibility() == View.VISIBLE && rateKgInFluteThreePaper != null && rateKgInFluteThreePaper.isEmpty()) {
             paperSpecificationBinding.rateKgInFluteThreePaper.requestFocus();
             paperSpecificationBinding.rateKgInFluteThreePaper.setError("Enter Value");
             return false;
