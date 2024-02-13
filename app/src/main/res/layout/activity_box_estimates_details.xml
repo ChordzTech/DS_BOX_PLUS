@@ -177,10 +177,10 @@
 
                         <ImageView
                             android:id="@+id/ivrollImage"
-                            android:layout_width="200dp"
+                            android:layout_width="300dp"
                             android:layout_height="200dp"
                             android:background="@color/transparent"
-                            android:src="@drawable/roll_png"
+                            android:src="@drawable/roll_box"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
@@ -188,10 +188,11 @@
                         <TextView
                             android:id="@+id/tvCuttingSizeForBox"
                             android:layout_marginTop="50dp"
-                            android:rotation="45"
+                            android:rotation="30"
                             android:layout_marginStart="@dimen/margin_large"
                             android:layout_gravity="center"
                             android:text="Text1"
+                            android:layout_marginBottom="20dp"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -201,32 +202,37 @@
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="30dp"
-                            android:layout_marginBottom="60dp"
-                            android:rotation="345"
+                            android:layout_gravity="center|start"
+                            android:layout_marginTop="45dp"
+                            android:layout_marginEnd="70dp"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginBottom="90dp"
+                            android:rotation="320"
                             android:text="Text2" />
+
 
                         <TextView
                             android:id="@+id/tvDecalSizeinInch"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="40dp"
-                            android:layout_marginBottom="70dp"
-                            android:layout_marginStart="@dimen/margin_small"
-                            android:layout_marginEnd="20dp"
-                            android:rotation="350"
-                            android:text="Text3"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|start"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="80dp"
+                            android:layout_marginEnd="60dp"
+                            android:layout_marginBottom="90dp"
+                            android:rotation="320"
+                            android:text="Text3" />
+
                         <TextView
                             android:id="@+id/tvCuttingLengthinch"
                             android:text="Text4"
                             android:layout_marginTop="65dp"
-                            android:rotation="45"
+                            android:rotation="30"
                             android:layout_marginEnd="@dimen/margin_large"
                             android:layout_marginStart="@dimen/margin_medium"
                             android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>

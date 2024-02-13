@@ -336,6 +336,26 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+//        protected void onStop() {
+//            super.onStop();
+//            // Switch off the button when the activity is stopped
+//            swMultiUser.setChecked(false);
+//        }
+//
+//        @Override
+//        protected void onPause() {
+//            super.onPause();
+//            // Switch off the button when the activity is paused
+//            swMultiUser.setChecked(false);
+//        }
+//
+//        // Add this method if you want to handle switch state when the activity is destroyed
+//        @Override
+//        protected void onDestroy() {
+//            super.onDestroy();
+//            // Switch off the button when the activity is destroyed
+//            swMultiUser.setChecked(false);
+//        }
         cvBusiness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
