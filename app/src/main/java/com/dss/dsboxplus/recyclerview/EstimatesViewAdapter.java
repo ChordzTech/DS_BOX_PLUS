@@ -48,10 +48,24 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
         DataItem dataItem = estimatesList.get(position);
         holder.tvBoxName.setText(dataItem.getBoxname());
-        int length = (int) Math.round(dataItem.getLengthMmField());
-        int width = (int) Math.round(dataItem.getWidthMmField());
-        int height = (int) Math.round(dataItem.getHeightMmField());
-        holder.tvBoxDimension.setText(length + "x" + width + "x" + height);
+        int lengthMM = (int) Math.round(dataItem.getLengthMmField());
+        int widthMM = (int) Math.round(dataItem.getWidthMmField());
+        int heightMM = (int) Math.round(dataItem.getHeightMmField());
+        int lengthCM = (int) Math.round(Double.parseDouble(dataItem.getLengthCmField().toString()));
+        int widthCM = (int) Math.round(Double.parseDouble(dataItem.getWidthCmField().toString()));
+        int heightCM = (int) Math.round(Double.parseDouble(dataItem.getHeightCmField().toString()));
+        int lengthIN = (int) Math.round(Double.parseDouble(dataItem.getLengthInchField().toString()));
+        int widthIN = (int) Math.round(Double.parseDouble(dataItem.getWidthInchField().toString()));
+        int heightIN = (int) Math.round(Double.parseDouble(dataItem.getHeightInchField().toString()));
+        if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
+            holder.tvBoxDimension.setText(lengthCM + "x" + widthCM + "x" + heightCM+" cm");
+
+        } else if (lengthIN != 0 && widthIN != 0 && heightIN != 0) {
+            holder.tvBoxDimension.setText(lengthIN + "x" + widthIN + "x" + heightIN+" inch");
+
+        }else{
+            holder.tvBoxDimension.setText(lengthMM + "x" + widthMM + "x" + heightMM+" mm") ;
+        }
         String boxCost = String.format("%.2f", dataItem.getBoxprice());
         String finalBox = "₹ " + boxCost;
         holder.tvCost.setText(finalBox);
@@ -72,6 +86,7 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         }
 
     }
+
     private int getRandomColor() {
         Random rand = new Random();
         return Color.argb(155, rand.nextInt(156), rand.nextInt(156), rand.nextInt(156));
