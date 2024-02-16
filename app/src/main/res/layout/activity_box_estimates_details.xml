@@ -180,7 +180,7 @@
                             android:layout_width="300dp"
                             android:layout_height="200dp"
                             android:background="@color/transparent"
-                            android:src="@drawable/roll_box"
+                            android:src="@drawable/roll_box_sheet"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
