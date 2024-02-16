@@ -43,6 +43,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     private ArrayList<Client> clientsList;
 
     private SubscriptionViewModel subscriptionViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,50 +142,50 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     double resultForTax = boxPrice * (tax / 100);
                     resultForTaxThreeDigits = String.format("%.2f", resultForTax);
 
-                    //Dimension For ImageOne
+                    int lengthMM = (int) Math.round(dataItem.getLengthMmField());
+                    int widthMM = (int) Math.round(dataItem.getWidthMmField());
+                    int heightMM = (int) Math.round(dataItem.getHeightMmField());
+                    int lengthCM = (int) Math.round(Double.parseDouble(dataItem.getLengthCmField().toString()));
+                    int widthCM = (int) Math.round(Double.parseDouble(dataItem.getWidthCmField().toString()));
+                    int heightCM = (int) Math.round(Double.parseDouble(dataItem.getHeightCmField().toString()));
+                    int lengthIN = (int) Math.round(Double.parseDouble(dataItem.getLengthInchField().toString()));
+                    int widthIN = (int) Math.round(Double.parseDouble(dataItem.getWidthInchField().toString()));
+                    int heightIN = (int) Math.round(Double.parseDouble(dataItem.getHeightInchField().toString()));
+                    int decalSize = (int) Double.parseDouble(dataItem.getDecalsize().toString());
+                    int cuttingLength = (int) Double.parseDouble(dataItem.getCuttinglength().toString());
+                    if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
+                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthCM + "cm"));
+                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthCM + "cm"));
+                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightCM + "cm"));
 
-                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf((int) Math.round(dataItem.getLengthMmField()) + "mm"));
-                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf((int) Math.round(dataItem.getWidthMmField()) + "mm"));
-                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf((int) Math.round(dataItem.getHeightMmField()) + "mm"));
+                        int decal = (int) (decalSize*2.54);
+                        int cutting = (int) (cuttingLength*2.54);
+                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "cm"));
+                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "cm"));
+                    } else if (lengthIN != 0 && widthIN != 0 && heightIN != 0) {
+                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthIN + "inch"));
+                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthIN + "inch"));
+                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightIN + "inch"));
 
-//                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthCmField() + "cm"));
-//                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthCmField() + "cm"));
-//                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightCmField()+ "cm"));
-//
-//                    boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthInchField() + "inch"));
-//                    boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthInchField() + "inch"));
-//                    boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightInchField()+ "inch"));
 
-//                    if (dataItem.getLengthCmField()!=null){
-//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthCmField() + "cm"));
-//                    } else if (dataItem.getLengthInchField()!=null) {
-//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(dataItem.getLengthInchField() + "inch"));
-//                    }else {
-//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf((int) Math.round(dataItem.getLengthMmField()) + "mm"));
-//                    }
-//
-//                    if(dataItem.getWidthCmField()!=null){
-//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthCmField() + "cm"));
-//                    } else if (dataItem.getWidthInchField()!=null) {
-//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(dataItem.getWidthInchField() + "inch"));
-//                    }else {
-//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf((int) Math.round(dataItem.getWidthMmField())+ "mm"));
-//                    }
-//
-//                    if (dataItem.getHeightCmField()!=null){
-//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightCmField() + "cm"));
-//                    } else if (dataItem.getHeightInchField()!=null) {
-//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(dataItem.getHeightInchField() + "inch"));
-//                    }else {
-//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf((int) Math.round(dataItem.getHeightMmField())+ "mm"));
-//                    }
+                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decalSize + "inch"));
+                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cuttingLength + "inch"));
+                    } else {
+                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthMM + "mm"));
+                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthMM + "mm"));
+                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightMM + "mm"));
 
-                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf((int)Math.round(dataItem.getTotalweight())+"gm"));
+                        int decal = (int) (decalSize*25.4);
+                        int cutting = (int) (cuttingLength*25.4);
+                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "mm"));
+                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "mm"));
+                    }
+
+                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf((int) Math.round(dataItem.getTotalweight()) + "gm"));
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
                     //Dimension For ImageTwo
 
-                    boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(dataItem.getDecalsize() + "inch"));
-                    boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(dataItem.getCuttinglength() + "inch"));
+
                     double decalSizeInInches = (double) dataItem.getDecalsize();
                     int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
 
@@ -195,29 +196,29 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     int cuttingSizeinMm = (int) Math.round(cuttingSizeInInch * 25.4);
                     boxEstimatesDetailsBinding.tvCuttingLengthinch.setText(String.valueOf(cuttingSizeinMm + "mm"));
                     //Dimensions for ply
-                    boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf((int)Math.round(dataItem.getTopbf())));
-                    boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf((int)Math.round(dataItem.getTopgsm())));
+                    boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf((int) Math.round(dataItem.getTopbf())));
+                    boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf((int) Math.round(dataItem.getTopgsm())));
                     boxEstimatesDetailsBinding.tvTopRate.setText(String.valueOf(dataItem.getToprate()));
-                    boxEstimatesDetailsBinding.tvFluteOnebf.setText(String.valueOf((int)Math.round(dataItem.getF1bf())));
-                    boxEstimatesDetailsBinding.tvGsmFluteOne.setText(String.valueOf((int)Math.round(dataItem.getF1gsm())));
+                    boxEstimatesDetailsBinding.tvFluteOnebf.setText(String.valueOf((int) Math.round(dataItem.getF1bf())));
+                    boxEstimatesDetailsBinding.tvGsmFluteOne.setText(String.valueOf((int) Math.round(dataItem.getF1gsm())));
                     boxEstimatesDetailsBinding.tvRateFluteOne.setText(String.valueOf(dataItem.getF1rate()));
                     boxEstimatesDetailsBinding.tvFFFluteOne.setText(String.valueOf(dataItem.getF1ff()));
-                    boxEstimatesDetailsBinding.tvMiddleOneBf.setText(String.valueOf((int)Math.round(dataItem.getM1bf())));
-                    boxEstimatesDetailsBinding.tvMiddleOneGsm.setText(String.valueOf((int)Math.round(dataItem.getM1gsm())));
+                    boxEstimatesDetailsBinding.tvMiddleOneBf.setText(String.valueOf((int) Math.round(dataItem.getM1bf())));
+                    boxEstimatesDetailsBinding.tvMiddleOneGsm.setText(String.valueOf((int) Math.round(dataItem.getM1gsm())));
                     boxEstimatesDetailsBinding.tvMiddleOneRate.setText(String.valueOf(dataItem.getM1rate()));
-                    boxEstimatesDetailsBinding.tvFluteTwoBf.setText(String.valueOf((int)Math.round(dataItem.getF2bf())));
-                    boxEstimatesDetailsBinding.tvFluteTwoGsm.setText(String.valueOf((int)Math.round(dataItem.getF2gsm())));
+                    boxEstimatesDetailsBinding.tvFluteTwoBf.setText(String.valueOf((int) Math.round(dataItem.getF2bf())));
+                    boxEstimatesDetailsBinding.tvFluteTwoGsm.setText(String.valueOf((int) Math.round(dataItem.getF2gsm())));
                     boxEstimatesDetailsBinding.tvFluteTwoRate.setText(String.valueOf(dataItem.getF2rate()));
                     boxEstimatesDetailsBinding.tvFluteTwoFf.setText(String.valueOf(dataItem.getF2ff()));
-                    boxEstimatesDetailsBinding.tvMiddleTwoBf.setText(String.valueOf((int)Math.round(dataItem.getM2bf())));
-                    boxEstimatesDetailsBinding.tvMiddleTwoGsm.setText(String.valueOf((int)Math.round(dataItem.getM2gsm())));
+                    boxEstimatesDetailsBinding.tvMiddleTwoBf.setText(String.valueOf((int) Math.round(dataItem.getM2bf())));
+                    boxEstimatesDetailsBinding.tvMiddleTwoGsm.setText(String.valueOf((int) Math.round(dataItem.getM2gsm())));
                     boxEstimatesDetailsBinding.tvMiddleTwoRate.setText(String.valueOf(dataItem.getM2rate()));
-                    boxEstimatesDetailsBinding.tvFluteThreeBf.setText(String.valueOf((int)Math.round(dataItem.getF3bf())));
-                    boxEstimatesDetailsBinding.tvFluteThreeGsm.setText(String.valueOf((int)Math.round(dataItem.getF3gsm())));
+                    boxEstimatesDetailsBinding.tvFluteThreeBf.setText(String.valueOf((int) Math.round(dataItem.getF3bf())));
+                    boxEstimatesDetailsBinding.tvFluteThreeGsm.setText(String.valueOf((int) Math.round(dataItem.getF3gsm())));
                     boxEstimatesDetailsBinding.tvFluteThreeRate.setText(String.valueOf(dataItem.getF3rate()));
                     boxEstimatesDetailsBinding.tvFluteThreeFf.setText(String.valueOf(dataItem.getF3ff()));
-                    boxEstimatesDetailsBinding.tvBottomBf.setText(String.valueOf((int)Math.round(dataItem.getBottombf())));
-                    boxEstimatesDetailsBinding.tvBottomGsm.setText(String.valueOf((int)Math.round(dataItem.getBottomgsm())));
+                    boxEstimatesDetailsBinding.tvBottomBf.setText(String.valueOf((int) Math.round(dataItem.getBottombf())));
+                    boxEstimatesDetailsBinding.tvBottomGsm.setText(String.valueOf((int) Math.round(dataItem.getBottomgsm())));
                     boxEstimatesDetailsBinding.tvBottomRate.setText(String.valueOf(dataItem.getBottomrate()));
 
 

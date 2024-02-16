@@ -152,13 +152,13 @@ public class LoginActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finish();
+                finishAffinity();
             } else {
                 addUserDataToPreferences(userDetailsResponse);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
-                finish();
+                finishAffinity();
             }
         });
 

@@ -432,11 +432,40 @@ public class ProfileFragment extends Fragment {
             public void onPositiveButtonClick() {
                 Intent intent = new Intent(getActivity(), SubscriptionActivity.class);
                 startActivity(intent);
+                BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+                if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+                    BusinessDetails businessDetails = businessDetailsResponse.getData();
+                    int userAccess = businessDetails.getMultiuser();
+                    // Hide the super user setting if userAccess is 0
+                    if (userAccess == 1) {
+                        cvsuperUserSettings.setVisibility(View.VISIBLE);
+                        // Enable the toggle button when userAccess is 1
+                        swMultiUser.setChecked(true);
+                    } else {
+                        cvsuperUserSettings.setVisibility(View.GONE);
+                        // Disable the toggle button when userAccess is not 1
+                        swMultiUser.setChecked(false);
+                    }
+                }
             }
 
             @Override
             public void onNegativeButtonClick() {
-
+                BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+                if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+                    BusinessDetails businessDetails = businessDetailsResponse.getData();
+                    int userAccess = businessDetails.getMultiuser();
+                    // Hide the super user setting if userAccess is 0
+                    if (userAccess == 1) {
+                        cvsuperUserSettings.setVisibility(View.VISIBLE);
+                        // Enable the toggle button when userAccess is 1
+                        swMultiUser.setChecked(true);
+                    } else {
+                        cvsuperUserSettings.setVisibility(View.GONE);
+                        // Disable the toggle button when userAccess is not 1
+                        swMultiUser.setChecked(false);
+                    }
+                }
             }
         });
     }

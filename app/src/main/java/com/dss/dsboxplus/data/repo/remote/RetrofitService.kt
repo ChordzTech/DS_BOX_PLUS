@@ -174,7 +174,7 @@ interface RetrofitService {
                 //This Below Url Has to be Replaced with Current Url
                 // https://dsboxplus.dishaswaraj.in/api/
 
-                val retrofit = Retrofit.Builder().baseUrl("https://dsboxapi.beatsacademy.in/api/")
+                val retrofit = Retrofit.Builder().baseUrl("https://dsboxplus.dishaswaraj.in/api/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(getLogger())
                     .client(httpClientBuilder.build()).build()
