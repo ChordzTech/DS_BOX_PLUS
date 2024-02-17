@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -82,6 +83,7 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
     private TextView name, contact, role;
     private SubscriptionViewModel viewModel;
+    private CardView cvEnableMultiUsers;
 
 
     public ProfileFragment() {
@@ -198,6 +200,7 @@ public class ProfileFragment extends Fragment {
         cvBusiness = v.findViewById(R.id.businessSettings);
         cvDefaultPaper = v.findViewById(R.id.cvDefaultPaperSettings);
         cvDefaultRate = v.findViewById(R.id.cvDefaultRateSettings);
+        cvEnableMultiUsers = v.findViewById(R.id.cvEnableMultiUsers);
         cvQuotationTerms = v.findViewById(R.id.cvQuotationTerms);
         cvProfileName = v.findViewById(R.id.cvProfileName);
         cvSubscription = v.findViewById(R.id.cvSubscription);
@@ -214,7 +217,13 @@ public class ProfileFragment extends Fragment {
         name.setText(userData.getUsername());
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
-
+        if (userData.getUserrole().equalsIgnoreCase("Admin")) {
+            cvsuperUserSettings.setVisibility(View.VISIBLE);
+            cvEnableMultiUsers.setVisibility(View.VISIBLE);
+        } else {
+            cvsuperUserSettings.setVisibility(View.GONE);
+            cvEnableMultiUsers.setVisibility(View.GONE);
+        }
         viewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
         //Profile Pic
 //        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
@@ -233,19 +242,15 @@ public class ProfileFragment extends Fragment {
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
-            int userAccess = businessDetails.getMultiuser();
+            int multiUserStatus = businessDetails.getMultiuser();
             // Hide the super user setting if userAccess is 0
-            if (userAccess == 1) {
-                cvsuperUserSettings.setVisibility(View.VISIBLE);
-                // Enable the toggle button when userAccess is 1
+            if (multiUserStatus == 1) {
+                cvEnableMultiUsers.setVisibility(View.VISIBLE);
                 swMultiUser.setChecked(true);
             } else {
-                cvsuperUserSettings.setVisibility(View.GONE);
-                // Disable the toggle button when userAccess is not 1
-                swMultiUser.setChecked(false);
+                cvEnableMultiUsers.setVisibility(View.GONE);
             }
         }
-
         tvTrialActive = v.findViewById(R.id.tvTrialActive);
         tvSubDays = v.findViewById(R.id.tvSubDays);
         tvSubDate = v.findViewById(R.id.tvSubDate);
@@ -329,9 +334,23 @@ public class ProfileFragment extends Fragment {
         swMultiUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    showDialog();
-                } else {
+                BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+
+                if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+                    BusinessDetails businessDetails = businessDetailsResponse.getData();
+                    int multiUserStatus = businessDetails.getMultiuser();
+                    // Hide the super user setting if userAccess is 0
+                    if (isChecked && multiUserStatus == 1) {
+                        swMultiUser.setChecked(true);
+                        Toast.makeText(buttonView.getContext(), "Multi User feature is already enabled", Toast.LENGTH_SHORT).show();
+                    } else if (isChecked && multiUserStatus != 1) {
+                        showDialog();
+                    } else if (!isChecked && multiUserStatus == 1) {
+                        swMultiUser.setChecked(true);
+                        Toast.makeText(buttonView.getContext(), "Please connect Admin to disable Multi User feature", Toast.LENGTH_SHORT).show();
+                    }else if (!isChecked && multiUserStatus != 1) {
+                        swMultiUser.setChecked(false);
+                    }
                 }
             }
         });

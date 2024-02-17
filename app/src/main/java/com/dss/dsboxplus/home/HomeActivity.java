@@ -97,6 +97,9 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         homeViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getStatus().equalsIgnoreCase("success")) {
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+                if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 3)) {
+                    showNoAccessPopup();
+                }
             }
         });
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {

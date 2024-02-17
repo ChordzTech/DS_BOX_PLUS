@@ -57,9 +57,13 @@ public class LoginActivity extends BaseActivity {
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
 
-        viewModel.getUserDetails(
-                String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
-                        AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        if(isConnectedToInternet()){
+            viewModel.getUserDetails(
+                    String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                            AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        }else {
+            showNoInternetDialog();
+        }
 //        splashViewModel.getUserDetails(
 //                "9421013332", "Xiaomi Redmi Note 8 Pro");
     }

@@ -1,5 +1,7 @@
 package com.dss.dsboxplus.loginandverification;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivitySplashBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -50,6 +54,29 @@ public class SplashActivity extends BaseActivity {
 
     }
 
+    private void showNoAccessPopup() {
+        // Use AlertDialog or any other popup method to display a message
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No Access");
+        builder.setMessage("You do not have access to this application.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish(); // Close the app or handle as needed
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
+        if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
+            UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
+            return userData.getUseraccess() != null && userData.getUseraccess() == i;
+        }
+        return false;
+    }
+
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
@@ -57,20 +84,28 @@ public class SplashActivity extends BaseActivity {
                 startActivity(intent);
                 finish();
             } else {
-                addUserDataToPreferences(userDetailsResponse);
-                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
 
-                String phoneNumber = userDetailsResponse.getData().get(0).getMobileno();
-                mainBinding.tvDeviceNumber.setText("+91 "+phoneNumber);
-                
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
+                if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
+                    addUserDataToPreferences(userDetailsResponse);
+                    ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+                    AppPreferences.INSTANCE.saveStringToSharedPreferences(this, AppPreferences.APP_STATUS,
+                            userDetailsResponse.getData().get(0).getStatus());
+
+                    if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 3)) {
+                        showNoAccessPopup();
                     }
-                },1000);
+                    String phoneNumber = userDetailsResponse.getData().get(0).getMobileno();
+                    mainBinding.tvDeviceNumber.setText("+91 " + phoneNumber);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }, 1000);
+                }
 
             }
         });

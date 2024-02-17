@@ -1,5 +1,6 @@
 package com.dss.dsboxplus.viewmodels.homeviewmodel
 
+import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
@@ -71,7 +72,7 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
         request.businessid = userData.businessid
         request.userid=userid.toInt()
         request.androidid = androidId
-        request.deviceinfo = androidId
+        request.deviceinfo = Build.BRAND + Build.MODEL
         viewModelScope.launch {
             when (val response = repository.updateSubUser(request)) {
                 is NetworkState.Success -> {
