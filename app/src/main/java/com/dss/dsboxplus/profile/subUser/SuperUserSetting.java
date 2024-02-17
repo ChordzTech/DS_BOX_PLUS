@@ -81,7 +81,11 @@ public class SuperUserSetting extends BaseActivity implements SubUserViewAdapter
     }
 
     private void fetchData() {
-        viewModel.getUserList();
+        if (isConnectedToInternet()) {
+            viewModel.getUserList();
+        } else {
+            showNoInternetDialog();
+        }
     }
 
     private void initView() {

@@ -187,15 +187,15 @@
 
                         <TextView
                             android:id="@+id/tvCuttingSizeForBox"
-                            android:layout_marginTop="50dp"
-                            android:rotation="30"
-                            android:layout_marginStart="@dimen/margin_large"
-                            android:layout_gravity="center"
-                            android:text="Text1"
-                            android:layout_marginBottom="20dp"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_large"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginBottom="20dp"
+                            android:rotation="30"
+                            android:text="Text1" />
 
                         <TextView
                             android:id="@+id/tvDecalSizeForBox"
@@ -226,16 +226,16 @@
 
                         <TextView
                             android:id="@+id/tvCuttingLengthinch"
-                            android:text="Text4"
-                            android:layout_marginTop="65dp"
-                            android:rotation="30"
-                            android:layout_marginEnd="@dimen/margin_large"
-                            android:layout_marginStart="@dimen/margin_medium"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="20dp"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_medium"
+                            android:layout_marginTop="65dp"
+                            android:layout_marginEnd="@dimen/margin_large"
+                            android:layout_marginBottom="20dp"
+                            android:rotation="30"
+                            android:text="Text4" />
                     </FrameLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

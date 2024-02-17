@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
@@ -107,10 +106,13 @@ public class VerifyOtpActivity extends BaseActivity {
         String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
-
-        viewModel.getUserDetails(
-                String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
-                        AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        if (isConnectedToInternet()) {
+            viewModel.getUserDetails(
+                    String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                            AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        } else {
+            showNoInternetDialog();
+        }
 //        splashViewModel.getUserDetails(
 //                "9421013332", "Xiaomi Redmi Note 8 Pro");
     }

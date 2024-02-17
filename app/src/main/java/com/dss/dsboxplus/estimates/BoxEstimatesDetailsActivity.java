@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -30,8 +29,6 @@ import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class BoxEstimatesDetailsActivity extends BaseActivity {
     ActivityBoxEstimatesDetailsBinding boxEstimatesDetailsBinding;
@@ -101,18 +98,26 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     }
 
     private void fetchData() {
-        viewModel.getBusinessDetailsByBusinessId(dataItem.getBusinessid());
-        viewModel.getClientByClientId(dataItem.getClientid());
+        if (isConnectedToInternet()) {
+            viewModel.getBusinessDetailsByBusinessId(dataItem.getBusinessid());
+            viewModel.getClientByClientId(dataItem.getClientid());
+        } else {
+            showNoInternetDialog();
+        }
     }
 
     private void initView() {
-        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
-        MainRepository mainRepository = new MainRepository(retrofitService);
-        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
-        subscriptionViewModel = new ViewModelProvider(this).get(SubscriptionViewModel.class);
+        if(isConnectedToInternet()) {
+            RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+            MainRepository mainRepository = new MainRepository(retrofitService);
+            viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
+            subscriptionViewModel = new ViewModelProvider(this).get(SubscriptionViewModel.class);
 
-        if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
-            boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
+            if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+                boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
+            }
+        }else {
+            showNoInternetDialog();
         }
 
         // Observe the remainingDays LiveData

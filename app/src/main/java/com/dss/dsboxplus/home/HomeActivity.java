@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -34,7 +33,6 @@ import com.dss.dsboxplus.databinding.ActivityHomeScreenBinding;
 import com.dss.dsboxplus.fragments.ClientFragment;
 import com.dss.dsboxplus.fragments.EstimatesFragment;
 import com.dss.dsboxplus.fragments.ProfileFragment;
-import com.dss.dsboxplus.loginandverification.EnterBusinessDetailsActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
 import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.profile.SubscriptionActivity;
@@ -84,9 +82,13 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
-        homeViewModel.getUserDetails(
-                String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
-                        AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        if (isConnectedToInternet()) {
+            homeViewModel.getUserDetails(
+                    String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                            AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        } else {
+            showNoInternetDialog();
+        }
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();

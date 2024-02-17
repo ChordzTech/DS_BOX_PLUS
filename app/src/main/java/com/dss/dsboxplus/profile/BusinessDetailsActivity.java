@@ -15,11 +15,9 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityBusinessDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
-import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.BusinessSettingsActivityViewModel;
-import com.dss.dsboxplus.viewmodels.profileviewmodels.QuotationTermsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 import com.google.android.material.button.MaterialButton;
@@ -29,7 +27,7 @@ public class BusinessDetailsActivity extends BaseActivity {
     MaterialButton btCloseInBusinessDetails;
     ActivityBusinessDetailsBinding binding;
     BusinessSettingsActivityViewModel viewModel;
-    HomeViewModel homeViewModel  ;
+    HomeViewModel homeViewModel;
     BusinessDetails businessDetails;
 
     @Override
@@ -47,8 +45,11 @@ public class BusinessDetailsActivity extends BaseActivity {
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BusinessSettingsActivityViewModel.class);
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
-
-        homeViewModel.getBusinessDetails();
+        if (isConnectedToInternet()) {
+            homeViewModel.getBusinessDetails();
+        } else {
+            showNoInternetDialog();
+        }
         homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
             if (businessDetailsResponse.getData() != null) {
                 businessDetails = businessDetailsResponse.getData();
@@ -71,7 +72,6 @@ public class BusinessDetailsActivity extends BaseActivity {
         }
 
 
-
         btCloseInBusinessDetails = findViewById(R.id.btCloseInBusinessDetails);
         btCloseInBusinessDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,11 +84,11 @@ public class BusinessDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 viewModel.updateBusinessDetails(
-                  binding.tietBusinessName.getText().toString(),
-                  binding.tietBusinessContact.getText().toString(),
-                  binding.tietBusinessAddress.getText().toString(),
-                  binding.tietBusinessPincode.getText().toString(),
-                  binding.tietBusinessMail.getText().toString(),
+                        binding.tietBusinessName.getText().toString(),
+                        binding.tietBusinessContact.getText().toString(),
+                        binding.tietBusinessAddress.getText().toString(),
+                        binding.tietBusinessPincode.getText().toString(),
+                        binding.tietBusinessMail.getText().toString(),
                         businessDetails
                 );
             }

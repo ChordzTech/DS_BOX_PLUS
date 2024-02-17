@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -51,15 +50,19 @@ public class LoginActivity extends BaseActivity {
         pbSendingOtp = findViewById(R.id.pbSendingOtp);
         initView();
     }
+
     private void fetchData() {
 //        String deviceInfo = (Build.BRAND + Build.MODEL).trim();
         String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
-
-        viewModel.getUserDetails(
-                String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
-                        AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        if (isConnectedToInternet()) {
+            viewModel.getUserDetails(
+                    String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                            AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        } else {
+            showNoInternetDialog();
+        }
 //        splashViewModel.getUserDetails(
 //                "9421013332", "Xiaomi Redmi Note 8 Pro");
     }

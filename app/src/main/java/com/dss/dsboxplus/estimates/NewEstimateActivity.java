@@ -150,8 +150,16 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void fetchData() {
-        viewModel.getBusinessDetailsByBusinessId(businessId);
-        viewModel.getClientByClientId(clientId);
+        if (isConnectedToInternet()) {
+            viewModel.getBusinessDetailsByBusinessId(businessId);
+        } else {
+            showNoInternetDialog();
+        }
+        if (isConnectedToInternet()) {
+            viewModel.getClientByClientId(clientId);
+        } else {
+            showNoInternetDialog();
+        }
 
         viewModel.getGetClientByClientIdLiveData().observe(this, getClientByClientIdResponse -> {
             if (getClientByClientIdResponse != null) {

@@ -61,8 +61,8 @@ public class SplashActivity extends BaseActivity {
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
 
                 String phoneNumber = userDetailsResponse.getData().get(0).getMobileno();
-                mainBinding.tvDeviceNumber.setText("+91 "+phoneNumber);
-                
+                mainBinding.tvDeviceNumber.setText("+91 " + phoneNumber);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -70,12 +70,10 @@ public class SplashActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }
-                },1000);
+                }, 1000);
 
             }
         });
-
-
         splashViewModel.getLoaderLiveData().observe(this, aBoolean -> {
             if (aBoolean) {
                 showLoader();
@@ -90,10 +88,13 @@ public class SplashActivity extends BaseActivity {
         String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
-
-        splashViewModel.getUserDetails(
-                String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
-                        AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        if (isConnectedToInternet()) {
+            splashViewModel.getUserDetails(
+                    String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                            AppPreferences.MOBILE_NUMBER)), deviceInfo);
+        } else {
+            showNoInternetDialog();
+        }
 //        splashViewModel.getUserDetails(
 //                "9421013332", "Xiaomi Redmi Note 8 Pro");
     }

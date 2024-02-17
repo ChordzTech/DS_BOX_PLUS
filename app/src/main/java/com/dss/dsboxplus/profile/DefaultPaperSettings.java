@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
-import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
-import com.dss.dsboxplus.data.repo.response.AppConfigResponse;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityDefaultPaperSettingsBinding;
@@ -23,13 +21,11 @@ import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultPaperSettingsActivi
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
-import java.util.ArrayList;
-
 
 public class DefaultPaperSettings extends BaseActivity {
     ActivityDefaultPaperSettingsBinding defaultPaperSettingsBinding;
     DefaultPaperSettingsActivityViewModel viewModel;
-    HomeViewModel homeViewModel  ;
+    HomeViewModel homeViewModel;
     BusinessDetails businessDetails;
 
 
@@ -41,15 +37,17 @@ public class DefaultPaperSettings extends BaseActivity {
     }
 
 
-
     private void initViewModel() {
         RetrofitService retrofitService = RetrofitService.Companion.getInstance();
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(DefaultPaperSettingsActivityViewModel.class);
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
+        if (isConnectedToInternet()) {
+            homeViewModel.getBusinessDetails();
 
-        homeViewModel.getBusinessDetails();
-
+        } else {
+            showNoInternetDialog();
+        }
 
         homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
             if (businessDetailsResponse.getData() != null) {
@@ -106,7 +104,7 @@ public class DefaultPaperSettings extends BaseActivity {
                 float fluteFactor = Float.parseFloat(defaultPaperSettingsBinding.tietFluteFactor.getText().toString());
 
                 viewModel.updatebusinessDetails(
-                        cuttingMargin, decalMargin,fluteFactor,businessDetails
+                        cuttingMargin, decalMargin, fluteFactor, businessDetails
                 );
             }
         });

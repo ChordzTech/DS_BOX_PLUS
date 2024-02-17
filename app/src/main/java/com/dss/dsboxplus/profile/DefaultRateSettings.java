@@ -10,14 +10,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
-import com.dss.dsboxplus.clients.ClientDetailsActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityDefaultRateSettingsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
-import com.dss.dsboxplus.viewmodels.homeandotpviewmodels.HomeActivityViewModel;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.dss.dsboxplus.viewmodels.profileviewmodels.DefaultRateSettingsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -29,7 +27,7 @@ public class DefaultRateSettings extends BaseActivity {
     ActivityDefaultRateSettingsBinding defaultRateSettingsBinding;
 
     DefaultRateSettingsActivityViewModel viewModel;
-    HomeViewModel homeViewModel  ;
+    HomeViewModel homeViewModel;
     BusinessDetails businessDetails;
 
     @Override
@@ -46,13 +44,16 @@ public class DefaultRateSettings extends BaseActivity {
         MainRepository mainRepository = new MainRepository(retrofitService);
         viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(DefaultRateSettingsActivityViewModel.class);
         homeViewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(HomeViewModel.class);
-
-        homeViewModel.getBusinessDetails();
+        if (isConnectedToInternet()) {
+            homeViewModel.getBusinessDetails();
+        } else {
+            showNoInternetDialog();
+        }
 
 
         homeViewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
             if (businessDetailsResponse.getData() != null) {
-                 businessDetails = businessDetailsResponse.getData();
+                businessDetails = businessDetailsResponse.getData();
             }
         });
     }

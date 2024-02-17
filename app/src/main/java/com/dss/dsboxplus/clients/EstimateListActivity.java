@@ -17,7 +17,6 @@ import com.dss.dsboxplus.model.EstimatesDataModel;
 import com.dss.dsboxplus.recyclerview.EstimatesViewAdapter;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.clientsviewmodels.EstimateListViewModel;
-import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
@@ -42,13 +41,17 @@ public class EstimateListActivity extends BaseActivity implements EstimatesViewA
     }
 
     private void fetchData() {
-        viewModel.getEstimateByClientId(clientId);
+        if (isConnectedToInternet()) {
+            viewModel.getEstimateByClientId(clientId);
+        } else {
+            showNoInternetDialog();
+        }
     }
 
     private void initObservables() {
         viewModel.getEstimateListByClientIdLivedata().observe(this, estimateListResponse ->
         {
-            estimateList= (ArrayList<DataItem>) estimateListResponse.getData();
+            estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
             loadData();
         });
     }
