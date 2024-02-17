@@ -245,10 +245,9 @@ public class ProfileFragment extends Fragment {
             int multiUserStatus = businessDetails.getMultiuser();
             // Hide the super user setting if userAccess is 0
             if (multiUserStatus == 1) {
-                cvEnableMultiUsers.setVisibility(View.VISIBLE);
                 swMultiUser.setChecked(true);
             } else {
-                cvEnableMultiUsers.setVisibility(View.GONE);
+                swMultiUser.setChecked(false);
             }
         }
         tvTrialActive = v.findViewById(R.id.tvTrialActive);
@@ -348,7 +347,7 @@ public class ProfileFragment extends Fragment {
                     } else if (!isChecked && multiUserStatus == 1) {
                         swMultiUser.setChecked(true);
                         Toast.makeText(buttonView.getContext(), "Please connect Admin to disable Multi User feature", Toast.LENGTH_SHORT).show();
-                    }else if (!isChecked && multiUserStatus != 1) {
+                    } else if (!isChecked && multiUserStatus != 1) {
                         swMultiUser.setChecked(false);
                     }
                 }
@@ -426,8 +425,12 @@ public class ProfileFragment extends Fragment {
         cvsuperUserSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SuperUserSetting.class);
-                startActivity(intent);
+                if (ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 2) {
+                    Intent intent = new Intent(getActivity(), SuperUserSetting.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(view.getContext(), "You don't have access for this feature", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -456,11 +459,9 @@ public class ProfileFragment extends Fragment {
                     int userAccess = businessDetails.getMultiuser();
                     // Hide the super user setting if userAccess is 0
                     if (userAccess == 1) {
-                        cvsuperUserSettings.setVisibility(View.VISIBLE);
                         // Enable the toggle button when userAccess is 1
                         swMultiUser.setChecked(true);
                     } else {
-                        cvsuperUserSettings.setVisibility(View.GONE);
                         // Disable the toggle button when userAccess is not 1
                         swMultiUser.setChecked(false);
                     }
@@ -475,11 +476,9 @@ public class ProfileFragment extends Fragment {
                     int userAccess = businessDetails.getMultiuser();
                     // Hide the super user setting if userAccess is 0
                     if (userAccess == 1) {
-                        cvsuperUserSettings.setVisibility(View.VISIBLE);
                         // Enable the toggle button when userAccess is 1
                         swMultiUser.setChecked(true);
                     } else {
-                        cvsuperUserSettings.setVisibility(View.GONE);
                         // Disable the toggle button when userAccess is not 1
                         swMultiUser.setChecked(false);
                     }

@@ -61,7 +61,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
         if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
                 "Expired"
-        )) {
+        )||
+        ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1) {
             boxEstimatesDetailsBinding.btEdit.setVisibility(View.GONE);
             boxEstimatesDetailsBinding.btDelete.setVisibility(View.GONE);
         } else {

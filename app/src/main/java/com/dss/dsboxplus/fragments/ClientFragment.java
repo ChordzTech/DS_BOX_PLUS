@@ -125,7 +125,8 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
 
         if(AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
                 "Expired"
-        )){
+        ) ||
+                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1){
             add.setVisibility(View.GONE);
         }else{
             add.setVisibility(View.VISIBLE);
