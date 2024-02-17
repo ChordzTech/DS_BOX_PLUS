@@ -7,11 +7,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.dss.dsboxplus.R
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
 import com.dss.dsboxplus.preferences.AppPreferences
 import com.dss.dsboxplus.preferences.AppPreferences.saveLongToSharedPreferences
@@ -22,6 +24,7 @@ import java.io.File
 
 
 open class BaseActivity : AppCompatActivity() {
+    lateinit var businessDetailsResponse: BusinessDetailsResponse
     private lateinit var logoutDialog: AlertDialog
     private lateinit var loader: Dialog
     private lateinit var baseViewModel: BaseViewModel
@@ -34,14 +37,28 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     open fun showNoInternetDialog() {
-        val builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("No Internet Connection")
-            .setMessage("Please check your internet connection and try again.")
-            .setPositiveButton(
-                "OK"
-            ) { dialog, which -> finish() }
-            .setCancelable(false)
+//        val builder = android.app.AlertDialog.Builder(this)
+//        builder.setTitle("No Internet Connection")
+//            .setMessage("Please check your internet connection and try again.")
+//            .setPositiveButton(
+//                "OK"
+//            ) { dialog, which ->
+//                closeApp()
+//            }
+//            .setCancelable(false)
+//            .show()
+        Toast.makeText(
+            this,
+            "Please check your internet connection and try again.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+    }
+
+    private fun closeApp() {
+        Toast.makeText(this, "Please open app again after Internet check.", Toast.LENGTH_SHORT)
             .show()
+        finishAffinity()
     }
 
     open fun isConnectedToInternet(): Boolean {
@@ -111,7 +128,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun showLoader() {
-        if (!loader.isShowing) {
+        if (!this.isFinishing && !loader.isShowing) {
             loader.show()
         }
     }

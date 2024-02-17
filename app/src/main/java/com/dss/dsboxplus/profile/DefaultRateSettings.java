@@ -102,13 +102,18 @@ public class DefaultRateSettings extends BaseActivity {
         defaultRateSettingsBinding.btSaveInDefaultRateSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updateBusinessDetails(
-                        defaultRateSettingsBinding.tietWaste.getText().toString(),
-                        defaultRateSettingsBinding.tietConversionCost.getText().toString(),
-                        defaultRateSettingsBinding.tietProfit.getText().toString(),
-                        defaultRateSettingsBinding.tietTax.getText().toString(),
-                        businessDetails
-                );
+                if (isConnectedToInternet()) {
+                    viewModel.updateBusinessDetails(
+                            defaultRateSettingsBinding.tietWaste.getText().toString(),
+                            defaultRateSettingsBinding.tietConversionCost.getText().toString(),
+                            defaultRateSettingsBinding.tietProfit.getText().toString(),
+                            defaultRateSettingsBinding.tietTax.getText().toString(),
+                            businessDetails
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
+
             }
         });
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {

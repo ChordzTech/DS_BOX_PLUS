@@ -47,7 +47,9 @@ public class ClientDetailsActivity extends BaseActivity {
         if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
                 "Expired"
         ) ||
-                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1) {
+                (ConfigDataProvider.INSTANCE.getUserDetails() != null &&
+                        ConfigDataProvider.INSTANCE.getUserDetails().getData() != null &&
+                        ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1)) {
             clientDetailsBinding.btUpdateInClientDetails.setVisibility(View.GONE);
             clientDetailsBinding.btDeleteInClientDetails.setVisibility(View.GONE);
         } else {
@@ -86,34 +88,45 @@ public class ClientDetailsActivity extends BaseActivity {
         clientDetailsBinding.btCloseInClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
         clientDetailsBinding.btDeleteInClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.deleteClient(client.getClientid());
+                if (isConnectedToInternet()) {
+                    viewModel.deleteClient(client.getClientid());
+                } else {
+                    showNoInternetDialog();
+                }
             }
         });
         viewModel.getDeleteClientRequestLiveData().observe(this, deleteClientResponse -> {
             Toast.makeText(this, "Client Deleted Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(ClientDetailsActivity.this, HomeActivity.class));
+
         });
         clientDetailsBinding.btUpdateInClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updateClient(client.getClientid(),
-                        clientDetailsBinding.tietClientNameInClientdetails.getText().toString(),
-                        clientDetailsBinding.tietClientContactNoInClientdetails.getText().toString(),
-                        clientDetailsBinding.tietClientAddressInClientdetails.getText().toString()
-                );
+                if (isConnectedToInternet()) {
+                    viewModel.updateClient(client.getClientid(),
+                            clientDetailsBinding.tietClientNameInClientdetails.getText().toString(),
+                            clientDetailsBinding.tietClientContactNoInClientdetails.getText().toString(),
+                            clientDetailsBinding.tietClientAddressInClientdetails.getText().toString()
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
+
             }
         });
         viewModel.getUpdateClientRequestLiveData().observe(this, updateClientResponse -> {
             Toast.makeText(this, "Client Details Updated Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(ClientDetailsActivity.this, HomeActivity.class));
+
         });
     }
 }

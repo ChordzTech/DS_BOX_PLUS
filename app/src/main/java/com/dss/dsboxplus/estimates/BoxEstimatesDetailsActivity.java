@@ -58,8 +58,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
         if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
                 "Expired"
-        )||
-        ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1) {
+        ) ||
+                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1) {
             boxEstimatesDetailsBinding.btEdit.setVisibility(View.GONE);
             boxEstimatesDetailsBinding.btDelete.setVisibility(View.GONE);
         } else {
@@ -108,18 +108,15 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     }
 
     private void initView() {
-        if(isConnectedToInternet()) {
-            RetrofitService retrofitService = RetrofitService.Companion.getInstance();
-            MainRepository mainRepository = new MainRepository(retrofitService);
-            viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
-            subscriptionViewModel = new ViewModelProvider(this).get(SubscriptionViewModel.class);
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(BoxEstimatesDetailsActivityViewModel.class);
+        subscriptionViewModel = new ViewModelProvider(this).get(SubscriptionViewModel.class);
 
-            if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
-                boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
-            }
-        }else {
-            showNoInternetDialog();
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+            boxEstimatesDetailsBinding.llEditAndDelete.setVisibility(View.GONE);
         }
+
 
         // Observe the remainingDays LiveData
         subscriptionViewModel.getRemainingDays().observe(this, new Observer<Integer>() {
@@ -134,6 +131,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 }
             }
         });
+
 
         Intent intent = getIntent();
         if (intent.hasExtra("ESTIMATES_BUNDLE")) {
@@ -398,24 +396,31 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         boxEstimatesDetailsBinding.btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog(view);
+                if (isConnectedToInternet()) {
+                    dialog(view);
+                } else {
+                    Toast.makeText(BoxEstimatesDetailsActivity.this, "Please check your internet connection and try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         boxEstimatesDetailsBinding.btClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finishAffinity();
-                startActivity(new Intent(BoxEstimatesDetailsActivity.this, HomeActivity.class));
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
         boxEstimatesDetailsBinding.btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
-                intent.putExtra("EDIT_ESTIMATE", dataItem);
-                if (clientDetails != null)
-                    intent.putExtra("CLIENT_DETAILS", clientDetails);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
+                    intent.putExtra("EDIT_ESTIMATE", dataItem);
+                    if (clientDetails != null)
+                        intent.putExtra("CLIENT_DETAILS", clientDetails);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(BoxEstimatesDetailsActivity.this, "Please check your internet connection and try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

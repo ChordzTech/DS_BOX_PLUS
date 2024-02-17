@@ -65,10 +65,10 @@ public class QuotationTerms extends BaseActivity {
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
 
-        //Get the estimation note from business details
+            //Get the estimation note from business details
             String estimateNote = businessDetails.getEstimatenote();
 
-        // Replace any occurrence of '-' followed by a number with a newline character
+            // Replace any occurrence of '-' followed by a number with a newline character
             estimateNote = estimateNote.replaceAll("-([0-9])", "\n$1");
             // Set the text in the EditText
             binding.tietTermsAndConditions.setText(estimateNote);
@@ -86,10 +86,15 @@ public class QuotationTerms extends BaseActivity {
         binding.btSaveInQuotationTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updateBusinessQuotation(
-                        binding.tietTermsAndConditions.getText().toString(),
-                        businessDetails
-                );
+                if (isConnectedToInternet()) {
+                    viewModel.updateBusinessQuotation(
+                            binding.tietTermsAndConditions.getText().toString(),
+                            businessDetails
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
+
             }
         });
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {

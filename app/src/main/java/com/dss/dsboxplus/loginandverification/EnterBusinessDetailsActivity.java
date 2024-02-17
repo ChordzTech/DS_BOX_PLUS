@@ -2,6 +2,7 @@ package com.dss.dsboxplus.loginandverification;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
+import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.databinding.ActivityEnterBusinessDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
@@ -46,7 +48,11 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
                 String businessPinCode = businessDetailsBinding.tietBusinessPinCode.getText().toString();
                 boolean check = validateInfo(businessName, businessContact, businessAddress, businessPinCode);
                 if (check) {
-                    viewModel.addBusinessDetails(businessName, businessContact, businessAddress, businessPinCode);
+                    if (isConnectedToInternet()) {
+                        viewModel.addBusinessDetails(businessName, businessContact, businessAddress, businessPinCode);
+                    } else {
+                        showNoInternetDialog();
+                    }
                 }
             }
         });
@@ -54,11 +60,18 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
 
     private void addOververs() {
         viewModel.getBusinessDetailsLiveData().observe(this, businessDetailsResponse -> {
+            this.businessDetailsResponse = businessDetailsResponse;
             AppPreferences.INSTANCE.saveLongToSharedPreferences(this, AppPreferences.BUSINESS_ID,
                     businessDetailsResponse.getData().getBusinessid());
             addUserForBusiness(businessDetailsResponse);
-            addClientForBusiness(businessDetailsResponse);
 
+        });
+        viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
+            addUserDataToPreferences(userDetailsResponse);
+            ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         viewModel.getAddUserResponseLiveData().observe(this, addUserResponse -> {
@@ -68,20 +81,36 @@ public class EnterBusinessDetailsActivity extends BaseActivity {
                     AppPreferences.BUSINESS_ID, addUserResponse.getData().getBusinessid());
             AppPreferences.INSTANCE.saveLongToSharedPreferences(this,
                     AppPreferences.MOBILE_NUMBER, Long.parseLong(addUserResponse.getData().getMobileno()));
+            addClientForBusiness(businessDetailsResponse);
         });
         viewModel.getAddClientRequestLiveData().observe(this, clientListResponse -> {
-            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-            startActivity(intent);
-            finish();
+            if (isConnectedToInternet()) {
+                String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+                viewModel.getUserDetails(
+                        String.valueOf(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(
+                                AppPreferences.MOBILE_NUMBER)), deviceInfo);
+            } else {
+                showNoInternetDialog();
+            }
+
         });
     }
 
     private void addClientForBusiness(BusinessDetailsResponse businessDetailsResponse) {
-        viewModel.addClient(businessDetailsResponse);
+        if (isConnectedToInternet()) {
+            viewModel.addClient(businessDetailsResponse);
+        } else {
+            showNoInternetDialog();
+        }
     }
 
     private void addUserForBusiness(BusinessDetailsResponse businessDetailsResponse) {
-        viewModel.addUser(businessDetailsResponse, this);
+        if (isConnectedToInternet()) {
+            viewModel.addUser(businessDetailsResponse, this);
+        } else {
+            showNoInternetDialog();
+        }
 
     }
 

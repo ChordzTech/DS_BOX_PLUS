@@ -83,14 +83,18 @@ public class BusinessDetailsActivity extends BaseActivity {
         binding.btSaveinBusinessDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updateBusinessDetails(
-                        binding.tietBusinessName.getText().toString(),
-                        binding.tietBusinessContact.getText().toString(),
-                        binding.tietBusinessAddress.getText().toString(),
-                        binding.tietBusinessPincode.getText().toString(),
-                        binding.tietBusinessMail.getText().toString(),
-                        businessDetails
-                );
+                if (isConnectedToInternet()) {
+                    viewModel.updateBusinessDetails(
+                            binding.tietBusinessName.getText().toString(),
+                            binding.tietBusinessContact.getText().toString(),
+                            binding.tietBusinessAddress.getText().toString(),
+                            binding.tietBusinessPincode.getText().toString(),
+                            binding.tietBusinessMail.getText().toString(),
+                            businessDetails
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
             }
         });
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {
