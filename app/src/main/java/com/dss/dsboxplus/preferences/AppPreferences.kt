@@ -10,7 +10,8 @@ object AppPreferences {
     const val DEVICE_INFO: String = "device_info"
     const val USER_ID: String = "user_id"
     const val BUSINESS_ID: String = "business_id"
-    const val CLIENT_ID:String="client_id"
+    const val CLIENT_ID: String = "client_id"
+    const val APP_STATUS: String = "Trail"
     private var sharedPreferences: SharedPreferences? = null
 
     private const val SharedPreferencesName = "DSBOX_PREFERENCES"
@@ -31,6 +32,7 @@ object AppPreferences {
         edit.apply()
         edit.commit()
     }
+
     fun isCreatingEstimate(context: Context, key: String, value: Boolean) {
         if (sharedPreferences == null) {
             sharedPreferences =
@@ -48,6 +50,7 @@ object AppPreferences {
         }
         return false;
     }
+
     fun getLongValueFromSharedPreferences(key: String): Long {
         if (sharedPreferences != null) {
             return sharedPreferences!!.getLong(key, 0)

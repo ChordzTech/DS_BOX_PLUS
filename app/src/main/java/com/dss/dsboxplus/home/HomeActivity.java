@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -17,10 +18,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
+import com.dss.dsboxplus.alertdialog.DialogUtils;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.AppConfigDataItems;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
+import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.data.repo.response.SubscriptionDataItem;
@@ -34,6 +37,7 @@ import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.dss.dsboxplus.loginandverification.EnterBusinessDetailsActivity;
 import com.dss.dsboxplus.loginandverification.IHomeActivityCallBack;
 import com.dss.dsboxplus.preferences.AppPreferences;
+import com.dss.dsboxplus.profile.SubscriptionActivity;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.homeviewmodel.HomeViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -127,6 +131,27 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         });
         homeViewModel.getSubForBusinessLiveData().observe(this, getSubForBusinessResponse -> {
             if (!getSubForBusinessResponse.getData().isEmpty()) {
+                if (getSubForBusinessResponse.getData().get(0).getRemainingDays() == 0) {
+                    AppPreferences.INSTANCE.saveStringToSharedPreferences(this, AppPreferences.APP_STATUS,
+                            getSubForBusinessResponse.getData().get(0).getStatus());
+                    DialogUtils.showCustomDialog(this, new DialogUtils.DialogListener() {
+                        @Override
+                        public void onPositiveButtonClick() {
+                            Intent intent = new Intent(HomeActivity.this, SubscriptionActivity.class);
+                            startActivity(intent);
+                            BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();
+                            if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
+                                BusinessDetails businessDetails = businessDetailsResponse.getData();
+                            }
+                        }
+
+                        @Override
+                        public void onNegativeButtonClick() {
+
+                        }
+                    });
+                }
+
                 subscription = (ArrayList<SubscriptionForBusiness>) getSubForBusinessResponse.getData();
                 profileFragment.setSubscription(subscription);
             }
@@ -172,7 +197,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 if (!estimateList.isEmpty()) {
                     estimatesFragment.setEstimateList(estimateList);
                 }
-                if (!appConfigList.isEmpty()){
+                if (!appConfigList.isEmpty()) {
                     estimatesFragment.setAppConfigList(appConfigList);
                 }
             } else if (item.getItemId() == R.id.users) {
@@ -226,7 +251,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     }
 
     private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
-        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+        if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
             UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
             return userData.getUseraccess() != null && userData.getUseraccess() == i;
         }

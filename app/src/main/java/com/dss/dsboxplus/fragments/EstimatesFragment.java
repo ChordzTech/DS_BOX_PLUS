@@ -178,6 +178,19 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
+                "Expired"
+        )){
+            fabEstimates.setVisibility(View.GONE);
+        }else{
+            fabEstimates.setVisibility(View.VISIBLE);
+        }
+    }
+
     private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
         if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
             UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list

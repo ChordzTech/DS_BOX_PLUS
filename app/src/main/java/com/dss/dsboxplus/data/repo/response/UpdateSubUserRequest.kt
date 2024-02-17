@@ -23,10 +23,10 @@ data class UpdateSubUserRequest(
 	var userid: Int? = null,
 
 	@field:SerializedName("deviceinfo")
-	val deviceinfo: String? = null,
+    var deviceinfo: String? = null,
 
 	@field:SerializedName("androidid")
-	val androidid: String? = null,
+	var androidid: String? = null,
 
 	@field:SerializedName("userpassword")
 	val userpassword: String? = null,

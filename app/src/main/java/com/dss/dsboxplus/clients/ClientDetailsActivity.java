@@ -14,6 +14,7 @@ import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.databinding.ActivityClientDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.model.ClientsDataModel;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.clientsviewmodels.ClientViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -36,6 +37,21 @@ public class ClientDetailsActivity extends BaseActivity {
         initView();
 
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
+                "Expired"
+        )) {
+            clientDetailsBinding.btUpdateInClientDetails.setVisibility(View.GONE);
+            clientDetailsBinding.btDeleteInClientDetails.setVisibility(View.GONE);
+        } else {
+            clientDetailsBinding.btUpdateInClientDetails.setVisibility(View.VISIBLE);
+            clientDetailsBinding.btDeleteInClientDetails.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initViewModel() {

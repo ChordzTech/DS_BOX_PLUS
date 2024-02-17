@@ -1,7 +1,6 @@
 package com.dss.dsboxplus.fragments;
 
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -188,7 +187,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-     return inflater.inflate(R.layout.fragment_profile_, container, false);
+        return inflater.inflate(R.layout.fragment_profile_, container, false);
 
 
     }
@@ -426,7 +425,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private void showDialog() {
+    public void showDialog() {
         DialogUtils.showCustomDialog(getContext(), new DialogUtils.DialogListener() {
             @Override
             public void onPositiveButtonClick() {

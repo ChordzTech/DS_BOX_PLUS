@@ -23,6 +23,7 @@ import com.dss.dsboxplus.data.repo.response.UserData;
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityBoxEstimatesDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
+import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
 import com.dss.dsboxplus.viewmodels.estimatesviewmodels.BoxEstimatesDetailsActivityViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
@@ -52,6 +53,21 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
         initView();
         fetchData();
         initObservables();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
+                "Expired"
+        )) {
+            boxEstimatesDetailsBinding.btEdit.setVisibility(View.GONE);
+            boxEstimatesDetailsBinding.btDelete.setVisibility(View.GONE);
+        } else {
+            boxEstimatesDetailsBinding.btEdit.setVisibility(View.VISIBLE);
+            boxEstimatesDetailsBinding.btDelete.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initObservables() {
@@ -158,8 +174,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                         boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthCM + "cm"));
                         boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightCM + "cm"));
 
-                        int decal = (int) (decalSize*2.54);
-                        int cutting = (int) (cuttingLength*2.54);
+                        int decal = (int) (decalSize * 2.54);
+                        int cutting = (int) (cuttingLength * 2.54);
                         boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "cm"));
                         boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "cm"));
                     } else if (lengthIN != 0 && widthIN != 0 && heightIN != 0) {
@@ -175,8 +191,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                         boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthMM + "mm"));
                         boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightMM + "mm"));
 
-                        int decal = (int) (decalSize*25.4);
-                        int cutting = (int) (cuttingLength*25.4);
+                        int decal = (int) (decalSize * 25.4);
+                        int cutting = (int) (cuttingLength * 25.4);
                         boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "mm"));
                         boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "mm"));
                     }

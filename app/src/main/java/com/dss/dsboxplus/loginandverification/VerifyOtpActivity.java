@@ -19,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
 import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.home.HomeActivity;
 import com.dss.dsboxplus.preferences.AppPreferences;
 import com.dss.dsboxplus.viewmodels.AppViewModelFactory;
@@ -127,18 +129,32 @@ public class VerifyOtpActivity extends BaseActivity {
     }
 
     private void initObservers() {
+        viewModel.getUpdateSubUserLiveData().observe(this, it -> {
+            UserDetailsResponse userDetails = ConfigDataProvider.INSTANCE.getUserDetails();
+            userDetails.getData().get(0).setAndroidid(it.getData().getAndroidid());
+            ConfigDataProvider.INSTANCE.setUserDetails(userDetails);
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            finishAffinity();
+        });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
                 Intent intent = new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finish();
+                finishAffinity();
+            } else if (userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
+                String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+                UserData userData = userDetailsResponse.getData().get(0);
+                viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
+                addUserDataToPreferences(userDetailsResponse);
+                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
             } else {
                 addUserDataToPreferences(userDetailsResponse);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
-                finish();
+                finishAffinity();
             }
         });
 

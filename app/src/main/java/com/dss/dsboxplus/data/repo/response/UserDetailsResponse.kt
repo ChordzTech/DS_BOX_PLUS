@@ -42,7 +42,7 @@ data class UserData(
 	val deviceinfo: String? = null,
 
 	@field:SerializedName("androidid")
-	val androidid: String? = null,
+	var androidid: String? = null,
 
 	@field:SerializedName("userpassword")
 	val userpassword: String? = null,

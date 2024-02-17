@@ -7,28 +7,32 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class GetSubscriptionForBusiness(
 
-	@field:SerializedName("code")
-	val code: Int? = null,
+    @field:SerializedName("code")
+    val code: Int? = null,
 
-	@field:SerializedName("data")
-	val data: List<SubscriptionForBusiness?>? = arrayListOf(),
+    @field:SerializedName("data")
+    val data: List<SubscriptionForBusiness?>? = arrayListOf(),
 
-	@field:SerializedName("message")
-	val message: String? = null,
+    @field:SerializedName("message")
+    val message: String? = "",
 
-	@field:SerializedName("status")
-	val status: String? = null
+    @field:SerializedName("status")
+    val status: String? = ""
 ) : Parcelable
 
 @Parcelize
 data class SubscriptionForBusiness(
+//	"subscription_date": "2023-12-31",
 
-	@field:SerializedName("end_date")
-	val endDate: String? = null,
+    @field:SerializedName("subscription_date")
+    val subscriptionDate: String? = "",
 
-	@field:SerializedName("remaining_days")
-	val remainingDays: Int? = null,
+    @field:SerializedName("end_date")
+    val endDate: String? = "",
 
-	@field:SerializedName("status")
-	val status: String? = null
+    @field:SerializedName("remaining_days")
+    val remainingDays: Int? = 0,
+
+    @field:SerializedName("status")
+    val status: String? = ""
 ) : Parcelable
