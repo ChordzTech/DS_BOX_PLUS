@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.databinding.ActivityClientDetailsBinding;
 import com.dss.dsboxplus.home.HomeActivity;
@@ -45,7 +46,8 @@ public class ClientDetailsActivity extends BaseActivity {
 
         if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
                 "Expired"
-        )) {
+        ) ||
+                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1) {
             clientDetailsBinding.btUpdateInClientDetails.setVisibility(View.GONE);
             clientDetailsBinding.btDeleteInClientDetails.setVisibility(View.GONE);
         } else {

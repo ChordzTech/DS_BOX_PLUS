@@ -150,7 +150,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 //        }
 
         // User Access
-        if (ConfigDataProvider.INSTANCE.getUserDetails() != null &&  hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 1)) {
             fabEstimates.setVisibility(View.GONE);
         }
 
@@ -182,17 +182,17 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     public void onResume() {
         super.onResume();
 
-        if(AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
-                "Expired"
-        )){
+        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase("Expired")
+                ||
+                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1) {
             fabEstimates.setVisibility(View.GONE);
-        }else{
+        } else {
             fabEstimates.setVisibility(View.VISIBLE);
         }
     }
 
     private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
-        if (userDetailsResponse.getData()!= null && !userDetailsResponse.getData().isEmpty()) {
+        if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
             UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
             return userData.getUseraccess() != null && userData.getUseraccess() == i;
         }

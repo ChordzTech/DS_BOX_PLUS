@@ -40,33 +40,36 @@
             android:id="@+id/tvDeviceNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@id/ivCompanyLogo"
-            app:layout_constraintEnd_toEndOf="@id/tvSplashText"
-            app:layout_constraintStart_toStartOf="@id/tvSplashText" />
+            app:layout_constraintBottom_toTopOf="@+id/tvAppVersion"
+            app:layout_constraintEnd_toEndOf="@+id/tvAppVersion"
+            app:layout_constraintStart_toStartOf="@+id/tvAppVersion" />
 
         <TextView
             android:id="@+id/tvAppVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
             android:text="V 2.0"
             android:textColor="@color/white"
             android:textSize="18sp"
+            android:layout_marginBottom="25dp"
             app:layout_constraintEnd_toEndOf="@id/tvSplashText"
             app:layout_constraintStart_toStartOf="@id/tvSplashText"
-            app:layout_constraintTop_toBottomOf="@id/tvDeviceNumber" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:id="@+id/ivCompanyLogo"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="18dp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_marginTop="18dp"
+            android:src="@mipmap/ds_icon"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvSplashText"
-            app:layout_constraintStart_toStartOf="@+id/tvSplashText" />
+            app:layout_constraintStart_toStartOf="@+id/tvSplashText"
+            app:layout_constraintTop_toBottomOf="@id/tvAppVersion"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
