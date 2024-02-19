@@ -9,198 +9,198 @@ import kotlinx.parcelize.RawValue
 data class EstimateListResponse(
 
     @field:SerializedName("code")
-    val code: Double? = null,
+    var code: Double? = 0.0,
 
     @field:SerializedName("data")
-    val data: List<DataItem?>? = arrayListOf(),
+    var data: List<DataItem?>? = arrayListOf(),
 
     @field:SerializedName("message")
-    val message: String? = null,
+    var message: String? = null,
 
     @field:SerializedName("status")
-    val status: String? = null
+    var status: String? = null
 ) : Parcelable
 
 @Parcelize
 data class  DataItem(
 
     @field:SerializedName("clientid")
-    val clientid: Long? = null,
+    var clientid: Long? = null,
 
     @field:SerializedName("totalweight")
-    val totalweight: Double? = null,
+    var totalweight: Double? = 0.0,
 
     @field:SerializedName("m1gsm")
-    val m1gsm: Double? = null,
+    var m1gsm: Double? = 0.0,
 
     @field:SerializedName("height_cm_field")
-    val heightCmField: @RawValue Any? = null,
+    var heightCmField: @RawValue Any? = null,
 
     @field:SerializedName("userid")
-    val userid: Double? = null,
+    var userid: Double? = 0.0,
 
     @field:SerializedName("boxname")
-    val boxname: String? = null,
+    var boxname: String? = null,
 
     @field:SerializedName("length_inch_field")
-    val lengthInchField: @RawValue Any? = null,
+    var lengthInchField: @RawValue Any? = null,
 
     @field:SerializedName("m1bf")
-    val m1bf: Double? = null,
+    var m1bf: Double? = 0.0,
 
     @field:SerializedName("width_mm_field")
-    val widthMmField: Double? = null,
+    var widthMmField: Double? = 0.0,
 
     @field:SerializedName("f1rate")
-    val f1rate: @RawValue Any? = null,
+    var f1rate: @RawValue Any? = null,
 
     @field:SerializedName("bottomgsm")
-    val bottomgsm: Double? = null,
+    var bottomgsm: Double? = 0.0,
 
     @field:SerializedName("f1bf")
-    val f1bf: Double? = null,
+    var f1bf: Double? = 0.0,
 
     @field:SerializedName("bottombf")
-    val bottombf: Double? = null,
+    var bottombf: Double? = 0.0,
 
     @field:SerializedName("waste")
-    val waste: Double? = null,
+    var waste: Double? = 0.0,
 
     @field:SerializedName("f3ff")
-    val f3ff: Double? = null,
+    var f3ff: Double? = 0.0,
 
     @field:SerializedName("f1gsm")
-    val f1gsm: Double? = null,
+    var f1gsm: Double? = 0.0,
 
     @field:SerializedName("width_cm_field")
-    val widthCmField: @RawValue Any? = null,
+    var widthCmField: @RawValue Any? = null,
 
     @field:SerializedName("f1ff")
-    val f1ff: @RawValue Any? = null,
+    var f1ff: @RawValue Any? = null,
 
     @field:SerializedName("length_cm_field")
-    val lengthCmField: @RawValue Any? = null,
+    var lengthCmField: @RawValue Any? = null,
 
     @field:SerializedName("businessid")
-    val businessid: Long? = null,
+    var businessid: Long? = null,
 
     @field:SerializedName("toprate")
-    val toprate: @RawValue Any? = null,
+    var toprate: @RawValue Any? = null,
 
     @field:SerializedName("totalpapercost")
-    val totalpapercost: @RawValue Any? = null,
+    var totalpapercost: @RawValue Any? = null,
 
     @field:SerializedName("tax")
-    val tax: Double? = null,
+    var tax: Double? = 0.0,
 
     @field:SerializedName("m1rate")
-    val m1rate: @RawValue Any? = null,
+    var m1rate: @RawValue Any? = null,
 
     @field:SerializedName("estimatedate")
-    val estimatedate: String? = null,
+    var estimatedate: String? = null,
 
     @field:SerializedName("decalsizemargin")
-    val decalsizemargin: Double? = null,
+    var decalsizemargin: Double? = 0.0,
 
     @field:SerializedName("height_inch_field")
-    val heightInchField: @RawValue Any? = null,
+    var heightInchField: @RawValue Any? = null,
 
     @field:SerializedName("m2rate")
-    val m2rate: Double? = null,
+    var m2rate: Double? = 0.0,
 
     @field:SerializedName("netweight")
-    val netweight: Double? = null,
+    var netweight: Double? = 0.0,
 
     @field:SerializedName("width_inch_field")
-    val widthInchField: @RawValue Any? = null,
+    var widthInchField: @RawValue Any? = null,
 
     @field:SerializedName("ups")
-    val ups: Double? = null,
+    var ups: Double? = 0.0,
 
     @field:SerializedName("f3bf")
-    val f3bf: Double? = null,
+    var f3bf: Double? = 0.0,
 
     @field:SerializedName("cuttinglengthmargin")
-    val cuttinglengthmargin: Double? = null,
+    var cuttinglengthmargin: Double? = 0.0,
 
     @field:SerializedName("f2gsm")
-    val f2gsm: Double? = null,
+    var f2gsm: Double? = 0.0,
 
     @field:SerializedName("bottomrate")
-    val bottomrate: Double? = null,
+    var bottomrate: Double? = 0.0,
 
     @field:SerializedName("topgsm")
-    val topgsm: Double? = null,
+    var topgsm: Double? = 0.0,
 
     @field:SerializedName("boxcost")
-    val boxcost: @RawValue Any? = null,
+    var boxcost: @RawValue Any? = null,
 
     @field:SerializedName("topbf")
-    val topbf: Double? = null,
+    var topbf: Double? = 0.0,
 
     @field:SerializedName("boxpricewithtax")
-    val boxpricewithtax: @RawValue Any? = null,
+    var boxpricewithtax: @RawValue Any? = null,
 
     @field:SerializedName("cuttinglength")
-    val cuttinglength: @RawValue Any? = null,
+    var cuttinglength: @RawValue Any? = null,
 
     @field:SerializedName("length_mm_field")
-    val lengthMmField: Double? = null,
+    var lengthMmField: Double? = 0.0,
 
     @field:SerializedName("totalbs")
-    val totalbs: @RawValue Any? = null,
+    var totalbs: @RawValue Any? = null,
 
     @field:SerializedName("m2bf")
-    val m2bf: Double? = null,
+    var m2bf: Double? = 0.0,
 
     @field:SerializedName("profit")
-    val profit: Double? = null,
+    var profit: Double? = 0.0,
 
     @field:SerializedName("f3gsm")
-    val f3gsm: Double? = null,
+    var f3gsm: Double? = 0.0,
 
     @field:SerializedName("f2ff")
-    val f2ff: Double? = null,
+    var f2ff: Double? = 0.0,
 
     @field:SerializedName("m2gsm")
-    val m2gsm: Double? = null,
+    var m2gsm: Double? = 0.0,
 
     @field:SerializedName("decalsize")
-    val decalsize: @RawValue Any? = null,
+    var decalsize: @RawValue Any? = null,
 
     @field:SerializedName("f2rate")
-    val f2rate: Double? = null,
+    var f2rate: Double? = 0.0,
 
     @field:SerializedName("totalgsm")
-    val totalgsm: Double? = null,
+    var totalgsm: Double? = 0.0,
 
     @field:SerializedName("height_mm_field")
-    val heightMmField: Double? = null,
+    var heightMmField: Double? = 0.0,
 
     @field:SerializedName("boxprice")
-    val boxprice: @RawValue Any? = null,
+    var boxprice: @RawValue Any? = null,
 
     @field:SerializedName("overheadcharges")
-    val overheadcharges: @RawValue Any? = null,
+    var overheadcharges: @RawValue Any? = null,
 
     @field:SerializedName("estimateid")
-    val estimateid: Long? = null,
+    var estimateid: Long? = null,
 
     @field:SerializedName("comment")
-    val comment: String? = null,
+    var comment: String? = null,
 
     @field:SerializedName("ply")
-    val ply: Int = 1,
+    var ply: Int = 1,
 
     @field:SerializedName("conversionrate")
-    val conversionrate: Double? = null,
+    var conversionrate: Double? = 0.0,
 
     @field:SerializedName("netpapercost")
-    val netpapercost: @RawValue Any? = null,
+    var netpapercost: @RawValue Any? = null,
 
     @field:SerializedName("f2bf")
-    val f2bf: Double? = null,
+    var f2bf: Double? = 0.0,
 
     @field:SerializedName("f3rate")
-    val f3rate: Double? = null
+    var f3rate: Double? = 0.0
 ) : Parcelable

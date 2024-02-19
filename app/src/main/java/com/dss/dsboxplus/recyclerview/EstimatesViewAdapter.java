@@ -58,13 +58,13 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         int widthIN = (int) Math.round(Double.parseDouble(dataItem.getWidthInchField().toString()));
         int heightIN = (int) Math.round(Double.parseDouble(dataItem.getHeightInchField().toString()));
         if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
-            holder.tvBoxDimension.setText(lengthCM + "x" + widthCM + "x" + heightCM+" cm");
+            holder.tvBoxDimension.setText(lengthCM + "x" + widthCM + "x" + heightCM + " cm");
 
         } else if (lengthIN != 0 && widthIN != 0 && heightIN != 0) {
-            holder.tvBoxDimension.setText(lengthIN + "x" + widthIN + "x" + heightIN+" inch");
+            holder.tvBoxDimension.setText(lengthIN + "x" + widthIN + "x" + heightIN + " inch");
 
-        }else{
-            holder.tvBoxDimension.setText(lengthMM + "x" + widthMM + "x" + heightMM+" mm") ;
+        } else {
+            holder.tvBoxDimension.setText(lengthMM + "x" + widthMM + "x" + heightMM + " mm");
         }
         String boxCost = String.format("%.2f", dataItem.getBoxprice());
         String finalBox = "₹ " + boxCost;
@@ -83,6 +83,23 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         }
         if (position == getItemCount() - 1) {
             holder.cvDummyView.setVisibility(View.VISIBLE);
+        }
+
+        if (dataItem.getPly() == 3 &&
+                dataItem.getBottombf() == 0 &&
+                dataItem.getBottombf() == 0 &&
+                dataItem.getBottombf() == 0) {
+            dataItem.setBottombf(dataItem.getM1bf());
+            dataItem.setBottomgsm(dataItem.getM1gsm());
+            dataItem.setBottomrate((Double) dataItem.getM1rate());
+        }
+        if (dataItem.getPly() == 5 &&
+                dataItem.getBottombf() == 0 &&
+                dataItem.getBottombf() == 0 &&
+                dataItem.getBottombf() == 0) {
+            dataItem.setBottombf(dataItem.getM2bf());
+            dataItem.setBottomgsm(dataItem.getM2gsm());
+            dataItem.setBottomrate((Double) dataItem.getM2rate());
         }
 
     }
