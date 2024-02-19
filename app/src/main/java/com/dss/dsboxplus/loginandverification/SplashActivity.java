@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.view.WindowManager;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -35,6 +36,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         initView();
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
