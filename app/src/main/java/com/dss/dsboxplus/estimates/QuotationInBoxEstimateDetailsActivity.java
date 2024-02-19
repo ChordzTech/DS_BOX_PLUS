@@ -29,6 +29,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.borders.DashedBorder;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
@@ -101,9 +102,10 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
             }
         });
     }
+
     public Bitmap loadProfilePictureFromFile() {
         // Get the directory for the app's private files
-        File filesDir =getFilesDir();
+        File filesDir = getFilesDir();
 
         // Create a file object for the profile picture
         File profilePictureFile = new File(filesDir, "profile_picture.jpg");
@@ -174,7 +176,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         Document document = new Document(pdfDocument);
         DeviceRgb gray = new DeviceRgb(128, 128, 128);
 
-        float columnWidth[] = {62, 140, 140, 140};
+        float columnWidth[] = {62, 140, 140, 140, 140};
         Table table = new Table(columnWidth);
 
 //        Drawable d1 = getDrawable(R.drawable.companylogo);
@@ -195,7 +197,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
             ImageData imageData = ImageDataFactory.create(bitmapData);
             com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(imageData);
             image.setWidth(80f);
-            table.addCell(new Cell(4, 1).add(image).setBorder(Border.NO_BORDER));
+            table.addCell(new Cell(4, 1).add(image).setBorder(new DashedBorder(Border.DASHED)));
             // Now you can use the 'image' object as needed
             // For example, you can add it to a table cell or directly to the document
         } else {
@@ -204,46 +206,53 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         }
 
 
-
-
-
         //table 1-01
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
         table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname())
-                .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+                .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
 
         //table 1-02
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + "," + businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + "," + businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
 
         //table 1-03
-//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getContactno()).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getContactno()).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+
 
         //table 1-04
 //        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(new DashedBorder(Border.DASHED)));
 
         //table 1-05
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Quotation")).setFontSize(18).setBold().setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph("Quotation")).setFontSize(18).setBold().setTextAlignment(TextAlignment.CENTER).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
 
         //table 1-06
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(new DashedBorder(Border.DASHED)));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(LocalDate.now().format(dateTimeFormatter).toString())).setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(LocalDate.now().format(dateTimeFormatter).toString())).setTextAlignment(TextAlignment.RIGHT).setBorder(new DashedBorder(Border.DASHED)));
 
 
         float columnWidth1[] = {62, 324, 174};
@@ -295,12 +304,12 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String rate = "";
         if (isTaxEnable) {
 
-            rate = "Rs " + rateA + "\n" +
+            rate = "Rs " + rateA + " Only" + "\n" +
                     "Tax @ " + tax + "-" + resultForTaxThreeDigits + " Rs\n" +
                     "Total: " + formattedResult + " Rs";
 
         } else {
-            rate = "Rs " + rateA + "\n";
+            rate = "Rs " + rateA + " Only" + "\n";
 
         }
         table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
@@ -325,7 +334,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         document.add(new Paragraph("\n"));
         document.add(table1);
         document.add(new Paragraph("\n"));
-        document.add(new Paragraph("for " + businessDetailsResponse.getData().getBusinessname()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("For " + businessDetailsResponse.getData().getBusinessname()).setFontSize(18f).setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("Terms & Conditions:"));
 
