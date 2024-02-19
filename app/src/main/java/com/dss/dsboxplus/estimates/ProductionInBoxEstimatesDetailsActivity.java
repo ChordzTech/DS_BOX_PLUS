@@ -78,8 +78,9 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                boxQuantity = Integer.parseInt(productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim());
-                if (boxQuantity != 0) {
+                if (!productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().isEmpty()) {
+                    boxQuantity = Integer.parseInt(productionInBoxEstimatesDetailsBinding.tietBoxQuantity.getText().toString().trim());
+
                     try {
                         createProductionDsPdf();
                     } catch (FileNotFoundException exception) {

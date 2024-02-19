@@ -204,23 +204,23 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
             // Handle the case when the profile picture Bitmap is null
             Log.e("ProfileFragment", "Profile picture Bitmap is null");
         }
-
-
         //table 1-01
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname())
                 .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-02
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + "," + businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-03
