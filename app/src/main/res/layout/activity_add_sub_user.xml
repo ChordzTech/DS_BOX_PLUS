@@ -75,6 +75,7 @@
             android:backgroundTint="@color/green"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
+            android:textColor="@color/white"
             android:text="@string/submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

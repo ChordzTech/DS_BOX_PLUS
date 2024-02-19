@@ -104,7 +104,7 @@
                             android:layout_height="250dp"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/transparent"
-                            android:src="@drawable/box_with_dimension"
+                            android:src="@drawable/top_boximage"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -114,10 +114,10 @@
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="top|start"
-                            android:layout_marginStart="85dp"
-                            android:layout_marginTop="40dp"
-                            android:rotation="330"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="200dp"
+                            android:layout_marginBottom="60dp"
+                            android:rotation="340"
                             android:text="Text1" />
 
                         <!-- Second TextView centered horizontally -->
@@ -126,10 +126,10 @@
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
+                            android:layout_gravity="bottom|start"
                             android:layout_marginStart="80dp"
-                            android:layout_marginTop="25dp"
-                            android:rotation="30"
+                            android:layout_marginBottom="80dp"
+                            android:rotation="40"
                             android:text="Text2" />
 
                         <!-- Third TextView aligned with bottom right -->
@@ -138,8 +138,9 @@
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            android:layout_marginEnd="20dp"
+                            android:layout_gravity="top|end"
+                            android:layout_marginEnd="40dp"
+                            android:layout_marginTop="100dp"
                             android:rotation="90"
                             android:text="Text3" />
 
@@ -150,8 +151,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginEnd="@dimen/margin_small"
-                            android:layout_marginBottom="60dp"
-                            android:rotation="330"
+                            android:layout_marginBottom="90dp"
+                            android:rotation="340"
                             android:text="Text4" />
 
                         <TextView
@@ -161,8 +162,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="@dimen/margin_medium"
-                            android:layout_marginBottom="@dimen/margin_small"
-                            android:rotation="330"
+                            android:layout_marginBottom="60dp"
+                            android:rotation="350"
                             android:text="Text5" />
 
 
@@ -1283,6 +1284,7 @@
                     style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:backgroundTint="@color/darkBlue"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:text="@string/quotation" />
@@ -1290,6 +1292,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btProduction"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:backgroundTint="@color/yellow"
                     android:layout_height="wrap_content"
@@ -1313,6 +1316,7 @@
                     style="@style/DSTextMedium"
                     android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:text="@string/edit" />
@@ -1321,6 +1325,7 @@
                     android:id="@+id/btDelete"
                     style="@style/DSTextMedium"
                     android:backgroundTint="@color/red"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/delete" />
@@ -1339,6 +1344,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btClose"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

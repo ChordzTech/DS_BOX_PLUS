@@ -107,6 +107,7 @@
                     style="@style/DSTextMedium"
                     android:id="@+id/btSaveInDefaultPaperSettings"
                     android:backgroundTint="@color/green"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -116,6 +117,7 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/btCloseInDefaultPaperSettings"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />
             </LinearLayout>

@@ -152,6 +152,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCreateQuotationPDF"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -160,6 +161,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCloseInQuotation"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

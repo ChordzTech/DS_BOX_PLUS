@@ -159,6 +159,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btUpdateInUSerDetails"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -168,6 +169,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCloseInUSerDetails"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

@@ -747,6 +747,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btBackInBoxSpecification"
                         style="@style/DSTextMedium"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
@@ -755,6 +756,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btNextInBoxSpecification"
                         style="@style/DSTextMedium"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:backgroundTint="@color/green"
                         android:layout_height="wrap_content"

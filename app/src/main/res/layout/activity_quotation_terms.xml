@@ -65,6 +65,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:id="@+id/btSaveInQuotationTerms"
                     android:backgroundTint="@color/green"
                     android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:id="@+id/btCloseInQuotationTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
