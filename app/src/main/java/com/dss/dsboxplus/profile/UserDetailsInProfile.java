@@ -64,9 +64,14 @@ public class UserDetailsInProfile extends BaseActivity implements AdapterView.On
         binding.btUpdateInUSerDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updateUserDetails(userData.getUserid(),
-                        binding.tietUserName.getText().toString()
-                );
+                if (isConnectedToInternet()) {
+                    viewModel.updateUserDetails(userData.getUserid(),
+                            binding.tietUserName.getText().toString()
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
+
             }
         });
         viewModel.getUpdateUserLiveData().observe(this, updateSubUserResponse -> {

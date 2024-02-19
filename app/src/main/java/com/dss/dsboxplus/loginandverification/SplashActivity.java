@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.view.WindowManager;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -36,6 +37,12 @@ public class SplashActivity extends BaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         initView();
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
     }
 
 

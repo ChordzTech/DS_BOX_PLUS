@@ -39,7 +39,6 @@
                 android:layout_marginEnd="@dimen/margin_medium"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvEstimates"
                 app:layout_constraintStart_toEndOf="@+id/tvClientPhoto"
                 app:layout_constraintTop_toTopOf="parent">
 

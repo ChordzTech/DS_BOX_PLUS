@@ -102,10 +102,14 @@ public class DefaultPaperSettings extends BaseActivity {
                 int cuttingMargin = Integer.parseInt(defaultPaperSettingsBinding.tietCuttingMargin.getText().toString());
                 int decalMargin = Integer.parseInt(defaultPaperSettingsBinding.tietDecalMargin.getText().toString());
                 float fluteFactor = Float.parseFloat(defaultPaperSettingsBinding.tietFluteFactor.getText().toString());
+                if (isConnectedToInternet()) {
+                    viewModel.updatebusinessDetails(
+                            cuttingMargin, decalMargin, fluteFactor, businessDetails
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
 
-                viewModel.updatebusinessDetails(
-                        cuttingMargin, decalMargin, fluteFactor, businessDetails
-                );
             }
         });
         viewModel.getUpdateBusinessdetailsLiveData().observe(this, updateBusinessDetailsResponse -> {

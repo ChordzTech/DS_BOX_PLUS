@@ -105,7 +105,11 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
         binding.btDeleteInSubUSer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.deleteSubUser(userData.getUserid());
+                if (isConnectedToInternet()) {
+                    viewModel.deleteSubUser(userData.getUserid());
+                } else {
+                    showNoInternetDialog();
+                }
             }
         });
         viewModel.getDeleteSubUserLiveData().observe(this, deleteSubUserResponse -> {
@@ -126,10 +130,15 @@ public class SubUserDetailsActivity extends BaseActivity implements AdapterView.
         binding.btUpdateInSubUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.updateSubUser(userData.getUserid(),
-                        binding.tietSubUserName.getText().toString(),
-                        selectedAccessType
-                );
+                if (isConnectedToInternet()) {
+                    viewModel.updateSubUser(userData.getUserid(),
+                            binding.tietSubUserName.getText().toString(),
+                            selectedAccessType
+                    );
+                } else {
+                    showNoInternetDialog();
+                }
+
             }
         });
         viewModel.getUpdateSubUserLiveData().observe(this, updateSubUserResponse -> {

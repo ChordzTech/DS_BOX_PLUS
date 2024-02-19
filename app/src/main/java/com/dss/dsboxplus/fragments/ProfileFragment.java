@@ -2,9 +2,12 @@ package com.dss.dsboxplus.fragments;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -186,8 +189,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_, container, false);
 
@@ -321,9 +323,7 @@ public class ProfileFragment extends Fragment {
         fabAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImagePicker.with(ProfileFragment.this)
-                        .cropSquare()
-                        .crop()//Crop image(Optional), Check Customization for more option
+                ImagePicker.with(ProfileFragment.this).cropSquare().crop()//Crop image(Optional), Check Customization for more option
                         .compress(1024)            //Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                         .start();
@@ -376,58 +376,75 @@ public class ProfileFragment extends Fragment {
         cvBusiness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BusinessDetailsActivity.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(getActivity(), BusinessDetailsActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         cvDefaultPaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DefaultPaperSettings.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(getActivity(), DefaultPaperSettings.class);
+                    startActivity(intent);
+                }
             }
         });
         cvDefaultRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DefaultRateSettings.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(getActivity(), DefaultRateSettings.class);
+                    startActivity(intent);
+                }
             }
         });
         cvQuotationTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), QuotationTerms.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+
+                    Intent intent = new Intent(getActivity(), QuotationTerms.class);
+                    startActivity(intent);
+                }
             }
         });
         cvProfileName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(getActivity(), UserDetailsInProfile.class);
+                    startActivity(intent);
+                }
             }
         });
         cvHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Help.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(getActivity(), Help.class);
+                    startActivity(intent);
+                }
             }
         });
         cvSubscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SubscriptionActivity.class);
-                startActivity(intent);
+                if (isConnectedToInternet()) {
+                    Intent intent = new Intent(getActivity(), SubscriptionActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         cvsuperUserSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 2) {
-                    Intent intent = new Intent(getActivity(), SuperUserSetting.class);
-                    startActivity(intent);
+                    if (isConnectedToInternet()) {
+                        Intent intent = new Intent(getActivity(), SuperUserSetting.class);
+                        startActivity(intent);
+                    }
                 } else {
                     Toast.makeText(view.getContext(), "You don't have access for this feature", Toast.LENGTH_SHORT).show();
                 }
@@ -539,5 +556,15 @@ public class ProfileFragment extends Fragment {
 
     public void setBusinessdetails(BusinessDetails businessDetails) {
         this.businessDetails = businessDetails;
+    }
+
+    Boolean isConnectedToInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean b = networkInfo != null && networkInfo.isConnected();
+        if (!b) {
+            Toast.makeText(getActivity(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        }
+        return b;
     }
 }

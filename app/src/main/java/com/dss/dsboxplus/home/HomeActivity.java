@@ -69,8 +69,19 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         fetchData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isConnectedToInternet()) {
+            homeViewModel.getEstimateByBusinessIdUserId();
+            homeViewModel.getClientList();
+
+        } else {
+            showNoInternetDialog();
+        }
+    }
+
     private void fetchData() {
-        homeViewModel.getClientList();
         homeViewModel.getAppConfig();
         homeViewModel.getSubscriptionList();
         homeViewModel.getQrCode();
@@ -198,7 +209,11 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (item.getItemId() == R.id.estimate) {
                 homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
                 replaceFragment(estimatesFragment);
-                homeViewModel.getEstimateByBusinessIdUserId();
+                if (isConnectedToInternet()) {
+                    homeViewModel.getEstimateByBusinessIdUserId();
+                } else {
+                    showNoInternetDialog();
+                }
                 if (!estimateList.isEmpty()) {
                     estimatesFragment.setEstimateList(estimateList);
                 }
@@ -208,7 +223,11 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             } else if (item.getItemId() == R.id.users) {
                 homeScreenBinding.tvPageTitle.setText(R.string.title_clients);
                 replaceFragment(clientFragment);
-                homeViewModel.getClientList();
+                if (isConnectedToInternet()) {
+                    homeViewModel.getClientList();
+                } else {
+                    showNoInternetDialog();
+                }
                 if (!clientsList.isEmpty()) {
                     clientFragment.setClientList(clientsList);
                 }

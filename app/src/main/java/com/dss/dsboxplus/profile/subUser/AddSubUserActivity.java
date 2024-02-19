@@ -46,7 +46,8 @@ public class AddSubUserActivity extends BaseActivity {
 
                 boolean check = validateInfo(username, contact);
                 if (check) {
-                    viewModel.addSubUSer(username, contact);
+                    if(isConnectedToInternet()){ viewModel.addSubUSer(username, contact);}else{showNoInternetDialog();}
+
 
                 }
 
