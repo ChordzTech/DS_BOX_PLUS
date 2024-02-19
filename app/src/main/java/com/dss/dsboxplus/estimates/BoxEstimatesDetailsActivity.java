@@ -247,17 +247,17 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
                     boxEstimatesDetailsBinding.tvBoxNameInBoxEstimateDetails.setText(dataItem.getBoxname());
                     boxEstimatesDetailsBinding.tvnoOfBox.setText(String.valueOf(dataItem.getUps()));
-                    boxEstimatesDetailsBinding.tvtotalGsm.setText(String.valueOf(dataItem.getTotalgsm()));
-                    boxEstimatesDetailsBinding.tvWaste.setText(String.valueOf(dataItem.getWaste()));
-                    boxEstimatesDetailsBinding.tvConvKg.setText(String.valueOf(dataItem.getConversionrate()));
+                    boxEstimatesDetailsBinding.tvtotalGsm.setText(Math.round(dataItem.getTotalgsm()) + "");
+                    boxEstimatesDetailsBinding.tvWaste.setText(String.format("%.2f", dataItem.getWaste()));
+                    boxEstimatesDetailsBinding.tvConvKg.setText(String.format("%.2f", dataItem.getConversionrate()));
 //                    boxEstimatesDetailsBinding.tvConvCost.setText(String.valueOf(dataItem.getConversionrate()));
-                    boxEstimatesDetailsBinding.tvPaperCost.setText(dataItem.getTotalpapercost().toString());
-                    boxEstimatesDetailsBinding.tvOverhead.setText(String.valueOf(dataItem.getOverheadcharges()));
+                    boxEstimatesDetailsBinding.tvPaperCost.setText(String.format("%.2f", dataItem.getTotalpapercost()));
+                    boxEstimatesDetailsBinding.tvOverhead.setText(String.format("%.2f", dataItem.getOverheadcharges()));
                     boxEstimatesDetailsBinding.tvBoxMfg.setText(String.valueOf(dataItem.getBoxcost()));
                     boxEstimatesDetailsBinding.tvProfit.setText(String.valueOf(resultForProfitThreeDigits));
-                    boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.setText(String.valueOf(dataItem.getBoxprice()));
+                    boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.setText(String.format("%.2f", dataItem.getBoxprice()));
                     boxEstimatesDetailsBinding.tvTax.setText(String.valueOf(resultForTaxThreeDigits));
-                    boxEstimatesDetailsBinding.tvPriceWithtax.setText(String.valueOf(dataItem.getBoxpricewithtax()));
+                    boxEstimatesDetailsBinding.tvPriceWithtax.setText(String.format("%.2f", dataItem.getBoxpricewithtax()));
                     boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + " Ply");
 
                     int noOfPly = dataItem.getPly();
