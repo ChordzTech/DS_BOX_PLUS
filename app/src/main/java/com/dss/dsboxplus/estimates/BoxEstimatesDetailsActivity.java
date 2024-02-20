@@ -182,10 +182,13 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 //                        int cutting = (int) (cuttingLength * 2.54);
 //                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "cm"));
 //                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "cm"));
-                     if (decalSize != 0 && cuttingLength != 0) {
-                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthIN + "inch"));
-                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthIN + "inch"));
-                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightIN + "inch"));
+                     if (cuttingLength != 0 && decalSize != 0) {
+                         boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthMM + "mm"));
+                         boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthMM + "mm"));
+                         boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightMM + "mm"));
+//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthIN + "inch"));
+//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthIN + "inch"));
+//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightIN + "inch"));
 
 
                         boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decalSize + "inch"));
