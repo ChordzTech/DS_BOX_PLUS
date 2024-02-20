@@ -84,24 +84,6 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         if (position == getItemCount() - 1) {
             holder.cvDummyView.setVisibility(View.VISIBLE);
         }
-
-        if (dataItem.getPly() == 3 &&
-                dataItem.getBottombf() == 0 &&
-                dataItem.getBottombf() == 0 &&
-                dataItem.getBottombf() == 0) {
-            dataItem.setBottombf(dataItem.getM1bf());
-            dataItem.setBottomgsm(dataItem.getM1gsm());
-            dataItem.setBottomrate((Double) dataItem.getM1rate());
-        }
-        if (dataItem.getPly() == 5 &&
-                dataItem.getBottombf() == 0 &&
-                dataItem.getBottombf() == 0 &&
-                dataItem.getBottombf() == 0) {
-            dataItem.setBottombf(dataItem.getM2bf());
-            dataItem.setBottomgsm(dataItem.getM2gsm());
-            dataItem.setBottomrate((Double) dataItem.getM2rate());
-        }
-
     }
 
     private int getRandomColor() {
@@ -165,34 +147,28 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
             cvDummyView = itemView.findViewById(R.id.cvDummyView);
             tvClientName = itemView.findViewById(R.id.tvClientName);
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-//                    EstimatesDataModel estimatesDataModel = estimatesList.get(getAdapterPosition());
-//                    estimatesDataModel.setSelected(true);
-//                    estimateSelection = true;
-//                    root.setBackgroundColor(Color.GRAY);
-//                    onEstimatesSelectedListner.onItemLongPressed(estimatesList.get(getAdapterPosition()), getAdapterPosition());
-                    return true;
-                }
-            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    EstimatesDataModel estimatesDataModel = estimatesList.get(getAdapterPosition());
-//                    if (estimateSelection) {
-//                        if (!estimatesDataModel.isSelected()) {
-//                            root.setBackgroundColor(Color.GRAY);
-//                            estimatesDataModel.setSelected(true);
-//                        } else {
-//                            root.setBackgroundColor(Color.WHITE);
-//                            estimatesDataModel.setSelected(false);
-//                        }
-//                        onEstimatesSelectedListner.onItemClicked(estimatesList.get(getAdapterPosition()), getAdapterPosition());
-//                    } else {
-                    onEstimatesSelectedListner.onEstimatesSelectedI(estimatesList.get(getAdapterPosition()));
-//                    }
+                    DataItem dataItem = estimatesList.get(getAdapterPosition());
+                    if (dataItem.getPly() == 3 &&
+                            dataItem.getBottombf() == 0 &&
+                            dataItem.getBottombf() == 0 &&
+                            dataItem.getBottombf() == 0) {
+                        dataItem.setBottombf(dataItem.getM1bf());
+                        dataItem.setBottomgsm(dataItem.getM1gsm());
+                        dataItem.setBottomrate((Double) dataItem.getM1rate());
+                    }
+                    if (dataItem.getPly() == 5 &&
+                            dataItem.getBottombf() == 0 &&
+                            dataItem.getBottombf() == 0 &&
+                            dataItem.getBottombf() == 0) {
+                        dataItem.setBottombf(dataItem.getM2bf());
+                        dataItem.setBottomgsm(dataItem.getM2gsm());
+                        dataItem.setBottomrate((Double) dataItem.getM2rate());
+                    }
 
+                    onEstimatesSelectedListner.onEstimatesSelectedI(dataItem);
                 }
             });
         }
