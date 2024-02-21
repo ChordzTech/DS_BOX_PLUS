@@ -59,7 +59,7 @@ interface RetrofitService {
     ): Response<UpdateClientResponse>
 
     @PATCH("UserDetails/{userid}/")
-    suspend fun updateSubUser(
+    suspend fun updateUser(
         @Path(value = "userid") userId: Long,
         @Body request: UpdateSubUserRequest
     ): Response<UpdateSubUserResponse>

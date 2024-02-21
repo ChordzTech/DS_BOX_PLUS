@@ -279,7 +279,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
     suspend fun updateSubUser(request: UpdateSubUserRequest): NetworkState<UpdateSubUserResponse> {
-        val response = retrofitService.updateSubUser(request.userid!!.toLong(), request)
+        val response = retrofitService.updateUser(request.userid!!.toLong(), request)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
