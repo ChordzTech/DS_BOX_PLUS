@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "889867556676",
-    "project_id": "ds-box-plus",
-    "storage_bucket": "ds-box-plus.appspot.com"
+    "project_number": "377187466016",
+    "project_id": "dsboxplus-ef465",
+    "storage_bucket": "dsboxplus-ef465.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:889867556676:android:456bed296402abdc78e911",
+        "mobilesdk_app_id": "1:377187466016:android:dca0da15efbb0b5e54b545",
         "android_client_info": {
           "package_name": "com.dss.dsboxplus"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBq1jZ8nID6t7qypi3W8prI5vWMxvh9m2M"
+          "current_key": "AIzaSyA1ypjC6R5rri-Dz9JeDlKPGxJD_EGrz34"
         }
       ],
       "services": {
