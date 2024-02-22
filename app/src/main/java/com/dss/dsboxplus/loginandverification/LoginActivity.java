@@ -130,8 +130,8 @@ public class LoginActivity extends BaseActivity {
                     public void onVerificationFailed(@NonNull FirebaseException e) {
                         pbSendingOtp.setVisibility(View.GONE);
                         btNext.setVisibility(View.VISIBLE);
-                        Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                        fetchData();
+                        Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        fetchData();
                     }
 
                     @Override

@@ -149,8 +149,8 @@ public class VerifyOtpActivity extends BaseActivity {
                 String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
                 UserData userData = userDetailsResponse.getData().get(0);
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
-                addUserDataToPreferences(userDetailsResponse);
-                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+//                addUserDataToPreferences(userDetailsResponse);
+//                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
             } else {
                 addUserDataToPreferences(userDetailsResponse);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
