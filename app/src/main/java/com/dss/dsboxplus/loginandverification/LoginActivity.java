@@ -34,11 +34,10 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends BaseActivity {
     ActivityLoginScreenBinding loginScreenBinding;
     TextView dsBox;
-    private SplashViewModel viewModel;
     EditText etPhoneNumber;
     Button btNext;
     ProgressBar pbSendingOtp;
-
+    private SplashViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +115,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void validateNumber() {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + etPhoneNumber.getText().toString(),
+        callDishaOTPService();
+
+        /*PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + etPhoneNumber.getText().toString(),
                 60, TimeUnit.SECONDS, LoginActivity.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -130,8 +131,9 @@ public class LoginActivity extends BaseActivity {
                     public void onVerificationFailed(@NonNull FirebaseException e) {
                         pbSendingOtp.setVisibility(View.GONE);
                         btNext.setVisibility(View.VISIBLE);
-                        Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "switching on DishaSwaraj OTP service ", Toast.LENGTH_SHORT).show();
 //                        fetchData();
+                        callDishaOTPService();
                     }
 
                     @Override
@@ -146,10 +148,26 @@ public class LoginActivity extends BaseActivity {
 
                     }
                 }
-        );
+        );*/
+    }
+
+    private void callDishaOTPService() {
+        if (isConnectedToInternet()) {
+            viewModel.getOTP(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(AppPreferences.MOBILE_NUMBER));
+        } else {
+            showNoInternetDialog();
+        }
     }
 
     private void initObservers() {
+        viewModel.getDishaOTPLiveData().observe(this, otp -> {
+            pbSendingOtp.setVisibility(View.GONE);
+            btNext.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(getApplicationContext(), VerifyOtpActivity.class);
+            intent.putExtra("mobile", etPhoneNumber.getText().toString());
+            intent.putExtra("backendotp", "123456");
+            startActivity(intent);
+        });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
                 Intent intent = new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);

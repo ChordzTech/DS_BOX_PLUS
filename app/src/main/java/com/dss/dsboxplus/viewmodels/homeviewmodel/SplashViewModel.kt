@@ -24,6 +24,8 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
     var updateSubUserLiveData = MutableLiveData<UpdateSubUserResponse>()
         get() = field
 
+    var dishaOTPLiveData = MutableLiveData<Any>()
+
 
     fun getUserDetails(
         mobileno: String,
@@ -70,7 +72,7 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
         showLoader()
         val request = UpdateSubUserRequest()
         request.businessid = userData.businessid
-        request.userid=userid.toInt()
+        request.userid = userid.toInt()
         request.androidid = androidId
         request.deviceinfo = Build.BRAND + Build.MODEL
         viewModelScope.launch {
@@ -90,4 +92,23 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
                 }
             }
         }
-    }}
+    }
+
+    fun getOTP(phoneNumber: Long) {
+        viewModelScope.launch {
+            when (val response = repository.getOTP(phoneNumber)) {
+                is NetworkState.Success -> {
+                    hideLoader()
+                    dishaOTPLiveData.postValue(response!!)
+                }
+
+                is NetworkState.Error -> {
+                    hideLoader()
+                    if (response.response.code() == 400) {
+                        dishaOTPLiveData.postValue(response.response.body())
+                    }
+                }
+            }
+        }
+    }
+}

@@ -42,9 +42,17 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface RetrofitService {
+
+    //DSBOX OTP API
+    @GET("http://173.45.76.227/send.aspx?username=dishaswaraj&pass=Disha3332&route=trans1&senderid=SDISHA&" +
+            "message=OTP%20for%20DS%20Box%20Plus%20App%20is%20123456%0A%0AFrom%20:%20Box%20Costing%0AContact%20Support%20:%0ARahul%0A9421013332&templateid=1207161675123262002")
+    suspend fun getOTP(
+        @Query(value = "numbers") phoneNumber: Long
+    ): Response<Any>
 
     //Estimate list APIs
     @GET("EstimateDetails/")
@@ -123,9 +131,10 @@ interface RetrofitService {
     ): Response<EstimateListResponse>
 
 
-    @GET("GetUserDetails/{mobileno}/")
+    @GET("GetUserDetails/{mobileno}/{androidId}")
     suspend fun getUserDetails(
-        @Path(value = "mobileno") mobileno: String
+        @Path(value = "mobileno") mobileno: String,
+        @Path(value = "androidId") androidId: String
     ): Response<UserDetailsResponse>
 
     @GET("GetSubUserList/{businessid}/")

@@ -31,11 +31,25 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService
 
 class MainRepository constructor(private val retrofitService: RetrofitService) {
 
+    suspend fun getOTP(phoneNumber: Long): NetworkState<Any> {
+        val response = retrofitService.getOTP(phoneNumber)
+        return if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                NetworkState.Success(responseBody)
+            } else {
+                NetworkState.Error(response)
+            }
+        } else {
+            NetworkState.Error(response)
+        }
+    }
+
     suspend fun getUserDetails(
         mobileno: String,
         deviceinfo: String
     ): NetworkState<UserDetailsResponse> {
-        val response = retrofitService.getUserDetails(mobileno)
+        val response = retrofitService.getUserDetails(mobileno,deviceinfo)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -237,8 +251,9 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
+
     suspend fun updateEstimate(request: AddEstimateRequest): NetworkState<AddEstimateResponse> {
-        val response = retrofitService.updateEstimate(request,request.estimateid!!)
+        val response = retrofitService.updateEstimate(request, request.estimateid!!)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -278,6 +293,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
+
     suspend fun updateSubUser(request: UpdateSubUserRequest): NetworkState<UpdateSubUserResponse> {
         val response = retrofitService.updateUser(request.userid!!.toLong(), request)
         return if (response.isSuccessful) {
@@ -306,7 +322,8 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             NetworkState.Error(response)
         }
     }
-    suspend fun deleteSubUser(userId: Long):NetworkState<DeleteSubUserResponse>{
+
+    suspend fun deleteSubUser(userId: Long): NetworkState<DeleteSubUserResponse> {
         val response = retrofitService.deleteSubUser(userId)
         return if (response.isSuccessful) {
             val responseBody = response.body()
@@ -350,7 +367,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
 
-    suspend fun deleteEstimate(estimateid: Long):  NetworkState<EstimateDeleteResponse> {
+    suspend fun deleteEstimate(estimateid: Long): NetworkState<EstimateDeleteResponse> {
         val response = retrofitService.deleteEstimate(estimateid)
         return if (response.isSuccessful) {
             val responseBody = response.body()
