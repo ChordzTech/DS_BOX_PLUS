@@ -28,6 +28,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
@@ -38,6 +39,7 @@ public class LoginActivity extends BaseActivity {
     Button btNext;
     ProgressBar pbSendingOtp;
     private SplashViewModel viewModel;
+    private String randomNumber="000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void validateNumber() {
+        randomNumber = String.format("%06d", new Random().nextInt(999999));
         callDishaOTPService();
 
         /*PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + etPhoneNumber.getText().toString(),
@@ -153,7 +156,8 @@ public class LoginActivity extends BaseActivity {
 
     private void callDishaOTPService() {
         if (isConnectedToInternet()) {
-            viewModel.getOTP(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(AppPreferences.MOBILE_NUMBER));
+            viewModel.getOTP(AppPreferences.INSTANCE.getLongValueFromSharedPreferences(AppPreferences.MOBILE_NUMBER),
+                    String.valueOf(randomNumber));
         } else {
             showNoInternetDialog();
         }
@@ -165,7 +169,7 @@ public class LoginActivity extends BaseActivity {
             btNext.setVisibility(View.VISIBLE);
             Intent intent = new Intent(getApplicationContext(), VerifyOtpActivity.class);
             intent.putExtra("mobile", etPhoneNumber.getText().toString());
-            intent.putExtra("backendotp", "123456");
+            intent.putExtra("backendotp", randomNumber);
             startActivity(intent);
         });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {

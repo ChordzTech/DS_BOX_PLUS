@@ -48,10 +48,15 @@ import retrofit2.http.Query
 interface RetrofitService {
 
     //DSBOX OTP API
-    @GET("http://173.45.76.227/send.aspx?username=dishaswaraj&pass=Disha3332&route=trans1&senderid=SDISHA&" +
-            "message=OTP%20for%20DS%20Box%20Plus%20App%20is%20123456%0A%0AFrom%20:%20Box%20Costing%0AContact%20Support%20:%0ARahul%0A9421013332&templateid=1207161675123262002")
+    @GET("http://173.45.76.227/send.aspx?")
     suspend fun getOTP(
-        @Query(value = "numbers") phoneNumber: Long
+        @Query(value = "username") username: String,
+        @Query(value = "pass") pass: String,
+        @Query(value = "route") route: String,
+        @Query(value = "senderid") senderid: String,
+        @Query(value = "numbers") numbers: String,
+        @Query(value = "message",encoded = true) message: String,
+        @Query(value = "templateid") templateid: String,
     ): Response<Any>
 
     //Estimate list APIs

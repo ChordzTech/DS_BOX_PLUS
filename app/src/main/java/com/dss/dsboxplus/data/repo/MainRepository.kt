@@ -31,8 +31,17 @@ import com.example.mvvmretrofit.data.repo.remote.RetrofitService
 
 class MainRepository constructor(private val retrofitService: RetrofitService) {
 
-    suspend fun getOTP(phoneNumber: Long): NetworkState<Any> {
-        val response = retrofitService.getOTP(phoneNumber)
+    suspend fun getOTP(phoneNumber: Long, otp: String): NetworkState<Any> {
+
+        val response = retrofitService.getOTP(
+            "dishaswaraj",
+            "Disha3332",
+            "trans1",
+            "SDISHA",
+            "7709244796",
+            "OTP for DS Box Plus App is "+otp+"%0A%0AFrom : Box Costing%0AContact Support :%0ARahul%0A9421013332",
+            "1207161675123262002"
+        )
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -49,7 +58,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         mobileno: String,
         deviceinfo: String
     ): NetworkState<UserDetailsResponse> {
-        val response = retrofitService.getUserDetails(mobileno,deviceinfo)
+        val response = retrofitService.getUserDetails(mobileno, deviceinfo)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {

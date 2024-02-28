@@ -63,7 +63,7 @@ public class VerifyOtpActivity extends BaseActivity {
                 if (!inputOtpOne.getText().toString().trim().isEmpty() && !inputOtpTwo.getText().toString().trim().isEmpty()) {
                     String enterCodeOtp = inputOtpOne.getText().toString() + inputOtpTwo.getText().toString() + inputOtpThree.getText().toString() + inputOtpFour.getText().toString() + inputOtpFive.getText().toString() + inputOtpSix.getText().toString();
                     if (backendopt != null) {
-                        if (backendopt.equalsIgnoreCase("123456") && enterCodeOtp.equalsIgnoreCase("123456")) {
+                        if (backendopt.equalsIgnoreCase(enterCodeOtp)) {
                             fetchData();
                             Toast.makeText(VerifyOtpActivity.this, "OTP verified", Toast.LENGTH_SHORT).show();
                             return;

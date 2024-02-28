@@ -16,7 +16,7 @@ import com.dss.dsboxplus.baseview.BaseActivity;
 
 public class TermsAndPrivacyPolicyActivity extends BaseActivity {
     WebView wvTermsAndPrivacy;
-    String url = "https://dsbox.dishaswaraj.in/Terms.aspx";
+    String url = "http://dsbox.dishaswaraj.in/Terms.aspx";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

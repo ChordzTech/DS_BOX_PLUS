@@ -9,7 +9,6 @@ import com.dss.dsboxplus.data.repo.response.UpdateSubUserRequest
 import com.dss.dsboxplus.data.repo.response.UpdateSubUserResponse
 import com.dss.dsboxplus.data.repo.response.UserData
 import com.dss.dsboxplus.data.repo.response.UserDetailsResponse
-import com.dss.dsboxplus.preferences.AppPreferences
 import com.example.mvvmretrofit.data.repo.MainRepository
 import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import kotlinx.coroutines.launch
@@ -94,9 +93,9 @@ class SplashViewModel(val repository: MainRepository) : BaseViewModel() {
         }
     }
 
-    fun getOTP(phoneNumber: Long) {
+    fun getOTP(phoneNumber: Long,otp:String) {
         viewModelScope.launch {
-            when (val response = repository.getOTP(phoneNumber)) {
+            when (val response = repository.getOTP(phoneNumber,otp)) {
                 is NetworkState.Success -> {
                     hideLoader()
                     dishaOTPLiveData.postValue(response!!)
