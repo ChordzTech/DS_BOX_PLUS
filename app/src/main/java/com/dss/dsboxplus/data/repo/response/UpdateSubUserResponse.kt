@@ -11,7 +11,7 @@ data class UpdateSubUserResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("data")
-	val data: UpdateSubUser? = null,
+	val data: List<UpdateSubUser>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,

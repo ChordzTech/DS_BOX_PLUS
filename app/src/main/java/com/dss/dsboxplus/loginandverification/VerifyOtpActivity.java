@@ -63,11 +63,12 @@ public class VerifyOtpActivity extends BaseActivity {
                 if (!inputOtpOne.getText().toString().trim().isEmpty() && !inputOtpTwo.getText().toString().trim().isEmpty()) {
                     String enterCodeOtp = inputOtpOne.getText().toString() + inputOtpTwo.getText().toString() + inputOtpThree.getText().toString() + inputOtpFour.getText().toString() + inputOtpFive.getText().toString() + inputOtpSix.getText().toString();
                     if (backendopt != null) {
-                        if (backendopt.equalsIgnoreCase(enterCodeOtp)) {
+                        if (Integer.parseInt(backendopt) == Integer.parseInt(enterCodeOtp)) {
                             fetchData();
                             Toast.makeText(VerifyOtpActivity.this, "OTP verified", Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                         pbVerifyOtp.setVisibility(View.VISIBLE);
                         btVerify.setVisibility(View.INVISIBLE);
 
@@ -127,11 +128,12 @@ public class VerifyOtpActivity extends BaseActivity {
     private void initObservers() {
         viewModel.getUpdateSubUserLiveData().observe(this, it -> {
             UserDetailsResponse userDetails = ConfigDataProvider.INSTANCE.getUserDetails();
-            userDetails.getData().get(0).setAndroidid(it.getData().getAndroidid());
+            userDetails.getData().get(0).setAndroidid(it.getData().get(0).getAndroidid());
             ConfigDataProvider.INSTANCE.setUserDetails(userDetails);
+            addUserDataToPreferences(ConfigDataProvider.INSTANCE.getUserDetails());
+            finishAffinity();
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
-            finishAffinity();
         });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
@@ -142,9 +144,8 @@ public class VerifyOtpActivity extends BaseActivity {
             } else if (userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
                 String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
                 UserData userData = userDetailsResponse.getData().get(0);
+                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
-//                addUserDataToPreferences(userDetailsResponse);
-//                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
             } else {
                 addUserDataToPreferences(userDetailsResponse);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
