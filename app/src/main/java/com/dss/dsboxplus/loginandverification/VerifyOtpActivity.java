@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -129,29 +130,32 @@ public class VerifyOtpActivity extends BaseActivity {
         viewModel.getUpdateSubUserLiveData().observe(this, it -> {
             UserDetailsResponse userDetails = ConfigDataProvider.INSTANCE.getUserDetails();
             userDetails.getData().get(0).setAndroidid(it.getData().get(0).getAndroidid());
-            ConfigDataProvider.INSTANCE.setUserDetails(userDetails);
+//            ConfigDataProvider.INSTANCE.setUserDetails(userDetails);
             addUserDataToPreferences(ConfigDataProvider.INSTANCE.getUserDetails());
-            finishAffinity();
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
+            finish();
+            Log.e("TAG", "initObservers: " + " device id updated start HomeActivity");
+
         });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
                 Intent intent = new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finishAffinity();
-            } else if (userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
+                finish();
+                Log.e("TAG", "initObservers: " + "start EnterBusinessDetailsActivity");
+            } else if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty() && userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
                 String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
                 UserData userData = userDetailsResponse.getData().get(0);
-                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+//                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
             } else {
-                addUserDataToPreferences(userDetailsResponse);
-                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+//                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
-                finishAffinity();
+                Log.e("TAG", "initObservers: " + "start HomeActivity");
+                finish();
             }
         });
 

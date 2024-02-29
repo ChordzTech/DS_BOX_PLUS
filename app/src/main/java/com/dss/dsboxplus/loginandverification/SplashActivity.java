@@ -89,9 +89,9 @@ public class SplashActivity extends BaseActivity {
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
+                finishAffinity();
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             } else {
 
                 if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
@@ -109,9 +109,9 @@ public class SplashActivity extends BaseActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            finishAffinity();
                             Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                             startActivity(intent);
-                            finish();
                         }
                     }, 1000);
                 }

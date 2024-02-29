@@ -19,11 +19,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs{
+        release {
+            keyAlias 'Reset'
+            keyPassword 'Reset@123'
+            storePassword 'Reset@123'
+            storeFile file("${rootDir}/ds_box_plus_keystore.jks")
+        }
+
+    }
 
     buildTypes {
         release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {

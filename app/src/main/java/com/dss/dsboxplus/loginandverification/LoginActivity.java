@@ -171,6 +171,7 @@ public class LoginActivity extends BaseActivity {
             intent.putExtra("mobile", etPhoneNumber.getText().toString());
             intent.putExtra("backendotp", randomNumber);
             startActivity(intent);
+            finishAffinity();
         });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() == 404) {
