@@ -38,7 +38,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             "Disha3332",
             "trans1",
             "SDISHA",
-            "7709244796",
+            phoneNumber.toString(),
             "OTP for DS Box Plus App is "+otp+"%0A%0AFrom : Box Costing%0AContact Support :%0ARahul%0A9421013332",
             "1207161675123262002"
         )
