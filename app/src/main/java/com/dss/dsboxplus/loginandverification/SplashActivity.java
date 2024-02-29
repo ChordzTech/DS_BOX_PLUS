@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -92,6 +93,8 @@ public class SplashActivity extends BaseActivity {
                 finishAffinity();
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
+            } else if (userDetailsResponse.getCode() == 400) {
+                showMessagePopUp(userDetailsResponse.getMessage());
             } else {
 
                 if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {

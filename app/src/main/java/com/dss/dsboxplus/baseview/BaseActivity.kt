@@ -153,4 +153,16 @@ open class BaseActivity : AppCompatActivity() {
         logoutDialog.setCancelable(false)
         logoutDialog.show()
     }
+
+    fun showMessagePopUp(message: String) {
+        logoutBuilder = AlertDialog.Builder(this)
+        logoutBuilder.setTitle("DS BOX+")
+        logoutBuilder.setMessage(message)
+        logoutBuilder.setPositiveButton(
+            "Ok"
+        ) { _, _ -> logoutDialog.dismiss() }
+        logoutDialog = logoutBuilder.create();
+        logoutDialog.setCancelable(false)
+        logoutDialog.show()
+    }
 }
