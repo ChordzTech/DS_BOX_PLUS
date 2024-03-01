@@ -142,6 +142,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 dataItem = bundle.getParcelable("ESTIMATES");
                 if (dataItem != null) {
 
+
+
                     //ConvCost
                     double totalwt = dataItem.getTotalweight();
                     double convrate = dataItem.getConversionrate();
@@ -206,8 +208,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
 
                     boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf((int) Math.round(dataItem.getTotalweight()) + "gm"));
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
-                    //Dimension For ImageTwo
 
+                    //Dimension For ImageTwo
 
                     double decalSizeInInches = (double) dataItem.getDecalsize();
                     int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
@@ -261,7 +263,13 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvBoxpriceInEstimateDetails.setText(String.format("%.2f", dataItem.getBoxprice()));
                     boxEstimatesDetailsBinding.tvTax.setText(String.valueOf(resultForTaxThreeDigits));
                     boxEstimatesDetailsBinding.tvPriceWithtax.setText(String.format("%.2f", dataItem.getBoxpricewithtax()));
-                    boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + " Ply");
+
+                    if (lengthMM == 0 && widthMM == 0 && heightMM == 0) {
+                        boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + " Ply Kg");
+                    } else {
+                        boxEstimatesDetailsBinding.tvPly.setText(dataItem.getPly() + " Ply");
+                    }
+
 
                     int noOfPly = dataItem.getPly();
                     if (noOfPly == 1) {

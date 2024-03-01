@@ -216,6 +216,15 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         } else {
             // Handle the case when the profile picture Bitmap is null
             Log.e("ProfileFragment", "Profile picture Bitmap is null");
+            Drawable d1 = getDrawable(R.drawable.invisibleimage);
+            Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
+            ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+            bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
+            byte[] bitmapData1 = stream1.toByteArray();
+            ImageData imageData1 = ImageDataFactory.create(bitmapData1);
+            Image image1 = new Image(imageData1);
+            image1.setWidth(80f);
+            table.addCell(new Cell(4,1).add(image1).setBorder(Border.NO_BORDER));
         }
 
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));

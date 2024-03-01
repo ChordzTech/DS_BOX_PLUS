@@ -20,7 +20,6 @@ import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
-import com.dss.dsboxplus.fragments.ProfileFragment;
 import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -29,7 +28,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.DashedBorder;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
@@ -203,6 +201,15 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         } else {
             // Handle the case when the profile picture Bitmap is null
             Log.e("ProfileFragment", "Profile picture Bitmap is null");
+            Drawable d1 = getDrawable(R.drawable.invisibleimage);
+            Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
+            ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+            bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
+            byte[] bitmapData1 = stream1.toByteArray();
+            ImageData imageData1 = ImageDataFactory.create(bitmapData1);
+            Image image1 = new Image(imageData1);
+            image1.setWidth(80f);
+            table.addCell(new Cell(4,1).add(image1).setBorder(Border.NO_BORDER));
         }
         //table 1-01
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));

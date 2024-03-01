@@ -219,13 +219,13 @@ public class ProfileFragment extends Fragment {
         name.setText(userData.getUsername());
         contact.setText(userData.getMobileno());
         role.setText(userData.getUserrole());
-        if (userData.getUserrole().equalsIgnoreCase("Admin")) {
-            cvsuperUserSettings.setVisibility(View.VISIBLE);
-            cvEnableMultiUsers.setVisibility(View.VISIBLE);
-        } else {
-            cvsuperUserSettings.setVisibility(View.GONE);
-            cvEnableMultiUsers.setVisibility(View.GONE);
-        }
+//        if (userData.getUserrole().equalsIgnoreCase("Admin")) {
+//            cvsuperUserSettings.setVisibility(View.VISIBLE);
+//            cvEnableMultiUsers.setVisibility(View.VISIBLE);
+//        } else {
+//            cvsuperUserSettings.setVisibility(View.GONE);
+//            cvEnableMultiUsers.setVisibility(View.GONE);
+//        }
         viewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
         //Profile Pic
 //        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
@@ -250,8 +250,10 @@ public class ProfileFragment extends Fragment {
             // Hide the super user setting if userAccess is 0
             if (multiUserStatus == 1) {
                 swMultiUser.setChecked(true);
+                cvsuperUserSettings.setVisibility(View.VISIBLE);
             } else {
                 swMultiUser.setChecked(false);
+                cvsuperUserSettings.setVisibility(View.GONE);
             }
         }
         tvTrialActive = v.findViewById(R.id.tvTrialActive);

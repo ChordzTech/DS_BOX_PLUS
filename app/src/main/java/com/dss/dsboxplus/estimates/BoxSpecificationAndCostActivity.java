@@ -342,14 +342,12 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         switch (formula) {
             case "1Ply": {
                 formulaForOnePly(bfInTopPaper, gsmInTop, rateKgInTop, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
-
                 break;
             }
             case "2Ply": {
                 formulaForTwoPly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
                 break;
             }
-
             case "3Ply": {
                 formulaForThreePly(bfInTopPaper, gsmInTop, rateKgInTop, bfInFlutePaper, gsmInFlutePaper, rateKgInFlutePaper, ffInFluteOnePaper, bfInBottomPaper, gsmInBottomPaper, rateKgInBottomPaper, decalM, cuttingL, waste, convCostKg, profit, tax, overhead, noOfBox);
                 break;
@@ -517,7 +515,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 //        //Box Price
         double profitFromTiet = Double.parseDouble(profit);
         double boxPrice = ((resultOfBoxMFGTwoDigits * profitFromTiet / 100) + resultOfBoxMFGTwoDigits);
-        activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(String.valueOf(boxPrice));
+        double boxPriceTwoDigits = Double.valueOf(String.format("%.2f", boxPrice));
+        activityBoxSpecificationAndCostBinding.tvBoxPrice.setText(String.valueOf(boxPriceTwoDigits));
 //
 //        //Box Price with Tax
         double taxFromTiet = Double.parseDouble(tax);
