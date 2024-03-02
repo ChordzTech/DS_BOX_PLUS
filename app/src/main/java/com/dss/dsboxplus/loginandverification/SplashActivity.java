@@ -94,8 +94,14 @@ public class SplashActivity extends BaseActivity {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
             } else if (userDetailsResponse.getCode() == 400) {
-                showMessagePopUp(userDetailsResponse.getMessage());
+                showMessagePopUp("Your account is temporarily blocked. Please contact Admin.");
             } else {
+                if (userDetailsResponse.getData() != null && userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
+                    return;
+                }
 
                 if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
                     addUserDataToPreferences(userDetailsResponse);
