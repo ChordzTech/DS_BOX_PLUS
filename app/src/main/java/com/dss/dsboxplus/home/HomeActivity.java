@@ -82,11 +82,18 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     }
 
     private void fetchData() {
-        homeViewModel.getAppConfig();
-        homeViewModel.getSubscriptionList();
-        homeViewModel.getQrCode();
-        homeViewModel.getSubForBusiness();
-        homeViewModel.getBusinessDetails();
+        if (isConnectedToInternet()) {
+            homeViewModel.getAppConfig();
+            homeViewModel.getSubscriptionList();
+            homeViewModel.getQrCode();
+            homeViewModel.getSubForBusiness();
+            homeViewModel.getBusinessDetails();
+            homeViewModel.getClientList();
+            homeViewModel.getEstimateByBusinessIdUserId();
+        } else {
+            showNoInternetDialog();
+        }
+
     }
 
     private void initObservables() {
@@ -222,6 +229,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                     estimatesFragment.setAppConfigList(appConfigList);
                 }
             } else if (item.getItemId() == R.id.users) {
+
                 homeScreenBinding.tvPageTitle.setText(R.string.title_clients);
                 replaceFragment(clientFragment);
                 if (isConnectedToInternet()) {
@@ -234,6 +242,11 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 }
 
             } else {
+                if (isConnectedToInternet()) {
+                    homeViewModel.getBusinessDetails();
+                } else {
+                    showNoInternetDialog();
+                }
                 homeScreenBinding.tvPageTitle.setText(R.string.title_profile);
                 replaceFragment(profileFragment);
                 if (!appConfigList.isEmpty()) {

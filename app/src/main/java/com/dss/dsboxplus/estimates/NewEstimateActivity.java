@@ -108,8 +108,14 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             String s = asList.get(i);
             s = s.replace("Ply", "");
             s = s.replace("(KG)", "");
+            if ((dataItem.getLengthMmField() == 0 && dataItem.getWidthMmField() == 0 && dataItem.getHeightMmField() == 0)
+                    && Integer.parseInt(s) == dataItem.getPly()) {
+                newEstimateBinding.spinnerNoOfPly.setSelection(5);
+                break;
+            }
             if (Integer.parseInt(s) == dataItem.getPly()) {
                 newEstimateBinding.spinnerNoOfPly.setSelection(i);
+                break;
             }
         }
 

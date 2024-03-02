@@ -239,7 +239,7 @@ public class ProfileFragment extends Fragment {
         if (savedProfilePicture != null) {
             ivProfile.setImageBitmap(savedProfilePicture);
         }else{
-            Toast.makeText(getActivity(), "Please set your profile picture", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(), "Please set your profile picture", Toast.LENGTH_LONG).show();
         }
 
         BusinessDetailsResponse businessDetailsResponse = ConfigDataProvider.INSTANCE.getBusinessDetailsResponse();

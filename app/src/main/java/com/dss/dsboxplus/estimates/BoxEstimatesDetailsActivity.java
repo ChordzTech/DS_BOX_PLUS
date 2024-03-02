@@ -56,10 +56,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
 
-        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
-                "Expired"
-        ) ||
-                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1) {
+        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase("Expired") || ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1) {
             boxEstimatesDetailsBinding.btEdit.setVisibility(View.GONE);
             boxEstimatesDetailsBinding.btDelete.setVisibility(View.GONE);
         } else {
@@ -143,7 +140,6 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 if (dataItem != null) {
 
 
-
                     //ConvCost
                     double totalwt = dataItem.getTotalweight();
                     double convrate = dataItem.getConversionrate();
@@ -155,8 +151,8 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     double profit = dataItem.getProfit();
                     double tax = dataItem.getTax();
 
-                    boxEstimatesDetailsBinding.tvProfitPercentage.setText(String.valueOf("Profit  " + profit + " %"));
-                    boxEstimatesDetailsBinding.tvTaxPercentage.setText(String.valueOf("Tax  " + tax + " %"));
+                    boxEstimatesDetailsBinding.tvProfitPercentage.setText("Profit  " + profit + " %");
+                    boxEstimatesDetailsBinding.tvTaxPercentage.setText("Tax  " + tax + " %");
 
                     double boxPrice = (double) dataItem.getBoxprice();
                     double resultForProfit = boxMfg * (profit / 100);
@@ -167,46 +163,32 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     int lengthMM = (int) Math.round(dataItem.getLengthMmField());
                     int widthMM = (int) Math.round(dataItem.getWidthMmField());
                     int heightMM = (int) Math.round(dataItem.getHeightMmField());
-//                    int lengthCM = (int) Math.round(Double.parseDouble(dataItem.getLengthCmField().toString()));
-//                    int widthCM = (int) Math.round(Double.parseDouble(dataItem.getWidthCmField().toString()));
-//                    int heightCM = (int) Math.round(Double.parseDouble(dataItem.getHeightCmField().toString()));
+                    int lengthCM = (int) Math.round(Double.parseDouble(dataItem.getLengthCmField().toString()));
+                    int widthCM = (int) Math.round(Double.parseDouble(dataItem.getWidthCmField().toString()));
+                    int heightCM = (int) Math.round(Double.parseDouble(dataItem.getHeightCmField().toString()));
                     int lengthIN = (int) Math.round(Double.parseDouble(dataItem.getLengthInchField().toString()));
                     int widthIN = (int) Math.round(Double.parseDouble(dataItem.getWidthInchField().toString()));
                     int heightIN = (int) Math.round(Double.parseDouble(dataItem.getHeightInchField().toString()));
                     int decalSize = (int) Double.parseDouble(dataItem.getDecalsize().toString());
                     int cuttingLength = (int) Double.parseDouble(dataItem.getCuttinglength().toString());
-//                    if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
-//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthCM + "cm"));
-//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthCM + "cm"));
-//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightCM + "cm"));
-
-//                        int decal = (int) (decalSize * 2.54);
-//                        int cutting = (int) (cuttingLength * 2.54);
-//                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "cm"));
-//                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "cm"));
-                     if (cuttingLength != 0 && decalSize != 0) {
-                         boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthMM + "mm"));
-                         boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthMM + "mm"));
-                         boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightMM + "mm"));
-//                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthIN + "inch"));
-//                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthIN + "inch"));
-//                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightIN + "inch"));
-
-
-                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decalSize + "inch"));
-                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cuttingLength + "inch"));
+                    if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
+                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthCM + "cm"));
+                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthCM + "cm"));
+                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightCM + "cm"));
+                    } else if (lengthIN != 0 && widthIN != 0 && heightIN != 0) {
+                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthIN + "inch"));
+                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthIN + "inch"));
+                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightIN + "inch"));
                     } else {
-                        boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthMM + "mm"));
-                        boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthMM + "mm"));
-                        boxEstimatesDetailsBinding.tvHeight.setText(String.valueOf(heightMM + "mm"));
-
-                        int decal = (int) (decalSize * 25.4);
-                        int cutting = (int) (cuttingLength * 25.4);
-                        boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(String.valueOf(decal + "mm"));
-                        boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(String.valueOf(cutting + "mm"));
+                        boxEstimatesDetailsBinding.tvLength.setText(lengthMM + "mm");
+                        boxEstimatesDetailsBinding.tvWidth.setText(widthMM + "mm");
+                        boxEstimatesDetailsBinding.tvHeight.setText(heightMM + "mm");
                     }
 
-                    boxEstimatesDetailsBinding.tvTotalWeight.setText(String.valueOf((int) Math.round(dataItem.getTotalweight()) + "gm"));
+                    boxEstimatesDetailsBinding.tvDecalSizeForBox.setText(decalSize + "inch");
+                    boxEstimatesDetailsBinding.tvCuttingSizeForBox.setText(cuttingLength + "inch");
+
+                    boxEstimatesDetailsBinding.tvTotalWeight.setText((int) Math.round(dataItem.getTotalweight()) + "gm");
                     boxEstimatesDetailsBinding.tvBS.setText(String.valueOf(dataItem.getTotalbs()));
 
                     //Dimension For ImageTwo
@@ -214,12 +196,12 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     double decalSizeInInches = (double) dataItem.getDecalsize();
                     int decalSizeInMillimeters = (int) Math.round(decalSizeInInches * 25.4);
 
-                    boxEstimatesDetailsBinding.tvDecalSizeinInch.setText(String.valueOf(decalSizeInMillimeters + "mm"));
+                    boxEstimatesDetailsBinding.tvDecalSizeinInch.setText(decalSizeInMillimeters + "mm");
 
 
                     double cuttingSizeInInch = (double) dataItem.getCuttinglength();
                     int cuttingSizeinMm = (int) Math.round(cuttingSizeInInch * 25.4);
-                    boxEstimatesDetailsBinding.tvCuttingLengthinch.setText(String.valueOf(cuttingSizeinMm + "mm"));
+                    boxEstimatesDetailsBinding.tvCuttingLengthinch.setText(cuttingSizeinMm + "mm");
                     //Dimensions for ply
                     boxEstimatesDetailsBinding.tvTopBf.setText(String.valueOf((int) Math.round(dataItem.getTopbf())));
                     boxEstimatesDetailsBinding.tvTopGsm.setText(String.valueOf((int) Math.round(dataItem.getTopgsm())));
@@ -426,8 +408,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                 if (isConnectedToInternet()) {
                     Intent intent = new Intent(BoxEstimatesDetailsActivity.this, NewEstimateActivity.class);
                     intent.putExtra("EDIT_ESTIMATE", dataItem);
-                    if (clientDetails != null)
-                        intent.putExtra("CLIENT_DETAILS", clientDetails);
+                    if (clientDetails != null) intent.putExtra("CLIENT_DETAILS", clientDetails);
                     startActivity(intent);
                 } else {
                     Toast.makeText(BoxEstimatesDetailsActivity.this, "Please check your internet connection and try again.", Toast.LENGTH_SHORT).show();

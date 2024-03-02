@@ -473,12 +473,13 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
             }
         }
 
+        weightInInt = (int) totalWeightThreeDigits;
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
         Log.e("TAG", "formulaForTwoPlyKg: weightInInt:" + gm);
         Log.e("TAG", "formulaForTwoPlyKg: cutting:" + cutting);
         //ConversionCostPerKG
         double convCostTiet = Double.parseDouble(convCostKg);
-        double resultOfConvCost = (totalWeightThreeDigits * convCostTiet)*0.001;
+        double resultOfConvCost = (totalWeightThreeDigits * convCostTiet) * 0.001;
         String resultOfConvCostString = String.format("%.3f", resultOfConvCost);
         activityBoxSpecificationAndCostBinding.tvConversionCost.setText(resultOfConvCostString);
         //Costs
