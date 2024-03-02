@@ -130,7 +130,7 @@ public class VerifyOtpActivity extends BaseActivity {
         viewModel.getUpdateSubUserLiveData().observe(this, it -> {
             UserDetailsResponse userDetails = ConfigDataProvider.INSTANCE.getUserDetails();
             userDetails.getData().get(0).setAndroidid(it.getData().get(0).getAndroidid());
-//            ConfigDataProvider.INSTANCE.setUserDetails(userDetails);
+            ConfigDataProvider.INSTANCE.setUserDetails(userDetails);
             addUserDataToPreferences(ConfigDataProvider.INSTANCE.getUserDetails());
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
@@ -148,7 +148,7 @@ public class VerifyOtpActivity extends BaseActivity {
             } else if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty() && userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
                 String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
                 UserData userData = userDetailsResponse.getData().get(0);
-//                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
             } else {
 //                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
