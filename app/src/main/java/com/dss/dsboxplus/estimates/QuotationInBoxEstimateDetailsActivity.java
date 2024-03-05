@@ -19,6 +19,8 @@ import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.BusinessDetails;
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse;
 import com.dss.dsboxplus.data.repo.response.Client;
+import com.dss.dsboxplus.data.repo.response.UserData;
+import com.dss.dsboxplus.data.repo.response.UserDetailsResponse;
 import com.dss.dsboxplus.databinding.ActivityQuotationInBoxEstimateDetailsBinding;
 import com.google.android.material.button.MaterialButton;
 import com.itextpdf.io.image.ImageData;
@@ -161,6 +163,11 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
         }
+        UserDetailsResponse userDetails = ConfigDataProvider.INSTANCE.getUserDetails();
+        if (userDetails!=null&&userDetails.getData()!=null){
+
+        }
+
 
         File dsBox = this.getBaseContext().getExternalFilesDir("ds_box");
         if (!dsBox.exists())
@@ -219,7 +226,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname())
-                .setTextAlignment(TextAlignment.CENTER)).setFontSize(20f).setBold().setBorder(Border.NO_BORDER));
+                .setTextAlignment(TextAlignment.CENTER)).setFontSize(15f).setBold().setBorder(Border.NO_BORDER));
 
         //table 1-02
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
