@@ -9,20 +9,29 @@ import kotlinx.parcelize.RawValue
 data class EstimateListResponse(
 
     @field:SerializedName("code")
-    var code: Double? = 0.0,
+    val code: Int? = null,
+
+    @field:SerializedName("start_index")
+    val startIndex: Int? = null,
 
     @field:SerializedName("data")
-    var data: List<DataItem?>? = arrayListOf(),
+    val data: List<DataItem?>? = arrayListOf(),
+
+    @field:SerializedName("total_records")
+    val totalRecords: Int? = null,
+
+    @field:SerializedName("limit")
+    val limit: Int? = null,
 
     @field:SerializedName("message")
-    var message: String? = null,
+    val message: String? = null,
 
     @field:SerializedName("status")
-    var status: String? = null
+    val status: String? = null
 ) : Parcelable
 
 @Parcelize
-data class  DataItem(
+data class DataItem(
 
     @field:SerializedName("clientid")
     var clientid: Long? = null,

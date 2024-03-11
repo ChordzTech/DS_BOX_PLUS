@@ -130,9 +130,10 @@ interface RetrofitService {
     suspend fun getClientByClientId(@Path(value = "clientid") clientid: Long): Response<GetClientByClientIdResponse>
 
 
-    @GET("GetEstimatesByClient/{clientid}/")
+    @GET("GetEstimatesByClient/{clientid}/{userid}/")
     suspend fun getEstimateByClientId(
         @Path(value = "clientid") clientId: Long,
+        @Path(value="userid")userId: Long
     ): Response<EstimateListResponse>
 
 

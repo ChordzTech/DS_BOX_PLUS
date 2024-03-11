@@ -47,7 +47,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 //
 //                is NetworkState.Error -> {
 //                    if (response.response.code() == 401) {
-////                        estimateList.postValue(NetworkState.Error())
+//                        estimateList.postValue(NetworkState.Error())
 //                    } else {
 ////                        estimateList.postValue(NetworkState.Error)
 //                    }
