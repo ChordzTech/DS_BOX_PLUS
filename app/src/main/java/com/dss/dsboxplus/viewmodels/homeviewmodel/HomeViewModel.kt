@@ -17,6 +17,8 @@ import com.example.mvvmretrofit.data.repo.remote.NetworkState
 import kotlinx.coroutines.launch
 
 class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
+    var startIndex: Int = -10
+    var limit: Int = 10
 
     var userDetailsResponse = MutableLiveData<UserDetailsResponse>()
         get() = field
@@ -93,6 +95,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
             }
         }
     }
+
     fun getClientList() {
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
@@ -113,6 +116,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
             }
         }
     }
+
     fun getBusinessDetails() {
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
@@ -190,14 +194,20 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 
     fun getEstimateByBusinessIdUserId() {
         showLoader()
+        startIndex += 10
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
         val userId = AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID)
         viewModelScope.launch {
-            when (val response = repository.getEstimateListByBusinessUserID(businessId, userId)) {
+            when (val response =
+                repository.getEstimateListByBusinessUserID(businessId, userId, startIndex, limit)) {
                 is NetworkState.Success -> {
                     hideLoader()
-                    estimateListLiveData.postValue(response.data!!)
+                    if (response.data.data!!.isEmpty()) {
+                        startIndex -= 10
+                    } else {
+                        estimateListLiveData.postValue(response.data!!)
+                    }
                 }
 
                 is NetworkState.Error -> {

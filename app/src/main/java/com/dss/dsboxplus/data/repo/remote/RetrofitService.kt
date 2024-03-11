@@ -123,7 +123,9 @@ interface RetrofitService {
 
     @GET("GetEstimatesByUB/{businessid}/{userid}/")
     suspend fun getEstimateByBusinessIdUserId(
-        @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long
+        @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long,
+        @Query(value="start_index") start_index:Int,
+        @Query(value="limit") limit:Int
     ): Response<EstimateListResponse>
 
     @GET("ClientsDetails/{clientid}/")
