@@ -172,10 +172,12 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
 
     suspend fun getEstimateListByBusinessUserID(
         businessId: Long,
-        userId: Long
+        userId: Long,
+        startingIndex:Int,
+        limit:Int
     ): NetworkState<EstimateListResponse> {
 //        add start_index and limit
-        val response = retrofitService.getEstimateByBusinessIdUserId(businessId, userId)
+        val response = retrofitService.getEstimateByBusinessIdUserId(businessId, userId,startingIndex,limit)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
@@ -205,9 +207,10 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
     }
 
     suspend fun getEstimateByClientID(
-        clientId: Long
+        clientId: Long,
+        userid:Long
     ): NetworkState<EstimateListResponse> {
-        val response = retrofitService.getEstimateByClientId(clientId)
+        val response = retrofitService.getEstimateByClientId(clientId,userid)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {

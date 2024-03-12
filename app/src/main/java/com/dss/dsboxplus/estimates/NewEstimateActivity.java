@@ -419,7 +419,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String noOfBox = s.toString();
                 if (noOfBox.isEmpty()) {
-                    noOfBox = "1";
+//                    noOfBox = "1";
                 }
                 try {
                     int numberOfBoxes = Integer.parseInt(noOfBox);
@@ -574,7 +574,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private double calculateNewDecalSize(int numberOfBoxes) {
         String decalMarginSize = newEstimateBinding.tvDecalMarginSize.getText().toString();
         double decalMarginSizeDouble = Double.parseDouble(decalMarginSize);
-        double newResult = (width + height) * numberOfBoxes + decalMarginSizeDouble;
+        double newResult = (widthMm + heightMm) * numberOfBoxes + decalMarginSizeDouble;
         return newResult;
     }
 

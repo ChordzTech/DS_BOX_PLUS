@@ -123,16 +123,19 @@ interface RetrofitService {
 //  add  start_index and limit
     @GET("GetEstimatesByUB/{businessid}/{userid}/")
     suspend fun getEstimateByBusinessIdUserId(
-        @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long
+        @Path(value = "businessid") businessId: Long, @Path(value = "userid") userId: Long,
+        @Query(value="start_index") start_index:Int,
+        @Query(value="limit") limit:Int
     ): Response<EstimateListResponse>
 
     @GET("ClientsDetails/{clientid}/")
     suspend fun getClientByClientId(@Path(value = "clientid") clientid: Long): Response<GetClientByClientIdResponse>
 
 
-    @GET("GetEstimatesByClient/{clientid}/")
+    @GET("GetEstimatesByClient/{clientid}/{userid}/")
     suspend fun getEstimateByClientId(
         @Path(value = "clientid") clientId: Long,
+        @Path(value="userid")userId: Long
     ): Response<EstimateListResponse>
 
 

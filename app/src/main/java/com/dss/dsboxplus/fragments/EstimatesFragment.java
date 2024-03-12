@@ -308,6 +308,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
             loadData();
         }
 
+
 //        rvEstimatesRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //            @Override
 //            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
