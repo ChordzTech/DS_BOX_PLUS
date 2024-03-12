@@ -150,6 +150,9 @@ public class VerifyOtpActivity extends BaseActivity {
                 UserData userData = userDetailsResponse.getData().get(0);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
+            }
+            if (userDetailsResponse.getCode() == 400) {
+                showMessagePopUp("Your account is temporarily blocked. Please contact Admin.");
             } else {
 //                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(this, HomeActivity.class);

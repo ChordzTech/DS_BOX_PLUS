@@ -174,6 +174,7 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         businessId: Long,
         userId: Long
     ): NetworkState<EstimateListResponse> {
+//        add start_index and limit
         val response = retrofitService.getEstimateByBusinessIdUserId(businessId, userId)
         return if (response.isSuccessful) {
             val responseBody = response.body()

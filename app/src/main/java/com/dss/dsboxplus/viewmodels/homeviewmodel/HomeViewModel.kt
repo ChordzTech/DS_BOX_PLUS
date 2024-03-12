@@ -189,6 +189,10 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
     }
 
     fun getEstimateByBusinessIdUserId() {
+        //start_index and limit set globally
+        //start_index increment on every iteration by limit
+
+
         showLoader()
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)

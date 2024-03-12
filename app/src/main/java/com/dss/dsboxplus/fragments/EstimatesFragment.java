@@ -302,6 +302,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private void initView(View view) {
         rvEstimatesRecyclerView = view.findViewById(R.id.rvEstimateRecyclerView);
         estimatesViewAdapter = new EstimatesViewAdapter();
+        rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
         estimatesViewAdapter.setOnEstimatesSelectedListner(this);
         if (!estimateList.isEmpty()) {
             loadData();
@@ -343,9 +344,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private void loadData() {
         if (!estimateList.isEmpty()) {
             prepareData();
-            rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
             estimatesViewAdapter.setEstimatesList(estimateList);
-            estimatesViewAdapter.notifyDataSetChanged();
         }
     }
 
