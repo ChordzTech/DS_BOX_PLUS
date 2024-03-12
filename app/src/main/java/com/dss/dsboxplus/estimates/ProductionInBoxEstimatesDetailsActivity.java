@@ -162,6 +162,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String ups = intent.getStringExtra("ups");
 
 
+
         // Retrieve data from the intent
         double decalLength = intent.getDoubleExtra("decalLength", 0.0);
         double cuttingLength = getIntent().getDoubleExtra("cuttingLength", 0.0);
