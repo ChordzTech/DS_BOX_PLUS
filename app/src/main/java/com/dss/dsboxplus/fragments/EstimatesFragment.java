@@ -13,7 +13,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -122,7 +121,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
             public boolean onQueryTextChange(String newText) {
                 if (!newText.isEmpty())
                     filterEstimatesList(newText);
-                else{
+                else {
                     estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
                 }
                 return true;
@@ -454,4 +453,8 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     public void setAppConfigList(ArrayList<AppConfigDataItems> appConfigList) {
         this.appConfigList = appConfigList;
     }
+
+//    public void reset() {
+//        estimatesViewAdapter.clearAdapter();
+//    }
 }

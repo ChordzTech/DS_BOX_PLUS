@@ -10,7 +10,7 @@
         android:background="@color/gery"
         tools:context=".clients.EstimateListActivity">
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/svSearch"
+            android:id="@+id/svSearchInEstimate"
             style="@style/DSTextRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/svSearch"
+            app:layout_constraintTop_toBottomOf="@id/svSearchInEstimate"
             tools:listitem="@layout/estimate_item_list">
 
         </androidx.recyclerview.widget.RecyclerView>

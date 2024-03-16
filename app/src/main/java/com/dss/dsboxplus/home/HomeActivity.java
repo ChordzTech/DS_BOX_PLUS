@@ -110,12 +110,11 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 }
             }
         }, 1000);
-
     }
 
     private void initObservables() {
 
-        homeViewModel.getGloabalEstimateListLiveData().observe(this,it->{
+        homeViewModel.getGloabalEstimateListLiveData().observe(this, it -> {
             ConfigDataProvider.INSTANCE.globalEstimateList.addAll(it);
         });
 
@@ -229,6 +228,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (item.getItemId() == R.id.estimate) {
                 homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
                 replaceFragment(estimatesFragment);
+//                estimatesFragment.reset();
                 fetchData();
                 if (isConnectedToInternet()) {
 

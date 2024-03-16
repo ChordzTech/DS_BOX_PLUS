@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxplus.R;
 import com.dss.dsboxplus.baseview.BaseActivity;
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider;
 import com.dss.dsboxplus.data.repo.response.DataItem;
 import com.dss.dsboxplus.databinding.ActivityEstimateListBinding;
 import com.dss.dsboxplus.estimates.BoxEstimatesDetailsActivity;
@@ -65,6 +67,30 @@ public class EstimateListActivity extends BaseActivity implements EstimatesViewA
         estimatesViewAdapter = new EstimatesViewAdapter();
         estimatesViewAdapter.setOnEstimatesSelectedListner(this);
 
+        binding.svSearchInEstimate.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()){
+                    filterEstimatesList(newText);
+                } else{
+                    estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
+                }
+                return true;
+            }
+        });
+        binding.svSearchInEstimate.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
+                return true;
+            }
+        });
+
         binding.fabAddEstimateInEstimateList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +98,18 @@ public class EstimateListActivity extends BaseActivity implements EstimatesViewA
                 startActivity(intent);
             }
         });
+    }
+
+    private void filterEstimatesList(String newText) {
+        ArrayList<DataItem> filteredList = new ArrayList<>();
+
+        for (DataItem dataItem : ConfigDataProvider.globalEstimateList) {
+            // Assuming your DataItem class has a method to get the name, adjust accordingly
+            if (dataItem.getBoxname().toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(dataItem);
+            }
+        }
+        estimatesViewAdapter.setFilterList(filteredList);
     }
 
     @Override
