@@ -95,7 +95,7 @@ public class ClientDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (isConnectedToInternet()) {
-                    viewModel.deleteClient(client.getClientid());
+                    viewModel.deleteClient(client.getClientid(),ClientDetailsActivity.this);
                 } else {
                     showNoInternetDialog();
                 }

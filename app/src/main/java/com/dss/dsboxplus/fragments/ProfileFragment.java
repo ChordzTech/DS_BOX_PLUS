@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -226,6 +225,24 @@ public class ProfileFragment extends Fragment {
 //            cvsuperUserSettings.setVisibility(View.GONE);
 //            cvEnableMultiUsers.setVisibility(View.GONE);
 //        }
+        if (userData.getUserrole().equals("User")) {
+            cvEnableMultiUsers.setVisibility(View.GONE);
+            cvsuperUserSettings.setVisibility(View.GONE);
+            cvBusiness.setVisibility(View.GONE);
+            cvDefaultPaper.setVisibility(View.GONE);
+            cvDefaultRate.setVisibility(View.GONE);
+            cvQuotationTerms.setVisibility(View.GONE);
+            cvSubscription.setVisibility(View.GONE);
+        } else {
+            cvEnableMultiUsers.setVisibility(View.VISIBLE);
+            cvsuperUserSettings.setVisibility(View.VISIBLE);
+            cvBusiness.setVisibility(View.VISIBLE);
+            cvDefaultPaper.setVisibility(View.VISIBLE);
+            cvDefaultRate.setVisibility(View.VISIBLE);
+            cvQuotationTerms.setVisibility(View.VISIBLE);
+            cvSubscription.setVisibility(View.VISIBLE);
+        }
+
         viewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
         //Profile Pic
 //        Bitmap savedProfilePicture = ConfigDataProvider.INSTANCE.getProfilePicture();
@@ -238,7 +255,7 @@ public class ProfileFragment extends Fragment {
         Bitmap savedProfilePicture = loadProfilePictureFromFile();
         if (savedProfilePicture != null) {
             ivProfile.setImageBitmap(savedProfilePicture);
-        }else{
+        } else {
 //            Toast.makeText(getActivity(), "Please set your profile picture", Toast.LENGTH_LONG).show();
         }
 
@@ -250,7 +267,12 @@ public class ProfileFragment extends Fragment {
             // Hide the super user setting if userAccess is 0
             if (multiUserStatus == 1) {
                 swMultiUser.setChecked(true);
-                cvsuperUserSettings.setVisibility(View.VISIBLE);
+                if (userData.getUserrole().equals("User")) {
+                    cvsuperUserSettings.setVisibility(View.GONE);
+                } else {
+                    cvsuperUserSettings.setVisibility(View.VISIBLE);
+                }
+
             } else {
                 swMultiUser.setChecked(false);
                 cvsuperUserSettings.setVisibility(View.GONE);

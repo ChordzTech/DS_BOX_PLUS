@@ -1,5 +1,7 @@
 package com.dss.dsboxplus.viewmodels.clientsviewmodels
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
@@ -91,14 +93,19 @@ class ClientViewModel(val repository: MainRepository) : BaseViewModel() {
         }
     }
 
-    fun deleteClient(clientid: Long) {
+    fun deleteClient(clientid: Long, context: Context) {
         showLoader()
 
         viewModelScope.launch {
             when (val response = repository.deleteClient(clientid)) {
                 is NetworkState.Success -> {
+
                     hideLoader()
-                    deleteClientRequestLiveData.postValue(response.data!!)
+                    if (response.data.code == 400) {
+                        Toast.makeText(context, response.data.message, Toast.LENGTH_SHORT).show()
+                    } else {
+                        deleteClientRequestLiveData.postValue(response.data!!)
+                    }
                 }
 
                 is NetworkState.Error -> {
@@ -107,6 +114,7 @@ class ClientViewModel(val repository: MainRepository) : BaseViewModel() {
                         deleteClientRequestLiveData.postValue(response.response.body())
                     } else {
 //                        updateClientRequestLiveData.postValue(response.response.body()!!)
+
                     }
                 }
             }
