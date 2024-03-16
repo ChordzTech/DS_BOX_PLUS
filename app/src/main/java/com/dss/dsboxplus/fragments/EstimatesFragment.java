@@ -120,7 +120,18 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterEstimatesList(newText);
+                if (!newText.isEmpty())
+                    filterEstimatesList(newText);
+                else{
+                    estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
+                }
+                return true;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
                 return true;
             }
         });
@@ -262,15 +273,14 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     private void filterEstimatesList(String newText) {
         ArrayList<DataItem> filteredList = new ArrayList<>();
 
-        for (DataItem dataItem : estimateList) {
+        for (DataItem dataItem : ConfigDataProvider.globalEstimateList) {
             // Assuming your DataItem class has a method to get the name, adjust accordingly
             if (dataItem.getBoxname().toLowerCase().contains(newText.toLowerCase())) {
                 filteredList.add(dataItem);
             }
         }
 
-        estimatesViewAdapter.setEstimatesList(filteredList);
-        estimatesViewAdapter.notifyDataSetChanged();
+        estimatesViewAdapter.setFilterList(filteredList);
     }
 
     private void createSubPopUp() {
@@ -305,7 +315,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
         estimatesViewAdapter.setOnEstimatesSelectedListner(this);
         if (!estimateList.isEmpty()) {
-            loadData();
+//            loadData();
         }
 
 

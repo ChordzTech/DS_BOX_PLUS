@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -73,7 +75,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     protected void onResume() {
         super.onResume();
         if (isConnectedToInternet()) {
-            homeViewModel.getEstimateByBusinessIdUserId();
             homeViewModel.getClientList();
 
         } else {
@@ -82,21 +83,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     }
 
     private void fetchData() {
-        if (isConnectedToInternet()) {
-            homeViewModel.getAppConfig();
-            homeViewModel.getSubscriptionList();
-            homeViewModel.getQrCode();
-            homeViewModel.getSubForBusiness();
-            homeViewModel.getBusinessDetails();
-            homeViewModel.getClientList();
-            homeViewModel.getEstimateByBusinessIdUserId();
-        } else {
-            showNoInternetDialog();
-        }
-
-    }
-
-    private void initObservables() {
         String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
@@ -107,6 +93,31 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         } else {
             showNoInternetDialog();
         }
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (isConnectedToInternet()) {
+                    homeViewModel.getAppConfig();
+                    homeViewModel.getSubscriptionList();
+                    homeViewModel.getQrCode();
+                    homeViewModel.getSubForBusiness();
+                    homeViewModel.getBusinessDetails();
+                    homeViewModel.getClientList();
+                    homeViewModel.getEstimateByBusinessIdUserId();
+                } else {
+                    showNoInternetDialog();
+                }
+            }
+        }, 1000);
+
+    }
+
+    private void initObservables() {
+
+        homeViewModel.getGloabalEstimateListLiveData().observe(this,it->{
+            ConfigDataProvider.INSTANCE.globalEstimateList.addAll(it);
+        });
+
         homeViewModel.getEstimateListLiveData().observe(this, estimateListResponse -> {
             if (!estimateListResponse.getData().isEmpty()) {
                 estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
@@ -128,7 +139,6 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 clientsList = (ArrayList<Client>) clientListResponse.getData();
                 ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
                 ConfigDataProvider.INSTANCE.createClientIdMap(clientListResponse.getData());
-                homeViewModel.getEstimateByBusinessIdUserId();
             }
         });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {
@@ -155,6 +165,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         });
         homeViewModel.getSubForBusinessLiveData().observe(this, getSubForBusinessResponse -> {
             if (!getSubForBusinessResponse.getData().isEmpty()) {
+
                 if (getSubForBusinessResponse.getData().get(0).getRemainingDays() == 0) {
                     AppPreferences.INSTANCE.saveStringToSharedPreferences(this, AppPreferences.APP_STATUS,
                             getSubForBusinessResponse.getData().get(0).getStatus());
@@ -217,13 +228,14 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (item.getItemId() == R.id.estimate) {
                 homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
                 replaceFragment(estimatesFragment);
+                fetchData();
                 if (isConnectedToInternet()) {
-                    homeViewModel.getEstimateByBusinessIdUserId();
+
                 } else {
                     showNoInternetDialog();
                 }
                 if (!estimateList.isEmpty()) {
-                    estimatesFragment.setEstimateList(estimateList);
+//                    estimatesFragment.setEstimateList(estimateList);
                 }
                 if (!appConfigList.isEmpty()) {
                     estimatesFragment.setAppConfigList(appConfigList);

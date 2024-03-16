@@ -3,9 +3,11 @@ package com.dss.dsboxplus.viewmodels.homeviewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dss.dsboxplus.baseview.BaseViewModel
+import com.dss.dsboxplus.data.configdata.ConfigDataProvider
 import com.dss.dsboxplus.data.repo.response.AppConfigResponse
 import com.dss.dsboxplus.data.repo.response.BusinessDetailsResponse
 import com.dss.dsboxplus.data.repo.response.ClientListResponse
+import com.dss.dsboxplus.data.repo.response.DataItem
 import com.dss.dsboxplus.data.repo.response.EstimateListResponse
 import com.dss.dsboxplus.data.repo.response.GetSubscriptionForBusiness
 import com.dss.dsboxplus.data.repo.response.QrCodeResponse
@@ -19,6 +21,9 @@ import kotlinx.coroutines.launch
 class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
     var startIndex: Int = -10
     var limit: Int = 10
+
+    var gloabalEstimateListLiveData = MutableLiveData<List<DataItem>>()
+        get() = field
 
     var userDetailsResponse = MutableLiveData<UserDetailsResponse>()
         get() = field
@@ -198,7 +203,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
 
 
         showLoader()
-        startIndex += 10
+        startIndex += limit
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
         val userId = AppPreferences.getLongValueFromSharedPreferences(AppPreferences.USER_ID)
@@ -207,11 +212,20 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
                 repository.getEstimateListByBusinessUserID(businessId, userId, startIndex, limit)) {
                 is NetworkState.Success -> {
                     hideLoader()
-                    if (response.data.data!!.isEmpty()) {
-                        startIndex -= 10
-                    } else {
-                        estimateListLiveData.postValue(response.data!!)
+                    val estimateListResponse = response.data
+                    if (startIndex == -10) {
+                        ConfigDataProvider.globalEstimateList.clear()
                     }
+                    if (estimateListResponse.data!!.isNotEmpty()) {
+                        if (startIndex <= estimateListResponse.totalRecords!!) {
+                            gloabalEstimateListLiveData.postValue(estimateListResponse.data!! as List<DataItem>?)
+                            getEstimateByBusinessIdUserId()
+                        }
+                    }
+                    if (estimateListResponse.data.isEmpty()) {
+                        startIndex = -10
+                    }
+                    estimateListLiveData.postValue(estimateListResponse)
                 }
 
                 is NetworkState.Error -> {

@@ -114,11 +114,15 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         return estimatesList.size();
     }
 
-    public void setEstimatesList(ArrayList<DataItem> estimatesList) {
-//        this.estimatesList.addAll(estimatesList);
-        //add new chunk to existing estimatesList
-        // notify range change
-//        notifyItemRangeChanged(this.estimatesList.size() - estimatesList.size(), this.estimatesList.size());
+    public void setEstimatesList(ArrayList<DataItem> updatedList) {
+        this.estimatesList.addAll(updatedList);
+        notifyItemRangeChanged(this.estimatesList.size() - updatedList.size(), updatedList.size());
+    }
+
+    public void setFilterList(ArrayList<DataItem> updatedList) {
+        this.estimatesList.clear();
+        this.estimatesList.addAll(updatedList);
+        notifyDataSetChanged();
     }
 
     public void setEstimateSelectionClosed() {

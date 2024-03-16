@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
@@ -93,9 +94,10 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             }
         });
     }
+
     public Bitmap loadProfilePictureFromFile() {
         // Get the directory for the app's private files
-        File filesDir =getFilesDir();
+        File filesDir = getFilesDir();
 
         // Create a file object for the profile picture
         File profilePictureFile = new File(filesDir, "profile_picture.jpg");
@@ -109,6 +111,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
             return null;
         }
     }
+
     private void createProductionDsPdf() throws FileNotFoundException {
 
         Intent intent = getIntent();
@@ -216,15 +219,14 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         } else {
             // Handle the case when the profile picture Bitmap is null
             Log.e("ProfileFragment", "Profile picture Bitmap is null");
-            Drawable d1 = getDrawable(R.drawable.invisibleimage);
-            Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
+            Bitmap bitmap1 = Bitmap.createBitmap(50,50, Bitmap.Config.ARGB_8888);
             ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
             bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
             byte[] bitmapData1 = stream1.toByteArray();
             ImageData imageData1 = ImageDataFactory.create(bitmapData1);
             Image image1 = new Image(imageData1);
             image1.setWidth(80f);
-            table.addCell(new Cell(4,1).add(image1).setBorder(Border.NO_BORDER));
+            table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         }
 
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));

@@ -108,7 +108,6 @@ public class EstimateListActivity extends BaseActivity implements EstimatesViewA
         if (!estimateList.isEmpty()) {
             binding.rvEstimateRecyclerViewInEstimateList.setAdapter(estimatesViewAdapter);
             estimatesViewAdapter.setEstimatesList(estimateList);
-            estimatesViewAdapter.notifyDataSetChanged();
         }
     }
 }
