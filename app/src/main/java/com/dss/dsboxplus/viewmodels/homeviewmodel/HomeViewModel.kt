@@ -224,7 +224,7 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
                     }
                     if (estimateListResponse.data.isEmpty()) {
                         startIndex = -10
-                        ConfigDataProvider.globalEstimateList.clear()
+//                        ConfigDataProvider.globalEstimateList.clear()
                     }
                     estimateListLiveData.postValue(estimateListResponse)
                 }
