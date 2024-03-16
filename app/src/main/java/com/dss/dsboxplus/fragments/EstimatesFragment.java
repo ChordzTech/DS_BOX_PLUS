@@ -454,7 +454,8 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         this.appConfigList = appConfigList;
     }
 
-//    public void reset() {
-//        estimatesViewAdapter.clearAdapter();
-//    }
+    public void resetAdapter() {
+        estimatesViewAdapter.setFilterList(new ArrayList<>());
+        estimatesViewAdapter.notifyDataSetChanged();
+    }
 }

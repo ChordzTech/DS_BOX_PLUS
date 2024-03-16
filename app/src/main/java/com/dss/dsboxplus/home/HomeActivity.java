@@ -109,7 +109,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                     showNoInternetDialog();
                 }
             }
-        }, 1000);
+        }, 700);
     }
 
     private void initObservables() {
@@ -228,7 +228,8 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
             if (item.getItemId() == R.id.estimate) {
                 homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
                 replaceFragment(estimatesFragment);
-//                estimatesFragment.reset();
+                homeViewModel.setStartIndex(-10);
+                estimatesFragment.resetAdapter();
                 fetchData();
                 if (isConnectedToInternet()) {
 
