@@ -104,6 +104,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                     homeViewModel.getBusinessDetails();
                     homeViewModel.getClientList();
                     homeViewModel.getEstimateByBusinessIdUserId();
+
                 } else {
                     showNoInternetDialog();
                 }

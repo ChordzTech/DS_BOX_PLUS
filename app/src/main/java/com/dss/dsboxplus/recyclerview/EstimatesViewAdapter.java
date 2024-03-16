@@ -129,6 +129,10 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
         estimateSelection = false;
     }
 
+    public void clearAdapter() {
+        estimatesList.clear();
+        notifyDataSetChanged();
+    }
 
     public interface OnEstimatesSelectedI {
         public void onEstimatesSelectedI(DataItem dataItem);
