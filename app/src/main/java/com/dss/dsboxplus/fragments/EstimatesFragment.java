@@ -100,6 +100,7 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
         btUpgradeSub = view.findViewById(R.id.btUpgradeSub);
         btContinue = view.findViewById(R.id.btContinue);
         bottomNavigationView = view.findViewById(R.id.bottomNavigation);
+        rvEstimatesRecyclerView = view.findViewById(R.id.rvEstimateRecyclerView);
 
         //if remaining days==0 then hide fabEstimate Button
         viewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
@@ -309,7 +310,6 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
 
 
     private void initView(View view) {
-        rvEstimatesRecyclerView = view.findViewById(R.id.rvEstimateRecyclerView);
         estimatesViewAdapter = new EstimatesViewAdapter();
         rvEstimatesRecyclerView.setAdapter(estimatesViewAdapter);
         estimatesViewAdapter.setOnEstimatesSelectedListner(this);

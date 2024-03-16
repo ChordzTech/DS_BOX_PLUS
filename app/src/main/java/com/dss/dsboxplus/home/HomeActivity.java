@@ -69,6 +69,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         initView();
         initObservables();
         fetchData();
+        ConfigDataProvider.globalEstimateList.clear();
     }
 
     @Override
@@ -229,8 +230,8 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 homeScreenBinding.tvPageTitle.setText(R.string.title_estimates);
                 replaceFragment(estimatesFragment);
                 homeViewModel.setStartIndex(-10);
-                estimatesFragment.resetAdapter();
-                fetchData();
+//                estimatesFragment.resetAdapter();
+//                fetchData();
                 if (isConnectedToInternet()) {
 
                 } else {
