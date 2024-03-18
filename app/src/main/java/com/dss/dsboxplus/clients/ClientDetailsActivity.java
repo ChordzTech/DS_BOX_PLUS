@@ -95,14 +95,14 @@ public class ClientDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (isConnectedToInternet()) {
-                    viewModel.deleteClient(client.getClientid(),ClientDetailsActivity.this);
+                    viewModel.deleteClient(client.getClientid(), ClientDetailsActivity.this);
                 } else {
                     showNoInternetDialog();
                 }
             }
         });
         viewModel.getDeleteClientRequestLiveData().observe(this, deleteClientResponse -> {
-            Toast.makeText(this, "Client Deleted Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, deleteClientResponse.getMessage(), Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(ClientDetailsActivity.this, HomeActivity.class));
 
