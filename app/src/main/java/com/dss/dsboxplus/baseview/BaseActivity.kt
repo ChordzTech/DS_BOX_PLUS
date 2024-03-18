@@ -156,7 +156,7 @@ open class BaseActivity : AppCompatActivity() {
 
     fun showMessagePopUp(message: String) {
         logoutBuilder = AlertDialog.Builder(this)
-        logoutBuilder.setTitle("DS BOX+")
+        logoutBuilder.setTitle("Mobile no Already Registered")
         logoutBuilder.setMessage(message)
         logoutBuilder.setPositiveButton(
             "Ok"

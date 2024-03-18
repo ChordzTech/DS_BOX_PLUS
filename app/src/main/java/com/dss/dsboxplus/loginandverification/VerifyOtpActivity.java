@@ -152,7 +152,7 @@ public class VerifyOtpActivity extends BaseActivity {
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
             }
             if (userDetailsResponse.getCode() == 400) {
-                showMessagePopUp("Your account is temporarily blocked. Please contact Admin.");
+                showMessagePopUp("Your mobile number already registered with another device, please contact support to deauthorize another device.");
             } else {
 //                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(this, HomeActivity.class);
