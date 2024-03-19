@@ -424,7 +424,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double val2ofGsm = (gsmOfFlute * ffOfFluteOnePaper);
         //Total Gsm
         double totalGsm = (val1ofGsm + val2ofGsm);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
+        int gsmInInt= (int) totalGsm;
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 //
         //Total Weight
         //Value 1
@@ -589,7 +590,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valSevenOfGsm = (gsmOfBottomPaper * 1);
         //totalGSm
         double totalGsm = (valueOneOFGsm + valTwoOfGsm + vlaThreeOfGsm + valueFourOfGsm + valFiveOfGsm + valueSixOfGsm + valSevenOfGsm);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
+        int gsmInInt= (int) totalGsm;
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 
         //TotalWeight
         //Value for topPaper
@@ -754,7 +756,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valFiveOfGsm = (gsmOfBottomPaper * 1);
         //totalGSm
         double totalGsm = (valueOneOFGsm + valTwoOfGsm + vlaThreeOfGsm + valueFourOfGsm + valFiveOfGsm);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
+        int gsmInInt= (int) totalGsm;
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 
         //TotalWeight
         //Value for topPaper
@@ -829,8 +832,10 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double resultOfNPCThreeDigits = Double.valueOf(String.format("%.2f", resultOfNPC));
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
 
+
+
         //WasteCost
-        double resultWasteCost = ((resultOfNPCThreeDigits * 3) / 100);
+        double resultWasteCost = ((resultOfNPCThreeDigits * wasteFromTiet) / 100);
         double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
         activityBoxSpecificationAndCostBinding.tvWasteCost.setText(String.valueOf(resultWasteCostTwoDigits));
         //GrossPaperCost
@@ -892,7 +897,8 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double val2ofGsm = (gsmOfFlute * ffOfFluteOnePaper);
         //Total Gsm
         double totalGsm = (val1ofGsm + val2ofGsm);
-        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(totalGsm));
+        int gsmInInt= (int) totalGsm;
+        activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 //
         //Total Weight
         //Value 1
