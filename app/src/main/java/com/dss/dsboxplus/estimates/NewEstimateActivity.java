@@ -574,7 +574,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
     private double calculateNewDecalSize(int numberOfBoxes) {
         String decalMarginSize = newEstimateBinding.tvDecalMarginSize.getText().toString();
         double decalMarginSizeDouble = Double.parseDouble(decalMarginSize);
-        double newResult = (widthMm + heightMm) * numberOfBoxes + decalMarginSizeDouble;
+        double newResult = ((widthMm + heightMm) * numberOfBoxes) + decalMarginSizeDouble;
         return newResult;
     }
 
