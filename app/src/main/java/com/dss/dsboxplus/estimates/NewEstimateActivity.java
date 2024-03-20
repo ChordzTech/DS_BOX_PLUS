@@ -283,6 +283,12 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input = s.toString();
+                if (!input.isEmpty() && input.charAt(0) == '.') {
+                    newEstimateBinding.tietLength.setError("Please Enter Valid Number");
+                    newEstimateBinding.tietLength.setText("");
+                    return;
+                }
 //                Log.e("TAG", "onTextChanged: " + s);
                 if (!s.toString().isEmpty()) {
                     setDefaultSheetSizes();
@@ -338,6 +344,12 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input = s.toString();
+                if (!input.isEmpty() && input.charAt(0) == '.') {
+                    newEstimateBinding.tietWidth.setError("Please Enter Valid Number");
+                    newEstimateBinding.tietWidth.setText("");
+                    return;
+                }
                 if (!s.toString().isEmpty()) {
                     setDefaultSheetSizes();
                     width = Double.parseDouble(s.toString());
@@ -392,7 +404,12 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                String input = s.toString();
+                if (!input.isEmpty() && input.charAt(0) == '.') {
+                    newEstimateBinding.tietHeight.setError("Please Enter Valid Number");
+                    newEstimateBinding.tietHeight.setText("");
+                    return;
+                }
                 if (!s.toString().isEmpty()) {
                     setDefaultSheetSizes();
                     height = Double.parseDouble(s.toString());
