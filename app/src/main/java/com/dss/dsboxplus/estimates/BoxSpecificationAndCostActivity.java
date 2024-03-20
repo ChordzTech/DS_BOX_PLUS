@@ -369,7 +369,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     }
 
     private void callCreateOrUpdateEstimateAPI() {
-        viewModel.createOrUpdateEstimate(isUpdate, dataItem, selectedClient, CreateEstimateDataHolder.INSTANCE.getBoxName(), (int) CreateEstimateDataHolder.INSTANCE.getLengthMm(), (int) CreateEstimateDataHolder.INSTANCE.getWidthMm(), (int) CreateEstimateDataHolder.INSTANCE.getHeightMm(), CreateEstimateDataHolder.INSTANCE.getNoOfPly(), CreateEstimateDataHolder.INSTANCE.getNoOfBox(), CreateEstimateDataHolder.INSTANCE.getCuttingLength(), CreateEstimateDataHolder.INSTANCE.getDecalSize(), CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(), CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
+        viewModel.createOrUpdateEstimate(isUpdate, dataItem, selectedClient, CreateEstimateDataHolder.INSTANCE.getBoxName(), (float) CreateEstimateDataHolder.INSTANCE.getLengthMm(), (float) CreateEstimateDataHolder.INSTANCE.getWidthMm(), (float) CreateEstimateDataHolder.INSTANCE.getHeightMm(), CreateEstimateDataHolder.INSTANCE.getNoOfPly(), CreateEstimateDataHolder.INSTANCE.getNoOfBox(), CreateEstimateDataHolder.INSTANCE.getCuttingLength(), CreateEstimateDataHolder.INSTANCE.getDecalSize(), CreateEstimateDataHolder.INSTANCE.getCuttingMarginMm(), CreateEstimateDataHolder.INSTANCE.getDecalMarginMm(),
 
                 CreateEstimateDataHolder.INSTANCE.getTopBf(), CreateEstimateDataHolder.INSTANCE.getTopGsm(), CreateEstimateDataHolder.INSTANCE.getTopRate(),
 

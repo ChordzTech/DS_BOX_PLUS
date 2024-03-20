@@ -108,9 +108,9 @@ public class PaperSpecificationActivity extends BaseActivity {
         paperSpecificationBinding.tvClientNameInEstimate.setText(clientName);
 
         paperSpecificationBinding.tvBoxNameInPaperSpecification.setText(CreateEstimateDataHolder.INSTANCE.getBoxName());
-        int length = (int) CreateEstimateDataHolder.INSTANCE.getLengthMm();
-        int width = (int) CreateEstimateDataHolder.INSTANCE.getWidthMm();
-        int height = (int) CreateEstimateDataHolder.INSTANCE.getHeightMm();
+        float length = (float) CreateEstimateDataHolder.INSTANCE.getLengthMm();
+        float width = (float) CreateEstimateDataHolder.INSTANCE.getWidthMm();
+        float height = (float) CreateEstimateDataHolder.INSTANCE.getHeightMm();
         paperSpecificationBinding.tvBoxDimensionInPaperSpecification.setText(length + " X " + width + " X " + height);
 
 

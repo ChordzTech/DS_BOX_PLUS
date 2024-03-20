@@ -160,17 +160,17 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     double resultForTax = boxPrice * (tax / 100);
                     resultForTaxThreeDigits = String.format("%.2f", resultForTax);
 
-                    int lengthMM = (int) Math.round(dataItem.getLengthMmField());
-                    int widthMM = (int) Math.round(dataItem.getWidthMmField());
-                    int heightMM = (int) Math.round(dataItem.getHeightMmField());
-                    int lengthCM = (int) Math.round(Double.parseDouble(dataItem.getLengthCmField().toString()));
-                    int widthCM = (int) Math.round(Double.parseDouble(dataItem.getWidthCmField().toString()));
-                    int heightCM = (int) Math.round(Double.parseDouble(dataItem.getHeightCmField().toString()));
-                    int lengthIN = (int) Math.round(Double.parseDouble(dataItem.getLengthInchField().toString()));
-                    int widthIN = (int) Math.round(Double.parseDouble(dataItem.getWidthInchField().toString()));
-                    int heightIN = (int) Math.round(Double.parseDouble(dataItem.getHeightInchField().toString()));
-                    int decalSize = (int) Double.parseDouble(dataItem.getDecalsize().toString());
-                    int cuttingLength = (int) Double.parseDouble(dataItem.getCuttinglength().toString());
+                    double lengthMM = (dataItem.getLengthMmField());
+                    double widthMM = (dataItem.getWidthMmField());
+                    double heightMM =  (dataItem.getHeightMmField());
+                    double lengthCM = (Double.parseDouble(dataItem.getLengthCmField().toString()));
+                    double widthCM = (Double.parseDouble(dataItem.getWidthCmField().toString()));
+                    double heightCM = (Double.parseDouble(dataItem.getHeightCmField().toString()));
+                    double lengthIN = (Double.parseDouble(dataItem.getLengthInchField().toString()));
+                    double widthIN = (Double.parseDouble(dataItem.getWidthInchField().toString()));
+                    double heightIN = (Double.parseDouble(dataItem.getHeightInchField().toString()));
+                    float decalSize = (float) Double.parseDouble(dataItem.getDecalsize().toString());
+                    float cuttingLength = (float) Double.parseDouble(dataItem.getCuttinglength().toString());
                     if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
                         boxEstimatesDetailsBinding.tvLength.setText(String.valueOf(lengthCM + "cm"));
                         boxEstimatesDetailsBinding.tvWidth.setText(String.valueOf(widthCM + "cm"));

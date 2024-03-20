@@ -48,15 +48,15 @@ public class EstimatesViewAdapter extends RecyclerView.Adapter<EstimatesViewAdap
 
         DataItem dataItem = estimatesList.get(position);
         holder.tvBoxName.setText(dataItem.getBoxname());
-        int lengthMM = (int) Math.round(dataItem.getLengthMmField());
-        int widthMM = (int) Math.round(dataItem.getWidthMmField());
-        int heightMM = (int) Math.round(dataItem.getHeightMmField());
-        int lengthCM = (int) Math.round(Double.parseDouble(dataItem.getLengthCmField().toString()));
-        int widthCM = (int) Math.round(Double.parseDouble(dataItem.getWidthCmField().toString()));
-        int heightCM = (int) Math.round(Double.parseDouble(dataItem.getHeightCmField().toString()));
-        int lengthIN = (int) Math.round(Double.parseDouble(dataItem.getLengthInchField().toString()));
-        int widthIN = (int) Math.round(Double.parseDouble(dataItem.getWidthInchField().toString()));
-        int heightIN = (int) Math.round(Double.parseDouble(dataItem.getHeightInchField().toString()));
+        double lengthMM = (dataItem.getLengthMmField());
+        double widthMM = (dataItem.getWidthMmField());
+        double heightMM =  (dataItem.getHeightMmField());
+        double lengthCM = (Double.parseDouble(dataItem.getLengthCmField().toString()));
+        double widthCM = (Double.parseDouble(dataItem.getWidthCmField().toString()));
+        double heightCM = (Double.parseDouble(dataItem.getHeightCmField().toString()));
+        double lengthIN = (Double.parseDouble(dataItem.getLengthInchField().toString()));
+        double widthIN = (Double.parseDouble(dataItem.getWidthInchField().toString()));
+        double heightIN = (Double.parseDouble(dataItem.getHeightInchField().toString()));
         if (lengthCM != 0 && widthCM != 0 && heightCM != 0) {
             holder.tvBoxDimension.setText(lengthCM + "x" + widthCM + "x" + heightCM + " cm");
 

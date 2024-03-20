@@ -17,7 +17,7 @@ data class AddEstimateRequest(
 	var m1gsm: Int? = 0,
 
 	@field:SerializedName("height_cm_field")
-	var heightCmField: Int? = 0,
+	var heightCmField: Float? = 0.0F,
 
 	@field:SerializedName("userid")
 	var userid: Int? = 0,
@@ -26,13 +26,13 @@ data class AddEstimateRequest(
 	var boxname: String? = "",
 
 	@field:SerializedName("length_inch_field")
-	var lengthInchField: Int? = 0,
+	var lengthInchField: Float? = 0.0F,
 
 	@field:SerializedName("m1bf")
 	var m1bf: Int? = 0,
 
 	@field:SerializedName("width_mm_field")
-	var widthMmField: Int? = 0,
+	var widthMmField: Float? = 0.0F,
 
 	@field:SerializedName("f1rate")
 	var f1rate: Float? = 0F,
@@ -56,13 +56,13 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("width_cm_field")
-	var widthCmField: Int? = 0,
+	var widthCmField: Float? = 0.0F,
 
 	@field:SerializedName("f1gsm")
 	var f1gsm: Int? = 0,
 
 	@field:SerializedName("length_cm_field")
-	var lengthCmField: Int? = 0,
+	var lengthCmField: Float? = 0.0F,
 
 	@field:SerializedName("f1ff")
 	var f1ff: Float? = 0.0F,
@@ -90,7 +90,7 @@ data class AddEstimateRequest(
 	var decalsizemargin: Int? = 0,
 
 	@field:SerializedName("height_inch_field")
-	var heightInchField: Int? = 0,
+	var heightInchField: Float? = 0.0F,
 
 	@field:SerializedName("m2rate")
 	var m2rate: Float? = 0F,
@@ -99,7 +99,7 @@ data class AddEstimateRequest(
 	var netweight: Int? = 0,
 
 	@field:SerializedName("width_inch_field")
-	var widthInchField: Int? = 0,
+	var widthInchField: Float? = 0.0F,
 
 	@field:SerializedName("ups")
 	var ups: Int? = 0,
@@ -134,7 +134,7 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("length_mm_field")
-	var lengthMmField: Int? = 0,
+	var lengthMmField: Float? = 0.0F,
 
 	@field:SerializedName("totalbs")
 	var totalbs: Float? = 0.0F,
@@ -169,7 +169,7 @@ data class AddEstimateRequest(
 
 
 	@field:SerializedName("height_mm_field")
-	var heightMmField: Int? = 0,
+	var heightMmField: Float? = 0.0F,
 
 	@field:SerializedName("boxprice")
 	var boxprice: Float? = 0F,

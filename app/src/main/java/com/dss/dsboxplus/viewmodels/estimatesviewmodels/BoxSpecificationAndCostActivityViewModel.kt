@@ -25,9 +25,9 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         dataItem: DataItem?,
         selectedClient: ClientDetails,
         boxName: String,
-        lengthMm: Int,
-        widthMm: Int,
-        heightMm: Int,
+        lengthMm: Float,
+        widthMm: Float,
+        heightMm: Float,
         noOfPly: String,
         noOfBox: Int,
         cuttingLength: Double,
@@ -87,12 +87,12 @@ class BoxSpecificationAndCostActivityViewModel(val repository: MainRepository) :
         createEstimateRequest.lengthMmField = lengthMm
         createEstimateRequest.widthMmField = widthMm
         createEstimateRequest.heightMmField = heightMm
-        createEstimateRequest.lengthCmField = CreateEstimateDataHolder.lengthCm.toInt()
-        createEstimateRequest.widthCmField = CreateEstimateDataHolder.widthCm.toInt()
-        createEstimateRequest.heightCmField = CreateEstimateDataHolder.heightCm.toInt()
-        createEstimateRequest.lengthInchField = CreateEstimateDataHolder.lengthInch.toInt()
-        createEstimateRequest.widthInchField = CreateEstimateDataHolder.widthInch.toInt()
-        createEstimateRequest.heightInchField = CreateEstimateDataHolder.heightInch.toInt()
+        createEstimateRequest.lengthCmField = CreateEstimateDataHolder.lengthCm.toFloat()
+        createEstimateRequest.widthCmField = CreateEstimateDataHolder.widthCm.toFloat()
+        createEstimateRequest.heightCmField = CreateEstimateDataHolder.heightCm.toFloat()
+        createEstimateRequest.lengthInchField = CreateEstimateDataHolder.lengthInch.toFloat()
+        createEstimateRequest.widthInchField = CreateEstimateDataHolder.widthInch.toFloat()
+        createEstimateRequest.heightInchField = CreateEstimateDataHolder.heightInch.toFloat()
         createEstimateRequest.ply = noOfPly.toInt()
         createEstimateRequest.ups = noOfBox
         createEstimateRequest.cuttinglength = cuttingLength.toFloat()
