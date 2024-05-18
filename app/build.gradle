@@ -4,6 +4,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.firebase.crashlytics'
+
 }
 
 android {
@@ -14,7 +16,7 @@ android {
         applicationId "com.dss.dsboxplus"
         minSdk 26
         targetSdk 33
-        versionCode 2
+        versionCode 3
         versionName "1.0"
 
 
@@ -94,5 +96,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
     implementation 'com.google.code.gson:gson:2.8.9'
+
+    //FireBaseCrashAnalytics
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-crashlytics")
+
 
 }

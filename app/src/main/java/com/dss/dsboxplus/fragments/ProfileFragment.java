@@ -307,6 +307,11 @@ public class ProfileFragment extends Fragment {
             tvSubDate.setText(subscriptionMessage);
             tvTrialActive.setText("Subscription Status: " + subStatus);
             viewModel.setRemainingDays(remainingDays);
+            if (remainingDays == 0) {
+                cvsuperUserSettings.setVisibility(View.GONE);
+            } else {
+                cvsuperUserSettings.setVisibility(View.VISIBLE);
+            }
         } else {
             tvSubDays.setText("No subscription data available");
             tvSubDate.setText("No subscription data available"); // You can set a default value or an empty string
@@ -341,6 +346,11 @@ public class ProfileFragment extends Fragment {
                         tvSubDays.setText(remainingDaysForSub);
                         tvSubDate.setText(suDate);
                         viewModel.setRemainingDays(remainingDays);
+                        if (remainingDays == 0) {
+                            cvsuperUserSettings.setVisibility(View.GONE);
+                        } else {
+                            cvsuperUserSettings.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
