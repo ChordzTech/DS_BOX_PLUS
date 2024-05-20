@@ -244,6 +244,7 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                throw new RuntimeException("Test");
 
                 String enterBoxName = newEstimateBinding.tietEnterBoxName.getText().toString();
                 String enterLength = newEstimateBinding.tietLength.getText().toString();
