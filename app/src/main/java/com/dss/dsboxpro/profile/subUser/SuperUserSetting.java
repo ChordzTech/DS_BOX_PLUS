@@ -1,0 +1,127 @@
+package com.dss.dsboxpro.profile.subUser;
+
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.dss.dsboxpro.R;
+import com.dss.dsboxpro.baseview.BaseActivity;
+import com.dss.dsboxpro.data.configdata.ConfigDataProvider;
+import com.dss.dsboxpro.data.repo.response.AppConfigDataItems;
+import com.dss.dsboxpro.data.repo.response.AppConfigResponse;
+import com.dss.dsboxpro.data.repo.response.SubUser;
+import com.dss.dsboxpro.databinding.ActivitySuperUserSettingBinding;
+import com.dss.dsboxpro.recyclerview.SubUserViewAdapter;
+import com.dss.dsboxpro.viewmodels.AppViewModelFactory;
+import com.dss.dsboxpro.viewmodels.profileviewmodels.SuperUserViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
+
+import java.util.ArrayList;
+
+public class SuperUserSetting extends BaseActivity implements SubUserViewAdapter.OnItemClickListener {
+    ActivitySuperUserSettingBinding superUserSettingBinding;
+    private SubUserViewAdapter adapter;
+    private SuperUserViewModel viewModel;
+    private ArrayList<SubUser> userList = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        superUserSettingBinding = DataBindingUtil.setContentView(this, R.layout.activity_super_user_setting);
+        initView();
+        initObservable();
+        fetchData();
+    }
+
+    private void initObservable() {
+        viewModel.getUsersByBusinessLiveData().observe(this, userDetailsResponse -> {
+            if (!userDetailsResponse.getData().isEmpty()) {
+                userList = (ArrayList<SubUser>) userDetailsResponse.getData();
+                adapter.updateUserList(userList);
+                //API Response
+                AppConfigResponse appConfigResponse = ConfigDataProvider.INSTANCE.getAppConfigResponse();
+                if (appConfigResponse.getData() != null) {
+                    ArrayList<AppConfigDataItems> appConfigDataItems = appConfigResponse.getData();
+                    String configValue = null;
+
+                    for (AppConfigDataItems appConfigDataItem : appConfigDataItems) {
+                        int configId = appConfigDataItem.getConfigid();
+                        if (configId == 28) {
+                            // Retrieve the configValue associated with configId 28
+                            configValue = appConfigDataItem.getConfigvalue();
+                            break; // Exit the loop once the target configId is found
+                        }
+                    }
+                    if (configValue != null) {
+                        int apiLimit = Integer.parseInt(configValue);
+                        // Now you can use apiLimit in your logic
+                        if (adapter.getItemCount() >= apiLimit) {
+                            superUserSettingBinding.fabAddSubUser.setVisibility(View.GONE);
+                            showMaxLimitReachedDialog();
+                        } else {
+                            superUserSettingBinding.fabAddSubUser.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+
+            }
+        });
+
+
+        userList = new ArrayList<>();
+        adapter = new SubUserViewAdapter(userList);
+        adapter.setOnItemClickListener(this);
+        superUserSettingBinding.rvRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void fetchData() {
+        if (isConnectedToInternet()) {
+            viewModel.getUserList();
+        } else {
+            showNoInternetDialog();
+        }
+    }
+
+    private void initView() {
+
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(SuperUserViewModel.class);
+
+
+        superUserSettingBinding.fabAddSubUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SuperUserSetting.this, AddSubUserActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(SubUser subUser) {
+        // Handle item click here
+        Intent intent = new Intent(SuperUserSetting.this, SubUserDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("USERS", subUser);
+        intent.putExtra("USERS_BUNDLE", bundle);
+        startActivity(intent);
+    }
+
+    private void showMaxLimitReachedDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Maximum Limit Reached")
+                .setMessage("You have reached the maximum limit of users.")
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .setCancelable(false)
+                .create()
+                .show();
+    }
+
+}

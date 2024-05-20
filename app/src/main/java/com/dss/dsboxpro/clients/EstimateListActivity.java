@@ -1,0 +1,177 @@
+package com.dss.dsboxpro.clients;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.widget.SearchView;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.dss.dsboxpro.R;
+import com.dss.dsboxpro.baseview.BaseActivity;
+import com.dss.dsboxpro.data.configdata.ConfigDataProvider;
+import com.dss.dsboxpro.data.repo.response.DataItem;
+import com.dss.dsboxpro.databinding.ActivityEstimateListBinding;
+import com.dss.dsboxpro.estimates.BoxEstimatesDetailsActivity;
+import com.dss.dsboxpro.estimates.NewEstimateActivity;
+import com.dss.dsboxpro.model.EstimatesDataModel;
+import com.dss.dsboxpro.recyclerview.EstimatesViewAdapter;
+import com.dss.dsboxpro.viewmodels.AppViewModelFactory;
+import com.dss.dsboxpro.viewmodels.clientsviewmodels.EstimateListViewModel;
+import com.example.mvvmretrofit.data.repo.MainRepository;
+import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+
+public class EstimateListActivity extends BaseActivity implements EstimatesViewAdapter.OnEstimatesSelectedI {
+
+    ActivityEstimateListBinding binding;
+    EstimateListViewModel viewModel;
+    private ArrayList<DataItem> estimateList = new ArrayList<>();
+    private long clientId = 0;
+    private EstimatesViewAdapter estimatesViewAdapter;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_estimate_list);
+        initView();
+        initObservables();
+        fetchData();
+    }
+
+    private void fetchData() {
+        if (isConnectedToInternet()) {
+            viewModel.getEstimateByClientId(clientId);
+        } else {
+            showNoInternetDialog();
+        }
+    }
+
+    private void initObservables() {
+        viewModel.getEstimateListByClientIdLivedata().observe(this, estimateListResponse ->
+        {
+            estimateList = (ArrayList<DataItem>) estimateListResponse.getData();
+            loadData();
+        });
+    }
+
+    private void initView() {
+        RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+        MainRepository mainRepository = new MainRepository(retrofitService);
+        viewModel = new ViewModelProvider(this, new AppViewModelFactory(mainRepository)).get(EstimateListViewModel.class);
+
+        clientId = this.getIntent().getLongExtra("clientId", 0);
+        estimatesViewAdapter = new EstimatesViewAdapter();
+        estimatesViewAdapter.setOnEstimatesSelectedListner(this);
+
+        binding.svSearchInEstimate.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()){
+                    filterEstimatesList(newText);
+                } else{
+                    estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
+                }
+                return true;
+            }
+        });
+        binding.svSearchInEstimate.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                estimatesViewAdapter.setFilterList(ConfigDataProvider.globalEstimateList);
+                return true;
+            }
+        });
+
+        binding.fabAddEstimateInEstimateList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EstimateListActivity.this, NewEstimateActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    private void prepareData() {
+        Collections.sort(estimateList, new Comparator<DataItem>() {
+            @Override
+            public int compare(DataItem item1, DataItem item2) {
+                // Assuming your DataItem class has a method to get the date, adjust accordingly
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date1, date2;
+                try {
+                    date1 = sdf.parse(item1.getEstimatedate());
+                    date2 = sdf.parse(item2.getEstimatedate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0; // Handle the exception or return 0 if parsing fails
+                }
+                // Reverse the order to get the latest first
+                return date2.compareTo(date1);
+            }
+        });
+    }
+
+
+    private void filterEstimatesList(String newText) {
+        ArrayList<DataItem> filteredList = new ArrayList<>();
+
+        for (DataItem dataItem : ConfigDataProvider.globalEstimateList) {
+            // Assuming your DataItem class has a method to get the name, adjust accordingly
+            if (dataItem.getBoxname().toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(dataItem);
+            }
+        }
+        estimatesViewAdapter.setFilterList(filteredList);
+    }
+
+    @Override
+    public void onEstimatesSelectedI(DataItem dataItem) {
+        Intent intent = new Intent(this, BoxEstimatesDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("ESTIMATES", dataItem);
+        intent.putExtra("ESTIMATES_BUNDLE", bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemLongPressed(EstimatesDataModel estimatesDataModel, int adapterPosition) {
+//        if (!estimateSelection) {
+//            selectedEstimatesList = new ArrayList<EstimatesDataModel>();
+//        }
+//        fabCorrect.setVisibility(View.VISIBLE);
+//        fabCancel.setVisibility(View.VISIBLE);
+//        selectedEstimatesList.add(estimatesDataModel);
+//        this.estimateSelection = true;
+    }
+
+
+    @Override
+    public void onItemClicked(EstimatesDataModel estimatesDataModel, int adapterPosition) {
+//        if (estimateSelection) {
+//            selectedEstimatesList.add(estimatesDataModel);
+//        } else {
+//            //open details
+//        }
+    }
+
+    private void loadData() {
+        if (!estimateList.isEmpty()) {
+            prepareData();
+            binding.rvEstimateRecyclerViewInEstimateList.setAdapter(estimatesViewAdapter);
+            estimatesViewAdapter.setEstimatesList(estimateList);
+        }
+    }
+}

@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace 'com.dss.dsboxplus'
+    namespace 'com.dss.dsboxpro'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.dss.dsboxplus"
+        applicationId "com.dss.dsboxpro"
         minSdk 26
         targetSdk 33
         versionCode 4
