@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">DS Box+</string>
-    <string name="name">DS Box+</string>
+    <string name="app_name">DS Box Pro</string>
+    <string name="name">DS Box Pro</string>
     <string name="splash_slogan">Box costing \n at your fingertips!</string>
     <string name="device_name">Device Name</string>
     <string name="verify_phone_number">Verify Your Phone Number</string>
-    <string name="sms_text">DS Box+ will send an SMS message to verify your phone
+    <string name="sms_text">DS Box Pro will send an SMS message to verify your phone
     number,Please enter your Country Code and Phone number.</string>
     <string name="country_code">Country Code</string>
     <string name="phone_number">Phone Number</string>
