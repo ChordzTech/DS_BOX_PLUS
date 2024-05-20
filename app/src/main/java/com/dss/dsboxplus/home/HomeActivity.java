@@ -184,6 +184,8 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                         @Override
                         public void onNegativeButtonClick() {
 
+
+
                         }
                     });
                 }
