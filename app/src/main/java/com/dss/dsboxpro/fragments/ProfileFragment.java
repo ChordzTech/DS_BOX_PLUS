@@ -235,7 +235,6 @@ public class ProfileFragment extends Fragment {
             cvSubscription.setVisibility(View.GONE);
         } else {
             cvEnableMultiUsers.setVisibility(View.VISIBLE);
-            cvsuperUserSettings.setVisibility(View.VISIBLE);
             cvBusiness.setVisibility(View.VISIBLE);
             cvDefaultPaper.setVisibility(View.VISIBLE);
             cvDefaultRate.setVisibility(View.VISIBLE);
@@ -309,8 +308,6 @@ public class ProfileFragment extends Fragment {
             viewModel.setRemainingDays(remainingDays);
             if (remainingDays == 0) {
                 cvsuperUserSettings.setVisibility(View.GONE);
-            } else {
-                cvsuperUserSettings.setVisibility(View.VISIBLE);
             }
         } else {
             tvSubDays.setText("No subscription data available");
@@ -348,8 +345,6 @@ public class ProfileFragment extends Fragment {
                         viewModel.setRemainingDays(remainingDays);
                         if (remainingDays == 0) {
                             cvsuperUserSettings.setVisibility(View.GONE);
-                        } else {
-                            cvsuperUserSettings.setVisibility(View.VISIBLE);
                         }
                     }
                 }
