@@ -509,9 +509,11 @@ public class ProfileFragment extends Fragment {
                     if (userAccess == 1) {
                         // Enable the toggle button when userAccess is 1
                         swMultiUser.setChecked(true);
+                        cvsuperUserSettings.setVisibility(View.VISIBLE);
                     } else {
                         // Disable the toggle button when userAccess is not 1
                         swMultiUser.setChecked(false);
+                        cvsuperUserSettings.setVisibility(View.GONE);
                     }
                 }
             }
