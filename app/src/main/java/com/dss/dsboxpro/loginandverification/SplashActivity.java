@@ -88,7 +88,7 @@ public class SplashActivity extends BaseActivity {
 
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
-            if (userDetailsResponse.getCode() == 404) {
+            if (userDetailsResponse.getCode() != null && userDetailsResponse.getCode() == 404) {
                 finishAffinity();
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);

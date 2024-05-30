@@ -213,11 +213,21 @@ public class ProfileFragment extends Fragment {
         name = v.findViewById(R.id.tvName);
         contact = v.findViewById(R.id.tvContactNumber);
         role = v.findViewById(R.id.tvRole);
-        if (ConfigDataProvider.INSTANCE.getUserDetails() != null)
+
+        if (ConfigDataProvider.INSTANCE.getUserDetails() != null && ConfigDataProvider.INSTANCE.getUserDetails().getData() != null){
             userData = ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0);
-        name.setText(userData.getUsername());
-        contact.setText(userData.getMobileno());
-        role.setText(userData.getUserrole());
+            if(userData!=null){
+                name.setText(userData.getUsername());
+                contact.setText(userData.getMobileno());
+                role.setText(userData.getUserrole());
+            }
+        }
+
+//        if (ConfigDataProvider.INSTANCE.getUserDetails() != null)
+//            userData = ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0);
+//        name.setText(userData.getUsername());
+//        contact.setText(userData.getMobileno());
+//        role.setText(userData.getUserrole());
 //        if (userData.getUserrole().equalsIgnoreCase("Admin")) {
 //            cvsuperUserSettings.setVisibility(View.VISIBLE);
 //            cvEnableMultiUsers.setVisibility(View.VISIBLE);

@@ -26,6 +26,7 @@ import com.dss.dsboxpro.recyclerview.ClientsViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -123,14 +124,38 @@ public class ClientFragment extends Fragment implements ClientsViewAdapter.OnCli
     public void onResume() {
         super.onResume();
 
-        if(AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
-                "Expired"
-        ) ||
-                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1){
+        // Check if the app status is expired
+        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase("Expired")) {
             add.setVisibility(View.GONE);
-        }else{
-            add.setVisibility(View.VISIBLE);
+        } else {
+            // Safely get user details and check user access
+            UserDetailsResponse userDetailsResponse = ConfigDataProvider.INSTANCE.getUserDetails();
+            if (userDetailsResponse != null) {
+                List<UserData> userDataList = userDetailsResponse.getData();
+                if (userDataList != null && !userDataList.isEmpty()) {
+                    UserData userData = userDataList.get(0);
+                    if (userData != null && userData.getUseraccess() == 1) {
+                        add.setVisibility(View.GONE);
+                    } else {
+                        add.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    add.setVisibility(View.VISIBLE);  // Default to visible if user data list is empty
+                }
+            } else {
+                add.setVisibility(View.VISIBLE);  // Default to visible if user details response is null
+            }
         }
+
+
+//        if(AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase(
+//                "Expired"
+//        ) ||
+//                ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess()==1){
+//            add.setVisibility(View.GONE);
+//        }else{
+//            add.setVisibility(View.VISIBLE);
+//        }
     }
 
     private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
