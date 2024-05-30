@@ -65,16 +65,16 @@ public class AddNewClientsActivity extends BaseActivity {
 
     private void addOververs() {
         viewModel.getAddClientRequestLiveData().observe(this, clientListResponse -> {
-            Toast.makeText(this, "Client added Successfully", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Client added Successfully", Toast.LENGTH_SHORT).show();
             finishAffinity();
             startActivity(new Intent(AddNewClientsActivity.this, HomeActivity.class));
         });
         viewModel.getRequesrFailedLiveData().observe(this, clientListResponse -> {
-            Toast.makeText(this, clientListResponse.getMessage(), Toast.LENGTH_SHORT);
+            Toast.makeText(this, clientListResponse.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
         });
         viewModel.getUpdateClientRequestLiveData().observe(this,updateClientResponse -> {
-            Toast.makeText(this, updateClientResponse.getMessage(), Toast.LENGTH_SHORT);
+            Toast.makeText(this, updateClientResponse.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
         });
     }

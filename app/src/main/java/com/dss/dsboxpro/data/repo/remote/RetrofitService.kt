@@ -178,12 +178,27 @@ interface RetrofitService {
         var retrofitService: RetrofitService? = null
         fun getInstance(): RetrofitService {
 
+            val loggingInterceptor = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
             val httpClientBuilder = OkHttpClient.Builder()
-            httpClientBuilder.addInterceptor(Interceptor { chain ->
-                val requestBuilder: Request.Builder = chain.request().newBuilder()
-                requestBuilder.header("Content-Type", "application/json")
-                chain.proceed(requestBuilder.build())
-            })
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor { chain ->
+                    val requestBuilder: Request.Builder = chain.request().newBuilder()
+                    requestBuilder.header("Content-Type", "application/json")
+                    chain.proceed(requestBuilder.build())
+                }
+                .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+
+//            val httpClientBuilder = OkHttpClient.Builder()
+//            httpClientBuilder.addInterceptor(Interceptor { chain ->
+//                val requestBuilder: Request.Builder = chain.request().newBuilder()
+//                requestBuilder.header("Content-Type", "application/json")
+//                chain.proceed(requestBuilder.build())
+//            })
 
             val gson = GsonBuilder().setLenient().create()
             if (retrofitService == null) {
