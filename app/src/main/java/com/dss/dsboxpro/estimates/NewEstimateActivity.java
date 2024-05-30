@@ -78,8 +78,10 @@ public class NewEstimateActivity extends BaseActivity implements AdapterView.OnI
         } else {
             isNewEstimate = true;
             client = getIntent().getParcelableExtra("selectedClient");
-            businessId = Long.valueOf(client.getBusinessid());
-            clientId = client.getClientid();
+            if (client != null) {
+                businessId = Long.valueOf(client.getBusinessid());
+                clientId = client.getClientid();
+            }
         }
         fetchData();
 
