@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxpro.R;
@@ -16,6 +17,7 @@ import com.dss.dsboxpro.databinding.ActivityEstimateListBinding;
 import com.dss.dsboxpro.estimates.BoxEstimatesDetailsActivity;
 import com.dss.dsboxpro.estimates.NewEstimateActivity;
 import com.dss.dsboxpro.model.EstimatesDataModel;
+import com.dss.dsboxpro.preferences.AppPreferences;
 import com.dss.dsboxpro.recyclerview.EstimatesViewAdapter;
 import com.dss.dsboxpro.viewmodels.AppViewModelFactory;
 import com.dss.dsboxpro.viewmodels.clientsviewmodels.EstimateListViewModel;
@@ -36,8 +38,6 @@ public class EstimateListActivity extends BaseActivity implements EstimatesViewA
     private ArrayList<DataItem> estimateList = new ArrayList<>();
     private long clientId = 0;
     private EstimatesViewAdapter estimatesViewAdapter;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -193,15 +194,38 @@ public class EstimatesFragment extends Fragment implements EstimatesViewAdapter.
     public void onResume() {
         super.onResume();
 
-        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase("Expired")
-                ||
-                (ConfigDataProvider.INSTANCE.getUserDetails() != null &&
-                        ConfigDataProvider.INSTANCE.getUserDetails().getData() != null &&
-                        ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1)) {
+        // Check if the app status is expired
+        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase("Expired")) {
             fabEstimates.setVisibility(View.GONE);
         } else {
-            fabEstimates.setVisibility(View.VISIBLE);
+            // Safely get user details and check user access
+            UserDetailsResponse userDetailsResponse = ConfigDataProvider.INSTANCE.getUserDetails();
+            if (userDetailsResponse != null) {
+                List<UserData> userDataList = userDetailsResponse.getData();
+                if (userDataList != null && !userDataList.isEmpty()) {
+                    UserData userData = userDataList.get(0);
+                    if (userData != null && userData.getUseraccess() == 1) {
+                        fabEstimates.setVisibility(View.GONE);
+                    } else {
+                        fabEstimates.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    fabEstimates.setVisibility(View.VISIBLE);  // Default to visible if user data list is empty
+                }
+            } else {
+                fabEstimates.setVisibility(View.VISIBLE);  // Default to visible if user details response is null
+            }
         }
+
+//        if (AppPreferences.INSTANCE.getStringValueFromSharedPreferences(AppPreferences.APP_STATUS).equalsIgnoreCase("Expired")
+//                ||
+//                (ConfigDataProvider.INSTANCE.getUserDetails() != null &&
+//                        ConfigDataProvider.INSTANCE.getUserDetails().getData() != null &&
+//                        ConfigDataProvider.INSTANCE.getUserDetails().getData().get(0).getUseraccess() == 1)) {
+//            fabEstimates.setVisibility(View.GONE);
+//        } else {
+//            fabEstimates.setVisibility(View.VISIBLE);
+//        }
     }
 
     private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
