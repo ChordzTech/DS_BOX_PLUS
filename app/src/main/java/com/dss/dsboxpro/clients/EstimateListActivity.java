@@ -96,13 +96,13 @@ public class EstimateListActivity extends BaseActivity implements EstimatesViewA
             }
         });
 
-        binding.fabAddEstimateInEstimateList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EstimateListActivity.this, NewEstimateActivity.class);
-                startActivity(intent);
-            }
-        });
+//        binding.fabAddEstimateInEstimateList.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(EstimateListActivity.this, NewEstimateActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
     private void prepareData() {
         Collections.sort(estimateList, new Comparator<DataItem>() {
