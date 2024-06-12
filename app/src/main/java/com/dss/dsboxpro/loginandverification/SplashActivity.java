@@ -1,7 +1,7 @@
 package com.dss.dsboxpro.loginandverification;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +26,10 @@ import com.dss.dsboxpro.viewmodels.homeviewmodel.SplashViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
 
+import java.util.Objects;
 
+
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends BaseActivity {
     ActivitySplashBinding mainBinding;
     private SplashViewModel splashViewModel;
@@ -68,24 +71,22 @@ public class SplashActivity extends BaseActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("No Access");
         builder.setMessage("You do not have access to this application.");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish(); // Close the app or handle as needed
-            }
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            finish(); // Close the app or handle as needed
         });
         builder.setCancelable(false);
         builder.show();
     }
 
-    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse, int i) {
+    private boolean hasUserAccess(UserDetailsResponse userDetailsResponse) {
         if (userDetailsResponse.getData() != null && !userDetailsResponse.getData().isEmpty()) {
             UserData userData = userDetailsResponse.getData().get(0); // Assuming there is only one UserData in the list
-            return userData.getUseraccess() != null && userData.getUseraccess() == i;
+            return userData.getUseraccess() != null && userData.getUseraccess() == 3;
         }
         return false;
     }
 
+    @SuppressLint("SetTextI18n")
     private void initObservers() {
         splashViewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
             if (userDetailsResponse.getCode() != null && userDetailsResponse.getCode() == 404) {
@@ -93,9 +94,9 @@ public class SplashActivity extends BaseActivity {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
             } else if (userDetailsResponse.getCode() == 400) {
-                showMessagePopUp("Your mobile number already registered with another device, please contact support to deauthorize another device.");
+                showMessagePopUp("Your mobile number already registered with another device, please contact support to authorize another device.");
             } else {
-                if (userDetailsResponse.getData() != null && userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
+                if (userDetailsResponse.getData() != null && Objects.requireNonNull(userDetailsResponse.getData().get(0).getAndroidid()).equalsIgnoreCase("NewUser")) {
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finishAffinity();
@@ -106,21 +107,18 @@ public class SplashActivity extends BaseActivity {
                     addUserDataToPreferences(userDetailsResponse);
                     ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                     AppPreferences.INSTANCE.saveStringToSharedPreferences(this, AppPreferences.APP_STATUS,
-                            userDetailsResponse.getData().get(0).getStatus());
+                            Objects.requireNonNull(userDetailsResponse.getData().get(0).getStatus()));
 
-                    if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails(), 3)) {
+                    if (ConfigDataProvider.INSTANCE.getUserDetails() != null && hasUserAccess(ConfigDataProvider.INSTANCE.getUserDetails())) {
                         showNoAccessPopup();
                     }
                     String phoneNumber = userDetailsResponse.getData().get(0).getMobileno();
                     mainBinding.tvDeviceNumber.setText("+91 " + phoneNumber);
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            finishAffinity();
-                            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                        }
+                    new Handler().postDelayed(() -> {
+                        finishAffinity();
+                        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                        startActivity(intent);
                     }, 1000);
                 }
 
@@ -137,7 +135,7 @@ public class SplashActivity extends BaseActivity {
 
     private void fetchData() {
 //        String deviceInfo = (Build.BRAND + Build.MODEL).trim();
-        String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        @SuppressLint("HardwareIds") String deviceInfo = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         AppPreferences.INSTANCE.saveStringToSharedPreferences(this,
                 AppPreferences.DEVICE_INFO, deviceInfo);
         if (isConnectedToInternet()) {
@@ -147,8 +145,6 @@ public class SplashActivity extends BaseActivity {
         } else {
             showNoInternetDialog();
         }
-//        splashViewModel.getUserDetails(
-//                "9421013332", "Xiaomi Redmi Note 8 Pro");
     }
 
 
