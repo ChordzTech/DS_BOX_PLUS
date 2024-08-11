@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.airbnb.lottie.LottieAnimationView
+        <ImageView
             android:id="@+id/animationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,9 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/worker_packing_the_goods" />
+            android:src="@mipmap/ds_icon" />
 
         <TextView
             android:id="@+id/tvDeviceNumber"

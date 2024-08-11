@@ -94,7 +94,7 @@ public class SubscriptionActivity extends BaseActivity {
 
     private Bitmap decodeBase64ToBitmap(String base64Code) {
         String prefix = "data:image/png;base64,";
-        if (base64Code.startsWith(prefix)) {
+        if (base64Code.startsWith(prefix)||base64Code.startsWith("data:image/jpeg;base64")) {
             // Remove the prefix before decoding
             base64Code = base64Code.substring(prefix.length());
         }

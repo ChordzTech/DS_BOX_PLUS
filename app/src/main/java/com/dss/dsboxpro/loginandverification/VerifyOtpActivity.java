@@ -27,12 +27,6 @@ import com.dss.dsboxpro.viewmodels.AppViewModelFactory;
 import com.dss.dsboxpro.viewmodels.homeviewmodel.SplashViewModel;
 import com.example.mvvmretrofit.data.repo.MainRepository;
 import com.example.mvvmretrofit.data.repo.remote.RetrofitService;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
 
 public class VerifyOtpActivity extends BaseActivity {
     EditText inputOtpOne, inputOtpTwo, inputOtpThree, inputOtpFour, inputOtpFive, inputOtpSix;
@@ -73,8 +67,9 @@ public class VerifyOtpActivity extends BaseActivity {
                         pbVerifyOtp.setVisibility(View.VISIBLE);
                         btVerify.setVisibility(View.INVISIBLE);
 
-                        PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(backendopt, enterCodeOtp);
+//                        PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(backendopt, enterCodeOtp);
 
+/*
                         FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -88,6 +83,7 @@ public class VerifyOtpActivity extends BaseActivity {
                                 }
                             }
                         });
+*/
                     } else {
                         Toast.makeText(VerifyOtpActivity.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
                     }

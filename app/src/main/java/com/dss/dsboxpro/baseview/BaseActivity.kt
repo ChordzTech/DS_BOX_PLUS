@@ -141,7 +141,7 @@ open class BaseActivity : AppCompatActivity() {
 
     fun showLogoutPopUp() {
         logoutBuilder = AlertDialog.Builder(this)
-        logoutBuilder.setTitle("DS BOX+")
+        logoutBuilder.setTitle("DS BOX Next")
         logoutBuilder.setMessage("Do you want to close the App?")
         logoutBuilder.setPositiveButton(
             "Ok"

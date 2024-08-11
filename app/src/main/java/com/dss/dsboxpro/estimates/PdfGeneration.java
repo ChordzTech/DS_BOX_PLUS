@@ -56,7 +56,7 @@ public class PdfGeneration extends AppCompatActivity {
         float columnWidth[] = {62, 140, 140, 140};
         Table table = new Table(columnWidth);
 
-        Drawable d1 = getDrawable(R.drawable.companylogo);
+        Drawable d1 = getDrawable(R.mipmap.ds_icon);
         Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
         ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
         bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);

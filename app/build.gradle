@@ -1,10 +1,8 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -34,9 +32,27 @@ android {
     buildTypes {
         release {
             debuggable false
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+        }
+    }
+    // Specifies one flavor dimension.
+    flavorDimensions "version"
+    productFlavors {
+        pro {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension "version"
+            applicationIdSuffix ".pro"
+            versionNameSuffix "-pro"
+        }
+        Next {
+            dimension "version"
+            applicationIdSuffix ".Next"
+            versionNameSuffix "-Next"
         }
     }
     compileOptions {
@@ -56,10 +72,6 @@ dependencies {
     def lifecycle_version = "2.6.2"
     def arch_version = "2.2.0"
 
-    implementation platform('com.google.firebase:firebase-bom:32.7.1')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth:22.3.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
 
     //lottie
     def lottieVersion = "6.1.0"
@@ -95,9 +107,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
     implementation 'com.google.code.gson:gson:2.8.9'
-
-    //FireBaseCrashAnalytics
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-    implementation("com.google.firebase:firebase-crashlytics")
 
 }
