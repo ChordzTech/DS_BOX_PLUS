@@ -26,6 +26,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.borders.DashedBorder;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
@@ -189,7 +190,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         Document document = new Document(pdfDocument);
         DeviceRgb gray = new DeviceRgb(128, 128, 128);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        float columnWidth[] = {62, 140, 140, 140};
+        float columnWidth[] = {62, 400};
         Table table = new Table(columnWidth);
 
 //        Drawable d1 = getDrawable(R.drawable.companylogo);
@@ -227,30 +228,28 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.CENTER)).setFontSize(15f).setBold().setBorder(Border.NO_BORDER));
+
+
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.LEFT)).setFontSize(15f).setBold().setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-02
-//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + ", " + businessDetailsResponse.getData().getPincode()).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + ", " + businessDetailsResponse.getData().getPincode() + ", " + businessDetailsResponse.getData().getContactno()).setTextAlignment(TextAlignment.LEFT).setBold()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-03
-//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getContactno()).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph().setBold()).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
         //table 1-04
-//        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+//        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER);
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
 
 //        //table 1-05
-//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER);
+//        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER);
 //        table.addCell(new Cell(1,1).add(new Paragraph("Approx.Paper required for Production")).setFontSize(18).setBold().setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 //        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
@@ -636,14 +635,19 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
 
         float columnWidth3[] = {482};
-        Table table3 = new Table(columnWidth3);
+        Table tableFor = new Table(columnWidth3);
 
+        tableFor.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+        tableFor.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+        tableFor.addCell(new Cell().add(new Paragraph("For "+ businessDetailsResponse.getData().getBusinessname())).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+        Table table3 = new Table(columnWidth3);
         table3.addCell(new Cell().add(new Paragraph("Auto generated copy.no signature required.")).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
 
         document.add(table);
         document.add(table1);
         document.add(table2);
-        document.add(new Paragraph("For " + businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.RIGHT));
+        document.add(tableFor);
         document.add(table3);
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();

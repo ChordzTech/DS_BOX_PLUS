@@ -188,9 +188,9 @@ interface RetrofitService {
                     requestBuilder.header("Content-Type", "application/json")
                     chain.proceed(requestBuilder.build())
                 }
-                .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
-                .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
-                .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .connectTimeout(3, java.util.concurrent.TimeUnit.MINUTES)
+                .readTimeout(3, java.util.concurrent.TimeUnit.MINUTES)
+                .writeTimeout(3, java.util.concurrent.TimeUnit.MINUTES)
                 .retryOnConnectionFailure(true)
 
 //            val httpClientBuilder = OkHttpClient.Builder()

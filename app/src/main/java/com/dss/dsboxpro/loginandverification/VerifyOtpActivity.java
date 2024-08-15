@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dss.dsboxpro.R;
@@ -110,7 +109,7 @@ public class VerifyOtpActivity extends BaseActivity {
     }
 
     private void initView() {
-        if(getIntent().getStringExtra("mobile").equals("9111111111")){
+        if (getIntent().getStringExtra("mobile").equals("9111111111")) {
             finishAffinity();
             startActivity(new Intent(this, SplashActivity.class));
         }
@@ -139,7 +138,13 @@ public class VerifyOtpActivity extends BaseActivity {
 
         });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
-            if (userDetailsResponse.getCode() == 404) {
+            if (userDetailsResponse.getCode() == 200) {
+                //                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+                Log.e("TAG", "initObservers: " + "start HomeActivity");
+                finish();
+            } else if (userDetailsResponse.getCode() == 404) {
                 Intent intent = new Intent(getApplicationContext(), EnterBusinessDetailsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -150,15 +155,10 @@ public class VerifyOtpActivity extends BaseActivity {
                 UserData userData = userDetailsResponse.getData().get(0);
                 ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 viewModel.updateSubUser(userData.getUserid(), deviceInfo, userData);
-            }
-            if (userDetailsResponse.getCode() == 400) {
+            } else if (userDetailsResponse.getCode() == 400) {
                 showMessagePopUp("Your mobile number already registered with another device, please contact support to deauthorize another device.");
-            } else {
-//                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-                Log.e("TAG", "initObservers: " + "start HomeActivity");
-                finish();
+            } else if (userDetailsResponse.getCode() == 301) {
+                showMessagePopUp("Your mobile number already registered with another device, please contact support to deauthorize another device.");
             }
         });
 
