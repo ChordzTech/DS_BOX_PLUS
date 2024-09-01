@@ -180,7 +180,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         Document document = new Document(pdfDocument);
         DeviceRgb gray = new DeviceRgb(128, 128, 128);
 
-        float columnWidth[] = {62, 140, 140, 140, 140};
+        float columnWidth[] = {62, 400};
         Table table = new Table(columnWidth);
 
 //        Drawable d1 = getDrawable(R.drawable.companylogo);
@@ -217,7 +217,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
             image1.setWidth(80f);
             table.addCell(new Cell(4,1).add(image1).setBorder(Border.NO_BORDER));
         }
-        //table 1-01
+   /*     //table 1-01
 //        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
@@ -250,12 +250,34 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));*/
+
+
+//        table.addCell(new Cell(4, 1).add(image1).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+
+
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getBusinessname()).setTextAlignment(TextAlignment.LEFT)).setFontSize(15f).setBold().setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+
+        //table 1-02
+        table.addCell(new Cell().add(new Paragraph(businessDetailsResponse.getData().getAddress() + ", " + businessDetailsResponse.getData().getPincode() + ", " + businessDetailsResponse.getData().getContactno()).setTextAlignment(TextAlignment.LEFT).setBold()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+
+        //table 1-03
+        table.addCell(new Cell().add(new Paragraph().setBold()).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
+
+        //table 1-04
+//        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER);
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
 
         //table 1-05
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(new Paragraph("Quotation")).setFontSize(18).setBold().setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(new Paragraph("Quotation")).setFontSize(18).setBold().setUnderline().setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 

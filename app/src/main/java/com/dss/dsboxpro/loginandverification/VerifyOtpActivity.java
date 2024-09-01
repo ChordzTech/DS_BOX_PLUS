@@ -138,7 +138,7 @@ public class VerifyOtpActivity extends BaseActivity {
 
         });
         viewModel.getUserDetailsResponse().observe(this, userDetailsResponse -> {
-            if (userDetailsResponse.getCode() == 200) {
+            if (userDetailsResponse.getCode() == 200 && !userDetailsResponse.getData().get(0).getAndroidid().equalsIgnoreCase("NewUser")) {
                 //                ConfigDataProvider.INSTANCE.setUserDetails(userDetailsResponse);
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
