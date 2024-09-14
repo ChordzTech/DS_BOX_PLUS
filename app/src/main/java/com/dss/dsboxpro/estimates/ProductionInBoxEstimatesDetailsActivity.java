@@ -26,7 +26,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.DashedBorder;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
@@ -161,7 +160,6 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         String ups = intent.getStringExtra("ups");
 
 
-
         // Retrieve data from the intent
         double decalLength = intent.getDoubleExtra("decalLength", 0.0);
         double cuttingLength = getIntent().getDoubleExtra("cuttingLength", 0.0);
@@ -216,7 +214,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         } else {
             // Handle the case when the profile picture Bitmap is null
             Log.e("ProfileFragment", "Profile picture Bitmap is null");
-            Bitmap bitmap1 = Bitmap.createBitmap(50,50, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap1 = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
             ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
             bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
             byte[] bitmapData1 = stream1.toByteArray();
@@ -330,7 +328,18 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+
+
+                    double weightPerBoxkg = weightPerBox * boxQuantity;
+                    String weightPerBoxkgUnit;
+                    if (weightPerBoxkg > 1000) {
+                        weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxkg + weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
+
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
@@ -363,12 +372,21 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                         weightPerBox = weightPerBox + weightPerBoxList.get(j);
                     }
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
-
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+
+                    double weightPerBoxkg = weightPerBox * boxQuantity;
+                    String weightPerBoxkgUnit;
+                    if (weightPerBoxkg > 1000) {
+                        weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxkg + weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
+
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
@@ -410,12 +428,20 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                         weightPerBox = weightPerBox + weightPerBoxList.get(j);
                     }
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
-
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    weightPerBox = Double.valueOf(Math.round(weightPerBox));
+                    double weightPerBoxkg = weightPerBox * boxQuantity;
+                    String weightPerBoxkgUnit;
+                    if (weightPerBoxkg > 1000) {
+                        weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxkg + weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
@@ -475,12 +501,22 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                         weightPerBox = weightPerBox + weightPerBoxList.get(j);
                     }
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
-
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+
+
+                    double weightPerBoxkg = weightPerBox * boxQuantity;
+                    String weightPerBoxkgUnit;
+                    if (weightPerBoxkg > 1000) {
+                        weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxkg + weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
+
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
@@ -565,7 +601,18 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+
+                    double weightPerBoxkg = weightPerBox * boxQuantity;
+                    String weightPerBoxkgUnit;
+                    if (weightPerBoxkg > 1000) {
+                        weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxkg + weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
+
+
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
@@ -597,13 +644,21 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     for (int j = 0; j < weightPerBoxList.size(); j++) {
                         weightPerBox = weightPerBox + weightPerBoxList.get(j);
                     }
-                    weightPerBox = Double.valueOf(Math.round(weightPerBox));
 
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + " " )).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox * boxQuantity + "")).setTextAlignment(TextAlignment.CENTER));
+                    weightPerBox = Double.valueOf(Math.round(weightPerBox));
+                    double weightPerBoxkg = weightPerBox * boxQuantity;
+                    String weightPerBoxkgUnit;
+                    if (weightPerBoxkg > 1000) {
+                        weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightPerBoxkg + weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     grossWeight = grossWeight + (weightPerBox * boxQuantity);
                 }
             }
@@ -618,15 +673,15 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
         table2.addCell(new Cell().add(new Paragraph("")).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell().add(new Paragraph("Total")).setTextAlignment(TextAlignment.CENTER));
         String totalWeightUnit = "";
-        if (totalWeight > 1000 ) {
-            totalWeight =Math.round( totalWeight / 1000) ;
+        if (totalWeight > 1000) {
+            totalWeight = Math.round(totalWeight / 1000);
             totalWeightUnit = "Kg";
         } else {
             totalWeightUnit = "gm";
         }
         table2.addCell(new Cell().add(new Paragraph(totalWeight + totalWeightUnit)).setTextAlignment(TextAlignment.CENTER));
-        if (grossWeight > 1000 ) {
-            grossWeight =Math.round( grossWeight / 1000);
+        if (grossWeight > 1000) {
+            grossWeight = Math.round(grossWeight / 1000);
             grossWeightUnit = "Kg";
         } else {
             grossWeightUnit = "gm";
@@ -639,7 +694,7 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
         tableFor.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
         tableFor.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-        tableFor.addCell(new Cell().add(new Paragraph("For "+ businessDetailsResponse.getData().getBusinessname())).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+        tableFor.addCell(new Cell().add(new Paragraph("For " + businessDetailsResponse.getData().getBusinessname())).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
 
         Table table3 = new Table(columnWidth3);
         table3.addCell(new Cell().add(new Paragraph("Auto generated copy.no signature required.")).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));

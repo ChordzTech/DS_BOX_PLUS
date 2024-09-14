@@ -339,12 +339,12 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         String rate = "";
         if (isTaxEnable) {
 
-            rate = "Rs " + rateA + " Only" + "\n" +
+            rate = "Rs " + rateA + " " + "\n" +
                     "Tax @ " + tax + "-" + resultForTaxThreeDigits + " Rs\n" +
                     "Total: " + formattedResult + " Rs";
 
         } else {
-            rate = "Rs " + rateA + " Only" + "\n";
+            rate = "Rs " + rateA + " " + "\n";
 
         }
         table1.addCell(new Cell().add(new Paragraph(rate)).setTextAlignment(TextAlignment.RIGHT));
