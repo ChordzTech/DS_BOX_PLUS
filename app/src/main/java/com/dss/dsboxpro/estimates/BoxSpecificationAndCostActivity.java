@@ -166,9 +166,15 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
             activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(businessDetails.getWaste()));
-            activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf((businessDetails.getConversionrate())));
-            activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(businessDetails.getProfit()));
-            activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(businessDetails.getTax()));
+            if (isUpdate) {
+                activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf(dataItem.getConversionrate()));
+                activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(dataItem.getProfit()));
+                activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(dataItem.getTax()));
+            } else {
+                activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf((businessDetails.getConversionrate())));
+                activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(businessDetails.getProfit()));
+                activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(businessDetails.getTax()));
+            }
         }
 
         waste = activityBoxSpecificationAndCostBinding.tietWaste.getText().toString();
@@ -424,7 +430,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double val2ofGsm = (gsmOfFlute * ffOfFluteOnePaper);
         //Total Gsm
         double totalGsm = (val1ofGsm + val2ofGsm);
-        int gsmInInt= (int) totalGsm;
+        int gsmInInt = (int) totalGsm;
         activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 //
         //Total Weight
@@ -590,7 +596,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valSevenOfGsm = (gsmOfBottomPaper * 1);
         //totalGSm
         double totalGsm = (valueOneOFGsm + valTwoOfGsm + vlaThreeOfGsm + valueFourOfGsm + valFiveOfGsm + valueSixOfGsm + valSevenOfGsm);
-        int gsmInInt= (int) totalGsm;
+        int gsmInInt = (int) totalGsm;
         activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 
         //TotalWeight
@@ -756,7 +762,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double valFiveOfGsm = (gsmOfBottomPaper * 1);
         //totalGSm
         double totalGsm = (valueOneOFGsm + valTwoOfGsm + vlaThreeOfGsm + valueFourOfGsm + valFiveOfGsm);
-        int gsmInInt= (int) totalGsm;
+        int gsmInInt = (int) totalGsm;
         activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 
         //TotalWeight
@@ -833,7 +839,6 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvNetPaperCost.setText(String.valueOf(resultOfNPCThreeDigits));
 
 
-
         //WasteCost
         double resultWasteCost = ((resultOfNPCThreeDigits * wasteFromTiet) / 100);
         double resultWasteCostTwoDigits = Double.valueOf(String.format("%.2f", resultWasteCost));
@@ -897,7 +902,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         double val2ofGsm = (gsmOfFlute * ffOfFluteOnePaper);
         //Total Gsm
         double totalGsm = (val1ofGsm + val2ofGsm);
-        int gsmInInt= (int) totalGsm;
+        int gsmInInt = (int) totalGsm;
         activityBoxSpecificationAndCostBinding.tvTotalGsm.setText(String.valueOf(gsmInInt));
 //
         //Total Weight
@@ -1051,7 +1056,7 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
         activityBoxSpecificationAndCostBinding.tvTotalWeight.setText(gm);
 
         //ConversionCostPerKG
-
+        if (convCostKg.isEmpty()) convCostKg = "0";
         double convCostTiet = Double.parseDouble(convCostKg);
         double resultOfConvCost = (totalWeightThreeDigits * convCostTiet);
         String resultOfConvCostString = String.format("%.2f", resultOfConvCost);
