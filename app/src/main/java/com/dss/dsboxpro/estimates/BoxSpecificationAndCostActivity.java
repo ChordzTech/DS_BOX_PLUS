@@ -165,15 +165,17 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
-            activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(businessDetails.getWaste()));
             if (isUpdate) {
                 activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf(dataItem.getConversionrate()));
                 activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(dataItem.getProfit()));
                 activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(dataItem.getTax()));
+                activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(dataItem.getWaste()));
+                activityBoxSpecificationAndCostBinding.tietOverHeadCharges.setText(String.valueOf(dataItem.getOverheadcharges()));
             } else {
                 activityBoxSpecificationAndCostBinding.tietConversionCost.setText(String.valueOf((businessDetails.getConversionrate())));
                 activityBoxSpecificationAndCostBinding.tietProfit.setText(String.valueOf(businessDetails.getProfit()));
                 activityBoxSpecificationAndCostBinding.tietTax.setText(String.valueOf(businessDetails.getTax()));
+                activityBoxSpecificationAndCostBinding.tietWaste.setText(String.valueOf(businessDetails.getWaste()));
             }
         }
 

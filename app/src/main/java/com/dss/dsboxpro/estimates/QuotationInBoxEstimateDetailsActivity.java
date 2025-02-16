@@ -340,7 +340,7 @@ public class QuotationInBoxEstimateDetailsActivity extends BaseActivity {
         if (isTaxEnable) {
 
             rate = "Rs " + rateA + " " + "\n" +
-                    "Tax @ " + tax +" Rs " + resultForTaxThreeDigits + " \n" +
+                    "Tax @ " + tax+ " %" +" Rs " + resultForTaxThreeDigits + " \n" +
                     "Total: " +" Rs "  + formattedResult ;
 
         } else {
