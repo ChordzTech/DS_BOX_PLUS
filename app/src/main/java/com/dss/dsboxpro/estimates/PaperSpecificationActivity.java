@@ -194,10 +194,11 @@ public class PaperSpecificationActivity extends BaseActivity {
 
         if (businessDetailsResponse != null && businessDetailsResponse.getData() != null) {
             BusinessDetails businessDetails = businessDetailsResponse.getData();
-            paperSpecificationBinding.ffInFlutePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
-            paperSpecificationBinding.ffInFluteTwoPaper.setText(String.valueOf(businessDetails.getFlutefactor()));
-            paperSpecificationBinding.ffInFluteThreePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
-
+            if(dataItem==null) {
+                paperSpecificationBinding.ffInFlutePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+                paperSpecificationBinding.ffInFluteTwoPaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+                paperSpecificationBinding.ffInFluteThreePaper.setText(String.valueOf(businessDetails.getFlutefactor()));
+            }
         }
         paperSpecificationBinding.bfInTopPaper.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

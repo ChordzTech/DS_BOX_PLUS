@@ -326,12 +326,20 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+
+                    double weightperboxindividualkg = weightPerBox ;
+                    String weightPerBoxkgUnit;
+                    if (weightperboxindividualkg > 1000) {
+                        weightperboxindividualkg = Math.round(weightperboxindividualkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightperboxindividualkg + " "+weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
 
 
                     double weightPerBoxkg = weightPerBox * boxQuantity;
-                    String weightPerBoxkgUnit;
                     if (weightPerBoxkg > 1000) {
                         weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
                         weightPerBoxkgUnit = "Kg";
@@ -374,11 +382,18 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    double weightperboxindividualkg = weightPerBox ;
+                    String weightPerBoxkgUnit;
+                    if (weightperboxindividualkg > 1000) {
+                        weightperboxindividualkg = Math.round(weightperboxindividualkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightperboxindividualkg + " "+weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
 
                     double weightPerBoxkg = weightPerBox * boxQuantity;
-                    String weightPerBoxkgUnit;
                     if (weightPerBoxkg > 1000) {
                         weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
                         weightPerBoxkgUnit = "Kg";
@@ -430,11 +445,18 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    double weightperboxindividualkg = weightPerBox ;
+                    String weightPerBoxkgUnit;
+                    if (weightperboxindividualkg > 1000) {
+                        weightperboxindividualkg = Math.round(weightperboxindividualkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightperboxindividualkg + " "+weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
                     double weightPerBoxkg = weightPerBox * boxQuantity;
-                    String weightPerBoxkgUnit;
                     if (weightPerBoxkg > 1000) {
                         weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
                         weightPerBoxkgUnit = "Kg";
@@ -503,12 +525,19 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    double weightperboxindividualkg = weightPerBox ;
+                    String weightPerBoxkgUnit;
+                    if (weightperboxindividualkg > 1000) {
+                        weightperboxindividualkg = Math.round(weightperboxindividualkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightperboxindividualkg + " "+weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
 
 
                     double weightPerBoxkg = weightPerBox * boxQuantity;
-                    String weightPerBoxkgUnit;
                     if (weightPerBoxkg > 1000) {
                         weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
                         weightPerBoxkgUnit = "Kg";
@@ -599,11 +628,18 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + "")).setTextAlignment(TextAlignment.CENTER));
+                    double weightperboxindividualkg = weightPerBox ;
+                    String weightPerBoxkgUnit;
+                    if (weightperboxindividualkg > 1000) {
+                        weightperboxindividualkg = Math.round(weightperboxindividualkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightperboxindividualkg + " "+weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
 
                     double weightPerBoxkg = weightPerBox * boxQuantity;
-                    String weightPerBoxkgUnit;
                     if (weightPerBoxkg > 1000) {
                         weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
                         weightPerBoxkgUnit = "Kg";
@@ -647,11 +683,18 @@ public class ProductionInBoxEstimatesDetailsActivity extends BaseActivity {
 
                     table2.addCell(new Cell().add(new Paragraph(i + 1 + "")).setTextAlignment(TextAlignment.CENTER));
                     table2.addCell(new Cell().add(new Paragraph(ratio)).setTextAlignment(TextAlignment.CENTER));
-                    table2.addCell(new Cell().add(new Paragraph(weightPerBox + " " )).setTextAlignment(TextAlignment.CENTER));
+                    double weightperboxindividualkg = weightPerBox ;
+                    String weightPerBoxkgUnit;
+                    if (weightperboxindividualkg > 1000) {
+                        weightperboxindividualkg = Math.round(weightperboxindividualkg / 1000);
+                        weightPerBoxkgUnit = "Kg";
+                    } else {
+                        weightPerBoxkgUnit = "gm";
+                    }
+                    table2.addCell(new Cell().add(new Paragraph(weightperboxindividualkg + " "+weightPerBoxkgUnit)).setTextAlignment(TextAlignment.CENTER));
                     totalWeight = totalWeight + weightPerBox;
                     weightPerBox = Double.valueOf(Math.round(weightPerBox));
                     double weightPerBoxkg = weightPerBox * boxQuantity;
-                    String weightPerBoxkgUnit;
                     if (weightPerBoxkg > 1000) {
                         weightPerBoxkg = Math.round(weightPerBoxkg / 1000);
                         weightPerBoxkgUnit = "Kg";

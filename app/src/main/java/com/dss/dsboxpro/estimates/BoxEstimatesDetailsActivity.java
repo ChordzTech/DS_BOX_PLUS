@@ -212,7 +212,7 @@ public class BoxEstimatesDetailsActivity extends BaseActivity {
                     boxEstimatesDetailsBinding.tvFFFluteOne.setText(String.valueOf(dataItem.getF1ff()));
                     boxEstimatesDetailsBinding.tvMiddleOneBf.setText(String.valueOf((int) Math.round(dataItem.getM1bf())));
                     boxEstimatesDetailsBinding.tvMiddleOneGsm.setText(String.valueOf((int) Math.round(dataItem.getM1gsm())));
-                    boxEstimatesDetailsBinding.tvMiddleOneRate.setText(String.valueOf(dataItem.getM1rate()));
+                    boxEstimatesDetailsBinding.tvMiddleOneRate. setText(String.valueOf(dataItem.getM1rate()));
                     boxEstimatesDetailsBinding.tvFluteTwoBf.setText(String.valueOf((int) Math.round(dataItem.getF2bf())));
                     boxEstimatesDetailsBinding.tvFluteTwoGsm.setText(String.valueOf((int) Math.round(dataItem.getF2gsm())));
                     boxEstimatesDetailsBinding.tvFluteTwoRate.setText(String.valueOf(dataItem.getF2rate()));
