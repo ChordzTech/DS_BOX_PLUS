@@ -87,7 +87,7 @@ interface RetrofitService {
 
     //client list APIs
     @GET("GetClientByB/{businessid}/")
-    suspend fun getClientList(@Path(value = "businessid") businessId: Long): Response<ClientListResponse>
+    suspend fun getClientList(@Path(value = "businessid") businessId: Long, @Query(value="start_index") start_index:Int): Response<ClientListResponse>
 
     @POST("ClientsDetails/")
     suspend fun addClient(@Body request: AddClientRequest): Response<AddClientResponse>

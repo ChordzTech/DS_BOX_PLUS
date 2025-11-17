@@ -89,8 +89,8 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
         }
     }
 
-    suspend fun getClientList(businessId: Long): NetworkState<ClientListResponse> {
-        val response = retrofitService.getClientList(businessId)
+    suspend fun getClientList(businessId: Long, clientIndex: Int): NetworkState<ClientListResponse> {
+        val response = retrofitService.getClientList(businessId,clientIndex)
         return if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {

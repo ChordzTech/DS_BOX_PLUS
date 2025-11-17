@@ -16,6 +16,9 @@ data class ClientListResponse(
 	@field:SerializedName("message")
 	val message: String? = null,
 
+	@field:SerializedName("start_index")
+	val startIndex: Int? = null,
+
 	@field:SerializedName("status")
 	val status: String? = null
 ) : Parcelable

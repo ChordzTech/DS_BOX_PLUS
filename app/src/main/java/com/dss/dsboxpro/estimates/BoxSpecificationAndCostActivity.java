@@ -298,22 +298,22 @@ public class BoxSpecificationAndCostActivity extends BaseActivity {
     }
 
     private void storeValuesInEstimateDataHolder() {
-        CreateEstimateDataHolder.INSTANCE.setTotalGsm(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setTotalBs(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTotalGsm(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalGsm.toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvTotalGsm.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTotalBs(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvTotalBs.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvTotalBs.getText().toString()));
         CreateEstimateDataHolder.INSTANCE.setTotalWeight(Double.parseDouble(String.valueOf(weightInInt)));
-        CreateEstimateDataHolder.INSTANCE.setNetPaperCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setNetPaperCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvNetPaperCost.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setTotalPaperCost(Float.parseFloat(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTotalPaperCost(Float.parseFloat(activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvgrossPaperCost.getText().toString()));
 
-        CreateEstimateDataHolder.INSTANCE.setConvCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setBoxMfg(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setBoxPrice(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(Float.parseFloat(activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setWasteInput(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietWaste.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setConvRate(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setOverHead(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setTax(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietTax.getText().toString()));
-        CreateEstimateDataHolder.INSTANCE.setProfit(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietProfit.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setConvCost(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvConversionCost.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvConversionCost.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBoxMfg(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvBoxMFGCost.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBoxPrice(Double.parseDouble(activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvBoxPrice.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setBoxPriceTax(Float.parseFloat(activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tvBoxPriceWithTax.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setWasteInput(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietWaste.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tietWaste.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setConvRate(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietConversionCost.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tietConversionCost.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setOverHead(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tietOverHeadCharges.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setTax(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietTax.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tietTax.getText().toString()));
+        CreateEstimateDataHolder.INSTANCE.setProfit(Float.parseFloat(activityBoxSpecificationAndCostBinding.tietProfit.getText().toString().isEmpty()?"0":activityBoxSpecificationAndCostBinding.tietProfit.getText().toString()));
 //        CreateEstimateDataHolder.INSTANCE.setCuttingFor2PlyKg(Float.parseFloat(String.valueOf(cutting)));
     }
 

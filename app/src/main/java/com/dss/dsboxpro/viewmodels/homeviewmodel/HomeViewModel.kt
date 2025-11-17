@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
     var startIndex: Int = -10
     var limit: Int = 10
-
+    var clientIndex = -50
     var gloabalEstimateListLiveData = MutableLiveData<List<DataItem>>()
         get() = field
 
@@ -105,7 +105,8 @@ class HomeViewModel(val repository: MainRepository) : BaseViewModel() {
         val businessId =
             AppPreferences.getLongValueFromSharedPreferences(AppPreferences.BUSINESS_ID)
         viewModelScope.launch {
-            when (val response = repository.getClientList(businessId)) {
+            clientIndex += 50
+            when (val response = repository.getClientList(businessId,clientIndex)) {
                 is NetworkState.Success -> {
                     clientListLiveData.postValue(response.data!!)
                 }
