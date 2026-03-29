@@ -76,7 +76,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
     protected void onResume() {
         super.onResume();
         if (isConnectedToInternet()) {
-            homeViewModel.getClientList();
+//            homeViewModel.getClientList();
 
         } else {
             showNoInternetDialog();
@@ -137,9 +137,12 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
         });
         homeViewModel.getClientListLiveData().observe(this, clientListResponse -> {
             if (!clientListResponse.getData().isEmpty()) {
-                clientsList = (ArrayList<Client>) clientListResponse.getData();
+                homeViewModel.getClientList();
+                clientsList.addAll(clientListResponse.getData());
                 ConfigDataProvider.INSTANCE.setClientListResponse(clientListResponse);
                 ConfigDataProvider.INSTANCE.createClientIdMap(clientListResponse.getData());
+            }else{
+                homeViewModel.setClientIndex(-50);
             }
         });
         homeViewModel.getAppConfigLiveData().observe(this, appConfigResponse -> {
@@ -250,7 +253,7 @@ public class HomeActivity extends BaseActivity implements IHomeActivityCallBack 
                 homeScreenBinding.tvPageTitle.setText(R.string.title_clients);
                 replaceFragment(clientFragment);
                 if (isConnectedToInternet()) {
-                    homeViewModel.getClientList();
+//                    homeViewModel.getClientList();
                 } else {
                     showNoInternetDialog();
                 }
