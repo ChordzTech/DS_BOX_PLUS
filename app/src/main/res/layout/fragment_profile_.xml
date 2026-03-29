@@ -42,17 +42,16 @@
                         app:shapeAppearanceOverlay="@style/circular"
                         app:strokeColor="@color/black" />
 
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/fabAddImage"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:backgroundTint="@color/transparent"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="@dimen/margin_small"
-                        android:layout_marginBottom="@dimen/margin_small"
                         android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="@+id/ivProfileInProfileFragment"
                         app:layout_constraintEnd_toEndOf="@+id/ivProfileInProfileFragment"
-                        app:srcCompat="@drawable/baseline_linked_camera_24" />
+                        app:srcCompat="@drawable/pencil"
+                        app:shapeAppearanceOverlay="@style/circular"/>
 
                     <LinearLayout
                         android:id="@+id/llProfile"
@@ -61,18 +60,20 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/ivProfileInProfileFragment"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="127dp"
+                            android:id="@+id/tvName"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="@string/profile_name" />
 
                         <TextView
+                            android:id="@+id/tvContactNumber"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -80,7 +81,19 @@
                             android:gravity="center_horizontal"
                             android:text="+91 7709244796" />
 
+
                     </LinearLayout>
+
+                    <TextView
+                        style="@style/DSTextMediumBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admin"
+                        android:id="@+id/tvRole"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/llProfile"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -138,6 +151,7 @@
                         android:minHeight="20dp"
                         android:textOff="@string/switch_button_off"
                         android:textOn="@string/switch_button_on"
+                        android:checked="false"
                         android:thumb="@drawable/switch_button_thumb"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -400,7 +414,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvSubscription"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
@@ -411,7 +425,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -433,20 +447,37 @@
                         app:layout_constraintTop_toTopOf="parent">
 
 
-                    <TextView
-                        style="@style/DSTextMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/subscription_settings" />
                         <TextView
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/subscription_settings" />
+
+                        <TextView
+                            android:id="@+id/tvTrialActive"
                             style="@style/DSTextRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:background="@color/green"
                             android:gravity="start"
                             android:text="@string/sub_status" />
+                        <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvSubDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="start"/>
+                        <TextView
+                            style="@style/DSTextMedium"
+                            android:id="@+id/tvSubDays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="start" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

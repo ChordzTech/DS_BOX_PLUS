@@ -7,6 +7,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gery"
         tools:context=".profile.QuotationTerms">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,8 +44,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMediumBold"
+                    android:id="@+id/tietTermsAndConditions"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,13 +65,16 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:id="@+id/btSaveInQuotationTerms"
+                    android:backgroundTint="@color/green"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/save" />
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:id="@+id/btCloseInQuotationTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

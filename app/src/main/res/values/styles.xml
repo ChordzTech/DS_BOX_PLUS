@@ -18,7 +18,11 @@
         <item name="fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
+    <style name="DSTextMediumBoldA" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="DSTextLight" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">10sp</item>
         <item name="fontFamily">@font/roboto_regular</item>

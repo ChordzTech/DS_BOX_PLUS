@@ -6,6 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/gery"
         android:layout_height="match_parent"
         tools:context=".estimates.ProductionInBoxEstimatesDetailsActivity">
 
@@ -50,7 +51,9 @@
                 app:layout_constraintTop_toBottomOf="@id/tvProductionInProductionActivity">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietBoxQuantity"
                     style="@style/DSTextMedium"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -69,6 +72,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btCreatePDFInProduction"
                         style="@style/DSTextMedium"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
@@ -77,6 +81,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btCloseInProduction"
                         style="@style/DSTextMedium"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/close" />

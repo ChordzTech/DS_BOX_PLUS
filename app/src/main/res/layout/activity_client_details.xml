@@ -6,6 +6,7 @@
 
     <ScrollView
         android:scrollbars="none"
+        android:background="@color/gery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".clients.ClientDetailsActivity">
@@ -19,14 +20,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivClientDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/user_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/circular"
+                app:strokeColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tvClientDetails"
@@ -45,12 +48,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:hint="@string/customer_name"
+                android:hint="@string/client_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvClientDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietClientNameInClientdetails"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,6 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilCustomerName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietClientContactNoInClientdetails"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,6 +94,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietClientAddressInClientdetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -108,6 +114,8 @@
                     android:id="@+id/btUpdateInClientDetails"
                     android:layout_width="wrap_content"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/green"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/update" />
@@ -115,6 +123,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDeleteInClientDetails"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/delete" />
@@ -125,6 +135,7 @@
                 style="@style/DSTextMedium"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:text="@string/close"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"

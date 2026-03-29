@@ -7,7 +7,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".profile.BusinessDetails">
+        android:background="@color/gery"
+        tools:context=".profile.BusinessDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -43,6 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvBusinessDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietBusinessName"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,10 +64,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietBusinessContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_contact"
-                    android:inputType="number" />
+                    android:inputType="phone|number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,6 +84,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietBusinessAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_address"
@@ -100,6 +104,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietBusinessPincode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_pinCode"
@@ -119,6 +124,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/DSTextMedium"
+                    android:id="@+id/tietBusinessMail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/business_email"
@@ -141,6 +147,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btSaveinBusinessDetails"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -149,6 +157,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCloseInBusinessDetails"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

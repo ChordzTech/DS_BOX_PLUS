@@ -7,6 +7,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gery"
         tools:context=".profile.UserDetailsInProfile">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,12 +45,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:hint="@string/user_details"
+                android:hint="@string/user_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvUserDetails">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietUserName"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,11 +69,60 @@
                 app:layout_constraintTop_toBottomOf="@id/tilUserName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvContactNo"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvUserAccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:clickable="false"
+                android:elevation="20dp"
+                android:focusable="false"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilContact">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:padding="@dimen/padding_medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilContact">
+
+                    <TextView
+                        android:id="@+id/tvUserAccess"
+                        style="@style/DSTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_access"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Spinner
+                        android:id="@+id/userAccessSpinnerInUserDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:gravity="end"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDeviceInfo"
@@ -81,12 +132,15 @@
                 android:hint="@string/device_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilContact">
+                app:layout_constraintTop_toBottomOf="@id/cvUserAccess">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvdeviceInfo"
                     style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,12 +157,19 @@
 
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btUpdateInUSerDetails"
+                    style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
+                    android:backgroundTint="@color/green"
                     android:text="@string/update" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btCloseInUSerDetails"
+                    style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

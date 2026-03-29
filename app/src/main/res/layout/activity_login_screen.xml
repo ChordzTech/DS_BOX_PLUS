@@ -82,7 +82,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:hint="+91"
-                        android:inputType="number"
+                        android:inputType="phone"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black" />
 

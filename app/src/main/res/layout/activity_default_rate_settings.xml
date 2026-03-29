@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white">
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <ScrollView
+        android:background="@color/gery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         tools:context=".profile.DefaultRateSettings">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,7 +82,6 @@
                     style="@style/DSTextMedium"
                     android:inputType="numberDecimal"
                     android:layout_width="match_parent"
-
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,21 +109,25 @@
                 android:layout_margin="@dimen/margin_medium"
                 android:gravity="center"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilTax">
 
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/DSTextMedium"
                     android:id="@+id/btSaveInDefaultRateSettings"
+                    style="@style/DSTextMedium"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:text="@string/save" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/DSTextMedium"
                     android:id="@+id/btCloseInDefaultRateSettings"
+                    style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

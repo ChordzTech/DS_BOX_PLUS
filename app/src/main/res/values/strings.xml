@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">DS Box+</string>
-    <string name="name">DS Box+</string>
+    <string name="app_name">DS Box Next</string>
+    <string name="name">DS Box Next</string>
     <string name="splash_slogan">Box costing \n at your fingertips!</string>
     <string name="device_name">Device Name</string>
     <string name="verify_phone_number">Verify Your Phone Number</string>
-    <string name="sms_text">DS Box+ will send an SMS message to verify your phone
+    <string name="sms_text">DS Box Next will send an SMS message to verify your phone
     number,Please enter your Country Code and Phone number.</string>
     <string name="country_code">Country Code</string>
     <string name="phone_number">Phone Number</string>
@@ -40,14 +40,15 @@
     <string name="business_pinCode">Business PinCode</string>
     <string name="business_email">Business Email</string>
     <string name="save">Save</string>
+    <string name="create">Create</string>
     <string name="close">Close</string>
     <string name="cutting_margin">Cutting Margin (mm)</string>
     <string name="decal_margin">Decal Margin (mm)</string>
     <string name="flute_factor">Flute Factor (FF)</string>
     <string name="waste">Waste %</string>
     <string name="conversion_cost">Conversion Cost/KG</string>
-    <string name="profit">Profit %</string>
-    <string name="tax">Tax %</string>
+    <string name="profit">Profit % </string>
+    <string name="tax">Tax % </string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="quotation_new_line_text">For New line use | Vertical slash character also called as pipe,
          piping symbol to view New Line in Quotation PDF</string>
@@ -110,7 +111,7 @@
     <string name="conv_cost">Conv.Cost</string>
     <string name="paper_cost">Paper Cost</string>
     <string name="overhead">Overhead</string>
-    <string name="box_mfg_cost">Box Mfg.Cost</string>
+    <string name="box_mfg_cost">Box MFG.Cost</string>
     <string name="price_Incl">Price Incl.Tax</string>
     <string name="quotation">Quotation </string>
     <string name="production">Production </string>
@@ -134,13 +135,13 @@
     <string name="enable_tax_and_price">Enable Tax with Price</string>
     <string name="enable_tax_and_price_text">Display Tax percentage and Tax with Price in Quotation.</string>
     <string name="otp_verification">OTP Verification</string>
-    <string name="verify_sms_text">We have sent you an OTP \n foe phone number verification.</string>
+    <string name="verify_sms_text">We have sent you an OTP \n for phone number verification.</string>
     <string name="verifyotp">Verify OTP</string>
     <string name="enter_business_details">Enter Business Details</string>
     <string name="enter_business_details_text">This information will show on your \n estimates, quotations</string>
     <string name="client_details">Client Details</string>
     <string name="customer_name">Customer Name</string>
-    <string name="contact_support">Contact Support: 9421013332</string>
+    <string name="contact_support">Contact Support : </string>
     <string name="package_details">Package Details</string>
     <string name="copyright">Copyright© 2020 Disha Swaraj Soft.All rights reserved.</string>
     <string name="monthly">Monthly</string>
@@ -170,5 +171,26 @@
     <string name="flute_two_paper">Flute Two Paper</string>
     <string name="middle_two_paper">Middle Two Paper</string>
     <string name="flute_three_paper">Flute Three Paper</string>
-    <string name="sub_status">Subscription Status:Active</string>
+    <string name="sub_status">Subscription Status:</string>
+    <string name="no_estimates_add_one">No Estimates Add One</string>
+    <string name="your_active_subscription_has_ended">Your Active Subscription has ended.\n
+    Please,Upgrade Your Premium Membership</string>
+    <string name="upgrade_membership">UPGRADE MEMBERSHIP</string>
+    <string name="conti_nue">CONTINUE</string>
+    <string name="go_premium">Go Premium</string>
+    <string name="add_new_users">Add New Users</string>
+    <string name="title_estimates">Estimates</string>
+    <string name="title_clients">Clients</string>
+    <string name="title_profile">Profile</string>
+    <string name="subscription_till">Subscription till</string>
+    <string name="lblnoapplicationfound">There is no app installed on device to open this PDF file.</string>
+    <string name="bt_update">Update</string>
+    <string-array name="noOfPly">
+        <item>1Ply</item>
+        <item>2Ply</item>
+        <item>3Ply</item>
+        <item>5Ply</item>
+        <item>7Ply</item>
+        <item>2Ply(KG)</item>
+    </string-array>
 </resources>

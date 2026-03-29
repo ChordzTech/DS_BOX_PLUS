@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".clients.AddNewClients">
+        android:scrollbars="none"
+        android:background="@color/gery"
+        tools:context=".clients.AddNewClientsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,15 +19,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
-            <ImageView
-                android:id="@+id/ivNewClients"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_person_outline_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivNewClients"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/baseline_person_outline_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/circular"
+                    app:strokeColor="@color/black" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/tvNewClientDetails"
@@ -38,7 +51,7 @@
                 android:textColor="@color/blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivNewClients" />
+                app:layout_constraintTop_toBottomOf="@id/clImage" />
 
             <TextView
                 android:id="@+id/tvThisInfoText"
@@ -61,8 +74,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tvThisInfoText">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextMedium"
                     android:id="@+id/tietClientName"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/client_name"
@@ -84,7 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/contact_no"
-                    android:inputType="text" />
+                    android:inputType="number"
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -97,8 +111,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tilContactNumber">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DSTextMedium"
                     android:id="@+id/tietAddress"
+                    style="@style/DSTextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
@@ -111,7 +125,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
+                android:textColor="@color/white"
                 android:text="@string/submit"
+                android:backgroundTint="@color/green"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilAddress" />

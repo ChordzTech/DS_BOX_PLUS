@@ -7,6 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gery"
         tools:context=".estimates.QuotationInBoxEstimateDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +61,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintEnd_toStartOf="@id/swPaperSpecification"
+                        app:layout_constraintEnd_toStartOf="@id/swEnablePaperSpecification"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -78,7 +79,7 @@
                     </LinearLayout>
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/swPaperSpecification"
+                        android:id="@+id/swEnablePaperSpecification"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="end"
@@ -98,7 +99,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/swTaxAndPrice"
+                        app:layout_constraintEnd_toStartOf="@id/swEnableTaxAndPrice"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llEnablePaperSpecification">
 
@@ -116,7 +117,7 @@
                     </LinearLayout>
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/swTaxAndPrice"
+                        android:id="@+id/swEnableTaxAndPrice"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="end"
@@ -129,7 +130,7 @@
 
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/swPaperSpecification"
+                        app:layout_constraintTop_toBottomOf="@+id/swEnablePaperSpecification"
                         app:showText="true"
                         app:track="@drawable/switch_button_track" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,6 +152,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCreateQuotationPDF"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -159,6 +161,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btCloseInQuotation"
                     style="@style/DSTextMedium"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/close" />

@@ -74,10 +74,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginTop="@dimen/margin_small"
                 android:id="@+id/cvImages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,25 +89,175 @@
                     android:layout_height="wrap_content">
 
 
-                    <ImageView
-                        android:id="@+id/ivBoxImage"
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
-                        android:background="@color/transparent"
-                        android:src="@drawable/boximage"
+                    <FrameLayout
+                        android:id="@+id/flImage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/ivrollImage"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:background="@color/transparent"
-                        android:src="@drawable/rollimgae"
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/ivBoxImage"
+                                android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@color/transparent"
+                                android:src="@drawable/top_boximage"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvLength"
+                                style="@style/DSTextMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginBottom="60dp"
+                                android:rotation="340"
+                                android:text="Text1"
+                                app:layout_constraintBottom_toBottomOf="@id/ivBoxImage"
+                                app:layout_constraintEnd_toEndOf="@id/ivBoxImage"
+                                app:layout_constraintStart_toStartOf="@id/ivBoxImage" />
+
+                            <TextView
+                                android:id="@+id/tvWidth"
+                                style="@style/DSTextMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|start"
+                                android:rotation="45"
+                                android:layout_marginBottom="40dp"
+                                android:layout_marginTop="75dp"
+                                android:text="Text2"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/ivBoxImage"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvHeight"
+                                style="@style/DSTextMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|end"
+                                android:rotation="90"
+                                android:layout_marginEnd="-45dp"
+                                android:layout_marginBottom="20dp"
+                                android:text="Text3"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/ivBoxImage"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <!-- Second TextView centered horizontally -->
+
+
+                        <!-- Third TextView aligned with bottom right -->
+
+                        <TextView
+                            android:id="@+id/tvTotalWeight"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:layout_marginBottom="90dp"
+                            android:rotation="340"
+                            android:text="Text4" />
+
+                        <TextView
+                            android:id="@+id/tvBS"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_medium"
+                            android:layout_marginBottom="60dp"
+                            android:rotation="350"
+                            android:text="Text5" />
+
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
+                        app:layout_constraintTop_toBottomOf="@+id/flImage1">
+
+                        <ImageView
+                            android:id="@+id/ivrollImage"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/roll_box_sheet"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivBoxImage" />
+
+                        <TextView
+                            android:id="@+id/tvCuttingSizeForBox"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_large"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginBottom="20dp"
+                            android:rotation="30"
+                            android:text="Text1" />
+
+                        <TextView
+                            android:id="@+id/tvDecalSizeForBox"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|start"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="45dp"
+                            android:layout_marginEnd="70dp"
+                            android:layout_marginBottom="90dp"
+                            android:rotation="320"
+                            android:text="Text2" />
+
+
+                        <TextView
+                            android:id="@+id/tvDecalSizeinInch"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|start"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="80dp"
+                            android:layout_marginEnd="60dp"
+                            android:layout_marginBottom="90dp"
+                            android:rotation="320"
+                            android:text="Text3" />
+
+                        <TextView
+                            android:id="@+id/tvCuttingLengthinch"
+                            style="@style/DSTextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_medium"
+                            android:layout_marginTop="65dp"
+                            android:layout_marginEnd="@dimen/margin_large"
+                            android:layout_marginBottom="20dp"
+                            android:rotation="30"
+                            android:text="Text4" />
+                    </FrameLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -128,23 +278,28 @@
                     android:padding="@dimen/padding_small">
 
                     <LinearLayout
-                        android:background="@drawable/edit_text_background"
                         android:id="@+id/llTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
+                            android:id="@+id/tvPly"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Ply" />
+                            android:gravity="left" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
 
                         <TextView
                             style="@style/DSTextMedium"
@@ -155,6 +310,11 @@
                             android:gravity="center"
                             android:text="@string/bf" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -164,6 +324,11 @@
                             android:gravity="center"
                             android:text="@string/gsm" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
@@ -172,6 +337,11 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/rate" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
 
                         <TextView
                             style="@style/DSTextMedium"
@@ -189,6 +359,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llTitle">
 
@@ -198,10 +369,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/top" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvTopBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -210,7 +387,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvTopGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -219,7 +402,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvTopRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -227,6 +416,11 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
 
                         <TextView
                             style="@style/DSTextMedium"
@@ -245,6 +439,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llTop">
 
@@ -254,10 +449,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/flute_one" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteOnebf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -266,7 +467,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvGsmFluteOne"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -275,7 +482,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvRateFluteOne"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -284,7 +497,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFFFluteOne"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -301,6 +520,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llFluteOne">
 
@@ -310,10 +530,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/middle_one" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvMiddleOneBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -322,7 +548,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvMiddleOneGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -331,7 +563,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvMiddleOneRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -339,6 +577,11 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
 
                         <TextView
                             style="@style/DSTextMedium"
@@ -359,6 +602,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llMiddleOne">
 
@@ -368,10 +612,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/flute_two" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteTwoBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -380,7 +630,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteTwoGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -389,7 +645,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteTwoRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -398,7 +660,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteTwoFf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -417,6 +685,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llFluteTwo">
 
@@ -426,10 +695,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/middle_two" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvMiddleTwoBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -438,7 +713,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvMiddleTwoGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -447,7 +728,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvMiddleTwoRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -455,6 +742,11 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
 
                         <TextView
                             style="@style/DSTextMedium"
@@ -474,6 +766,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llMiddleTwo">
 
@@ -483,10 +776,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/flute_three" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteThreeBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -495,7 +794,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteThreeGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -504,7 +809,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteThreeRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -513,7 +824,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvFluteThreeFf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -531,6 +848,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:orientation="horizontal"
                         android:weightSum="5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llFluteThree">
 
@@ -540,10 +858,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:text="@string/bottom" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvBottomBf"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -552,7 +876,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvBottomGsm"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -561,7 +891,13 @@
                             android:gravity="center"
                             android:text="@string/zero" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
                         <TextView
+                            android:id="@+id/tvBottomRate"
                             style="@style/DSTextMedium"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -569,6 +905,11 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/zero" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
 
                         <TextView
                             style="@style/DSTextMedium"
@@ -620,6 +961,8 @@
                             android:text="@string/no_of_boxes_ups" />
 
                         <TextView
+                            android:id="@+id/tvnoOfBox"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -627,6 +970,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -645,6 +993,8 @@
                             android:text="@string/total_gsm" />
 
                         <TextView
+                            android:id="@+id/tvtotalGsm"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -652,6 +1002,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -670,6 +1025,8 @@
                             android:text="@string/waste" />
 
                         <TextView
+                            android:id="@+id/tvWaste"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -716,6 +1073,8 @@
                             android:text="@string/conv_kg" />
 
                         <TextView
+                            android:id="@+id/tvConvKg"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -723,6 +1082,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -740,6 +1104,8 @@
                             android:text="@string/conv_cost" />
 
                         <TextView
+                            android:id="@+id/tvConvCost"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -747,6 +1113,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -764,6 +1135,8 @@
                             android:text="@string/paper_cost" />
 
                         <TextView
+                            android:id="@+id/tvPaperCost"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -809,6 +1182,8 @@
                             android:text="@string/overhead" />
 
                         <TextView
+                            android:id="@+id/tvOverhead"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -816,6 +1191,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -833,6 +1213,8 @@
                             android:text="@string/box_mfg_cost" />
 
                         <TextView
+                            android:id="@+id/tvBoxMfg"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -840,6 +1222,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -849,14 +1236,16 @@
                         android:weightSum="1">
 
                         <TextView
+                            android:id="@+id/tvProfitPercentage"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="0.5"
-                            android:text="@string/profit" />
+                            android:layout_weight="0.5" />
 
                         <TextView
+                            android:id="@+id/tvProfit"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -903,6 +1292,8 @@
                             android:text="@string/box_price" />
 
                         <TextView
+                            android:id="@+id/tvBoxpriceInEstimateDetails"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -910,6 +1301,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -919,14 +1315,16 @@
                         android:weightSum="1">
 
                         <TextView
+                            android:id="@+id/tvTaxPercentage"
                             style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="0.5"
-                            android:text="@string/tax" />
+                            android:layout_weight="0.5" />
 
                         <TextView
+                            android:id="@+id/tvTax"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -934,6 +1332,11 @@
                             android:text="0" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -951,6 +1354,8 @@
                             android:text="@string/price_Incl" />
 
                         <TextView
+                            android:id="@+id/tvPriceWithtax"
+                            style="@style/DSTextMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -980,14 +1385,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
-                    android:text="@string/quotation" />
+                    android:backgroundTint="@color/darkBlue"
+                    android:text="@string/quotation"
+                    android:textColor="@color/white" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btProduction"
                     style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/production" />
+                    android:backgroundTint="@color/yellow"
+                    android:text="@string/production"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
 
@@ -1008,14 +1417,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_small"
-                    android:text="@string/edit" />
+                    android:backgroundTint="@color/green"
+                    android:text="@string/edit"
+                    android:textColor="@color/white" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btDelete"
                     style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/delete" />
+                    android:backgroundTint="@color/red"
+                    android:text="@string/delete"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -1024,6 +1437,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llEditAndDelete">
 
@@ -1032,7 +1446,8 @@
                     style="@style/DSTextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/close" />
+                    android:text="@string/close"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
