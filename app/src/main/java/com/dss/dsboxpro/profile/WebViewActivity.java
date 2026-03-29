@@ -1,0 +1,24 @@
+package com.dss.dsboxpro.profile;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+
+import com.dss.dsboxpro.R;
+import com.dss.dsboxpro.baseview.BaseActivity;
+
+public class WebViewActivity extends BaseActivity {
+    WebView wvWebsite;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_web_view);
+        wvWebsite=findViewById(R.id.wvWebsite);
+        Intent intent=getIntent();
+        String wenLink=intent.getStringExtra("link");
+        wvWebsite.loadUrl(wenLink);
+        wvWebsite.getSettings().setJavaScriptEnabled(true);
+        wvWebsite.setWebChromeClient(new WebChromeClient());
+    }
+}
